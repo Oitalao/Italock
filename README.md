@@ -40,7 +40,10 @@ Tudo é gratuito, sem propaganda, sem cadastro e sem internet obrigatória. As v
   <img src="docs/prints/windows-configuracoes.png" width="49%" alt="Configurações do Ítalock no Windows">
 </p>
 <p align="center">
-  <img src="docs/prints/android-inicio.png" width="98%" alt="Aplicativo do celular mostrando um computador destravado">
+  <img src="docs/prints/celular-inicio.png" width="45%" alt="Aplicativo no celular com dois computadores pareados">
+</p>
+<p align="center">
+  <img src="docs/prints/android-inicio.png" width="98%" alt="Aplicativo no tablet mostrando um computador destravado">
 </p>
 
 ## Como instalar
