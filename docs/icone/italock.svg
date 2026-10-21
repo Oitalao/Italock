@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Ítalock: cadeado laranja sobre fundo azul. Cores: azul #003399, laranja #EC7000 -->
+  <rect x="0" y="0" width="512" height="512" rx="112" fill="#003399"/>
+  <!-- alça -->
+  <path d="M176 236 V178 a80 80 0 0 1 160 0 V236" fill="none" stroke="#EC7000" stroke-width="44" stroke-linecap="round"/>
+  <!-- corpo -->
+  <rect x="128" y="226" width="256" height="196" rx="36" fill="#EC7000"/>
+  <!-- fechadura -->
+  <circle cx="256" cy="308" r="30" fill="#003399"/>
+  <path d="M242 318 h28 l10 64 h-48 z" fill="#003399"/>
+</svg>

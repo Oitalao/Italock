@@ -1,0 +1,17 @@
+cmake_minimum_required(VERSION 3.22)
+project(italock-agent)
+
+set(CMAKE_CXX_STANDARD 23)
+
+if(WIN32)
+    add_executable(italock-agent WIN32 src/main.cpp)
+    target_compile_definitions(italock-agent PRIVATE UNICODE _UNICODE WINDOWS WIN32_LEAN_AND_MEAN NOMINMAX)
+else()
+    add_executable(italock-agent src/main.cpp)
+    target_compile_definitions(italock-agent PRIVATE LINUX)
+endif()
+target_include_directories(italock-agent PRIVATE ${CMAKE_SOURCE_DIR}/common/src)
+target_link_libraries(italock-agent PRIVATE pcbu_common)
+if(WIN32)
+    target_link_libraries(italock-agent PRIVATE Wtsapi32)
+endif()

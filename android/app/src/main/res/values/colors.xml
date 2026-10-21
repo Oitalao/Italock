@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Marca (docs/design.md): azul, laranja, vermelho só para perigo. -->
+    <color name="italock_blue">#FF003399</color>
+    <color name="italock_orange">#FFEC7000</color>
+    <color name="italock_danger">#FFC62828</color>
+
+    <!-- Paletas fixas (widget e janela), escolhidas pela Aparência do app. -->
+    <color name="it_dark_bg">#FF0E1320</color>
+    <color name="it_dark_surface">#FF171D2E</color>
+    <color name="it_dark_text">#FFE6E8EE</color>
+    <color name="it_dark_secondary">#FF9AA3B5</color>
+    <color name="it_dark_brand">#FF7F9CF5</color>
+    <color name="it_dark_outline">#FF3A4460</color>
+    <color name="it_dark_orange">#FFEC7000</color>
+    <color name="it_dark_on_orange">#FF1A1206</color>
+    <color name="it_dark_danger">#FFC62828</color>
+    <color name="it_dark_on_danger">#FFFFFFFF</color>
+
+    <color name="it_light_bg">#FFE3E6EB</color>
+    <color name="it_light_surface">#FFECEEF1</color>
+    <color name="it_light_text">#FF1D2330</color>
+    <color name="it_light_secondary">#FF4F5868</color>
+    <color name="it_light_brand">#FF1F3F99</color>
+    <color name="it_light_outline">#FFCBD0D8</color>
+    <color name="it_light_orange">#FFD86A00</color>
+    <color name="it_light_on_orange">#FFFFF8F0</color>
+    <color name="it_light_danger">#FFB3261E</color>
+    <color name="it_light_on_danger">#FFFFF8F0</color>
+
+    <!-- "Igual ao sistema": values-night troca estes pelos escuros. -->
+    <color name="italock_bg">@color/it_light_bg</color>
+    <color name="italock_surface">@color/it_light_surface</color>
+    <color name="italock_text">@color/it_light_text</color>
+    <color name="italock_secondary">@color/it_light_secondary</color>
+    <color name="italock_outline">@color/it_light_outline</color>
+    <color name="italock_brand_text">@color/it_light_brand</color>
+    <color name="italock_action">@color/it_light_orange</color>
+    <color name="italock_on_orange">@color/it_light_on_orange</color>
+    <color name="italock_chip_danger">@color/it_light_danger</color>
+    <color name="italock_on_danger">@color/it_light_on_danger</color>
+</resources>

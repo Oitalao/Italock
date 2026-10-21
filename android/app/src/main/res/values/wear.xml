@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- O app do relógio acha o celular por esta capability (Data Layer do Google). -->
+    <string-array name="android_wear_capabilities" translatable="false">
+        <item>italock_phone</item>
+    </string-array>
+</resources>

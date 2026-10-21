@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Atalho da barra rápida (TileService) só existe a partir do Android 7. -->
+    <bool name="tile_enabled">false</bool>
+</resources>

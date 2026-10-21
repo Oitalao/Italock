@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ícone temático do Android 13+: só a silhueta do cadeado (o sistema pinta com a cor do tema) -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
+    <group android:scaleX="0.14" android:scaleY="0.14" android:translateX="18.16" android:translateY="19.14">
+        <path android:strokeColor="#FFFFFFFF" android:strokeWidth="44" android:strokeLineCap="round"
+            android:fillColor="#00000000" android:pathData="M176,236 V178 a80,80 0 0,1 160,0 V236"/>
+        <path android:fillColor="#FFFFFFFF" android:pathData="M164,226 h184 a36,36 0 0,1 36,36 v124 a36,36 0 0,1 -36,36 h-184 a36,36 0 0,1 -36,-36 v-124 a36,36 0 0,1 36,-36 z M239.6,333 L232,382 L280,382 L272.4,333 A30,30 0 1,0 239.6,333 Z"/>
+    </group>
+</vector>

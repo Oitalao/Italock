@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="italock_bg">@color/it_dark_bg</color>
+    <color name="italock_surface">@color/it_dark_surface</color>
+    <color name="italock_text">@color/it_dark_text</color>
+    <color name="italock_secondary">@color/it_dark_secondary</color>
+    <color name="italock_outline">@color/it_dark_outline</color>
+    <color name="italock_brand_text">@color/it_dark_brand</color>
+    <color name="italock_action">@color/it_dark_orange</color>
+    <color name="italock_on_orange">@color/it_dark_on_orange</color>
+    <color name="italock_chip_danger">@color/it_dark_danger</color>
+    <color name="italock_on_danger">@color/it_dark_on_danger</color>
+</resources>

@@ -1,0 +1,24 @@
+# Compilação
+dist/
+desktop/build-*/
+desktop/res/natives/
+desktop/common/src/generated/
+android/.gradle/
+android/.kotlin/
+android/build/
+android/app/build/
+android/wear/build/
+android/local.properties
+
+# Chaves e segredos nunca entram no repositório
+*.keystore
+*.jks
+secrets/
+
+# Editores e sistema
+.idea/
+.vscode/
+.cache/
+*.log
+.DS_Store
+Thumbs.db

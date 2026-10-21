@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- Mantida de propósito: satisfaz o pré-requisito do serviço em primeiro plano "connectedDevice" (Android 14+)
+         e serve à trava de multicast usada só durante o pareamento. -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <!-- Vibração curta de "deu certo / falhou" nos botões do app. -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- Bluetooth: Android 12+ pede BLUETOOTH_CONNECT em tempo de execução; até o 11 bastam as permissões antigas.
+         Não fazemos busca (scan) de aparelhos, então localização não é necessária. -->
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
+    <!-- Tag NFC: gravar (tela de detalhes) e ler (encostar o celular desbloqueado). -->
+    <uses-permission android:name="android.permission.NFC" />
+
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+    <uses-feature android:name="android.hardware.bluetooth" android:required="false" />
+    <uses-feature android:name="android.hardware.wifi" android:required="false" />
+    <uses-feature android:name="android.hardware.fingerprint" android:required="false" />
+    <uses-feature android:name="android.hardware.nfc" android:required="false" />
+
+    <!-- Android 11+: sem isto o app não "enxerga" o Tailscale instalado (o aviso de Tailscale desligado nunca aparecia). -->
+    <queries>
+        <package android:name="com.tailscale.ipn" />
+        <!-- Android 11+: anunciar o pedido de desbloqueio ao fork do Gadgetbridge (chamada falsa no relógio Amazfit). -->
+        <package android:name="nodomain.freeyourgadget.gadgetbridge.voz" />
+    </queries>
+
+    <application
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="Ítalock"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Italock"
+        tools:targetApi="36">
+
+        <!-- configChanges: girar a tela, mudar fonte, idioma ou tema não recria a atividade (não perde pareamento nem a
+             confirmação aberta); a pilha de telas também é salva para o caso de o Android recriar mesmo assim. -->
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|keyboard|density|uiMode|fontScale|locale|layoutDirection">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!-- Toque longo no atalho da barra rápida: Configurações, na escolha do computador do atalho. -->
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES" />
+            </intent-filter>
+        </activity>
+
+        <!-- Confirmação aberta pelo atalho da barra rápida e pelo widget (tela transparente).
+             Sem noHistory: no Android 6–9 ele fechava a tela enquanto o PIN/padrão estava aberto e a resposta se perdia.
+             A própria tela se fecha (finish) ao terminar. -->
+        <activity
+            android:name=".ui.QuickUnlockActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:taskAffinity=""
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|keyboard|density|uiMode"
+            android:theme="@style/Theme.Italock.Transparent" />
+
+        <!-- Aprovação direta pela notificação no Android 11 ou anterior: exige o celular destravado antes. -->
+        <activity
+            android:name=".ui.ApproveActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:taskAffinity=""
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|keyboard|density|uiMode"
+            android:theme="@style/Theme.Italock.Transparent" />
+
+        <activity
+            android:name=".ui.UnlockActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTop"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|keyboard|density|uiMode" />
+        <!-- UnlockActivity: aparecer por cima do bloqueio é decidido no onCreate ("Pedido na tela de bloqueio"),
+             nunca aqui: atributo fixo no manifesto passava por cima da opção desligada. -->
+
+        <service
+            android:name=".service.UnlockService"
+            android:exported="false"
+            android:foregroundServiceType="connectedDevice" />
+
+        <!-- Atalho da barra rápida: só existe no Android 7+ (no 6 fica desativado por @bool/tile_enabled). -->
+        <service
+            android:name=".lock.LockTileService"
+            android:enabled="@bool/tile_enabled"
+            android:exported="true"
+            android:icon="@drawable/ic_lock"
+            android:label="Ítalock"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
+        <!-- Tag NFC do Ítalock (italock://pc/<id público>). Tela transparente. O Android só lê tags com o celular desbloqueado. -->
+        <activity
+            android:name=".nfc.NfcTagActivity"
+            android:exported="true"
+            android:excludeFromRecents="true"
+            android:taskAffinity=""
+            android:launchMode="singleTop"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|keyboard|density|uiMode|fontScale|locale|layoutDirection"
+            android:theme="@style/Theme.Italock.Transparent">
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="italock" android:host="pc" />
+            </intent-filter>
+        </activity>
+
+        <!-- Relógio Wear OS: mensagens do app do relógio (só o Google Play Services chama; sem ele, nunca roda). -->
+        <service
+            android:name=".watch.PhoneWearListener"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.MESSAGE_RECEIVED" />
+                <data android:scheme="wear" android:host="*" android:pathPrefix="/italock" />
+            </intent-filter>
+        </service>
+
+        <!-- Arquivo de registros para compartilhar (Sobre, Exportar registros). -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.arquivos"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths" />
+        </provider>
+
+        <receiver android:name=".service.ActionReceiver" android:exported="false" />
+
+        <!-- Ponte com o fork do Gadgetbridge (relógio Amazfit): o fork chama call("answer", ...) ao ignorar/recusar a
+             chamada falsa. Exportada mas trancada por código (confere pacote + certificado do fork). -->
+        <provider
+            android:name=".watch.BipBridgeProvider"
+            android:authorities="${applicationId}.bip"
+            android:exported="true"
+            tools:ignore="ExportedContentProvider" />
+
+        <receiver android:name=".widget.PcWidgetProvider" android:exported="true" android:label="Ítalock">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_pc_info" />
+        </receiver>
+
+        <activity android:name=".widget.WidgetConfigActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".service.BootReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ítalock</string>
+    <string name="tile_label">Ítalock</string>
+    <string name="tile_description">Seus computadores e o botão certo para cada um</string>
+
+    <color name="italock_blue">#FF003399</color>
+    <color name="italock_orange">#FFEC7000</color>
+    <color name="italock_bg">#FF0E1320</color>
+
+    <!-- Sempre escuro (docs/design.md). -->
+    <style name="Theme.ItalockWear" parent="@android:style/Theme.DeviceDefault.NoActionBar">
+        <item name="android:windowBackground">@color/italock_bg</item>
+        <item name="android:colorBackground">@color/italock_bg</item>
+        <item name="android:colorAccent">@color/italock_orange</item>
+    </style>
+</resources>

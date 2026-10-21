@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- O celular procura o relógio por esta capability; não mudar o nome. -->
+    <string-array name="android_wear_capabilities" translatable="false"
+        tools:ignore="UnusedResources">
+        <item>italock_wear</item>
+    </string-array>
+</resources>

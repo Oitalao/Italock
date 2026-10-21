@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Silhueta do cadeado (notificação, atalho da barra rápida, botões): branco com o buraco da fechadura vazado -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp" android:viewportWidth="24" android:viewportHeight="24">
+    <group android:scaleX="0.058" android:scaleY="0.058" android:translateX="-2.848" android:translateY="-2.442">
+        <path android:strokeColor="#FFFFFFFF" android:strokeWidth="44" android:strokeLineCap="round"
+            android:fillColor="#00000000" android:pathData="M176,236 V178 a80,80 0 0,1 160,0 V236"/>
+        <path android:fillColor="#FFFFFFFF" android:pathData="M164,226 h184 a36,36 0 0,1 36,36 v124 a36,36 0 0,1 -36,36 h-184 a36,36 0 0,1 -36,-36 v-124 a36,36 0 0,1 36,-36 z M239.6,333 L232,382 L280,382 L272.4,333 A30,30 0 1,0 239.6,333 Z"/>
+    </group>
+</vector>

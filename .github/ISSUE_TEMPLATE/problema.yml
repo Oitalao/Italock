@@ -1,0 +1,33 @@
+name: Relatar um problema
+description: Algo não funcionou como deveria
+labels: [problema]
+body:
+  - type: textarea
+    id: oque
+    attributes:
+      label: O que aconteceu?
+      description: Conte o que você fez e o que apareceu na tela. Se puder, junte um print.
+    validations:
+      required: true
+  - type: dropdown
+    id: computador
+    attributes:
+      label: Sistema do computador
+      options: [Windows 11, Windows 10, Linux]
+    validations:
+      required: true
+  - type: input
+    id: celular
+    attributes:
+      label: Modelo do celular e versão do Android
+      placeholder: Ex.: Samsung Galaxy A54, Android 14
+  - type: dropdown
+    id: conexao
+    attributes:
+      label: Como o celular e o computador estão ligados?
+      options: [Mesmo Wi-Fi, Cabo USB, Bluetooth, Tailscale, Não sei]
+  - type: textarea
+    id: registros
+    attributes:
+      label: Registros (opcional)
+      description: No celular, Ítalock › Configurações › Sobre › Exportar registros. Os registros não têm senhas nem chaves.

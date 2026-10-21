@@ -1,0 +1,30 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/ui/">
+        <file>MainWindow.qml</file>
+        <file>LogsWindow.qml</file>
+        <file>UnlockTestWindow.qml</file>
+
+        <file>pages/HomePage.qml</file>
+        <file>pages/PairingPage.qml</file>
+        <file>pages/SettingsPage.qml</file>
+        <file>pages/ExperimentalPage.qml</file>
+        <file>pages/AboutPage.qml</file>
+        <file>pages/HistoryPage.qml</file>
+
+        <file>base/qmldir</file>
+        <file>base/Theme.qml</file>
+        <file>base/Icon.qml</file>
+        <file>base/Btn.qml</file>
+        <file>base/Toggle.qml</file>
+        <file>base/SettingRow.qml</file>
+        <file>base/Field.qml</file>
+        <file>base/Choice.qml</file>
+        <file>base/PageHeader.qml</file>
+        <file>base/AppDialog.qml</file>
+        <file>base/Busy.qml</file>
+        <file>base/SectionLabel.qml</file>
+        <file>base/AppMenu.qml</file>
+        <file>base/AppMenuItem.qml</file>
+    </qresource>
+</RCC>
