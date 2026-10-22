@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_description">Blocca, sblocca e accendi un computer</string>
+
+    <string name="common_cancel">Annulla</string>
+    <string name="common_close">Chiudi</string>
+    <string name="common_save">Salva</string>
+    <string name="common_remove">Rimuovi</string>
+    <string name="common_change">Cambia</string>
+    <string name="common_allow">Consenti</string>
+    <string name="common_turn_on">Attiva</string>
+    <string name="common_back">Indietro</string>
+    <string name="common_show">Mostra</string>
+    <string name="common_collapse">Comprimi</string>
+    <string name="common_expanded">aperto</string>
+    <string name="common_collapsed">chiuso</string>
+    <string name="common_not_informed">Non indicato</string>
+    <string name="common_none">Nessuno</string>
+    <string name="common_technical_details">Dettagli tecnici</string>
+
+    <string name="action_unlock">Sblocca</string>
+    <string name="action_lock">Blocca</string>
+    <string name="action_wake">Accendi</string>
+    <string name="action_fix_clock">Correggi l\'ora</string>
+    <string name="action_pair">Accoppia</string>
+
+    <string name="status_locked">Bloccato</string>
+    <string name="status_unlocked">Sbloccato</string>
+    <string name="status_no_answer">Nessuna risposta</string>
+    <string name="status_clock_off">Ora del telefono sbagliata</string>
+    <string name="status_not_paired">Non riconosce questo telefono</string>
+    <string name="status_error">Ha risposto con un errore</string>
+    <string name="status_querying">Verifica in corso</string>
+    <string name="status_unverified">%1$s · non verificato</string>
+    <string name="danger_strip">Senza conferma</string>
+
+    <string name="via_lan">rete locale</string>
+    <string name="via_internet">internet</string>
+
+    <string name="event_locked">Bloccato</string>
+    <string name="event_unlocked">Sbloccato</string>
+    <string name="event_denied">Richiesta rifiutata</string>
+    <string name="event_expired">Richiesta scaduta</string>
+    <string name="origin_app">app</string>
+    <string name="origin_widget">widget</string>
+    <string name="origin_shortcut">scorciatoia dell\'icona</string>
+    <string name="origin_tile">riquadro rapido</string>
+    <string name="origin_tag">tag NFC</string>
+    <string name="origin_watch">orologio</string>
+    <string name="origin_pc">richiesta del computer</string>
+    <string name="origin_notification">notifica</string>
+    <string name="origin_auto">automatico da vicino</string>
+    <string name="when_today">oggi alle %1$s</string>
+    <string name="when_yesterday">ieri alle %1$s</string>
+    <string name="when_date">%2$s alle %1$s</string>
+
+    <string name="notif_service_title">Ítalock attivo</string>
+    <string name="notif_service_text">In attesa di richieste dai tuoi computer</string>
+    <string name="channel_status">Servizio attivo</string>
+    <string name="channel_prompt">Richieste di sblocco</string>
+    <string name="channel_waiting">Computer in attesa</string>
+
+    <string name="list_separator">", "</string>
+    <string name="a11y_why_unavailable">Perché non è disponibile</string>
+    <string name="a11y_unavailable">%1$s, non disponibile. %2$s</string>
+
+    <string name="home_lock_all">Blocca tutti</string>
+    <string name="home_pair_computer">Accoppia computer</string>
+    <string name="home_settings_attention">Impostazioni (manca un permesso)</string>
+    <string name="home_notifications_off">Notifiche disattivate: le richieste del computer non compariranno.</string>
+    <string name="home_empty_title">Nessun computer accoppiato</string>
+    <string name="home_empty_text">Installa Ítalock sul computer e scansiona il QR code che mostra.</string>
+    <string name="home_open_details">Apri dettagli</string>
+    <string name="home_needs_repair">Accoppia di nuovo: la password salvata è andata persa</string>
+    <string name="home_waiting_for">In attesa di %1$s</string>
+    <string name="lock_all_one">Computer bloccato</string>
+    <plurals name="lock_all_done">
+        <item quantity="one">%d computer bloccato</item>
+        <item quantity="many">Tutti i %d computer bloccati</item>
+        <item quantity="other">Tutti i %d computer bloccati</item>
+    </plurals>
+    <string name="lock_all_none">Nessuno bloccato: %1$s</string>
+    <plurals name="lock_all_partial">
+        <item quantity="one">%1$d su %2$d bloccato.</item>
+        <item quantity="many">%1$d su %2$d bloccati.</item>
+        <item quantity="other">%1$d su %2$d bloccati.</item>
+    </plurals>
+    <plurals name="lock_all_failed">
+        <item quantity="one">Non bloccato: %1$s</item>
+        <item quantity="many">Non bloccati: %1$s</item>
+        <item quantity="other">Non bloccati: %1$s</item>
+    </plurals>
+
+    <string name="theme_dark">Scuro</string>
+    <string name="theme_light">Chiaro</string>
+    <string name="theme_system">Come il sistema</string>
+
+    <string name="settings_title">Impostazioni</string>
+    <string name="settings_missing">Permessi mancanti</string>
+    <string name="settings_missing_notifications">Notifiche: senza, le richieste del computer non compaiono.</string>
+    <string name="settings_missing_full_screen">Schermo intero: per mostrare la richiesta con il telefono bloccato.</string>
+    <string name="settings_missing_battery">Risparmio batteria: Android può chiudere Ítalock.</string>
+    <string name="settings_missing_battery_action">Escludi</string>
+    <string name="settings_missing_bluetooth">Bluetooth: per permettere al computer di chiamare il telefono senza rete.</string>
+    <string name="settings_section_requests">Richieste del computer</string>
+    <string name="settings_timeout">Tempo per rispondere</string>
+    <plurals name="settings_seconds">
+        <item quantity="one">%d secondo</item>
+        <item quantity="many">%d secondi</item>
+        <item quantity="other">%d secondi</item>
+    </plurals>
+    <string name="settings_lockscreen_prompt">Richiesta sulla schermata di blocco</string>
+    <string name="settings_lockscreen_prompt_on">Accende lo schermo e compare sopra il blocco. Consuma più batteria.</string>
+    <string name="settings_lockscreen_prompt_off">Solo notifica, senza accendere lo schermo. Per rispondere, sblocca il telefono.</string>
+    <string name="settings_approve_locked">Sblocca con il telefono bloccato</string>
+    <string name="settings_approve_locked_on">Accetta la richiesta sulla schermata di blocco, senza sbloccare il telefono. Meno sicuro.</string>
+    <string name="settings_approve_locked_off">Disattivato: sblocca il telefono prima di accettare.</string>
+    <string name="settings_approve_locked_needs">Prima attiva \"%1$s\"</string>
+    <string name="settings_approve_locked_ask">Sbloccare con il telefono bloccato?</string>
+    <string name="settings_approve_locked_ask_text">Il computer potrà essere sbloccato direttamente dalla schermata di blocco del telefono, con la biometria (o il PIN, se \"%1$s\" è attivo), senza sbloccare il telefono. È più comodo, ma meno sicuro.</string>
+    <string name="settings_hide_name">Nascondi il nome del computer</string>
+    <string name="settings_hide_name_sub">Con il telefono bloccato, richieste e avvisi non dicono quale.</string>
+    <string name="settings_allow_credential">Accetta PIN, sequenza o password</string>
+    <string name="settings_allow_credential_sub">Oltre alla biometria. Disattivato: solo impronta o volto sicuro.</string>
+    <string name="settings_section_lock">Blocco</string>
+    <string name="settings_confirm_lock">Chiedi conferma prima di bloccare</string>
+    <string name="settings_confirm_lock_sub">Chiede prima di bloccare da app, widget, scorciatoie, tag, orologio o notifica.</string>
+    <string name="settings_tile">Riquadro rapido</string>
+    <string name="settings_tile_controls">Controlla: %1$s</string>
+    <string name="settings_tile_no_pc">nessun computer</string>
+    <string name="settings_tile_choose">Il riquadro rapido controlla</string>
+    <string name="settings_section_look">Aspetto e avvisi</string>
+    <string name="settings_theme">Aspetto</string>
+    <string name="settings_vibrate">Vibra al termine</string>
+    <string name="settings_vibrate_sub">Breve se va a buon fine, doppia se non riesce.</string>
+    <string name="settings_section_connection">Connessione</string>
+    <string name="settings_poll">Aggiorna lo stato del lucchetto</string>
+    <string name="settings_poll_open">Solo all\'apertura dell\'app</string>
+    <plurals name="settings_poll_every">
+        <item quantity="one">Ogni %d secondo con l\'app aperta</item>
+        <item quantity="many">Ogni %d secondi con l\'app aperta</item>
+        <item quantity="other">Ogni %d secondi con l\'app aperta</item>
+    </plurals>
+    <string name="settings_tailscale_warning">Avvisa quando Tailscale si disattiva</string>
+    <string name="settings_tailscale_warning_sub">Senza Tailscale, sbloccare fuori casa non funziona.</string>
+    <string name="settings_paths_note">Rete locale, Bluetooth e Tailscale si scelgono per ogni computer, nei suoi dettagli.</string>
+    <string name="settings_section_more">Altro</string>
+    <string name="settings_experimental">Funzioni sperimentali</string>
+    <string name="settings_experimental_none">Nessuna attiva</string>
+    <string name="settings_beta">BETA</string>
+    <string name="settings_about">Informazioni su Ítalock</string>
+    <string name="settings_about_sub">Crediti, licenza, dettagli tecnici e log</string>
+    <plurals name="settings_experimental_on">
+        <item quantity="one">%d attiva</item>
+        <item quantity="many">%d attive</item>
+        <item quantity="other">%d attive</item>
+    </plurals>
+
+    <string name="main_history_cleared">Cronologia di %1$s cancellata</string>
+    <string name="main_lock_all_ask">Bloccare tutti i computer?</string>
+    <string name="main_unlocked">%1$s sbloccato</string>
+    <string name="main_not_unlocked">%1$s non si è sbloccato</string>
+    <string name="main_lock_unconfirmed">%1$s ha ricevuto la richiesta, ma non ha confermato</string>
+    <string name="main_removed">%1$s rimosso</string>
+    <string name="main_no_paths">Con tutti i percorsi disattivati, %1$s non funziona.</string>
+    <string name="main_no_confirm_bio_title">Attiva lo sblocco senza conferma</string>
+    <string name="main_key_error">Errore nella chiave del telefono. Riprova.</string>
+    <string name="main_no_confirm_on">%1$s: sblocco senza conferma attivo</string>
+    <string name="main_no_confirm_off">%1$s: torna a chiedere conferma</string>
+    <string name="main_confirm_for">Conferma per %1$s</string>
+    <string name="main_on_for">Attivo per %1$s</string>
+    <string name="main_tech_version">Versione</string>
+    <string name="main_tech_device">Dispositivo</string>
+    <string name="main_tech_phone_id">ID di questo telefono</string>
+    <string name="main_tech_paired">Computer accoppiati</string>
+    <string name="main_tech_google">Servizi Google (orologio Wear OS)</string>
+    <string name="main_tech_available">Disponibili</string>
+    <string name="main_tech_unavailable">Non disponibili</string>
+    <string name="main_export_failed">Impossibile creare il file di log.</string>
+    <string name="main_export_subject">Log di Ítalock</string>
+    <string name="main_export_chooser">Invia log</string>
+    <string name="main_export_no_app">Nessuna app per condividere il file.</string>
+    <string name="main_scan_prompt">Inquadra il QR code di Ítalock sul computer</string>
+    <string name="main_pair_invalid_code">Codice non valido. Controlla e riprova.</string>
+    <string name="main_pair_searching">Ricerca del computer</string>
+    <string name="main_pair_timeout">L\'accoppiamento ha richiesto troppo tempo. Controlla la rete e riprova.</string>
+    <string name="main_pair_confirm">Conferma per salvare l\'accoppiamento</string>
+    <string name="main_pair_not_saved">Il computer ha salvato l\'accoppiamento, ma il telefono no. Tocca Conferma di nuovo; se non funziona, rimuovi questo telefono in Ítalock sul computer e accoppialo un\'altra volta.</string>
+    <string name="main_pair_bio_title">Salva l\'accoppiamento con %1$s</string>
+    <string name="main_paired_with">Accoppiato con %1$s</string>
+    <string name="main_pair_cancelled">%1$s Il computer ha già salvato l\'accoppiamento: tocca Conferma di nuovo, oppure rimuovi questo telefono in Ítalock sul computer.</string>
+    <string name="main_pair_cancelled_default">Conferma annullata.</string>
+
+    <string name="settings_language">Lingua</string>
+    <string name="language_system">Automatica (lingua di sistema)</string>
+</resources>

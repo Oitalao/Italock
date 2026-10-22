@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tile_description">I tuoi computer e il pulsante giusto per ognuno</string>
+
+    <string name="state_locked">Bloccato</string>
+    <string name="state_unlocked">Sbloccato</string>
+    <string name="state_no_answer">Nessuna risposta</string>
+    <string name="state_clock">Ora sbagliata</string>
+    <string name="state_unknown">Non confermato</string>
+
+    <string name="action_unlock">Sblocca</string>
+    <string name="action_wake">Accendi</string>
+    <string name="action_lock">Blocca</string>
+    <string name="action_deny">Rifiuta</string>
+    <string name="close">Chiudi</string>
+
+    <string name="phone_missing_long">Telefono non trovato. Apri Ítalock sul telefono e attiva Orologio Wear OS nelle funzioni sperimentali.</string>
+    <string name="open_on_phone">Apri Ítalock sul telefono</string>
+    <string name="phone_missing">Telefono non trovato. Apri Ítalock sul telefono.</string>
+    <string name="tile_sending">%1$s: invio</string>
+
+    <string name="sending">Invio</string>
+    <string name="phone_no_answer">Il telefono non ha risposto. È vicino o connesso a internet?</string>
+    <string name="result_confirm_on_phone">Conferma sul telefono</string>
+    <string name="result_done">Fatto</string>
+    <string name="result_failed">Non riuscito</string>
+
+    <string name="prompt_title">Sbloccare %1$s?</string>
+    <string name="prompt_title_generic">Sbloccare il computer?</string>
+    <string name="prompt_needs_lock_notif">Attiva il blocco schermo dell\'orologio per sbloccare da qui</string>
+    <string name="prompt_needs_lock">Per sbloccare dall\'orologio, attiva il suo blocco schermo</string>
+    <string name="channel_prompts">Richieste</string>
+    <string name="channel_prompts_desc">Richieste per sbloccare il computer</string>
+</resources>

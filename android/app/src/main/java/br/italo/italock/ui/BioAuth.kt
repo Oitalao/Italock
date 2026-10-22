@@ -10,7 +10,9 @@ import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
+import br.italo.italock.R
 import br.italo.italock.crypto.KeyGuard
+import br.italo.italock.i18n.L10n
 import br.italo.italock.data.PairedPc
 import br.italo.italock.data.PairingStore
 import javax.crypto.Cipher
@@ -56,7 +58,7 @@ object BioAuth {
     ) {
         val km = activity.getSystemService(KeyguardManager::class.java)
         if (km != null && !km.isDeviceSecure) {
-            onFail("Configure um bloqueio de tela (PIN, padrão ou senha) no celular primeiro.")
+            onFail(L10n.s(R.string.bio_need_screen_lock))
             return
         }
         val allowCredential = br.italo.italock.data.AppPrefs(activity).allowDeviceCredential
@@ -64,7 +66,7 @@ object BioAuth {
         if (!allowCredential && androidx.biometric.BiometricManager.from(activity).canAuthenticate(BIOMETRIC_STRONG) !=
             androidx.biometric.BiometricManager.BIOMETRIC_SUCCESS
         ) {
-            onFail("Nenhuma digital cadastrada neste celular. Cadastre uma, ou ligue Aceitar PIN, padrão ou senha nas Configurações.")
+            onFail(L10n.s(R.string.bio_no_fingerprint_settings))
             return
         }
         // Prepara a cifra ANTES de pedir a confirmação: é aqui que uma chave invalidada é descoberta e recriada.
@@ -78,7 +80,7 @@ object BioAuth {
             onFail(describe(e)); return
         }
         val perUse = KeyGuard.perUseKey()
-        if (perUse && probe == null) { onFail("Erro na chave: confirme de novo."); return }
+        if (perUse && probe == null) { onFail(L10n.s(R.string.bio_key_error_retry)); return }
         val pre: Cipher? = if (perUse) probe else null
         val prompt = BiometricPrompt(activity, ContextCompat.getMainExecutor(activity), object : BiometricPrompt.AuthenticationCallback() {
             override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
@@ -95,34 +97,34 @@ object BioAuth {
                 val canceled = errorCode == BiometricPrompt.ERROR_USER_CANCELED || errorCode == BiometricPrompt.ERROR_NEGATIVE_BUTTON ||
                     errorCode == BiometricPrompt.ERROR_CANCELED
                 onFail(if (canceled) null else when (errorCode) {
-                    BiometricPrompt.ERROR_LOCKOUT -> "Muitas tentativas. Espere um pouco e tente de novo."
-                    BiometricPrompt.ERROR_LOCKOUT_PERMANENT -> "Biometria bloqueada. Desbloqueie o celular com a senha e tente de novo."
-                    BiometricPrompt.ERROR_NO_BIOMETRICS -> "Nenhuma digital cadastrada neste celular."
-                    BiometricPrompt.ERROR_NO_DEVICE_CREDENTIAL -> "Configure um bloqueio de tela (PIN, padrão ou senha) no celular primeiro."
-                    BiometricPrompt.ERROR_TIMEOUT -> "O tempo para confirmar acabou. Tente de novo."
-                    BiometricPrompt.ERROR_HW_UNAVAILABLE, BiometricPrompt.ERROR_HW_NOT_PRESENT -> "O leitor de biometria não está disponível agora."
-                    else -> "Confirmação não concluída. Tente de novo."
+                    BiometricPrompt.ERROR_LOCKOUT -> L10n.s(R.string.bio_lockout)
+                    BiometricPrompt.ERROR_LOCKOUT_PERMANENT -> L10n.s(R.string.bio_lockout_permanent)
+                    BiometricPrompt.ERROR_NO_BIOMETRICS -> L10n.s(R.string.bio_no_fingerprint)
+                    BiometricPrompt.ERROR_NO_DEVICE_CREDENTIAL -> L10n.s(R.string.bio_need_screen_lock)
+                    BiometricPrompt.ERROR_TIMEOUT -> L10n.s(R.string.bio_timeout)
+                    BiometricPrompt.ERROR_HW_UNAVAILABLE, BiometricPrompt.ERROR_HW_NOT_PRESENT -> L10n.s(R.string.bio_hw_unavailable)
+                    else -> L10n.s(R.string.bio_not_completed)
                 })
             }
         })
         val info = BiometricPrompt.PromptInfo.Builder().setTitle(title).apply {
             if (subtitle != null) setSubtitle(subtitle)
             // Sem a senha do celular como alternativa, o Android exige um botão de cancelar.
-            if (allowed and DEVICE_CREDENTIAL == 0) setNegativeButtonText("Cancelar")
+            if (allowed and DEVICE_CREDENTIAL == 0) setNegativeButtonText(L10n.s(R.string.common_cancel))
         }.setAllowedAuthenticators(allowed).build()
         try {
             if (pre != null) prompt.authenticate(info, BiometricPrompt.CryptoObject(pre)) else prompt.authenticate(info)
         } catch (_: Exception) {
-            onFail("Não deu para pedir a confirmação. Tente de novo.")
+            onFail(L10n.s(R.string.bio_cannot_ask))
         }
     }
 
     private fun describe(e: Exception): String = when (e) {
         is UserNotAuthenticatedException ->
-            "Confirme com a digital ou com o PIN, padrão ou senha do celular. Neste Android o reconhecimento de rosto não libera a chave."
-        is KeyGuard.KeyLostException -> e.message ?: "Pareie o computador de novo."
+            L10n.s(R.string.bio_not_authenticated)
+        is KeyGuard.KeyLostException -> e.message ?: L10n.s(R.string.bio_pair_again)
         is KeyPermanentlyInvalidatedException, is javax.crypto.AEADBadTagException ->
-            "O bloqueio de tela do celular mudou e a senha guardada deste computador se perdeu. Pareie o computador de novo."
-        else -> "Erro na chave do celular. Tente de novo; se continuar, pareie o computador de novo."
+            L10n.s(R.string.bio_key_invalidated)
+        else -> L10n.s(R.string.bio_key_error)
     }
 }

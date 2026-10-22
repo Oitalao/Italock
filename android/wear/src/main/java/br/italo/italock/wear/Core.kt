@@ -33,16 +33,15 @@ object Proto {
 }
 
 data class Pc(val id: String, val name: String, val state: String, val wake: Boolean) {
-    /** Estado em texto curto. */
-    val stateLabel: String
-        get() = when (state) {
-            "locked" -> "Travado"
-            "unlocked" -> "Destravado"
-            "no_answer" -> "Sem resposta"
-            "clock" -> "Relógio fora de hora"
-            // "unknown": o computador respondeu com erro ou a consulta não terminou a tempo.
-            else -> "Não confirmado"
-        }
+    /** Estado em texto curto, no idioma escolhido no celular. */
+    fun stateLabel(ctx: Context): String = WearLang.s(ctx, when (state) {
+        "locked" -> R.string.state_locked
+        "unlocked" -> R.string.state_unlocked
+        "no_answer" -> R.string.state_no_answer
+        "clock" -> R.string.state_clock
+        // "unknown": o computador respondeu com erro ou a consulta não terminou a tempo.
+        else -> R.string.state_unknown
+    })
 
     /** A ação certa para o estado: travado destrava, destravado trava, desligado liga, senão trava. */
     val action: String
@@ -53,14 +52,14 @@ data class Pc(val id: String, val name: String, val state: String, val wake: Boo
             else -> "lock"
         }
 
-    val actionLabel: String get() = actionLabel(action)
+    fun actionLabel(ctx: Context): String = actionLabel(ctx, action)
 
     companion object {
-        fun actionLabel(action: String) = when (action) {
-            "unlock" -> "Destravar"
-            "wake" -> "Ligar"
-            else -> "Travar"
-        }
+        fun actionLabel(ctx: Context, action: String): String = WearLang.s(ctx, when (action) {
+            "unlock" -> R.string.action_unlock
+            "wake" -> R.string.action_wake
+            else -> R.string.action_lock
+        })
     }
 }
 
@@ -105,6 +104,8 @@ object PcStore {
 object Bus {
     val promptEnded = MutableSharedFlow<String>(extraBufferCapacity = 8)
     val results = MutableSharedFlow<ActionResult>(extraBufferCapacity = 8)
+    /** O celular mandou outro idioma: a lista aberta se recria. */
+    val langChanged = MutableSharedFlow<Unit>(extraBufferCapacity = 1)
 }
 
 /** Conversa com o celular pela Data Layer. */

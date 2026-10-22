@@ -1,6 +1,8 @@
 package br.italo.italock.watch
 
+import br.italo.italock.R
 import br.italo.italock.crypto.KeyGuard
+import br.italo.italock.i18n.L10n
 import br.italo.italock.data.AppPrefs
 import br.italo.italock.data.DiagLog
 import br.italo.italock.data.EventKind
@@ -64,7 +66,7 @@ class PhoneWearListener : WearableListenerService() {
     private fun watchName(pc: PairedPc, all: List<PairedPc>, hide: Boolean): String {
         if (!hide) return pc.displayName
         val i = all.indexOfFirst { it.deviceId == pc.deviceId }
-        return if (i < 0) "Computador" else "Computador ${i + 1}"
+        return if (i < 0) L10n.s(R.string.wearmsg_computer) else L10n.s(R.string.wearmsg_computer_n, i + 1)
     }
 
     /** Lista dos computadores com o cadeado consultado agora (só quando o relógio pede: nada em segundo plano). */
@@ -91,7 +93,8 @@ class PhoneWearListener : WearableListenerService() {
             arr.put(JSONObject().put("id", pc.publicId).put("name", watchName(pc, PairingStore(this).all(), hide))
                 .put("state", states[pc.deviceId] ?: "unknown").put("wake", pc.macAddresses.isNotEmpty()))
         }
-        WearBridge.reply(this, nodeId, WearBridge.PATH_PCS, JSONObject().put("pcs", arr).put("at", System.currentTimeMillis()))
+        WearBridge.reply(this, nodeId, WearBridge.PATH_PCS,
+            WearBridge.withLang(this, JSONObject().put("pcs", arr).put("at", System.currentTimeMillis())))
     }
 
     private fun action(nodeId: String, json: JSONObject, enabled: Boolean) {
@@ -105,19 +108,19 @@ class PhoneWearListener : WearableListenerService() {
             // Mesma regra de privacidade da lista: o nome do computador não aparece no relógio.
             val text = if (pc != null && hide && pc.displayName.isNotBlank()) message.replace(pc.displayName, watchName(pc, all, true)) else message
             if (!confirmOnPhone) Haptics.done(this, ok)
-            WearBridge.reply(this, nodeId, WearBridge.PATH_RESULT,
-                JSONObject().put("id", id).put("action", act).put("ok", ok).put("message", text).put("confirmOnPhone", confirmOnPhone))
+            WearBridge.reply(this, nodeId, WearBridge.PATH_RESULT, WearBridge.withLang(this,
+                JSONObject().put("id", id).put("action", act).put("ok", ok).put("message", text).put("confirmOnPhone", confirmOnPhone)))
         }
-        if (!enabled) { result(false, "Ligue Relógio Wear OS nos recursos experimentais do Ítalock no celular."); return }
-        if (pc == null) { result(false, "Computador não encontrado no celular."); return }
+        if (!enabled) { result(false, L10n.s(R.string.wearmsg_feature_off)); return }
+        if (pc == null) { result(false, L10n.s(R.string.wearmsg_pc_not_found)); return }
         // A opção é por computador: desligada, o relógio não manda nada nele.
-        if (!pc.wearApprove) { result(false, "Relógio desligado para ${pc.displayName}. Ligue nos detalhes dele no celular."); return }
+        if (!pc.wearApprove) { result(false, L10n.s(R.string.wearmsg_pc_off, pc.displayName)); return }
         when (act) {
             "lock" -> {
                 // "Confirmar antes de travar" vale aqui também: a pergunta aparece no celular.
                 if (AppPrefs(this).confirmLock) {
                     UnlockFlow.askOnPhone(this, pc, QuickUnlockActivity.ACTION_LOCK)
-                    result(false, "Confirme no celular.", true)
+                    result(false, L10n.s(R.string.wearmsg_confirm_on_phone), true)
                     return
                 }
                 val r = LockClient.lockOutcome(pc)
@@ -130,7 +133,7 @@ class PhoneWearListener : WearableListenerService() {
             }
             "wake" -> WakeOnLan.wake(pc.macAddresses).let { result(it.ok, it.message) }
             "unlock" -> unlock(pc) { ok, msg, confirm -> result(ok, msg, confirm) }
-            else -> result(false, "Ação desconhecida.")
+            else -> result(false, L10n.s(R.string.wearmsg_unknown_action))
         }
     }
 
@@ -141,9 +144,9 @@ class PhoneWearListener : WearableListenerService() {
      */
     private fun unlock(pc: PairedPc, result: (Boolean, String, Boolean) -> Unit) {
         if (br.italo.italock.service.PreApproval.openSession(pc.deviceId) != null) {
-            result(false, "${pc.displayName} já está pedindo. Confirme no celular ou no pedido do relógio.", true); return
+            result(false, L10n.s(R.string.wearmsg_already_asking, pc.displayName), true); return
         }
         UnlockFlow.askOnPhone(this, pc)
-        result(false, "Confirme no celular.", true)
+        result(false, L10n.s(R.string.wearmsg_confirm_on_phone), true)
     }
 }

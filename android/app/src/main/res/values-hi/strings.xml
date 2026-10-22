@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_description">कंप्यूटर को लॉक, अनलॉक और चालू करें</string>
+
+    <string name="common_cancel">रद्द करें</string>
+    <string name="common_close">बंद करें</string>
+    <string name="common_save">सेव करें</string>
+    <string name="common_remove">हटाएं</string>
+    <string name="common_change">बदलें</string>
+    <string name="common_allow">अनुमति दें</string>
+    <string name="common_turn_on">चालू करें</string>
+    <string name="common_back">वापस</string>
+    <string name="common_show">दिखाएं</string>
+    <string name="common_collapse">छोटा करें</string>
+    <string name="common_expanded">खुला</string>
+    <string name="common_collapsed">बंद</string>
+    <string name="common_not_informed">नहीं बताया गया</string>
+    <string name="common_none">कोई नहीं</string>
+    <string name="common_technical_details">तकनीकी जानकारी</string>
+
+    <string name="action_unlock">अनलॉक करें</string>
+    <string name="action_lock">लॉक करें</string>
+    <string name="action_wake">चालू करें</string>
+    <string name="action_fix_clock">समय ठीक करें</string>
+    <string name="action_pair">पेयर करें</string>
+
+    <string name="status_locked">लॉक है</string>
+    <string name="status_unlocked">अनलॉक है</string>
+    <string name="status_no_answer">कोई जवाब नहीं</string>
+    <string name="status_clock_off">फ़ोन की घड़ी का समय गलत है</string>
+    <string name="status_not_paired">इस फ़ोन को नहीं पहचानता</string>
+    <string name="status_error">गड़बड़ी वाला जवाब मिला</string>
+    <string name="status_querying">जांच हो रही है</string>
+    <string name="status_unverified">%1$s · सत्यापित नहीं</string>
+    <string name="danger_strip">बिना पुष्टि के</string>
+
+    <string name="via_lan">लोकल नेटवर्क</string>
+    <string name="via_internet">इंटरनेट</string>
+
+    <string name="event_locked">लॉक किया</string>
+    <string name="event_unlocked">अनलॉक किया</string>
+    <string name="event_denied">अनुरोध ठुकराया गया</string>
+    <string name="event_expired">अनुरोध का समय खत्म</string>
+    <string name="origin_app">ऐप</string>
+    <string name="origin_widget">विजेट</string>
+    <string name="origin_shortcut">ऐप आइकन शॉर्टकट</string>
+    <string name="origin_tile">फटाफट सेटिंग टाइल</string>
+    <string name="origin_tag">NFC टैग</string>
+    <string name="origin_watch">घड़ी</string>
+    <string name="origin_pc">कंप्यूटर का अनुरोध</string>
+    <string name="origin_notification">सूचना</string>
+    <string name="origin_auto">पास होने पर अपने-आप</string>
+    <string name="when_today">आज %1$s बजे</string>
+    <string name="when_yesterday">कल %1$s बजे</string>
+    <string name="when_date">%2$s को %1$s बजे</string>
+
+    <string name="notif_service_title">Ítalock चालू है</string>
+    <string name="notif_service_text">आपके कंप्यूटरों के अनुरोधों का इंतज़ार</string>
+    <string name="channel_status">चालू सेवा</string>
+    <string name="channel_prompt">अनलॉक के अनुरोध</string>
+    <string name="channel_waiting">कंप्यूटर इंतज़ार कर रहा है</string>
+
+    <string name="list_separator">", "</string>
+    <string name="a11y_why_unavailable">यह उपलब्ध क्यों नहीं है</string>
+    <string name="a11y_unavailable">%1$s, उपलब्ध नहीं। %2$s</string>
+
+    <string name="home_lock_all">सभी लॉक करें</string>
+    <string name="home_pair_computer">कंप्यूटर पेयर करें</string>
+    <string name="home_settings_attention">सेटिंग (कुछ अनुमति बाकी है)</string>
+    <string name="home_notifications_off">सूचनाएं बंद हैं: कंप्यूटर के अनुरोध नहीं दिखेंगे।</string>
+    <string name="home_empty_title">कोई कंप्यूटर पेयर नहीं है</string>
+    <string name="home_empty_text">कंप्यूटर पर Ítalock इंस्टॉल करें और वह जो QR कोड दिखाए, उसे स्कैन करें।</string>
+    <string name="home_open_details">जानकारी खोलें</string>
+    <string name="home_needs_repair">फिर से पेयर करें: सेव किया गया पासवर्ड खो गया</string>
+    <string name="home_waiting_for">%1$s का इंतज़ार</string>
+    <string name="lock_all_one">कंप्यूटर लॉक हो गया</string>
+    <plurals name="lock_all_done">
+        <item quantity="one">%d कंप्यूटर लॉक हो गया</item>
+        <item quantity="other">सभी %d लॉक हो गए</item>
+    </plurals>
+    <string name="lock_all_none">कोई लॉक नहीं हुआ: %1$s</string>
+    <plurals name="lock_all_partial">
+        <item quantity="one">%2$d में से %1$d लॉक हुआ।</item>
+        <item quantity="other">%2$d में से %1$d लॉक हुए।</item>
+    </plurals>
+    <plurals name="lock_all_failed">
+        <item quantity="one">लॉक नहीं हुआ: %1$s</item>
+        <item quantity="other">लॉक नहीं हुए: %1$s</item>
+    </plurals>
+
+    <string name="theme_dark">गहरा</string>
+    <string name="theme_light">हल्का</string>
+    <string name="theme_system">सिस्टम जैसा</string>
+
+    <string name="settings_title">सेटिंग</string>
+    <string name="settings_missing">अनुमति बाकी है</string>
+    <string name="settings_missing_notifications">सूचनाएं: इनके बिना कंप्यूटर के अनुरोध नहीं दिखते।</string>
+    <string name="settings_missing_full_screen">फ़ुल स्क्रीन: ताकि फ़ोन लॉक होने पर भी अनुरोध दिखे।</string>
+    <string name="settings_missing_battery">बैटरी सेवर: Android, Ítalock को बंद कर सकता है।</string>
+    <string name="settings_missing_battery_action">छूट दें</string>
+    <string name="settings_missing_bluetooth">Bluetooth: ताकि कंप्यूटर बिना नेटवर्क के फ़ोन को बुला सके।</string>
+    <string name="settings_section_requests">कंप्यूटर के अनुरोध</string>
+    <string name="settings_timeout">जवाब देने का समय</string>
+    <plurals name="settings_seconds">
+        <item quantity="one">%d सेकंड</item>
+        <item quantity="other">%d सेकंड</item>
+    </plurals>
+    <string name="settings_lockscreen_prompt">लॉक स्क्रीन पर अनुरोध</string>
+    <string name="settings_lockscreen_prompt_on">स्क्रीन जल जाती है और अनुरोध लॉक स्क्रीन के ऊपर दिखता है। बैटरी ज़्यादा खर्च होती है।</string>
+    <string name="settings_lockscreen_prompt_off">सिर्फ़ सूचना, स्क्रीन नहीं जलती। जवाब देने के लिए फ़ोन अनलॉक करें।</string>
+    <string name="settings_approve_locked">फ़ोन लॉक रहते हुए अनलॉक करें</string>
+    <string name="settings_approve_locked_on">लॉक स्क्रीन से ही अनुरोध स्वीकार होता है, फ़ोन अनलॉक किए बिना। कम सुरक्षित।</string>
+    <string name="settings_approve_locked_off">बंद: स्वीकार करने से पहले फ़ोन अनलॉक करें।</string>
+    <string name="settings_approve_locked_needs">पहले \"%1$s\" चालू करें</string>
+    <string name="settings_approve_locked_ask">फ़ोन लॉक रहते हुए कंप्यूटर अनलॉक करें?</string>
+    <string name="settings_approve_locked_ask_text">कंप्यूटर को फ़ोन की लॉक स्क्रीन से ही बायोमेट्रिक से (या PIN से, अगर \"%1$s\" चालू है) अनलॉक किया जा सकेगा, फ़ोन अनलॉक किए बिना। यह ज़्यादा आसान है, पर कम सुरक्षित।</string>
+    <string name="settings_hide_name">कंप्यूटर का नाम छिपाएं</string>
+    <string name="settings_hide_name_sub">फ़ोन लॉक होने पर, अनुरोध और सूचनाएं यह नहीं बताते कि कौन सा कंप्यूटर है।</string>
+    <string name="settings_allow_credential">PIN, पैटर्न या पासवर्ड स्वीकार करें</string>
+    <string name="settings_allow_credential_sub">बायोमेट्रिक के अलावा। बंद: सिर्फ़ फ़िंगरप्रिंट या सुरक्षित चेहरा पहचान।</string>
+    <string name="settings_section_lock">लॉक करना</string>
+    <string name="settings_confirm_lock">लॉक करने से पहले पुष्टि मांगें</string>
+    <string name="settings_confirm_lock_sub">ऐप, विजेट, शॉर्टकट, टैग, घड़ी या सूचना से लॉक करने से पहले पूछता है।</string>
+    <string name="settings_tile">फटाफट सेटिंग टाइल</string>
+    <string name="settings_tile_controls">नियंत्रित करता है: %1$s</string>
+    <string name="settings_tile_no_pc">कोई कंप्यूटर नहीं</string>
+    <string name="settings_tile_choose">फटाफट सेटिंग टाइल किसे नियंत्रित करे</string>
+    <string name="settings_section_look">दिखावट और फ़ीडबैक</string>
+    <string name="settings_theme">दिखावट</string>
+    <string name="settings_vibrate">पूरा होने पर वाइब्रेट करें</string>
+    <string name="settings_vibrate_sub">सफल होने पर एक छोटा, नाकाम होने पर दो बार।</string>
+    <string name="settings_section_connection">कनेक्शन</string>
+    <string name="settings_poll">लॉक की स्थिति अपडेट करें</string>
+    <string name="settings_poll_open">सिर्फ़ ऐप खोलने पर</string>
+    <plurals name="settings_poll_every">
+        <item quantity="one">ऐप खुला रहने पर हर %d सेकंड में</item>
+        <item quantity="other">ऐप खुला रहने पर हर %d सेकंड में</item>
+    </plurals>
+    <string name="settings_tailscale_warning">Tailscale बंद होने पर बताएं</string>
+    <string name="settings_tailscale_warning_sub">इसके बिना, घर से बाहर अनलॉक नहीं होता।</string>
+    <string name="settings_paths_note">लोकल नेटवर्क, Bluetooth और Tailscale हर कंप्यूटर के लिए उसकी जानकारी में चुने जाते हैं।</string>
+    <string name="settings_section_more">और</string>
+    <string name="settings_experimental">प्रायोगिक सुविधाएं</string>
+    <string name="settings_experimental_none">कोई चालू नहीं</string>
+    <string name="settings_beta">BETA</string>
+    <string name="settings_about">Ítalock के बारे में</string>
+    <string name="settings_about_sub">श्रेय, लाइसेंस, तकनीकी जानकारी और लॉग</string>
+    <plurals name="settings_experimental_on">
+        <item quantity="one">%d चालू</item>
+        <item quantity="other">%d चालू</item>
+    </plurals>
+
+    <string name="main_history_cleared">%1$s का इतिहास मिटाया गया</string>
+    <string name="main_lock_all_ask">सभी कंप्यूटर लॉक करें?</string>
+    <string name="main_unlocked">%1$s अनलॉक हो गया</string>
+    <string name="main_not_unlocked">%1$s अनलॉक नहीं हुआ</string>
+    <string name="main_lock_unconfirmed">%1$s को अनुरोध मिला, पर उसने पुष्टि नहीं की</string>
+    <string name="main_removed">%1$s हटाया गया</string>
+    <string name="main_no_paths">सभी रास्ते बंद होने पर %1$s काम नहीं करता।</string>
+    <string name="main_no_confirm_bio_title">बिना पुष्टि के अनलॉक चालू करें</string>
+    <string name="main_key_error">फ़ोन की कुंजी में गड़बड़ी। फिर से कोशिश करें।</string>
+    <string name="main_no_confirm_on">%1$s: बिना पुष्टि के अनलॉक चालू</string>
+    <string name="main_no_confirm_off">%1$s: फिर से पुष्टि मांगी जाएगी</string>
+    <string name="main_confirm_for">%1$s के लिए पुष्टि करें</string>
+    <string name="main_on_for">%1$s के लिए चालू</string>
+    <string name="main_tech_version">वर्शन</string>
+    <string name="main_tech_device">डिवाइस</string>
+    <string name="main_tech_phone_id">इस फ़ोन की ID</string>
+    <string name="main_tech_paired">पेयर किए गए कंप्यूटर</string>
+    <string name="main_tech_google">Google सेवाएं (Wear OS घड़ी)</string>
+    <string name="main_tech_available">उपलब्ध</string>
+    <string name="main_tech_unavailable">उपलब्ध नहीं</string>
+    <string name="main_export_failed">लॉग फ़ाइल नहीं बन सकी।</string>
+    <string name="main_export_subject">Ítalock के लॉग</string>
+    <string name="main_export_chooser">लॉग भेजें</string>
+    <string name="main_export_no_app">फ़ाइल शेयर करने के लिए कोई ऐप नहीं है।</string>
+    <string name="main_scan_prompt">कैमरे को कंप्यूटर पर दिख रहे Ítalock के QR कोड की ओर करें</string>
+    <string name="main_pair_invalid_code">कोड गलत है। जांचें और फिर से कोशिश करें।</string>
+    <string name="main_pair_searching">कंप्यूटर खोजा जा रहा है</string>
+    <string name="main_pair_timeout">पेयरिंग में बहुत देर लगी। नेटवर्क जांचें और फिर से कोशिश करें।</string>
+    <string name="main_pair_confirm">पेयरिंग सेव करने के लिए पुष्टि करें</string>
+    <string name="main_pair_not_saved">कंप्यूटर ने पेयरिंग सेव कर ली, पर फ़ोन ने नहीं। \"फिर से पुष्टि करें\" पर टैप करें; अगर न हो, तो कंप्यूटर के Ítalock में इस फ़ोन को हटाएं और फिर से पेयर करें।</string>
+    <string name="main_pair_bio_title">%1$s के साथ पेयरिंग सेव करें</string>
+    <string name="main_paired_with">%1$s के साथ पेयर हो गया</string>
+    <string name="main_pair_cancelled">%1$s कंप्यूटर ने पेयरिंग सेव कर ली है: \"फिर से पुष्टि करें\" पर टैप करें, या कंप्यूटर के Ítalock में इस फ़ोन को हटाएं।</string>
+    <string name="main_pair_cancelled_default">पुष्टि रद्द हुई।</string>
+
+    <string name="settings_language">भाषा</string>
+    <string name="language_system">अपने-आप (सिस्टम की भाषा)</string>
+</resources>

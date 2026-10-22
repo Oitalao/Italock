@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="wearmsg_your_computer">Ваш компьютер</string>
+    <string name="wearmsg_computer">Компьютер</string>
+    <string name="wearmsg_computer_n">Компьютер %1$d</string>
+    <string name="wearmsg_feature_off">Включите «Часы Wear OS» в экспериментальных функциях Ítalock на телефоне.</string>
+    <string name="wearmsg_pc_not_found">Компьютер не найден на телефоне.</string>
+    <string name="wearmsg_pc_off">Часы выключены для %1$s. Включите их в сведениях компьютера на телефоне.</string>
+    <string name="wearmsg_confirm_on_phone">Подтвердите на телефоне.</string>
+    <string name="wearmsg_unknown_action">Неизвестное действие.</string>
+    <string name="wearmsg_already_asking">%1$s уже ждёт ответа. Подтвердите на телефоне или в запросе на часах.</string>
+</resources>

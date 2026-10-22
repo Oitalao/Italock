@@ -1,6 +1,8 @@
 package br.italo.italock.lock
 
+import br.italo.italock.R
 import br.italo.italock.crypto.PcbuCrypto
+import br.italo.italock.i18n.L10n
 import br.italo.italock.data.PairedPc
 import br.italo.italock.net.Frame
 import br.italo.italock.net.NetInfo
@@ -76,11 +78,11 @@ object LockClient {
      * [reached] = o PC respondeu (a falha é um código do agente, não de rede).
      */
     data class Outcome(val ok: Boolean, val via: String, val error: String, val reached: Boolean = true, val action: String = "") {
-        /** Frase em português para mostrar ao usuário. */
+        /** Frase para mostrar ao usuário (no idioma escolhido). */
         fun message(pc: PairedPc): String = if (ok) when (action) {
-            "lock" -> "${pc.displayName} travado"
-            "wake" -> "Destravando ${pc.displayName}"
-            else -> "Pronto"
+            "lock" -> L10n.s(R.string.err_ok_locked, pc.displayName)
+            "wake" -> L10n.s(R.string.err_ok_waking, pc.displayName)
+            else -> L10n.s(R.string.err_ok_done)
         } else describeError(pc.displayName, action, error, reached)
     }
 
@@ -112,30 +114,30 @@ object LockClient {
 
     /** Traduz os códigos do agente do PC (ver o topo do main.cpp do italock-agent) em mensagens claras. */
     fun describeError(name: String, action: String, error: String, reached: Boolean): String {
-        if (error == NO_PATH) return "Nenhum caminho liberado para $name. Ligue rede local ou Tailscale nos detalhes do computador."
-        if (!reached) return "$name não respondeu. Ele está ligado e na mesma rede (ou no Tailscale)?"
+        if (error == NO_PATH) return L10n.s(R.string.err_no_path, name)
+        if (!reached) return L10n.s(R.string.err_no_answer, name)
         return when (error) {
-            "NOT_PAIRED" -> "$name não reconhece este celular. Remova o computador e pareie de novo."
-            "TIME_ERROR" -> "Relógio do celular fora de hora: a diferença para $name passa de 1 minuto. Ligue a data e hora automáticas nos dois."
-            "DATA_ERROR" -> "$name não conseguiu ler o pedido (chave diferente). Remova o computador e pareie de novo."
-            "BAD_ACTION" -> "O Ítalock de $name está desatualizado para esse comando. Atualize o programa no computador."
-            "BAD_PACKET" -> "$name não entendeu o pedido. Atualize o Ítalock no computador."
-            "STATE_UNKNOWN" -> "$name não conseguiu dizer se a tela está travada."
-            "NOT_WAITING" -> "O computador não está na tela de bloqueio."
-            "LOCK_FAILED" -> "$name recebeu o pedido, mas não conseguiu travar a tela."
-            "REPLAY" -> "$name recusou o pedido por parecer repetido. Tente de novo."
-            "BUSY" -> "$name está ocupado atendendo outras conexões. Tente de novo em instantes."
-            "NOT_LOGGED_IN" -> "Ninguém está conectado em $name com a conta deste pareamento. Entre na conta e tente de novo."
-            "LOCK_DISABLED" -> "$name não aceita pedidos de travar pelo celular. Ligue essa opção no Ítalock do computador."
-            "PATH_DISABLED" -> "$name não aceita pedidos por este caminho (rede local ou Tailscale). Veja as opções no Ítalock do computador."
-            "UNSUPPORTED" -> "$name não tem esse recurso neste sistema."
-            "NOT_ALLOWED" -> "Esta conta do computador não pode usar este celular."
-            "LAUNCH_FAILED" -> "$name não conseguiu abrir a janela do Ítalock. Deixe alguém conectado nele e tente de novo."
-            "BAD_NONCE", "NOT_SEALED" -> "A resposta não confere com o pedido. Se continuar, remova o computador e pareie de novo."
-            "BAD_CMD" -> "$name não entendeu o pedido. Atualize o Ítalock no computador."
-            BAD_SEAL -> "A resposta de $name não confere com a chave do pareamento. Se continuar, remova o computador e pareie de novo."
-            UNSEALED -> "$name respondeu sem a proteção de sempre. Por segurança a resposta foi ignorada."
-            else -> "$name recusou o pedido."
+            "NOT_PAIRED" -> L10n.s(R.string.err_not_paired, name)
+            "TIME_ERROR" -> L10n.s(R.string.err_time, name)
+            "DATA_ERROR" -> L10n.s(R.string.err_data, name)
+            "BAD_ACTION" -> L10n.s(R.string.err_bad_action, name)
+            "BAD_PACKET" -> L10n.s(R.string.err_bad_packet, name)
+            "STATE_UNKNOWN" -> L10n.s(R.string.err_state_unknown, name)
+            "NOT_WAITING" -> L10n.s(R.string.err_not_waiting)
+            "LOCK_FAILED" -> L10n.s(R.string.err_lock_failed, name)
+            "REPLAY" -> L10n.s(R.string.err_replay, name)
+            "BUSY" -> L10n.s(R.string.err_busy, name)
+            "NOT_LOGGED_IN" -> L10n.s(R.string.err_not_logged_in, name)
+            "LOCK_DISABLED" -> L10n.s(R.string.err_lock_disabled, name)
+            "PATH_DISABLED" -> L10n.s(R.string.err_path_disabled, name)
+            "UNSUPPORTED" -> L10n.s(R.string.err_unsupported, name)
+            "NOT_ALLOWED" -> L10n.s(R.string.err_not_allowed)
+            "LAUNCH_FAILED" -> L10n.s(R.string.err_launch_failed, name)
+            "BAD_NONCE", "NOT_SEALED" -> L10n.s(R.string.err_bad_nonce)
+            "BAD_CMD" -> L10n.s(R.string.err_bad_packet, name)
+            BAD_SEAL -> L10n.s(R.string.err_bad_seal, name)
+            UNSEALED -> L10n.s(R.string.err_unsealed, name)
+            else -> L10n.s(R.string.err_refused, name)
         }
     }
 

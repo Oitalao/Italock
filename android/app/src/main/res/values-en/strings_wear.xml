@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="wearmsg_your_computer">Your computer</string>
+    <string name="wearmsg_computer">Computer</string>
+    <string name="wearmsg_computer_n">Computer %1$d</string>
+    <string name="wearmsg_feature_off">Turn on Wear OS watch in the experimental features of Ítalock on the phone.</string>
+    <string name="wearmsg_pc_not_found">Computer not found on the phone.</string>
+    <string name="wearmsg_pc_off">Watch is off for %1$s. Turn it on in its details on the phone.</string>
+    <string name="wearmsg_confirm_on_phone">Confirm on the phone.</string>
+    <string name="wearmsg_unknown_action">Unknown action.</string>
+    <string name="wearmsg_already_asking">%1$s is already asking. Confirm on the phone or in the watch request.</string>
+</resources>

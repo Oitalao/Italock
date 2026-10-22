@@ -30,6 +30,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.lifecycle.withResumed
 import br.italo.italock.BuildConfig
 import br.italo.italock.crypto.KeyGuard
+import br.italo.italock.R
+import br.italo.italock.i18n.L10n
+import androidx.compose.ui.res.stringResource
 import br.italo.italock.data.AppPrefs
 import br.italo.italock.data.DiagLog
 import br.italo.italock.data.PairedPc
@@ -100,6 +103,8 @@ enum class ExpFeature { NEARBY, NOTIFICATION, WATCH, WEAR }
  * Gravações e leituras da lista rodam fora da thread da tela.
  */
 class MainActivity : FragmentActivity() {
+    override fun attachBaseContext(newBase: android.content.Context) = super.attachBaseContext(br.italo.italock.i18n.L10n.wrap(newBase))
+
     private lateinit var store: PairingStore
     private lateinit var prefs: AppPrefs
     private val snackbar = SnackbarHostState()
@@ -166,7 +171,7 @@ class MainActivity : FragmentActivity() {
             stack.clear(); stack += it
         }
         savedInstanceState?.getString(KEY_PAIR_MSG)?.let { pairProgress = PairProgress(message = it, error = true) }
-        settings = SettingsValues.from(prefs)
+        settings = SettingsValues.from(prefs, L10n.tag(this))
         pollSec.value = prefs.pollSec
         reload {
             if (savedInstanceState == null) {
@@ -200,6 +205,8 @@ class MainActivity : FragmentActivity() {
 
     override fun onResume() {
         super.onResume()
+        // Android 13+: idioma do app trocado nos ajustes do sistema enquanto o app estava aberto.
+        if (L10n.syncWithSystem(this)) { recreate(); return }
         reload()
         // Com o app na tela o sistema não limita as chamadas: bom momento para conferir os atalhos do ícone.
         lifecycleScope.launch(Dispatchers.IO) { AppShortcuts.sync(this@MainActivity, store.all()) }
@@ -236,7 +243,7 @@ class MainActivity : FragmentActivity() {
             keyResetAt = reset
             missing = Permissions.missing(this@MainActivity)
             flags = ExperimentalFlags(prefs.expNearby, prefs.expNotification, prefs.expWatch, prefs.expWear)
-            settings = SettingsValues.from(prefs)
+            settings = SettingsValues.from(prefs, L10n.tag(this@MainActivity))
             pollSec.value = prefs.pollSec
             loaded = true
             then()
@@ -257,7 +264,7 @@ class MainActivity : FragmentActivity() {
             }
             reload()
             loadHistory()
-            feedback("Histórico de ${pc.displayName} apagado", ok = true)
+            feedback(L10n.s(R.string.main_history_cleared, pc.displayName), ok = true)
         }
     }
 
@@ -431,16 +438,16 @@ class MainActivity : FragmentActivity() {
             if (pc == null) confirmLockFor = null
             else AlertDialog(
                 onDismissRequest = { confirmLockFor = null },
-                title = { Text("Travar ${pc.displayName}?") },
-                confirmButton = { QuietButton("Travar", { confirmLockFor = null; lockNow(pc) }) },
-                dismissButton = { QuietButton("Cancelar", { confirmLockFor = null }) },
+                title = { Text(stringResource(R.string.quick_confirm_lock_title, pc.displayName)) },
+                confirmButton = { QuietButton(stringResource(R.string.action_lock), { confirmLockFor = null; lockNow(pc) }) },
+                dismissButton = { QuietButton(stringResource(R.string.common_cancel), { confirmLockFor = null }) },
             )
         }
         if (confirmLockAll) AlertDialog(
             onDismissRequest = { confirmLockAll = false },
-            title = { Text("Travar todos os computadores?") },
-            confirmButton = { QuietButton("Travar todos", { confirmLockAll = false; lockAllNow() }) },
-            dismissButton = { QuietButton("Cancelar", { confirmLockAll = false }) },
+            title = { Text(stringResource(R.string.main_lock_all_ask)) },
+            confirmButton = { QuietButton(stringResource(R.string.home_lock_all), { confirmLockAll = false; lockAllNow() }) },
+            dismissButton = { QuietButton(stringResource(R.string.common_cancel), { confirmLockAll = false }) },
         )
         nfcFor?.let { id ->
             val pc = pcs.firstOrNull { it.deviceId == id }
@@ -528,15 +535,15 @@ class MainActivity : FragmentActivity() {
                 runOnUiThread {
                     busy = busy - pc.deviceId
                     reload()
-                    if (unlocked) feedback("${pc.displayName} destravado", ok = true)
-                    else feedback("${pc.displayName} não destravou", ok = false)
+                    if (unlocked) feedback(L10n.s(R.string.main_unlocked, pc.displayName), ok = true)
+                    else feedback(L10n.s(R.string.main_not_unlocked, pc.displayName), ok = false)
                 }
             }
         }, onFail = { msg -> if (msg != null) feedback(msg, ok = false) })
     }
 
     private fun showOpenRequest(sessionId: String, pc: PairedPc) {
-        feedback("${pc.displayName} já está pedindo: confirme no pedido aberto.", ok = false)
+        feedback(L10n.s(R.string.flow_already_asking, pc.displayName), ok = false)
         runCatching {
             startActivity(Intent(this, UnlockActivity::class.java).putExtra(UnlockActivity.EXTRA_SESSION, sessionId))
         }
@@ -564,8 +571,8 @@ class MainActivity : FragmentActivity() {
                 reload()
                 when {
                     !r.ok -> feedback(r.message(pc), ok = false)
-                    confirmed -> feedback("${pc.displayName} travado", ok = true)
-                    else -> feedback("${pc.displayName} recebeu o pedido, mas não confirmou", ok = false)
+                    confirmed -> feedback(L10n.s(R.string.err_ok_locked, pc.displayName), ok = true)
+                    else -> feedback(L10n.s(R.string.main_lock_unconfirmed, pc.displayName), ok = false)
                 }
             }
         }
@@ -620,7 +627,7 @@ class MainActivity : FragmentActivity() {
         change({
             store.remove(pc.deviceId)
             if (store.tileDeviceId.equals(pc.deviceId, true)) store.tileDeviceId = ""
-        }) { feedback("${pc.displayName} removido", ok = true) }
+        }) { feedback(L10n.s(R.string.main_removed, pc.displayName), ok = true) }
     }
 
     /** Desligar o atalho deste computador deixa o atalho sem computador (vale também com um computador só). */
@@ -640,7 +647,7 @@ class MainActivity : FragmentActivity() {
         }) {
             val now = pcs.firstOrNull { it.deviceId == pc.deviceId } ?: return@change
             if (!now.allowLan && !now.allowBluetooth && !now.allowTailscale) {
-                feedback("Com todos os caminhos desligados, ${now.displayName} não funciona.", ok = false)
+                feedback(L10n.s(R.string.main_no_paths, now.displayName), ok = false)
             }
         }
     }
@@ -696,11 +703,11 @@ class MainActivity : FragmentActivity() {
 
     /** Liga: exige biometria para copiar a senha do computador para a chave sem biometria. */
     private fun enableNoConfirm(pc: PairedPc) {
-        BioAuth.openPasswordKey(this, pc, "Ligar destravar sem confirmação", pc.displayName,
+        BioAuth.openPasswordKey(this, pc, L10n.s(R.string.main_no_confirm_bio_title), pc.displayName,
             onOk = { key ->
-                val sealed = runCatching { KeyGuard.sealAuto(key) }.getOrElse { feedback("Erro na chave do celular. Tente de novo.", ok = false); return@openPasswordKey }
+                val sealed = runCatching { KeyGuard.sealAuto(key) }.getOrElse { feedback(L10n.s(R.string.main_key_error), ok = false); return@openPasswordKey }
                 change({ store.update(pc.deviceId) { it.copy(noConfirm = true, noConfirmKeyEnc = sealed.first, noConfirmKeyIv = sealed.second) } }) {
-                    feedback("${pc.displayName}: destravar sem confirmação ligado", ok = true)
+                    feedback(L10n.s(R.string.main_no_confirm_on, pc.displayName), ok = true)
                 }
             },
             onFail = { msg -> if (msg != null) feedback(msg, ok = false) },
@@ -710,7 +717,7 @@ class MainActivity : FragmentActivity() {
     /** Desliga e apaga a cópia da senha na hora. */
     private fun disableNoConfirm(pc: PairedPc) {
         change({ store.update(pc.deviceId) { it.copy(noConfirm = false, noConfirmKeyEnc = "", noConfirmKeyIv = "") } }) {
-            feedback("${pc.displayName}: volta a pedir confirmação", ok = true)
+            feedback(L10n.s(R.string.main_no_confirm_off, pc.displayName), ok = true)
         }
     }
 
@@ -733,11 +740,11 @@ class MainActivity : FragmentActivity() {
     private fun setPcFeature(pc: PairedPc, feature: ExpFeature, on: Boolean) {
         if (!on) { change({ store.update(pc.deviceId) { it.with(feature, false).dropUnusedAutoKey() } }); return }
         if (pc.hasAutoKey) { change({ store.update(pc.deviceId) { it.with(feature, true) } }); return }
-        BioAuth.openPasswordKey(this, pc, "Confirmar para ${pc.displayName}",
+        BioAuth.openPasswordKey(this, pc, L10n.s(R.string.main_confirm_for, pc.displayName),
             onOk = { key ->
-                val (enc, iv) = runCatching { KeyGuard.sealAuto(key) }.getOrElse { feedback("Erro na chave do celular. Tente de novo.", ok = false); return@openPasswordKey }
+                val (enc, iv) = runCatching { KeyGuard.sealAuto(key) }.getOrElse { feedback(L10n.s(R.string.main_key_error), ok = false); return@openPasswordKey }
                 change({ store.update(pc.deviceId) { it.with(feature, true).copy(autoKeyEnc = enc, autoKeyIv = iv) } }) {
-                    feedback("Ligado para ${pc.displayName}", ok = true)
+                    feedback(L10n.s(R.string.main_on_for, pc.displayName), ok = true)
                 }
             },
             onFail = { msg -> if (msg != null) feedback(msg, ok = false) },
@@ -773,30 +780,37 @@ class MainActivity : FragmentActivity() {
                 prefs.tailscaleWarning = c.v
                 if (!c.v) getSystemService(NotificationManager::class.java)?.cancel(UnlockService.TAILSCALE_NOTIF_ID)
             }
+            is SettingChange.Language -> {
+                if (c.tag == L10n.tag(this)) return
+                L10n.set(this, c.tag)
+                // A tela se refaz no idioma novo (a pilha de telas é salva e volta igual).
+                recreate()
+                return
+            }
         }
-        settings = SettingsValues.from(prefs)
+        settings = SettingsValues.from(prefs, L10n.tag(this))
     }
 
     // ---------------------------------------------------------------- sobre
 
     private fun techInfo(): TechInfo = TechInfo(listOf(
-        "Versão" to "${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})",
+        L10n.s(R.string.main_tech_version) to "${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})",
         "Android" to "${Build.VERSION.RELEASE} (API ${Build.VERSION.SDK_INT})",
-        "Aparelho" to "${Build.MANUFACTURER} ${Build.MODEL}",
-        "Id deste celular" to store.deviceUuid,
-        "Computadores pareados" to pcs.size.toString(),
-        "Serviços do Google (relógio Wear OS)" to if (WearBridge.available(this)) "Disponíveis" else "Indisponíveis",
+        L10n.s(R.string.main_tech_device) to "${Build.MANUFACTURER} ${Build.MODEL}",
+        L10n.s(R.string.main_tech_phone_id) to store.deviceUuid,
+        L10n.s(R.string.main_tech_paired) to pcs.size.toString(),
+        L10n.s(R.string.main_tech_google) to L10n.s(if (WearBridge.available(this)) R.string.main_tech_available else R.string.main_tech_unavailable),
     ))
 
     private fun exportDiagnostics() {
         lifecycleScope.launch {
             val file = withContext(Dispatchers.IO) { runCatching { Diagnostics.write(this@MainActivity) }.getOrNull() }
-            if (file == null) { feedback("Não deu para gerar o arquivo de registros.", ok = false); return@launch }
+            if (file == null) { feedback(L10n.s(R.string.main_export_failed), ok = false); return@launch }
             val uri = androidx.core.content.FileProvider.getUriForFile(this@MainActivity, "$packageName.arquivos", file)
             val send = Intent(Intent.ACTION_SEND).setType("text/plain").putExtra(Intent.EXTRA_STREAM, uri)
-                .putExtra(Intent.EXTRA_SUBJECT, "Registros do Ítalock").addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            runCatching { startActivity(Intent.createChooser(send, "Enviar registros")) }
-                .onFailure { feedback("Nenhum app para compartilhar o arquivo.", ok = false) }
+                .putExtra(Intent.EXTRA_SUBJECT, L10n.s(R.string.main_export_subject)).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            runCatching { startActivity(Intent.createChooser(send, L10n.s(R.string.main_export_chooser))) }
+                .onFailure { feedback(L10n.s(R.string.main_export_no_app), ok = false) }
         }
     }
 
@@ -828,23 +842,23 @@ class MainActivity : FragmentActivity() {
 
     private fun scanQr() = scanner.launch(
         ScanOptions().setDesiredBarcodeFormats(ScanOptions.QR_CODE)
-            .setPrompt("Aponte para o QR code do Ítalock no computador")
+            .setPrompt(L10n.s(R.string.main_scan_prompt))
             .setBeepEnabled(false).setOrientationLocked(false),
     )
 
     private fun startPairing(text: String) {
         val qr = runCatching { QrData.parse(text) }.getOrElse {
-            pairProgress = PairProgress(message = "Código inválido. Confira e tente de novo.", error = true); return
+            pairProgress = PairProgress(message = L10n.s(R.string.main_pair_invalid_code), error = true); return
         }
         val attempt = ++pairAttempt
         pendingPair = null
-        pairProgress = PairProgress(running = true, message = "Procurando o computador")
+        pairProgress = PairProgress(running = true, message = L10n.s(R.string.main_pair_searching))
         // Prazo geral: o estado "procurando/conectando" nunca fica preso na tela.
         lifecycleScope.launch {
             delay(PAIR_TIMEOUT_MS)
             if (attempt == pairAttempt && pairProgress.running && pendingPair == null) {
                 pairAttempt++
-                pairProgress = PairProgress(message = "O pareamento demorou demais. Confira a rede e tente de novo.", error = true)
+                pairProgress = PairProgress(message = L10n.s(R.string.main_pair_timeout), error = true)
             }
         }
         thread {
@@ -870,12 +884,11 @@ class MainActivity : FragmentActivity() {
      * fazer e deixa "Confirmar de novo".
      */
     private fun saveWhenResumed(r: PairResult) {
-        pairProgress = PairProgress(running = true, message = "Confirme para guardar o pareamento")
+        pairProgress = PairProgress(running = true, message = L10n.s(R.string.main_pair_confirm))
         lifecycleScope.launch {
             val shown = withTimeoutOrNull(SAVE_WAIT_MS) { lifecycle.withResumed { sealAndSave(r) }; true }
             if (shown == null) pairProgress = PairProgress(
-                message = "O computador guardou o pareamento, mas o celular não. Toque em Confirmar de novo; se não der, " +
-                    "remova este celular no Ítalock do computador e pareie outra vez.",
+                message = L10n.s(R.string.main_pair_not_saved),
                 error = true, canRetrySave = true,
             )
         }
@@ -883,7 +896,7 @@ class MainActivity : FragmentActivity() {
 
     /** Guarda o passwordKey cifrado por chave do Keystore: exige confirmar com rosto/digital/senha já no pareamento. */
     private fun sealAndSave(r: PairResult) {
-        BioAuth.seal(this, "Guardar pareamento com ${r.pcName}", r.passwordKey,
+        BioAuth.seal(this, L10n.s(R.string.main_pair_bio_title, r.pcName), r.passwordKey,
             onOk = { (enc, iv) ->
                 pendingPair = null
                 lifecycleScope.launch {
@@ -911,13 +924,12 @@ class MainActivity : FragmentActivity() {
                     pairProgress = PairProgress()
                     reload()
                     stack.clear(); stack += Route.Home
-                    feedback("Pareado com $shownName", ok = true)
+                    feedback(L10n.s(R.string.main_paired_with, shownName), ok = true)
                 }
             },
             onFail = { msg ->
                 pairProgress = PairProgress(
-                    message = (msg ?: "Confirmação cancelada.") + " O computador já guardou o pareamento: toque em Confirmar de novo, " +
-                        "ou remova este celular no Ítalock do computador.",
+                    message = L10n.s(R.string.main_pair_cancelled, msg ?: L10n.s(R.string.main_pair_cancelled_default)),
                     error = true, canRetrySave = true,
                 )
             },

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="err_ok_locked">%1$s をロックしました</string>
+    <string name="err_ok_waking">%1$s のロックを解除しています</string>
+    <string name="err_ok_done">完了</string>
+
+    <string name="err_no_path">%1$s で使える経路がありません。パソコンの詳細画面で、ローカルネットワークか Tailscale をオンにしてください。</string>
+    <string name="err_no_answer">%1$s から応答がありません。電源が入っていて、同じネットワーク（または Tailscale）につながっていますか？</string>
+    <string name="err_not_paired">%1$s がこのスマホを認識していません。パソコンを削除して、もう一度ペアリングしてください。</string>
+    <string name="err_time">スマホの時刻がずれています。%1$s との差が 1 分を超えています。両方で日付と時刻の自動設定をオンにしてください。</string>
+    <string name="err_data">%1$s がリクエストを読み取れませんでした（鍵が一致しません）。パソコンを削除して、もう一度ペアリングしてください。</string>
+    <string name="err_bad_action">%1$s の Ítalock が古く、この操作に対応していません。パソコンのプログラムを更新してください。</string>
+    <string name="err_bad_packet">%1$s がリクエストを理解できませんでした。パソコンの Ítalock を更新してください。</string>
+    <string name="err_state_unknown">%1$s は画面がロックされているかどうかを確認できませんでした。</string>
+    <string name="err_not_waiting">パソコンはロック画面になっていません。</string>
+    <string name="err_lock_failed">%1$s はリクエストを受け取りましたが、画面をロックできませんでした。</string>
+    <string name="err_replay">%1$s は重複したリクエストとみなして拒否しました。もう一度お試しください。</string>
+    <string name="err_busy">%1$s はほかの接続を処理中です。少したってからもう一度お試しください。</string>
+    <string name="err_not_logged_in">%1$s でこのペアリングのアカウントにログインしている人がいません。ログインして、もう一度お試しください。</string>
+    <string name="err_lock_disabled">%1$s はスマホからのロックを受け付けていません。パソコンの Ítalock でこの設定をオンにしてください。</string>
+    <string name="err_path_disabled">%1$s はこの経路（ローカルネットワークまたは Tailscale）からのリクエストを受け付けていません。パソコンの Ítalock で設定を確認してください。</string>
+    <string name="err_unsupported">%1$s のこの OS では、この機能は使えません。</string>
+    <string name="err_not_allowed">このパソコンのアカウントでは、このスマホを使えません。</string>
+    <string name="err_launch_failed">%1$s で Ítalock のウィンドウを開けませんでした。誰かがログインした状態にして、もう一度お試しください。</string>
+    <string name="err_bad_nonce">応答がリクエストと一致しません。何度も起きる場合は、パソコンを削除して、もう一度ペアリングしてください。</string>
+    <string name="err_bad_seal">%1$s の応答がペアリングの鍵と一致しません。何度も起きる場合は、パソコンを削除して、もう一度ペアリングしてください。</string>
+    <string name="err_unsealed">%1$s がいつもの保護なしで応答しました。安全のため、この応答は無視しました。</string>
+    <string name="err_refused">%1$s がリクエストを拒否しました。</string>
+
+    <string name="wol_no_mac">このパソコンには有線 LAN アダプターのアドレスが設定されていません。これがないとネットワーク経由で起動できません。</string>
+    <string name="wol_sent">起動の信号を送りました。パソコンと同じネットワーク内でのみ機能します。</string>
+    <string name="wol_failed">起動の信号を送れませんでした。スマホはパソコンと同じネットワークにつながっていますか？</string>
+
+    <string name="nfc_write_ok">タグに書き込みました。スマホのロックを解除した状態でタグにかざすと使えます。</string>
+    <string name="nfc_write_ok_locked">タグに書き込み、書き込み禁止にしました。</string>
+    <string name="nfc_write_ok_lock_unsupported">タグに書き込みましたが、このタグは書き込み禁止にできません。</string>
+    <string name="nfc_write_read_only">このタグは書き込み禁止です。別のタグを使ってください。</string>
+    <string name="nfc_write_too_small">タグの容量が足りません。NTAG213 以上を使ってください。</string>
+    <string name="nfc_write_not_ndef">このタグは NDEF 形式に対応していません。NTAG213、215、216 などの別のタグを使ってください。</string>
+    <string name="nfc_write_lost">書き込みが終わる前にタグが離れました。もう一度かざして、メッセージが出るまでそのままにしてください。</string>
+    <string name="nfc_write_failed">タグに書き込めませんでした。もう一度試すか、別のタグを使ってください。</string>
+
+    <string name="nfc_not_italock">これは Ítalock のタグではありません。</string>
+    <string name="nfc_unknown_pc">このタグは、このスマホとペアリングされていないパソコンのものです（削除されましたか？）。</string>
+    <string name="nfc_tag_off">%1$s のタグはオフです。パソコンの詳細画面で「タグでロック」か「タグでロック解除」をオンにしてください。</string>
+    <string name="nfc_querying">%1$s を確認中</string>
+    <string name="nfc_clock_off">スマホの時刻がずれています。日付と時刻の自動設定をオンにしてください。</string>
+
+    <string name="tag_lock_and_unlock">ロックとロック解除</string>
+    <string name="tag_unlock_only">ロック解除のみ</string>
+    <string name="tag_lock_only">ロックのみ</string>
+    <string name="tag_off">オフ</string>
+
+    <string name="pairing_connecting">パソコンに接続しています</string>
+    <string name="pairing_waiting_reply">パソコンの応答を待っています</string>
+    <string name="pairing_searching">ネットワーク上でパソコンを探しています</string>
+
+    <string name="pairing_err_not_found">パソコンが見つかりません。両方が同じネットワークにつながっているか、USB テザリングでケーブル接続されていますか？</string>
+    <string name="pairing_err_refused">パソコンがペアリングを拒否しました。パソコンで新しい QRコードを表示して、もう一度お試しください。</string>
+    <string name="pairing_err_time">スマホの時刻がずれています。スマホとパソコンの両方で、日付と時刻の自動設定をオンにしてください。</string>
+    <string name="pairing_err_timeout">パソコンの応答に時間がかかりすぎました。パソコンでペアリング画面が開いたままか確認してください。</string>
+    <string name="pairing_err_connect">パソコンに接続できませんでした。ペアリング画面が開いているか、両方が同じネットワークにつながっているか確認してください。</string>
+    <string name="pairing_err_host">パソコンのアドレスが無効です。新しい QRコードを表示してください。</string>
+    <string name="pairing_err_code">コードがパソコンのものと一致しません。もう一度 QRコードを読み取ってください。</string>
+    <string name="pairing_err_dropped">途中でパソコンとの接続が切れました。もう一度お試しください。</string>
+    <string name="pairing_err_format">パソコンからの応答の形式が想定外です。パソコンの Ítalock を更新してください。</string>
+    <string name="pairing_err_generic">ペアリングできませんでした。もう一度お試しください。</string>
+
+    <string name="crypto_key_lost">スマホの画面ロックが変更されたため、このパソコン用に保存したパスワードが失われました。もう一度パソコンとペアリングしてください。</string>
+
+    <string name="bip_hidden_pc_name">あなたのパソコン</string>
+</resources>

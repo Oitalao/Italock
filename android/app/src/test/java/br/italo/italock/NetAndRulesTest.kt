@@ -14,9 +14,13 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
+import org.junit.Before
 import org.junit.Test
 
 class NetAndRulesTest {
+    /** Mensagens vêm dos textos do app (arquivos strings de res/values), lidos direto do disco nos testes da JVM. */
+    @Before fun strings() = TestStrings.install()
+
     private val pc = PairedPc(
         deviceId = "id1", encKey = PcbuCrypto.randomString(64), passwordKeyEnc = "", passwordKeyIv = "", pcName = "PC", pcOs = "",
         userName = "", pairingMethod = "UDP", pcIp = "192.168.0.10", pcIps = listOf("100.100.1.2", "192.168.0.10", "203.0.113.5"),

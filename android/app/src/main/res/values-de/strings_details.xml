@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="details_repair_needed">Neu koppeln: Das gespeicherte Passwort ist verloren gegangen</string>
+    <string name="details_section_general">Allgemein</string>
+    <string name="details_name">Name</string>
+    <string name="details_order">Position in der Liste</string>
+    <string name="details_order_value">%1$d. von %2$d</string>
+    <string name="details_move_up">Nach oben</string>
+    <string name="details_move_down">Nach unten</string>
+    <string name="details_tile">In der Kachel verwenden</string>
+    <string name="details_tile_sub">Die Ítalock-Kachel in den Schnelleinstellungen steuert diesen Computer.</string>
+    <string name="details_wake">Über das Netzwerk einschalten</string>
+    <string name="details_wake_sub">Nur im selben Netzwerk, mit Netzwerkkabel am Computer und dort aktivierter Option.</string>
+    <string name="details_mac">Adresse der kabelgebundenen Netzwerkkarte</string>
+    <string name="details_mac_empty">Nicht angegeben. Ohne sie ist Einschalten über das Netzwerk nicht möglich.</string>
+    <string name="details_mac_help">Mehrere Adressen mit Komma trennen. Leer schaltet Einschalten über das Netzwerk aus.</string>
+    <string name="details_mac_invalid">Format: sechs Paare, getrennt durch Doppelpunkte.</string>
+
+    <string name="details_section_paths">Wege</string>
+    <string name="details_path_lan">Lokales Netzwerk</string>
+    <string name="details_path_lan_sub">Gleiches WLAN oder USB-Kabel mit USB-Tethering.</string>
+    <string name="details_path_bt_sub">Der Computer erreicht das Telefon ohne Netzwerk.</string>
+    <string name="details_path_ts_sub">Von unterwegs, über das Internet.</string>
+
+    <string name="details_section_tag">NFC-Tag</string>
+    <string name="details_tag_write">NFC-Tag beschreiben</string>
+    <string name="details_tag_write_button">Beschreiben</string>
+    <string name="details_tag_lock">Per Tag sperren</string>
+    <string name="details_tag_lock_sub">Entsperrtes Telefon an den Tag halten sperrt diesen Computer.</string>
+    <string name="details_tag_unlock">Per Tag entsperren</string>
+    <string name="details_tag_unlock_sub">Verlangt immer Biometrie.</string>
+    <string name="details_tag_both">Entsperrtes Telefon an den Tag halten sperrt oder entsperrt diesen Computer, je nach Sperrstatus.</string>
+    <string name="details_tag_only_unlock">Entsperrtes Telefon an den Tag halten entsperrt diesen Computer nur.</string>
+    <string name="details_tag_only_lock">Entsperrtes Telefon an den Tag halten sperrt diesen Computer nur.</string>
+    <string name="details_tag_none">Wenn beides aus ist, bewirkt der Tag dieses Computers nichts.</string>
+
+    <string name="details_section_security">Sicherheit</string>
+    <string name="details_no_confirm">Entsperren ohne Bestätigung</string>
+    <string name="details_no_confirm_sub">Die Entsperren-Taste am Telefon verlangt keine Biometrie. Anfragen vom Computer verlangen sie weiterhin.</string>
+
+    <string name="details_section_experimental">Experimentell</string>
+    <string name="details_exp_nearby_sub">Per Bluetooth oder im selben Netzwerk, ohne das Telefon zu berühren. Nie über Tailscale.</string>
+    <string name="details_exp_notification_sub">Entsperren-Taste in der Benachrichtigung, ohne Biometrie.</string>
+    <string name="details_exp_watch_sub">Die Anfrage klingelt wie ein Anruf auf der Uhr: Ignorieren entsperrt, Ablehnen lehnt ab (gesperrt, wenn nicht am Handgelenk).</string>
+    <string name="details_exp_wear_sub">Die Anfrage erscheint auf der Uhr mit Entsperren und Ablehnen.</string>
+
+    <string name="details_section_history">Verlauf</string>
+    <string name="details_history_empty">Noch nichts. Sperren, Entsperren und Anfragen vom Computer erscheinen hier.</string>
+    <string name="details_history_less">Weniger anzeigen</string>
+    <string name="details_history_all">Alle anzeigen (%1$d)</string>
+    <string name="details_history_clear">Verlauf löschen</string>
+
+    <string name="details_tech_pc_name">Name auf dem Computer</string>
+    <string name="details_tech_user">Benutzer</string>
+    <string name="details_tech_os">System</string>
+    <string name="details_tech_method">Art, das Telefon zu erreichen</string>
+    <string name="details_tech_pc_addresses">Adressen des Computers</string>
+    <string name="details_tech_phone_addresses">Adressen dieses Telefons</string>
+    <string name="details_tech_response">Antwort zum Sperrstatus</string>
+    <string name="details_tech_sealed">Verschlüsselt</string>
+    <string name="details_tech_plain">Unverschlüsselt (altes Programm auf dem Computer)</string>
+    <string name="details_tech_paired_at">Gekoppelt am</string>
+    <string name="details_tech_public_id">Öffentliche ID (Tag und Uhr)</string>
+    <string name="details_tech_identifier">Kennung</string>
+
+    <string name="details_remove_pc">Computer entfernen</string>
+    <string name="details_remove_title">%1$s entfernen?</string>
+    <string name="details_remove_text">Das Telefon kann diesen Computer dann nicht mehr entsperren. Um das rückgängig zu machen, musst du neu koppeln.</string>
+    <string name="details_rename_title">Name des Computers</string>
+    <string name="details_rename_hint">Leer lassen, um den Namen des Computers zu verwenden.</string>
+
+    <string name="details_nfc_off_title">NFC aus</string>
+    <string name="details_nfc_write_title">Tag für %1$s beschreiben</string>
+    <string name="details_nfc_off_text">Schalte NFC in den Einstellungen des Telefons ein und komm hierher zurück.</string>
+    <string name="details_nfc_hold">Halte den Tag an die Rückseite des Telefons, bis die Meldung erscheint.</string>
+    <string name="details_nfc_readonly">Tag schreibschützen</string>
+    <string name="details_nfc_readonly_warn">Endgültig: Der Tag kann nie wieder beschrieben werden.</string>
+    <string name="details_nfc_open_settings">Einstellungen öffnen</string>
+
+    <string name="about_title">Über</string>
+    <string name="about_section_credits">Danksagungen</string>
+    <string name="about_based_on">Basiert auf PC Bio Unlock (heute PulseUnlock) von MeisApps, Lizenz GPL Version 3.</string>
+    <string name="about_source_soon">Quellcode: bald auf GitHub.</string>
+    <string name="about_source">Quellcode: GitHub.</string>
+    <string name="about_license">Lizenz</string>
+    <string name="about_original">Ursprüngliches Projekt</string>
+    <string name="about_code">Code</string>
+    <string name="about_section_diag">Diagnose</string>
+    <string name="about_export">Protokolle exportieren</string>
+    <string name="about_export_sub">Textdatei zum Senden an jemanden, der hilft. Ohne Schlüssel und Passwörter.</string>
+
+    <string name="exp_title">Experimentelle Funktionen</string>
+    <string name="exp_banner">Experimentell. Funktioniert vielleicht nicht richtig und kann sich in künftigen Versionen ändern oder wegfallen. Nutzung auf eigene Verantwortung.</string>
+    <string name="exp_nearby">Automatisch entsperren in der Nähe</string>
+    <string name="exp_nearby_sub">Per Bluetooth oder im selben Netzwerk, ohne das Telefon zu berühren (nie über Tailscale). Risiko: Wer neben dem Computer steht, kann ihn entsperren.</string>
+    <string name="exp_notification">Über die Benachrichtigung entsperren</string>
+    <string name="exp_notification_sub">Entsperren-Taste in der Benachrichtigung, ohne Biometrie. Risiko: Wer das entsperrte Telefon in die Hand bekommt, kann entsperren.</string>
+    <string name="exp_watch">Amazfit-Uhr (falscher Anruf)</string>
+    <string name="exp_watch_sub">Die Anfrage erscheint auf der Uhr als Anruf: Ignorieren entsperrt, Ablehnen lehnt ab. Wenn die Uhr nicht am Handgelenk ist, wird die Aktion blockiert. Benötigt Gadgetbridge Voz, mit der Uhr gekoppelt. Risiko: Wer deine Uhr am Handgelenk trägt, kann entsperren.</string>
+    <string name="exp_wear">Wear OS-Uhr</string>
+    <string name="exp_wear_sub">Die Anfrage erscheint auf der Uhr (Galaxy Watch, Pixel Watch und andere) mit Entsperren und Ablehnen; die Kachel sperrt, entsperrt und schaltet ein. Benötigt die Ítalock-App auf der Uhr und eine aktive Displaysperre dort. Weit weg vom Telefon läuft es über das Internet von Google. Risiko: Wer deine entsperrte Uhr hat, kann entsperren.</string>
+    <string name="exp_footer">Nach dem Aktivieren wählst du die Computer in deren Details aus. Hier ausschalten schaltet es für alle aus.</string>
+
+    <string name="pair_title">Computer koppeln</string>
+    <string name="pair_step1_title">Am Computer</string>
+    <string name="pair_step1_text">Öffne Ítalock und wähle „Telefon koppeln“: Ein QR-Code erscheint.</string>
+    <string name="pair_step2_title">Gleiches Netzwerk oder Bluetooth</string>
+    <string name="pair_step2_text">Beide im selben Netzwerk oder per USB-Kabel verbunden. Für Bluetooth koppelst du das Telefon zuerst mit dem Computer.</string>
+    <string name="pair_allow_bt">Bluetooth zulassen</string>
+    <string name="pair_step3_title">QR-Code scannen</string>
+    <string name="pair_step3_text">Richte die Kamera auf den QR-Code oder gib den angezeigten Code ein.</string>
+    <string name="pair_scan">QR-Code scannen</string>
+    <string name="pair_type">Code eingeben</string>
+    <string name="pair_code_label">Code des Computers</string>
+    <string name="pair_with_code">Mit Code koppeln</string>
+    <string name="pair_retry_save">Erneut bestätigen</string>
+
+    <string name="danger_title">Gefährlich</string>
+    <string name="danger_heading">%1$s ohne Bestätigung entsperren.</string>
+    <string name="danger_text">Jeder mit deinem entsperrten Telefon kann diesen Computer ohne Fingerabdruck, Gesicht oder Passwort entsperren. Wenn du das Telefon verlierst oder jemand es benutzt, ist dein Computer ungeschützt.</string>
+    <string name="danger_scope">Gilt nur für die Entsperren-Taste am Telefon (App, Widget, Schnelleinstellungs-Kachel und App-Verknüpfungen). Wenn jemand am Computer etwas macht, verlangt das Telefon weiterhin eine Bestätigung.</string>
+    <string name="danger_understood">Ich verstehe das Risiko</string>
+    <string name="danger_turn_on_wait">Aktivieren (%1$d)</string>
+
+    <string name="diag_header">Ítalock-Protokolle</string>
+    <string name="diag_generated">Erstellt am</string>
+    <string name="diag_version">Version</string>
+    <string name="diag_device">Gerät</string>
+    <string name="diag_theme">Design</string>
+    <string name="diag_vibrate">Vibrieren</string>
+    <string name="diag_confirm_lock">Vor dem Sperren nachfragen</string>
+    <string name="diag_prompt_timeout">Anfragezeit (s)</string>
+    <string name="diag_approve_locked">Bei gesperrtem Telefon entsperren</string>
+    <string name="diag_fullscreen">Anfrage auf dem Sperrbildschirm</string>
+    <string name="diag_hide_name">Namen ausblenden</string>
+    <string name="diag_allow_credential">PIN, Muster oder Passwort zulassen</string>
+    <string name="diag_poll">Sperrstatus aktualisieren (s, 0 = beim Öffnen)</string>
+    <string name="diag_ts_warning">Tailscale-Warnung</string>
+    <string name="diag_ts_installed">Tailscale installiert</string>
+    <string name="diag_ts_up">Tailscale verbunden</string>
+    <string name="diag_google">Google-Dienste</string>
+    <string name="diag_experimental">Experimentell (Nähe, Benachrichtigung, Zepp, Wear OS)</string>
+    <string name="diag_missing">Noch zulassen</string>
+    <string name="diag_nothing">nichts</string>
+    <string name="diag_pcs">Computer</string>
+    <string name="diag_pc_os">System</string>
+    <string name="diag_pc_method">Art der Verbindung</string>
+    <string name="diag_pc_addresses">Bekannte Adressen</string>
+    <string name="diag_pc_paths">Wege (lokales Netzwerk, Bluetooth, Tailscale)</string>
+    <string name="diag_pc_sealed">Verschlüsselte Antwort</string>
+    <string name="diag_pc_no_confirm">Ohne Bestätigung</string>
+    <string name="diag_pc_tag">NFC-Tag</string>
+    <string name="diag_pc_wake">Über das Netzwerk einschalten</string>
+    <string name="diag_pc_last">Zuletzt verwendet</string>
+    <string name="diag_none">keiner</string>
+    <string name="diag_events">Letzte Ereignisse</string>
+    <string name="diag_no_events">(keine)</string>
+
+    <string name="widget_removed">Computer entfernt</string>
+    <string name="widget_refresh">Sperrstatus aktualisieren</string>
+    <string name="widget_tap_refresh">Auf Aktualisieren tippen, um den Sperrstatus zu sehen</string>
+    <string name="widget_clock_off">Uhrzeit falsch</string>
+    <string name="widget_status_at">%1$s · %2$s</string>
+    <string name="widget_config_title">Welchen Computer steuert dieses Widget?</string>
+    <string name="widget_config_empty">Kein Computer gekoppelt. Öffne Ítalock und kopple zuerst einen.</string>
+</resources>

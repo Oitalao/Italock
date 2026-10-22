@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="details_repair_needed">أعد الإقران: فُقدت كلمة المرور المحفوظة</string>
+    <string name="details_section_general">عام</string>
+    <string name="details_name">الاسم</string>
+    <string name="details_order">الترتيب في القائمة</string>
+    <string name="details_order_value">%1$d من %2$d</string>
+    <string name="details_move_up">نقل لأعلى في القائمة</string>
+    <string name="details_move_down">نقل لأسفل في القائمة</string>
+    <string name="details_tile">الاستخدام في مربع الإعدادات السريعة</string>
+    <string name="details_tile_sub">زر Ítalock في الإعدادات السريعة يتحكم في هذا الكمبيوتر.</string>
+    <string name="details_wake">التشغيل عبر الشبكة</string>
+    <string name="details_wake_sub">على نفس الشبكة فقط، والكمبيوتر موصول بالكابل والخيار مفعّل فيه.</string>
+    <string name="details_mac">عنوان بطاقة الشبكة السلكية</string>
+    <string name="details_mac_empty">غير محدد. بدونه لا يمكن التشغيل عبر الشبكة.</string>
+    <string name="details_mac_help">عدة عناوين: افصل بينها بفاصلة. تركه فارغًا يوقف التشغيل عبر الشبكة.</string>
+    <string name="details_mac_invalid">الصيغة: ستة أزواج تفصل بينها نقطتان.</string>
+
+    <string name="details_section_paths">المسارات</string>
+    <string name="details_path_lan">الشبكة المحلية</string>
+    <string name="details_path_lan_sub">نفس شبكة Wi-Fi، أو كابل USB مع التوصيل عبر USB.</string>
+    <string name="details_path_bt_sub">الكمبيوتر يستدعي الهاتف بدون شبكة.</string>
+    <string name="details_path_ts_sub">خارج المنزل، عبر الإنترنت.</string>
+
+    <string name="details_section_tag">علامة NFC</string>
+    <string name="details_tag_write">كتابة علامة NFC</string>
+    <string name="details_tag_write_button">كتابة</string>
+    <string name="details_tag_lock">القفل بالعلامة</string>
+    <string name="details_tag_lock_sub">تقريب الهاتف المفتوح من العلامة يقفل هذا الكمبيوتر.</string>
+    <string name="details_tag_unlock">فتح القفل بالعلامة</string>
+    <string name="details_tag_unlock_sub">يطلب المقاييس الحيوية دائمًا.</string>
+    <string name="details_tag_both">تقريب الهاتف المفتوح من العلامة يقفل هذا الكمبيوتر أو يفتح قفله، حسب حالة القفل.</string>
+    <string name="details_tag_only_unlock">تقريب الهاتف المفتوح من العلامة يفتح قفل هذا الكمبيوتر فقط.</string>
+    <string name="details_tag_only_lock">تقريب الهاتف المفتوح من العلامة يقفل هذا الكمبيوتر فقط.</string>
+    <string name="details_tag_none">عند إيقاف الخيارين، لا تفعل علامة هذا الكمبيوتر شيئًا.</string>
+
+    <string name="details_section_security">الأمان</string>
+    <string name="details_no_confirm">فتح القفل بدون تأكيد</string>
+    <string name="details_no_confirm_sub">زر فتح القفل في الهاتف لا يطلب المقاييس الحيوية. طلبات الكمبيوتر تظل تطلب التأكيد.</string>
+
+    <string name="details_section_experimental">تجريبي</string>
+    <string name="details_exp_nearby_sub">عبر Bluetooth أو على نفس الشبكة، بدون لمس الهاتف. لا يعمل عبر Tailscale أبدًا.</string>
+    <string name="details_exp_notification_sub">زر فتح القفل في الإشعار، بدون المقاييس الحيوية.</string>
+    <string name="details_exp_watch_sub">يرنّ الطلب كمكالمة على الساعة: التجاهل يفتح القفل والرفض يمنعه (يُحظر إذا لم تكن الساعة على المعصم).</string>
+    <string name="details_exp_wear_sub">يظهر الطلب على الساعة مع زرَّي فتح القفل والرفض.</string>
+
+    <string name="details_section_history">سجل النشاط</string>
+    <string name="details_history_empty">لا شيء حتى الآن. القفل وفتح القفل وطلبات الكمبيوتر تظهر هنا.</string>
+    <string name="details_history_less">عرض أقل</string>
+    <string name="details_history_all">عرض الكل (%1$d)</string>
+    <string name="details_history_clear">مسح سجل النشاط</string>
+
+    <string name="details_tech_pc_name">الاسم على الكمبيوتر</string>
+    <string name="details_tech_user">المستخدم</string>
+    <string name="details_tech_os">النظام</string>
+    <string name="details_tech_method">طريقة استدعاء الهاتف</string>
+    <string name="details_tech_pc_addresses">عناوين الكمبيوتر</string>
+    <string name="details_tech_phone_addresses">عناوين هذا الهاتف</string>
+    <string name="details_tech_response">رد حالة القفل</string>
+    <string name="details_tech_sealed">مشفّر</string>
+    <string name="details_tech_plain">غير مشفّر (برنامج قديم على الكمبيوتر)</string>
+    <string name="details_tech_paired_at">تاريخ الإقران</string>
+    <string name="details_tech_public_id">المعرّف العام (العلامة والساعة)</string>
+    <string name="details_tech_identifier">المعرّف</string>
+
+    <string name="details_remove_pc">إزالة الكمبيوتر</string>
+    <string name="details_remove_title">إزالة %1$s؟</string>
+    <string name="details_remove_text">لن يتمكن الهاتف من فتح قفل هذا الكمبيوتر. للعودة، يجب الإقران من جديد.</string>
+    <string name="details_rename_title">اسم الكمبيوتر</string>
+    <string name="details_rename_hint">إذا تُرك فارغًا، يُستخدم اسم الكمبيوتر نفسه.</string>
+
+    <string name="details_nfc_off_title">NFC متوقف</string>
+    <string name="details_nfc_write_title">كتابة علامة %1$s</string>
+    <string name="details_nfc_off_text">فعّل NFC في إعدادات الهاتف ثم ارجع إلى هنا.</string>
+    <string name="details_nfc_hold">قرّب العلامة من ظهر الهاتف وأبقِها حتى يظهر التنبيه.</string>
+    <string name="details_nfc_readonly">حماية العلامة من الكتابة</string>
+    <string name="details_nfc_readonly_warn">لا يمكن التراجع: لن تُعاد كتابة العلامة أبدًا.</string>
+    <string name="details_nfc_open_settings">فتح الإعدادات</string>
+
+    <string name="about_title">حول</string>
+    <string name="about_section_credits">الشكر والتقدير</string>
+    <string name="about_based_on">مبني على PC Bio Unlock (حاليًا PulseUnlock) من MeisApps، بترخيص GPL الإصدار 3.</string>
+    <string name="about_source_soon">كود البرنامج: قريبًا على GitHub.</string>
+    <string name="about_source">كود البرنامج: على GitHub.</string>
+    <string name="about_license">الترخيص</string>
+    <string name="about_original">المشروع الأصلي</string>
+    <string name="about_code">الكود</string>
+    <string name="about_section_diag">التشخيص</string>
+    <string name="about_export">تصدير السجلات</string>
+    <string name="about_export_sub">ملف نصي لإرساله إلى من سيساعدك. لا يحتوي على مفاتيح أو كلمات مرور.</string>
+
+    <string name="exp_title">الميزات التجريبية</string>
+    <string name="exp_banner">تجريبي. قد لا يعمل جيدًا، أو يتغير، أو يختفي في الإصدارات القادمة. استخدمه على مسؤوليتك.</string>
+    <string name="exp_nearby">فتح القفل تلقائيًا عند الاقتراب</string>
+    <string name="exp_nearby_sub">عبر Bluetooth أو على نفس الشبكة، بدون لمس الهاتف (لا يعمل عبر Tailscale أبدًا). الخطر: أي شخص بجوار الكمبيوتر يمكنه فتح قفله.</string>
+    <string name="exp_notification">فتح القفل من الإشعار</string>
+    <string name="exp_notification_sub">زر فتح القفل في الإشعار، بدون المقاييس الحيوية. الخطر: من يأخذ هاتفك وهو مفتوح يمكنه فتح القفل.</string>
+    <string name="exp_watch">ساعة Amazfit (مكالمة وهمية)</string>
+    <string name="exp_watch_sub">يظهر الطلب على الساعة كمكالمة: التجاهل يفتح القفل والرفض يمنعه. إذا لم تكن الساعة على المعصم، يُحظر الإجراء. يتطلب Gadgetbridge Voz مقترنًا بالساعة. الخطر: من يضع ساعتك على معصمه يمكنه فتح القفل.</string>
+    <string name="exp_wear">ساعة Wear OS</string>
+    <string name="exp_wear_sub">يظهر الطلب على الساعة (Galaxy Watch وPixel Watch وغيرهما) مع زرَّي فتح القفل والرفض، والمربع يقفل ويفتح القفل ويشغّل. يتطلب تطبيق Ítalock على الساعة مع تفعيل قفل الشاشة فيها. عندما تكون بعيدًا عن الهاتف، يمر الطلب عبر إنترنت Google. الخطر: من معه ساعتك وهي مفتوحة يمكنه فتح القفل.</string>
+    <string name="exp_footer">بعد التفعيل، اختر أجهزة الكمبيوتر من تفاصيل كل جهاز. الإيقاف هنا يوقفها في الكل.</string>
+
+    <string name="pair_title">إقران كمبيوتر</string>
+    <string name="pair_step1_title">على الكمبيوتر</string>
+    <string name="pair_step1_text">افتح Ítalock واختر إقران الهاتف: سيظهر رمز QR.</string>
+    <string name="pair_step2_title">نفس الشبكة أو Bluetooth</string>
+    <string name="pair_step2_text">يجب أن يكون الجهازان على نفس الشبكة، أو موصولين بكابل USB. لاستخدام Bluetooth، أقرِن الهاتف بالكمبيوتر أولاً.</string>
+    <string name="pair_allow_bt">السماح بـ Bluetooth</string>
+    <string name="pair_step3_title">مسح رمز QR</string>
+    <string name="pair_step3_text">وجّه الكاميرا إلى رمز QR أو اكتب الرمز المعروض.</string>
+    <string name="pair_scan">مسح رمز QR</string>
+    <string name="pair_type">كتابة الرمز</string>
+    <string name="pair_code_label">رمز الكمبيوتر</string>
+    <string name="pair_with_code">الإقران بالرمز</string>
+    <string name="pair_retry_save">التأكيد مرة أخرى</string>
+
+    <string name="danger_title">خطر</string>
+    <string name="danger_heading">فتح قفل %1$s بدون تأكيد.</string>
+    <string name="danger_text">أي شخص معه هاتفك وهو مفتوح سيتمكن من فتح قفل هذا الكمبيوتر بدون بصمة أو وجه أو كلمة مرور. إذا فقدت الهاتف أو استخدمه شخص آخر، يصبح الكمبيوتر مكشوفًا.</string>
+    <string name="danger_scope">ينطبق فقط على زر فتح القفل في الهاتف (التطبيق والأداة ومربع الإعدادات السريعة واختصارات الأيقونة). عندما يستخدم أحدٌ الكمبيوتر، يظل الهاتف يطلب التأكيد.</string>
+    <string name="danger_understood">أفهم الخطر</string>
+    <string name="danger_turn_on_wait">تفعيل (%1$d)</string>
+
+    <string name="diag_header">سجلات Ítalock</string>
+    <string name="diag_generated">تاريخ الإنشاء</string>
+    <string name="diag_version">الإصدار</string>
+    <string name="diag_device">الجهاز</string>
+    <string name="diag_theme">المظهر</string>
+    <string name="diag_vibrate">الاهتزاز</string>
+    <string name="diag_confirm_lock">التأكيد قبل القفل</string>
+    <string name="diag_prompt_timeout">مهلة الطلب (ثانية)</string>
+    <string name="diag_approve_locked">فتح القفل والهاتف مقفل</string>
+    <string name="diag_fullscreen">الطلب على شاشة القفل</string>
+    <string name="diag_hide_name">إخفاء الاسم</string>
+    <string name="diag_allow_credential">قبول رقم PIN أو النقش أو كلمة المرور</string>
+    <string name="diag_poll">تحديث حالة القفل (ثانية، 0 = عند الفتح)</string>
+    <string name="diag_ts_warning">تنبيه Tailscale</string>
+    <string name="diag_ts_installed">Tailscale مثبّت</string>
+    <string name="diag_ts_up">Tailscale متصل</string>
+    <string name="diag_google">خدمات Google</string>
+    <string name="diag_experimental">التجريبية (القرب، الإشعار، Zepp، Wear OS)</string>
+    <string name="diag_missing">أذونات ناقصة</string>
+    <string name="diag_nothing">لا شيء</string>
+    <string name="diag_pcs">أجهزة الكمبيوتر</string>
+    <string name="diag_pc_os">النظام</string>
+    <string name="diag_pc_method">طريقة الاستدعاء</string>
+    <string name="diag_pc_addresses">العناوين المعروفة</string>
+    <string name="diag_pc_paths">المسارات (الشبكة المحلية، Bluetooth، Tailscale)</string>
+    <string name="diag_pc_sealed">رد مشفّر</string>
+    <string name="diag_pc_no_confirm">بدون تأكيد</string>
+    <string name="diag_pc_tag">علامة NFC</string>
+    <string name="diag_pc_wake">التشغيل عبر الشبكة</string>
+    <string name="diag_pc_last">آخر استخدام</string>
+    <string name="diag_none">لا شيء</string>
+    <string name="diag_events">الأحداث الأخيرة</string>
+    <string name="diag_no_events">(لا شيء)</string>
+
+    <string name="widget_removed">تمت إزالة الكمبيوتر</string>
+    <string name="widget_refresh">تحديث حالة القفل</string>
+    <string name="widget_tap_refresh">انقر على التحديث لعرض حالة القفل</string>
+    <string name="widget_clock_off">الساعة غير مضبوطة</string>
+    <string name="widget_status_at">%1$s · %2$s</string>
+    <string name="widget_config_title">أي كمبيوتر تتحكم فيه هذه الأداة؟</string>
+    <string name="widget_config_empty">لا يوجد كمبيوتر مقترن. افتح Ítalock وأقرِن كمبيوترًا أولاً.</string>
+</resources>

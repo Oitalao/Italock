@@ -1,5 +1,7 @@
 package br.italo.italock.data
 
+import br.italo.italock.R
+import br.italo.italock.i18n.L10n
 import br.italo.italock.lock.LockClient.LockStatus
 import org.json.JSONObject
 
@@ -54,9 +56,9 @@ object TagRule {
 
     /** Resumo para os registros e para a tela. */
     fun summary(lock: Boolean, unlock: Boolean): String = when {
-        lock && unlock -> "Trava e destrava"
-        unlock -> "Só destrava"
-        lock -> "Só trava"
-        else -> "Desligada"
+        lock && unlock -> L10n.s(R.string.tag_lock_and_unlock)
+        unlock -> L10n.s(R.string.tag_unlock_only)
+        lock -> L10n.s(R.string.tag_lock_only)
+        else -> L10n.s(R.string.tag_off)
     }
 }

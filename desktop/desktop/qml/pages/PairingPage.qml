@@ -60,7 +60,7 @@ Item {
             let u = userModel.get(i);
             let name = u.userName;
             let shortName = name.lastIndexOf("\\") >= 0 ? name.substring(name.lastIndexOf("\\") + 1) : name;
-            list.push({ text: shortName + (u.isMicrosoftAccount ? "  (conta Microsoft)" : ""), value: name, ms: u.isMicrosoftAccount });
+            list.push({ text: shortName + (u.isMicrosoftAccount ? "  " + qsTr("(conta Microsoft)") : ""), value: name, ms: u.isMicrosoftAccount });
             if (u.isCurrentUser) current = i;
         }
         accounts = list;
@@ -138,7 +138,7 @@ Item {
         PageHeader {
             Layout.maximumWidth: 760
             Layout.alignment: Qt.AlignHCenter
-            title: "Parear celular"
+            title: qsTr("Parear celular")
             onBack: page.goBack()
         }
         Text {
@@ -147,7 +147,7 @@ Item {
             Layout.alignment: Qt.AlignHCenter
             Layout.leftMargin: 48
             visible: page.step !== "done"
-            text: "Passo " + page.stepNumber + " de " + page.totalSteps
+            text: qsTr("Passo %1 de %2").arg(page.stepNumber).arg(page.totalSteps)
             color: Theme.text2
             font.family: Theme.fontFamily
             font.pixelSize: Theme.smallSize
@@ -171,7 +171,7 @@ Item {
 
                 Text {
                     Layout.fillWidth: true
-                    text: "Qual conta o celular vai destravar?"
+                    text: qsTr("Qual conta o celular vai destravar?")
                     color: Theme.text
                     font.family: Theme.fontFamily
                     font.pixelSize: 17
@@ -180,38 +180,38 @@ Item {
                 }
                 Text {
                     Layout.fillWidth: true
-                    text: "A senha fica guardada cifrada neste computador. O celular só libera o uso dela."
+                    text: qsTr("A senha fica guardada cifrada neste computador. O celular só libera o uso dela.")
                     color: Theme.text2
                     font.family: Theme.fontFamily
                     font.pixelSize: Theme.smallSize
                     wrapMode: Text.WordWrap
                     Layout.bottomMargin: 8
                 }
-                Text { text: "Conta"; color: Theme.text; font.family: Theme.fontFamily; font.pixelSize: Theme.smallSize; font.weight: Font.DemiBold }
+                Text { text: qsTr("Conta"); color: Theme.text; font.family: Theme.fontFamily; font.pixelSize: Theme.smallSize; font.weight: Font.DemiBold }
                 Choice {
                     id: accountBox
                     Layout.fillWidth: true
                     visible: !manualUser.visible
                     model: page.accounts
                     textRole: "text"
-                    Accessible.name: "Conta"
+                    Accessible.name: qsTr("Conta")
                 }
                 Field {
                     id: manualUser
                     Layout.fillWidth: true
                     visible: false
-                    placeholderText: "COMPUTADOR\\usuário ou email da conta Microsoft"
-                    Accessible.name: "Conta"
+                    placeholderText: qsTr("COMPUTADOR\\usuário ou email da conta Microsoft")
+                    Accessible.name: qsTr("Conta")
                 }
                 Btn {
                     kind: "text"
                     leftPadding: 0
-                    text: manualUser.visible ? "Escolher da lista" : "Outra conta"
+                    text: manualUser.visible ? qsTr("Escolher da lista") : qsTr("Outra conta")
                     onClicked: { manualUser.visible = !manualUser.visible; if (manualUser.visible) manualUser.forceActiveFocus(); }
                 }
                 Text {
                     Layout.topMargin: 4
-                    text: "Senha"
+                    text: qsTr("Senha")
                     color: Theme.text
                     font.family: Theme.fontFamily
                     font.pixelSize: Theme.smallSize
@@ -221,14 +221,14 @@ Item {
                     id: passwordField
                     Layout.fillWidth: true
                     echoMode: TextInput.Password
-                    Accessible.name: "Senha"
+                    Accessible.name: qsTr("Senha")
                     Keys.onReturnPressed: if (!page.checking) page.checkAccount(false)
                     Keys.onEnterPressed: if (!page.checking) page.checkAccount(false)
                 }
                 Text {
                     Layout.fillWidth: true
                     visible: page.chosenIsMs
-                    text: "Conta Microsoft: use a senha da conta, não o PIN."
+                    text: qsTr("Conta Microsoft: use a senha da conta, não o PIN.")
                     color: Theme.text2
                     font.family: Theme.fontFamily
                     font.pixelSize: Theme.smallSize
@@ -240,7 +240,7 @@ Item {
                     Busy { running: page.checking; size: 18 }
                     Btn {
                         kind: "primary"
-                        text: page.checking ? "Conferindo…" : "Continuar"
+                        text: page.checking ? qsTr("Conferindo…") : qsTr("Continuar")
                         enabled: !page.checking && page.chosenUser !== "" && passwordField.text !== ""
                         onClicked: page.checkAccount(false)
                     }
@@ -258,7 +258,7 @@ Item {
 
                 Text {
                     Layout.fillWidth: true
-                    text: "Como o celular vai falar com este computador?"
+                    text: qsTr("Como o celular vai falar com este computador?")
                     color: Theme.text
                     font.family: Theme.fontFamily
                     font.pixelSize: 17
@@ -268,9 +268,9 @@ Item {
                 }
                 Repeater {
                     model: [
-                        { id: "wifi", title: "Mesma rede", desc: "Celular e computador na mesma rede. Vale também o cabo USB com ancoragem.", ok: true, why: "" },
-                        { id: "bluetooth", title: "Bluetooth", desc: "Funciona sem rede, com o celular perto do computador.", ok: page.hasBluetooth, why: "Este computador está sem Bluetooth ligado." },
-                        { id: "tailscale", title: "Pela internet (Tailscale)", desc: "De qualquer lugar, com o Tailscale ligado no celular e aqui.", ok: page.tailscaleIP !== "", why: "O Tailscale não está ligado neste computador." }
+                        { id: "wifi", title: qsTr("Mesma rede"), desc: qsTr("Celular e computador na mesma rede. Vale também o cabo USB com ancoragem."), ok: true, why: "" },
+                        { id: "bluetooth", title: "Bluetooth", desc: qsTr("Funciona sem rede, com o celular perto do computador."), ok: page.hasBluetooth, why: qsTr("Este computador está sem Bluetooth ligado.") },
+                        { id: "tailscale", title: qsTr("Pela internet (Tailscale)"), desc: qsTr("De qualquer lugar, com o Tailscale ligado no celular e aqui."), ok: page.tailscaleIP !== "", why: qsTr("O Tailscale não está ligado neste computador.") }
                     ]
                     delegate: Rectangle {
                         id: opt
@@ -336,7 +336,7 @@ Item {
                     Item { Layout.fillWidth: true }
                     Btn {
                         kind: "primary"
-                        text: "Continuar"
+                        text: qsTr("Continuar")
                         onClicked: {
                             if (page.method === "bluetooth") { page.step = "bt"; page.startScan(); }
                             else page.startQR();
@@ -354,7 +354,7 @@ Item {
                 spacing: 10
                 Text {
                     Layout.fillWidth: true
-                    text: page.btPairing ? "Confirme o código no celular e neste computador" : "Escolha o celular"
+                    text: page.btPairing ? qsTr("Confirme o código no celular e neste computador") : qsTr("Escolha o celular")
                     color: Theme.text
                     font.family: Theme.fontFamily
                     font.pixelSize: 17
@@ -363,8 +363,8 @@ Item {
                 }
                 Text {
                     Layout.fillWidth: true
-                    text: page.btPairing ? "O Windows e o celular mostram o mesmo número. Confirme nos dois."
-                                         : "No celular, abra Configurações › Bluetooth e deixe a tela aberta. Ele aparece aqui em alguns segundos."
+                    text: page.btPairing ? qsTr("O Windows e o celular mostram o mesmo número. Confirme nos dois.")
+                                         : qsTr("No celular, abra Configurações › Bluetooth e deixe a tela aberta. Ele aparece aqui em alguns segundos.")
                     color: Theme.text2
                     font.family: Theme.fontFamily
                     font.pixelSize: Theme.smallSize
@@ -420,7 +420,7 @@ Item {
                         visible: btModel.count === 0
                         spacing: 10
                         Busy { size: 18 }
-                        Text { text: "Procurando…"; color: Theme.text2; font.family: Theme.fontFamily; font.pixelSize: Theme.bodySize }
+                        Text { text: qsTr("Procurando…"); color: Theme.text2; font.family: Theme.fontFamily; font.pixelSize: Theme.bodySize }
                     }
                 }
                 RowLayout {
@@ -429,7 +429,7 @@ Item {
                     Busy { running: page.btPairing; size: 18 }
                     Btn {
                         kind: "primary"
-                        text: page.btPairing ? "Pareando…" : "Parear"
+                        text: page.btPairing ? qsTr("Pareando…") : qsTr("Parear")
                         enabled: page.btIndex >= 0 && !page.btPairing
                         onClicked: { page.btPairing = true; PairingForm.PairBluetooth(window, page.btAddress); }
                     }
@@ -461,7 +461,7 @@ Item {
                         sourceSize: Qt.size(width, height)
                         fillMode: Image.PreserveAspectFit
                         smooth: false
-                        Accessible.name: "Código QR de pareamento"
+                        Accessible.name: qsTr("Código QR de pareamento")
                     }
                 }
                 ColumnLayout {
@@ -470,7 +470,7 @@ Item {
                     spacing: 12
                     Text {
                         Layout.fillWidth: true
-                        text: "Leia o código com o celular"
+                        text: qsTr("Leia o código com o celular")
                         color: Theme.text
                         font.family: Theme.fontFamily
                         font.pixelSize: 17
@@ -478,7 +478,7 @@ Item {
                         wrapMode: Text.WordWrap
                     }
                     Repeater {
-                        model: ["No celular, abra o Ítalock.", "Toque em Parear computador.", "Aponte a câmera para o código."]
+                        model: [qsTr("No celular, abra o Ítalock."), qsTr("Toque em Parear computador."), qsTr("Aponte a câmera para o código.")]
                         delegate: RowLayout {
                             required property string modelData
                             required property int index
@@ -509,7 +509,7 @@ Item {
                     Text {
                         Layout.fillWidth: true
                         visible: page.method === "tailscale"
-                        text: "O Tailscale precisa estar ligado no celular."
+                        text: qsTr("O Tailscale precisa estar ligado no celular.")
                         color: Theme.text2
                         font.family: Theme.fontFamily
                         font.pixelSize: Theme.smallSize
@@ -520,7 +520,7 @@ Item {
                         spacing: 10
                         Busy { size: 18 }
                         Text {
-                            text: "Esperando o celular…"
+                            text: qsTr("Esperando o celular…")
                             color: Theme.text2
                             font.family: Theme.fontFamily
                             font.pixelSize: Theme.bodySize
@@ -529,7 +529,7 @@ Item {
                     Rectangle { Layout.fillWidth: true; Layout.topMargin: 8; height: 1; color: Theme.divider }
                     Text {
                         Layout.fillWidth: true
-                        text: "Sem câmera? Digite este código no app:"
+                        text: qsTr("Sem câmera? Digite este código no app:")
                         color: Theme.text2
                         font.family: Theme.fontFamily
                         font.pixelSize: Theme.smallSize
@@ -552,8 +552,8 @@ Item {
                             Layout.alignment: Qt.AlignTop
                             kind: "icon"
                             iconName: "copy"
-                            Accessible.name: "Copiar código"
-                            ToolTip.text: "Copiar"
+                            Accessible.name: qsTr("Copiar código")
+                            ToolTip.text: qsTr("Copiar")
                             ToolTip.visible: hovered
                             ToolTip.delay: 400
                             onClicked: { clip.text = page.pairingCode; clip.selectAll(); clip.copy(); }
@@ -577,7 +577,7 @@ Item {
                 Text {
                     Layout.fillWidth: true
                     horizontalAlignment: Text.AlignHCenter
-                    text: "Pareado com " + (page.pairedName !== "" ? page.pairedName : "o celular")
+                    text: page.pairedName !== "" ? qsTr("Pareado com %1").arg(page.pairedName) : qsTr("Pareado com o celular")
                     color: Theme.text
                     font.family: Theme.fontFamily
                     font.pixelSize: 17
@@ -587,7 +587,7 @@ Item {
                 Text {
                     Layout.fillWidth: true
                     horizontalAlignment: Text.AlignHCenter
-                    text: "Na próxima vez que o computador travar, ele chama este celular."
+                    text: qsTr("Na próxima vez que o computador travar, ele chama este celular.")
                     color: Theme.text2
                     font.family: Theme.fontFamily
                     font.pixelSize: Theme.smallSize
@@ -597,7 +597,7 @@ Item {
                     Layout.alignment: Qt.AlignHCenter
                     Layout.topMargin: 8
                     kind: "primary"
-                    text: "Concluir"
+                    text: qsTr("Concluir")
                     onClicked: stack.pop()
                 }
             }

@@ -12,6 +12,8 @@ import androidx.fragment.app.FragmentActivity
  * Android 8+: requestDismissKeyguard. Android 6–7: flags da janela e confere quando a tela ganha o foco.
  */
 abstract class GatedActivity : FragmentActivity() {
+    override fun attachBaseContext(newBase: android.content.Context) = super.attachBaseContext(br.italo.italock.i18n.L10n.wrap(newBase))
+
     private var pending: (() -> Unit)? = null
     private var cancelled: () -> Unit = { finish() }
     private val handler = Handler(Looper.getMainLooper())

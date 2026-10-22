@@ -13,8 +13,8 @@ android {
         applicationId = "br.italo.italock"
         minSdk = 30
         targetSdk = 36
-        versionCode = 13
-        versionName = "1.8.0"
+        versionCode = 14
+        versionName = "1.9.0"
     }
 
     // Chave oficial do Ítalock: fica fora do repositório. Sem ela, o build usa a chave de depuração do Android

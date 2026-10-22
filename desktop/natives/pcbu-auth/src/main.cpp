@@ -127,7 +127,7 @@ int runMain(int argc, char *argv[]) {
 int main(int argc, char *argv[]) {
   setvbuf(stdout, nullptr, _IONBF, 0);
   if(argc != 2 || !CallerMayAuthenticate(argv[1])) {
-    printf("Pedido recusado.\n");
+    printf("%s\n", I18n::Tr("Pedido recusado.").c_str());
     return -1;
   }
   if(setuid(0) != 0) {

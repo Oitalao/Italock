@@ -17,7 +17,7 @@
                 android:tint="@color/it_light_brand" android:layout_marginEnd="8dp" android:contentDescription="@null" tools:ignore="UseAppTint"/>
             <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <TextView android:id="@+id/pc_name" android:text="Ítalock" android:layout_width="match_parent"
+                <TextView android:id="@+id/pc_name" android:text="@string/app_name" android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:textColor="@color/it_light_text" android:textSize="15sp"
                     android:textStyle="bold" android:maxLines="1" android:ellipsize="end"/>
                 <TextView android:id="@+id/status" android:text="" android:layout_width="match_parent"
@@ -25,25 +25,25 @@
                     android:maxLines="1" android:ellipsize="end"/>
             </LinearLayout>
             <TextView android:id="@+id/danger" android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="Sem confirmação" android:textColor="@color/it_light_on_danger" android:textSize="11sp" android:textStyle="bold"
+                android:text="@string/danger_strip" android:textColor="@color/it_light_on_danger" android:textSize="11sp" android:textStyle="bold"
                 android:background="@drawable/widget_chip_danger_light" android:paddingStart="6dp" android:paddingEnd="6dp"
                 android:paddingTop="1dp" android:paddingBottom="1dp" android:layout_marginStart="6dp" android:visibility="gone"/>
         </LinearLayout>
         <ImageView android:id="@+id/btn_refresh" android:layout_width="44dp" android:layout_height="44dp"
             android:padding="11dp" android:src="@drawable/ic_refresh" android:tint="@color/it_light_brand"
-            android:contentDescription="Atualizar cadeado" tools:ignore="UseAppTint"/>
+            android:contentDescription="@string/widget_refresh" tools:ignore="UseAppTint"/>
     </LinearLayout>
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
         android:orientation="horizontal" android:layout_marginTop="4dp" android:layout_marginEnd="8dp">
         <TextView android:id="@+id/btn_lock" android:layout_width="0dp" android:layout_weight="1" android:layout_height="48dp"
-            android:gravity="center" android:text="Travar" android:textSize="14sp" android:textStyle="bold"
+            android:gravity="center" android:text="@string/action_lock" android:textSize="14sp" android:textStyle="bold"
             android:textColor="@color/it_light_brand" android:background="@drawable/widget_btn_light"/>
         <TextView android:id="@+id/btn_unlock" android:layout_width="0dp" android:layout_weight="1" android:layout_height="48dp"
-            android:gravity="center" android:text="Destravar" android:textSize="14sp" android:textStyle="bold"
+            android:gravity="center" android:text="@string/action_unlock" android:textSize="14sp" android:textStyle="bold"
             android:textColor="@color/it_light_on_orange" android:background="@drawable/widget_btn_primary_light"
             android:layout_marginStart="6dp"/>
         <TextView android:id="@+id/btn_wake" android:layout_width="0dp" android:layout_weight="1" android:layout_height="48dp"
-            android:gravity="center" android:text="Ligar" android:textSize="14sp" android:textStyle="bold"
+            android:gravity="center" android:text="@string/action_wake" android:textSize="14sp" android:textStyle="bold"
             android:textColor="@color/it_light_brand" android:background="@drawable/widget_btn_light"
             android:layout_marginStart="6dp"/>
     </LinearLayout>

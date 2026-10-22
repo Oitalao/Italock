@@ -1,93 +1,70 @@
 #include "LocaleHelper.h"
 
+#include <cstdlib>
 #include <filesystem>
 #include <fstream>
-#include <spdlog/spdlog.h>
 
-#include "storage/AppSettings.h"
 #include "utils/StringUtils.h"
 
 #ifdef WINDOWS
 #include <Windows.h>
 #endif
 
-LocaleHelper::Locale LocaleHelper::GetUserLocale() {
-  auto settingsLang = AppSettings::Get().language;
-  if(settingsLang != "auto") {
-    if(settingsLang == "zh_CN")
-      return Locale::CHINESE_SIMPLIFIED;
-    if(settingsLang == "de")
-      return Locale::GERMAN;
-    if(settingsLang == "pt_PT")
-      return Locale::PORTUGUESE_PT;
-    if(settingsLang == "pt_BR")
-      return Locale::PORTUGUESE_BR;
-    return Locale::ENGLISH;
-  }
-
-#ifdef _WIN32
-  WCHAR localeName[LOCALE_NAME_MAX_LENGTH];
-  if(GetUserDefaultLocaleName(localeName, LOCALE_NAME_MAX_LENGTH) == 0) {
-    spdlog::error("Failed to get system locale.");
-    return Locale::ENGLISH;
-  }
-  auto locale = StringUtils::FromWideString(localeName);
-#else
-  std::string locale{};
-  if(std::filesystem::exists("/etc/locale.conf")) {
-    std::ifstream is_file("/etc/locale.conf");
-    std::string line{};
-    while(std::getline(is_file, line)) {
-      std::istringstream is_line(line);
-      std::string key{};
-      if(std::getline(is_line, key, '=')) {
-        std::string value{};
-        if(std::getline(is_line, value)) {
-          if(key == "LANG") {
-            locale = value;
-            break;
-          }
-        }
-      }
-    }
-  }
-  if(locale.empty()) {
-    if(auto lcSys = std::setlocale(LC_ALL, ""); lcSys && *lcSys)
-      locale = lcSys;
-    if(auto lcAll = std::getenv("LC_ALL"); lcAll && *lcAll)
-      locale = lcAll;
-    if(auto lcCType = std::getenv("LC_CTYPE"); lcCType && *lcCType)
-      locale = lcCType;
-    if(auto lang = std::getenv("LANG"); lang && *lang)
-      locale = lang;
-  }
-#endif
-
-  locale = StringUtils::Replace(StringUtils::ToLower(locale), "-", "_");
-  if(locale.starts_with("zh_cn"))
-    return Locale::CHINESE_SIMPLIFIED;
-  else if(locale.starts_with("de"))
-    return Locale::GERMAN;
-  else if(locale.starts_with("pt_pt"))
-    return Locale::PORTUGUESE_PT;
-  else if(locale.starts_with("pt_br"))
-    return Locale::PORTUGUESE_BR;
-  return Locale::ENGLISH;
+std::string LocaleHelper::MapLocale(const std::string &locale) {
+  auto l = StringUtils::Replace(StringUtils::ToLower(locale), "-", "_");
+  if(l.size() >= 2 && l[0] == '"')
+    l = l.substr(1);
+  auto starts = [&l](const char *prefix) {
+    auto n = std::char_traits<char>::length(prefix);
+    return l.compare(0, n, prefix) == 0 && (l.size() == n || l[n] == '_' || l[n] == '.' || l[n] == '@');
+  };
+  if(starts("pt"))
+    return "pt_BR"; // portugues de Portugal tambem fica no do Brasil (o Italock nao tem o de Portugal)
+  for(const char *code : {"en", "es", "fr", "de", "it", "ja", "ko", "ru", "pl", "hi", "ar"})
+    if(starts(code))
+      return code;
+  if(starts("zh"))
+    return "zh_CN";
+  return {};
 }
 
-std::string LocaleHelper::ToString(Locale locale) {
-  switch(locale) {
-    case Locale::ENGLISH:
-      return "English";
-    case Locale::GERMAN:
-      return "German";
-    case Locale::CHINESE_SIMPLIFIED:
-      return "Chinese (Simplified)";
-    case Locale::PORTUGUESE_PT:
-      return "Portuguese";
-    case Locale::PORTUGUESE_BR:
-      return "Portuguese (Brazil)";
-    default:
-      return "Unknown";
+std::string LocaleHelper::GetSystemLanguage() {
+#ifdef WINDOWS
+  // Idioma da interface do Windows (nao o formato regional). Na tela de bloqueio (SYSTEM) e o idioma do sistema.
+  WCHAR name[LOCALE_NAME_MAX_LENGTH]{};
+  if(LCIDToLocaleName(MAKELCID(GetUserDefaultUILanguage(), SORT_DEFAULT), name, LOCALE_NAME_MAX_LENGTH, 0) > 0) {
+    auto code = MapLocale(StringUtils::FromWideString(name));
+    if(!code.empty())
+      return code;
   }
+  return "pt_BR";
+#else
+  for(const char *var : {"LC_ALL", "LC_MESSAGES", "LANG"}) {
+    auto value = std::getenv(var);
+    if(!value || !*value)
+      continue;
+    std::string v = value;
+    if(v == "C" || v == "POSIX" || v.starts_with("C."))
+      continue;
+    auto code = MapLocale(v);
+    return code.empty() ? std::string("pt_BR") : code;
+  }
+  // Sem variavel (PAM, servico): o idioma do sistema nos arquivos de configuracao.
+  for(const char *file : {"/etc/locale.conf", "/etc/default/locale"}) {
+    try {
+      if(!std::filesystem::exists(file))
+        continue;
+      std::ifstream in(file);
+      std::string line{};
+      while(std::getline(in, line)) {
+        if(line.starts_with("LANG=")) {
+          auto code = MapLocale(line.substr(5));
+          return code.empty() ? std::string("pt_BR") : code;
+        }
+      }
+    } catch(...) {
+    }
+  }
+  return "pt_BR";
+#endif
 }

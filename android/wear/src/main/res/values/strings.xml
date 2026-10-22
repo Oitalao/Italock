@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Textos do app do relógio em português do Brasil (padrão). O idioma segue o escolhido no Ítalock do celular.
+  Regra dos textos: nada de travessão, meia risca ou hífen como pontuação.
+-->
+<resources>
+    <string name="app_name" translatable="false">Ítalock</string>
+    <string name="tile_label" translatable="false">Ítalock</string>
+    <string name="tile_description">Seus computadores e o botão certo para cada um</string>
+
+    <!-- Estado do computador -->
+    <string name="state_locked">Travado</string>
+    <string name="state_unlocked">Destravado</string>
+    <string name="state_no_answer">Sem resposta</string>
+    <string name="state_clock">Relógio fora de hora</string>
+    <!-- O computador respondeu com erro ou a consulta não terminou a tempo. -->
+    <string name="state_unknown">Não confirmado</string>
+
+    <!-- Ações -->
+    <string name="action_unlock">Destravar</string>
+    <!-- Ligar o computador pela rede. -->
+    <string name="action_wake">Ligar</string>
+    <string name="action_lock">Travar</string>
+    <string name="action_deny">Recusar</string>
+    <string name="close">Fechar</string>
+
+    <!-- Lista e tile -->
+    <string name="phone_missing_long">Celular não encontrado. Abra o Ítalock no celular e ligue Relógio Wear OS nos recursos experimentais.</string>
+    <string name="open_on_phone">Abra o Ítalock no celular</string>
+    <string name="phone_missing">Celular não encontrado. Abra o Ítalock no celular.</string>
+    <!-- Aviso curto do tile: %1$s = ação e nome do computador (ex.: Travar Notebook). -->
+    <string name="tile_sending">%1$s: enviando</string>
+
+    <!-- Resultado da ação -->
+    <string name="sending">Enviando</string>
+    <string name="phone_no_answer">O celular não respondeu. Ele está perto ou com internet?</string>
+    <string name="result_confirm_on_phone">Confirme no celular</string>
+    <string name="result_done">Feito</string>
+    <string name="result_failed">Não deu certo</string>
+
+    <!-- Pedido do computador -->
+    <!-- %1$s = nome do computador. -->
+    <string name="prompt_title">Destravar %1$s?</string>
+    <string name="prompt_title_generic">Destravar o computador?</string>
+    <string name="prompt_needs_lock_notif">Ative o bloqueio de tela do relógio para destravar por aqui</string>
+    <string name="prompt_needs_lock">Para destravar pelo relógio, ative o bloqueio de tela do relógio</string>
+    <string name="channel_prompts">Pedidos</string>
+    <string name="channel_prompts_desc">Pedidos para destravar o computador</string>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="wearmsg_your_computer">你的电脑</string>
+    <string name="wearmsg_computer">电脑</string>
+    <string name="wearmsg_computer_n">电脑 %1$d</string>
+    <string name="wearmsg_feature_off">请在手机上 Ítalock 的实验性功能中开启“Wear OS 手表”。</string>
+    <string name="wearmsg_pc_not_found">手机上未找到该电脑。</string>
+    <string name="wearmsg_pc_off">手表未对 %1$s 开启。请在手机上该电脑的详情中开启。</string>
+    <string name="wearmsg_confirm_on_phone">请在手机上确认。</string>
+    <string name="wearmsg_unknown_action">未知操作。</string>
+    <string name="wearmsg_already_asking">%1$s 已在请求。请在手机或手表的请求中确认。</string>
+</resources>

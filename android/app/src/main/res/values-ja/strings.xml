@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_description">パソコンのロック、ロック解除、起動</string>
+
+    <string name="common_cancel">キャンセル</string>
+    <string name="common_close">閉じる</string>
+    <string name="common_save">保存</string>
+    <string name="common_remove">削除</string>
+    <string name="common_change">変更</string>
+    <string name="common_allow">許可</string>
+    <string name="common_turn_on">オンにする</string>
+    <string name="common_back">戻る</string>
+    <string name="common_show">表示</string>
+    <string name="common_collapse">折りたたむ</string>
+    <string name="common_expanded">展開</string>
+    <string name="common_collapsed">折りたたみ</string>
+    <string name="common_not_informed">未設定</string>
+    <string name="common_none">なし</string>
+    <string name="common_technical_details">技術的な詳細</string>
+
+    <string name="action_unlock">ロック解除</string>
+    <string name="action_lock">ロック</string>
+    <string name="action_wake">起動</string>
+    <string name="action_fix_clock">時刻を合わせる</string>
+    <string name="action_pair">ペアリング</string>
+
+    <string name="status_locked">ロック中</string>
+    <string name="status_unlocked">ロック解除済み</string>
+    <string name="status_no_answer">応答なし</string>
+    <string name="status_clock_off">スマホの時刻がずれています</string>
+    <string name="status_not_paired">このスマホを認識していません</string>
+    <string name="status_error">エラーが返されました</string>
+    <string name="status_querying">確認中</string>
+    <string name="status_unverified">%1$s · 未確認</string>
+    <string name="danger_strip">確認なし</string>
+
+    <string name="via_lan">ローカルネットワーク</string>
+    <string name="via_internet">インターネット</string>
+
+    <string name="event_locked">ロック</string>
+    <string name="event_unlocked">ロック解除</string>
+    <string name="event_denied">リクエストを拒否</string>
+    <string name="event_expired">リクエストの期限切れ</string>
+    <string name="origin_app">アプリ</string>
+    <string name="origin_widget">ウィジェット</string>
+    <string name="origin_shortcut">アイコンのショートカット</string>
+    <string name="origin_tile">クイック設定タイル</string>
+    <string name="origin_tag">NFCタグ</string>
+    <string name="origin_watch">ウォッチ</string>
+    <string name="origin_pc">パソコンからのリクエスト</string>
+    <string name="origin_notification">通知</string>
+    <string name="origin_auto">近くにいるときに自動</string>
+    <string name="when_today">今日 %1$s</string>
+    <string name="when_yesterday">昨日 %1$s</string>
+    <string name="when_date">%2$s %1$s</string>
+
+    <string name="notif_service_title">Ítalock 動作中</string>
+    <string name="notif_service_text">パソコンからのリクエストを待っています</string>
+    <string name="channel_status">サービス動作中</string>
+    <string name="channel_prompt">ロック解除のリクエスト</string>
+    <string name="channel_waiting">パソコンが待機中</string>
+
+    <string name="list_separator">"、"</string>
+    <string name="a11y_why_unavailable">利用できない理由</string>
+    <string name="a11y_unavailable">%1$s、利用できません。%2$s</string>
+
+    <string name="home_lock_all">すべてロック</string>
+    <string name="home_pair_computer">パソコンをペアリング</string>
+    <string name="home_settings_attention">設定（許可が必要な項目があります）</string>
+    <string name="home_notifications_off">通知がオフです。パソコンからのリクエストが表示されません。</string>
+    <string name="home_empty_title">ペアリング済みのパソコンはありません</string>
+    <string name="home_empty_text">パソコンに Ítalock をインストールして、表示される QRコードを読み取ってください。</string>
+    <string name="home_open_details">詳細を開く</string>
+    <string name="home_needs_repair">もう一度ペアリングしてください。保存したパスワードが失われました</string>
+    <string name="home_waiting_for">%1$s を待っています</string>
+    <string name="lock_all_one">パソコンをロックしました</string>
+    <plurals name="lock_all_done">
+        <item quantity="other">%d 台すべてをロックしました</item>
+    </plurals>
+    <string name="lock_all_none">ロックできませんでした：%1$s</string>
+    <plurals name="lock_all_partial">
+        <item quantity="other">%2$d 台中 %1$d 台をロックしました。</item>
+    </plurals>
+    <plurals name="lock_all_failed">
+        <item quantity="other">ロックできませんでした：%1$s</item>
+    </plurals>
+
+    <string name="theme_dark">ダーク</string>
+    <string name="theme_light">ライト</string>
+    <string name="theme_system">システムと同じ</string>
+
+    <string name="settings_title">設定</string>
+    <string name="settings_missing">許可が必要</string>
+    <string name="settings_missing_notifications">通知：オフだと、パソコンからのリクエストが表示されません。</string>
+    <string name="settings_missing_full_screen">全画面表示：スマホがロック中でもリクエストを表示するために必要です。</string>
+    <string name="settings_missing_battery">バッテリーの最適化：Android が Ítalock を終了することがあります。</string>
+    <string name="settings_missing_battery_action">除外する</string>
+    <string name="settings_missing_bluetooth">Bluetooth：ネットワークがなくてもパソコンからスマホを呼び出すために必要です。</string>
+    <string name="settings_section_requests">パソコンからのリクエスト</string>
+    <string name="settings_timeout">応答までの時間</string>
+    <plurals name="settings_seconds">
+        <item quantity="other">%d 秒</item>
+    </plurals>
+    <string name="settings_lockscreen_prompt">ロック画面にリクエストを表示</string>
+    <string name="settings_lockscreen_prompt_on">画面を点灯して、ロック画面の上に表示します。バッテリーの消費が増えます。</string>
+    <string name="settings_lockscreen_prompt_off">通知のみで、画面は点灯しません。応答するには、スマホのロックを解除してください。</string>
+    <string name="settings_approve_locked">スマホがロック中でもロック解除</string>
+    <string name="settings_approve_locked_on">スマホのロックを解除せずに、ロック画面でリクエストを承認できます。安全性は下がります。</string>
+    <string name="settings_approve_locked_off">オフ：承認する前にスマホのロックを解除してください。</string>
+    <string name="settings_approve_locked_needs">先に「%1$s」をオンにしてください</string>
+    <string name="settings_approve_locked_ask">スマホがロック中でもロック解除できるようにしますか？</string>
+    <string name="settings_approve_locked_ask_text">スマホのロックを解除しなくても、スマホのロック画面から生体認証（「%1$s」がオンなら PIN も）でパソコンのロックを解除できるようになります。便利ですが、安全性は下がります。</string>
+    <string name="settings_hide_name">パソコンの名前を隠す</string>
+    <string name="settings_hide_name_sub">スマホがロック中のとき、リクエストや通知にどのパソコンかを表示しません。</string>
+    <string name="settings_allow_credential">PIN、パターン、パスワードを許可</string>
+    <string name="settings_allow_credential_sub">生体認証に加えて使えます。オフ：指紋または安全な顔認証のみ。</string>
+    <string name="settings_section_lock">ロック</string>
+    <string name="settings_confirm_lock">ロックする前に確認する</string>
+    <string name="settings_confirm_lock_sub">アプリ、ウィジェット、ショートカット、タグ、ウォッチ、通知からロックする前に確認します。</string>
+    <string name="settings_tile">クイック設定タイル</string>
+    <string name="settings_tile_controls">操作対象：%1$s</string>
+    <string name="settings_tile_no_pc">パソコンなし</string>
+    <string name="settings_tile_choose">クイック設定タイルの操作対象</string>
+    <string name="settings_section_look">外観とフィードバック</string>
+    <string name="settings_theme">テーマ</string>
+    <string name="settings_vibrate">完了時にバイブレーション</string>
+    <string name="settings_vibrate_sub">成功すると短く 1 回、失敗すると 2 回振動します。</string>
+    <string name="settings_section_connection">接続</string>
+    <string name="settings_poll">ロック状態の更新</string>
+    <string name="settings_poll_open">アプリを開いたときのみ</string>
+    <plurals name="settings_poll_every">
+        <item quantity="other">アプリを開いている間、%d 秒ごと</item>
+    </plurals>
+    <string name="settings_tailscale_warning">Tailscale がオフになったら知らせる</string>
+    <string name="settings_tailscale_warning_sub">オフだと、外出先からロック解除できません。</string>
+    <string name="settings_paths_note">ローカルネットワーク、Bluetooth、Tailscale は、パソコンごとに詳細画面で選びます。</string>
+    <string name="settings_section_more">その他</string>
+    <string name="settings_experimental">試験運用機能</string>
+    <string name="settings_experimental_none">すべてオフ</string>
+    <string name="settings_beta">BETA</string>
+    <string name="settings_about">Ítalock について</string>
+    <string name="settings_about_sub">クレジット、ライセンス、技術的な詳細、ログ</string>
+    <plurals name="settings_experimental_on">
+        <item quantity="other">%d 件オン</item>
+    </plurals>
+
+    <string name="main_history_cleared">%1$s の履歴を消去しました</string>
+    <string name="main_lock_all_ask">すべてのパソコンをロックしますか？</string>
+    <string name="main_unlocked">%1$s のロックを解除しました</string>
+    <string name="main_not_unlocked">%1$s のロックを解除できませんでした</string>
+    <string name="main_lock_unconfirmed">%1$s はリクエストを受け取りましたが、ロックを確認できませんでした</string>
+    <string name="main_removed">%1$s を削除しました</string>
+    <string name="main_no_paths">すべての経路がオフだと、%1$s は使えません。</string>
+    <string name="main_no_confirm_bio_title">確認なしのロック解除をオンにする</string>
+    <string name="main_key_error">スマホの鍵でエラーが発生しました。もう一度お試しください。</string>
+    <string name="main_no_confirm_on">%1$s：確認なしのロック解除をオンにしました</string>
+    <string name="main_no_confirm_off">%1$s：再び確認するようにしました</string>
+    <string name="main_confirm_for">%1$s：本人確認</string>
+    <string name="main_on_for">%1$s でオンにしました</string>
+    <string name="main_tech_version">バージョン</string>
+    <string name="main_tech_device">端末</string>
+    <string name="main_tech_phone_id">このスマホの ID</string>
+    <string name="main_tech_paired">ペアリング済みのパソコン</string>
+    <string name="main_tech_google">Google サービス（Wear OS ウォッチ）</string>
+    <string name="main_tech_available">利用可能</string>
+    <string name="main_tech_unavailable">利用不可</string>
+    <string name="main_export_failed">ログファイルを作成できませんでした。</string>
+    <string name="main_export_subject">Ítalock のログ</string>
+    <string name="main_export_chooser">ログを送信</string>
+    <string name="main_export_no_app">ファイルを共有できるアプリがありません。</string>
+    <string name="main_scan_prompt">パソコンに表示された Ítalock の QRコードにカメラを向けてください</string>
+    <string name="main_pair_invalid_code">無効なコードです。確認して、もう一度お試しください。</string>
+    <string name="main_pair_searching">パソコンを探しています</string>
+    <string name="main_pair_timeout">ペアリングに時間がかかりすぎました。ネットワークを確認して、もう一度お試しください。</string>
+    <string name="main_pair_confirm">確認してペアリングを保存してください</string>
+    <string name="main_pair_not_saved">パソコンはペアリングを保存しましたが、スマホは保存できませんでした。「もう一度確認」をタップしてください。うまくいかない場合は、パソコンの Ítalock でこのスマホを削除して、もう一度ペアリングしてください。</string>
+    <string name="main_pair_bio_title">%1$s とのペアリングを保存</string>
+    <string name="main_paired_with">%1$s とペアリングしました</string>
+    <string name="main_pair_cancelled">%1$s パソコンはすでにペアリングを保存しています。「もう一度確認」をタップするか、パソコンの Ítalock でこのスマホを削除してください。</string>
+    <string name="main_pair_cancelled_default">確認がキャンセルされました。</string>
+
+    <string name="settings_language">言語</string>
+    <string name="language_system">自動（システムの言語）</string>
+</resources>

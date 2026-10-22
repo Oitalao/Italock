@@ -39,6 +39,8 @@ import br.italo.italock.ui.components.QuietButton
 import br.italo.italock.ui.components.SecondaryButton
 import br.italo.italock.ui.theme.Italock
 import br.italo.italock.ui.theme.Mono
+import br.italo.italock.R
+import androidx.compose.ui.res.stringResource
 
 /** Andamento do pareamento: null = parado; texto = etapa atual. */
 data class PairProgress(val running: Boolean = false, val message: String = "", val error: Boolean = false, val canRetrySave: Boolean = false)
@@ -55,29 +57,29 @@ fun PairScreen(
 ) {
     var typing by rememberSaveable { mutableStateOf(false) }
     var code by rememberSaveable { mutableStateOf("") }
-    Scaffold(containerColor = MaterialTheme.colorScheme.background, topBar = { InnerTopBar("Parear computador", onBack) }) { pad ->
+    Scaffold(containerColor = MaterialTheme.colorScheme.background, topBar = { InnerTopBar(stringResource(R.string.pair_title), onBack) }) { pad ->
         Column(
             Modifier.fillMaxSize().padding(pad).verticalScroll(rememberScrollState()).padding(horizontal = 16.dp, vertical = 8.dp),
             verticalArrangement = Arrangement.spacedBy(24.dp),
         ) {
-            Step(1, "No computador", "Abra o Ítalock e escolha parear celular: aparece um QR code.")
-            Step(2, "Mesma rede ou Bluetooth", "Os dois na mesma rede, ou ligados pelo cabo USB. Para Bluetooth, pareie antes o celular no computador.") {
-                if (bluetoothMissing) QuietButton("Permitir Bluetooth", onAllowBluetooth, modifier = Modifier.padding(top = 4.dp))
+            Step(1, stringResource(R.string.pair_step1_title), stringResource(R.string.pair_step1_text))
+            Step(2, stringResource(R.string.pair_step2_title), stringResource(R.string.pair_step2_text)) {
+                if (bluetoothMissing) QuietButton(stringResource(R.string.pair_allow_bt), onAllowBluetooth, modifier = Modifier.padding(top = 4.dp))
             }
-            Step(3, "Ler o QR code", "Aponte a câmera para o QR code ou digite o código mostrado.") {
+            Step(3, stringResource(R.string.pair_step3_title), stringResource(R.string.pair_step3_text)) {
                 Column(Modifier.padding(top = 12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    PrimaryButton("Ler QR code", onScan, enabled = !progress.running, modifier = Modifier.fillMaxWidth())
+                    PrimaryButton(stringResource(R.string.pair_scan), onScan, enabled = !progress.running, modifier = Modifier.fillMaxWidth())
                     if (!typing) {
-                        QuietButton("Digitar o código", { typing = true }, enabled = !progress.running)
+                        QuietButton(stringResource(R.string.pair_type), { typing = true }, enabled = !progress.running)
                     } else {
                         OutlinedTextField(
                             value = code, onValueChange = { code = it.take(400) },
-                            label = { Text("Código do computador") }, singleLine = true,
+                            label = { Text(stringResource(R.string.pair_code_label)) }, singleLine = true,
                             textStyle = TextStyle(fontFamily = Mono),
                             keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Characters, autoCorrectEnabled = false),
                             modifier = Modifier.fillMaxWidth(),
                         )
-                        SecondaryButton("Parear com o código", { onCode(code) }, enabled = code.isNotBlank() && !progress.running,
+                        SecondaryButton(stringResource(R.string.pair_with_code), { onCode(code) }, enabled = code.isNotBlank() && !progress.running,
                             modifier = Modifier.fillMaxWidth())
                     }
                 }
@@ -92,7 +94,7 @@ fun PairScreen(
                         color = if (progress.error) Italock.colors.dangerText else MaterialTheme.colorScheme.onSurface)
                 }
                 // O computador já guardou o pareamento: dá para confirmar de novo sem ler outro QR code.
-                if (progress.canRetrySave) SecondaryButton("Confirmar de novo", onRetrySave, modifier = Modifier.fillMaxWidth())
+                if (progress.canRetrySave) SecondaryButton(stringResource(R.string.pair_retry_save), onRetrySave, modifier = Modifier.fillMaxWidth())
             }
         }
     }

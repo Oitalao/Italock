@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="details_repair_needed">Vuelve a vincular: se perdió la contraseña guardada</string>
+    <string name="details_section_general">General</string>
+    <string name="details_name">Nombre</string>
+    <string name="details_order">Orden en la lista</string>
+    <string name="details_order_value">%1$dº de %2$d</string>
+    <string name="details_move_up">Subir en la lista</string>
+    <string name="details_move_down">Bajar en la lista</string>
+    <string name="details_tile">Usar en Configuración rápida</string>
+    <string name="details_tile_sub">El botón de Ítalock en Configuración rápida controla esta computadora.</string>
+    <string name="details_wake">Encender por la red</string>
+    <string name="details_wake_sub">Solo en la misma red, con la computadora conectada por cable y la opción activada en ella.</string>
+    <string name="details_mac">Dirección de la tarjeta de red por cable</string>
+    <string name="details_mac_empty">Sin definir. Sin ella no se puede encender por la red.</string>
+    <string name="details_mac_help">Varias direcciones: sepáralas con comas. Vacío desactiva Encender por la red.</string>
+    <string name="details_mac_invalid">Formato: seis pares separados por dos puntos.</string>
+
+    <string name="details_section_paths">Vías de conexión</string>
+    <string name="details_path_lan">Red local</string>
+    <string name="details_path_lan_sub">Misma red Wi-Fi o cable USB con anclaje.</string>
+    <string name="details_path_bt_sub">La computadora llama al teléfono sin red.</string>
+    <string name="details_path_ts_sub">Fuera de casa, por internet.</string>
+
+    <string name="details_section_tag">Etiqueta NFC</string>
+    <string name="details_tag_write">Grabar etiqueta NFC</string>
+    <string name="details_tag_write_button">Grabar</string>
+    <string name="details_tag_lock">Bloquear con la etiqueta</string>
+    <string name="details_tag_lock_sub">Acercar el teléfono desbloqueado bloquea esta computadora.</string>
+    <string name="details_tag_unlock">Desbloquear con la etiqueta</string>
+    <string name="details_tag_unlock_sub">Siempre pide la biometría.</string>
+    <string name="details_tag_both">Acercar el teléfono desbloqueado a la etiqueta bloquea o desbloquea esta computadora, según su estado.</string>
+    <string name="details_tag_only_unlock">Acercar el teléfono desbloqueado a la etiqueta solo desbloquea esta computadora.</string>
+    <string name="details_tag_only_lock">Acercar el teléfono desbloqueado a la etiqueta solo bloquea esta computadora.</string>
+    <string name="details_tag_none">Con las dos opciones desactivadas, la etiqueta de esta computadora no hace nada.</string>
+
+    <string name="details_section_security">Seguridad</string>
+    <string name="details_no_confirm">Desbloquear sin confirmación</string>
+    <string name="details_no_confirm_sub">El botón Desbloquear del teléfono no pide biometría. Las solicitudes de la computadora siguen pidiéndola.</string>
+
+    <string name="details_section_experimental">Experimental</string>
+    <string name="details_exp_nearby_sub">Por Bluetooth o en la misma red, sin tocar el teléfono. Nunca por Tailscale.</string>
+    <string name="details_exp_notification_sub">Botón Desbloquear en la notificación, sin biometría.</string>
+    <string name="details_exp_watch_sub">La solicitud suena como una llamada en el reloj: ignorar desbloquea, rechazar deniega (bloqueado fuera de la muñeca).</string>
+    <string name="details_exp_wear_sub">La solicitud aparece en el reloj con Desbloquear y Rechazar.</string>
+
+    <string name="details_section_history">Historial</string>
+    <string name="details_history_empty">Nada por ahora. Los bloqueos, desbloqueos y solicitudes de la computadora aparecen aquí.</string>
+    <string name="details_history_less">Mostrar menos</string>
+    <string name="details_history_all">Mostrar todo (%1$d)</string>
+    <string name="details_history_clear">Borrar historial</string>
+
+    <string name="details_tech_pc_name">Nombre en la computadora</string>
+    <string name="details_tech_user">Usuario</string>
+    <string name="details_tech_os">Sistema</string>
+    <string name="details_tech_method">Forma de llamar al teléfono</string>
+    <string name="details_tech_pc_addresses">Direcciones de la computadora</string>
+    <string name="details_tech_phone_addresses">Direcciones de este teléfono</string>
+    <string name="details_tech_response">Respuesta del estado de bloqueo</string>
+    <string name="details_tech_sealed">Cifrada</string>
+    <string name="details_tech_plain">Sin cifrar (programa antiguo en la computadora)</string>
+    <string name="details_tech_paired_at">Vinculada el</string>
+    <string name="details_tech_public_id">ID público (etiqueta y reloj)</string>
+    <string name="details_tech_identifier">Identificador</string>
+
+    <string name="details_remove_pc">Quitar computadora</string>
+    <string name="details_remove_title">¿Quitar %1$s?</string>
+    <string name="details_remove_text">El teléfono dejará de desbloquear esta computadora. Para volver a usarla, tendrás que vincularla de nuevo.</string>
+    <string name="details_rename_title">Nombre de la computadora</string>
+    <string name="details_rename_hint">Si lo dejas vacío, se usa el nombre de la computadora.</string>
+
+    <string name="details_nfc_off_title">NFC desactivado</string>
+    <string name="details_nfc_write_title">Grabar etiqueta de %1$s</string>
+    <string name="details_nfc_off_text">Activa el NFC en la configuración del teléfono y vuelve aquí.</string>
+    <string name="details_nfc_hold">Acerca la etiqueta a la parte de atrás del teléfono y mantenla hasta ver el aviso.</string>
+    <string name="details_nfc_readonly">Proteger la etiqueta contra escritura</string>
+    <string name="details_nfc_readonly_warn">No se puede deshacer: la etiqueta nunca más se podrá volver a grabar.</string>
+    <string name="details_nfc_open_settings">Abrir configuración</string>
+
+    <string name="about_title">Acerca de</string>
+    <string name="about_section_credits">Créditos</string>
+    <string name="about_based_on">Basado en PC Bio Unlock (hoy PulseUnlock), de MeisApps, licencia GPL versión 3.</string>
+    <string name="about_source_soon">Código fuente: pronto en GitHub.</string>
+    <string name="about_source">Código fuente: GitHub.</string>
+    <string name="about_license">Licencia</string>
+    <string name="about_original">Proyecto original</string>
+    <string name="about_code">Código</string>
+    <string name="about_section_diag">Diagnóstico</string>
+    <string name="about_export">Exportar registros</string>
+    <string name="about_export_sub">Archivo de texto para enviar a quien te vaya a ayudar. Sin claves ni contraseñas.</string>
+
+    <string name="exp_title">Funciones experimentales</string>
+    <string name="exp_banner">Experimental. Puede no funcionar bien, cambiar o desaparecer en versiones futuras. Úsalo bajo tu responsabilidad.</string>
+    <string name="exp_nearby">Desbloqueo automático por cercanía</string>
+    <string name="exp_nearby_sub">Por Bluetooth o en la misma red, sin tocar el teléfono (nunca por Tailscale). Riesgo: alguien al lado de la computadora puede desbloquearla.</string>
+    <string name="exp_notification">Desbloquear desde la notificación</string>
+    <string name="exp_notification_sub">Botón Desbloquear en la notificación, sin biometría. Riesgo: quien tome el teléfono desbloqueado puede desbloquear.</string>
+    <string name="exp_watch">Reloj Amazfit (llamada falsa)</string>
+    <string name="exp_watch_sub">La solicitud aparece en el reloj como una llamada: ignorar desbloquea, rechazar deniega. Fuera de la muñeca, la acción se bloquea. Necesita Gadgetbridge Voz vinculado al reloj. Riesgo: quien tenga tu reloj puesto puede desbloquear.</string>
+    <string name="exp_wear">Reloj Wear OS</string>
+    <string name="exp_wear_sub">La solicitud aparece en el reloj (Galaxy Watch, Pixel Watch y otros) con Desbloquear y Rechazar; la tarjeta del reloj bloquea, desbloquea y enciende. Necesita la app Ítalock en el reloj y el bloqueo de pantalla activado en él. Lejos del teléfono, pasa por internet a través de Google. Riesgo: quien tenga tu reloj desbloqueado puede desbloquear.</string>
+    <string name="exp_footer">Después de activarla, elige las computadoras en los detalles de cada una. Desactivarla aquí la desactiva en todas.</string>
+
+    <string name="pair_title">Vincular computadora</string>
+    <string name="pair_step1_title">En la computadora</string>
+    <string name="pair_step1_text">Abre Ítalock y elige vincular teléfono: aparece un código QR.</string>
+    <string name="pair_step2_title">Misma red o Bluetooth</string>
+    <string name="pair_step2_text">Los dos en la misma red, o conectados por cable USB. Para Bluetooth, vincula antes el teléfono con la computadora.</string>
+    <string name="pair_allow_bt">Permitir Bluetooth</string>
+    <string name="pair_step3_title">Escanear el código QR</string>
+    <string name="pair_step3_text">Apunta la cámara al código QR o escribe el código que aparece.</string>
+    <string name="pair_scan">Escanear código QR</string>
+    <string name="pair_type">Escribir el código</string>
+    <string name="pair_code_label">Código de la computadora</string>
+    <string name="pair_with_code">Vincular con el código</string>
+    <string name="pair_retry_save">Confirmar de nuevo</string>
+
+    <string name="danger_title">Peligroso</string>
+    <string name="danger_heading">Desbloquear %1$s sin confirmación.</string>
+    <string name="danger_text">Cualquier persona con tu teléfono desbloqueado podrá desbloquear esta computadora sin huella, rostro ni contraseña. Si pierdes el teléfono o alguien lo usa, tu computadora queda expuesta.</string>
+    <string name="danger_scope">Vale solo para el botón Desbloquear del teléfono (app, widget, botón de Configuración rápida y accesos directos del ícono). Cuando alguien use la computadora, el teléfono sigue pidiendo confirmación.</string>
+    <string name="danger_understood">Entiendo el riesgo</string>
+    <string name="danger_turn_on_wait">Activar (%1$d)</string>
+
+    <string name="diag_header">Registros de Ítalock</string>
+    <string name="diag_generated">Generado el</string>
+    <string name="diag_version">Versión</string>
+    <string name="diag_device">Dispositivo</string>
+    <string name="diag_theme">Apariencia</string>
+    <string name="diag_vibrate">Vibrar</string>
+    <string name="diag_confirm_lock">Confirmar antes de bloquear</string>
+    <string name="diag_prompt_timeout">Tiempo de la solicitud (s)</string>
+    <string name="diag_approve_locked">Desbloquear con el teléfono bloqueado</string>
+    <string name="diag_fullscreen">Solicitud en la pantalla de bloqueo</string>
+    <string name="diag_hide_name">Ocultar nombre</string>
+    <string name="diag_allow_credential">Aceptar PIN, patrón o contraseña</string>
+    <string name="diag_poll">Actualizar estado del bloqueo (s, 0 = al abrir)</string>
+    <string name="diag_ts_warning">Aviso de Tailscale</string>
+    <string name="diag_ts_installed">Tailscale instalado</string>
+    <string name="diag_ts_up">Tailscale conectado</string>
+    <string name="diag_google">Servicios de Google</string>
+    <string name="diag_experimental">Experimentales (cercanía, notificación, Zepp, Wear OS)</string>
+    <string name="diag_missing">Falta permitir</string>
+    <string name="diag_nothing">nada</string>
+    <string name="diag_pcs">Computadoras</string>
+    <string name="diag_pc_os">Sistema</string>
+    <string name="diag_pc_method">Forma de llamar</string>
+    <string name="diag_pc_addresses">Direcciones conocidas</string>
+    <string name="diag_pc_paths">Vías (red local, Bluetooth, Tailscale)</string>
+    <string name="diag_pc_sealed">Respuesta cifrada</string>
+    <string name="diag_pc_no_confirm">Sin confirmación</string>
+    <string name="diag_pc_tag">Etiqueta NFC</string>
+    <string name="diag_pc_wake">Encender por la red</string>
+    <string name="diag_pc_last">Último uso</string>
+    <string name="diag_none">ninguno</string>
+    <string name="diag_events">Eventos recientes</string>
+    <string name="diag_no_events">(ninguno)</string>
+
+    <string name="widget_removed">Computadora quitada</string>
+    <string name="widget_refresh">Actualizar estado</string>
+    <string name="widget_tap_refresh">Toca actualizar para ver el estado del bloqueo</string>
+    <string name="widget_clock_off">Hora incorrecta</string>
+    <string name="widget_status_at">%1$s · %2$s</string>
+    <string name="widget_config_title">¿Qué computadora controla este widget?</string>
+    <string name="widget_config_empty">Ninguna computadora vinculada. Abre Ítalock y vincula una primero.</string>
+</resources>

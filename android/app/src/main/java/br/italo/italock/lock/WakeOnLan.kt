@@ -1,5 +1,7 @@
 package br.italo.italock.lock
 
+import br.italo.italock.R
+import br.italo.italock.i18n.L10n
 import java.net.DatagramPacket
 import java.net.DatagramSocket
 import java.net.Inet4Address
@@ -22,7 +24,7 @@ object WakeOnLan {
 
     fun wake(macs: List<String>): Result {
         val valid = macs.mapNotNull { parseMac(it) }
-        if (valid.isEmpty()) return Result(false, "Este computador não tem endereço de placa de rede com cabo. Sem ele não dá para ligar pela rede.")
+        if (valid.isEmpty()) return Result(false, L10n.s(R.string.wol_no_mac))
         val targets = broadcastAddresses() + InetAddress.getByName("255.255.255.255")
         var sent = 0
         runCatching {
@@ -36,8 +38,8 @@ object WakeOnLan {
                 }
             }
         }
-        return if (sent > 0) Result(true, "Sinal de ligar enviado. Só funciona na mesma rede do computador.")
-        else Result(false, "Não consegui enviar o sinal de ligar. O celular está na mesma rede do computador?")
+        return if (sent > 0) Result(true, L10n.s(R.string.wol_sent))
+        else Result(false, L10n.s(R.string.wol_failed))
     }
 
     private fun broadcastAddresses(): List<InetAddress> = runCatching {

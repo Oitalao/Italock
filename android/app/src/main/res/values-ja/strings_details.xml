@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="details_repair_needed">もう一度ペアリングしてください。保存したパスワードが失われました</string>
+    <string name="details_section_general">全般</string>
+    <string name="details_name">名前</string>
+    <string name="details_order">リストでの順番</string>
+    <string name="details_order_value">%2$d 台中 %1$d 番目</string>
+    <string name="details_move_up">上へ移動</string>
+    <string name="details_move_down">下へ移動</string>
+    <string name="details_tile">クイック設定タイルで使う</string>
+    <string name="details_tile_sub">クイック設定の Ítalock ボタンでこのパソコンを操作します。</string>
+    <string name="details_wake">ネットワーク経由で起動</string>
+    <string name="details_wake_sub">同じネットワーク内で、パソコンが有線接続され、パソコン側でこの機能がオンの場合のみ。</string>
+    <string name="details_mac">有線 LAN アダプターのアドレス</string>
+    <string name="details_mac_empty">未設定です。これがないとネットワーク経由で起動できません。</string>
+    <string name="details_mac_help">複数のアドレスはカンマで区切ります。空にするとネットワーク経由の起動がオフになります。</string>
+    <string name="details_mac_invalid">形式：コロンで区切った 2 桁 × 6 組。</string>
+
+    <string name="details_section_paths">経路</string>
+    <string name="details_path_lan">ローカルネットワーク</string>
+    <string name="details_path_lan_sub">同じ Wi-Fi ネットワーク、または USB テザリングでつないだケーブル。</string>
+    <string name="details_path_bt_sub">ネットワークなしでパソコンからスマホを呼び出します。</string>
+    <string name="details_path_ts_sub">外出先から、インターネット経由で。</string>
+
+    <string name="details_section_tag">NFCタグ</string>
+    <string name="details_tag_write">NFCタグに書き込む</string>
+    <string name="details_tag_write_button">書き込む</string>
+    <string name="details_tag_lock">タグでロック</string>
+    <string name="details_tag_lock_sub">ロックを解除したスマホをかざすと、このパソコンをロックします。</string>
+    <string name="details_tag_unlock">タグでロック解除</string>
+    <string name="details_tag_unlock_sub">毎回、生体認証が必要です。</string>
+    <string name="details_tag_both">ロックを解除したスマホをタグにかざすと、ロック状態に応じてこのパソコンをロックまたはロック解除します。</string>
+    <string name="details_tag_only_unlock">ロックを解除したスマホをタグにかざすと、このパソコンのロックを解除するだけです。</string>
+    <string name="details_tag_only_lock">ロックを解除したスマホをタグにかざすと、このパソコンをロックするだけです。</string>
+    <string name="details_tag_none">両方オフの場合、このパソコンのタグは何もしません。</string>
+
+    <string name="details_section_security">セキュリティ</string>
+    <string name="details_no_confirm">確認なしでロック解除</string>
+    <string name="details_no_confirm_sub">スマホのロック解除ボタンで生体認証を求めません。パソコンからのリクエストでは引き続き求めます。</string>
+
+    <string name="details_section_experimental">試験運用</string>
+    <string name="details_exp_nearby_sub">Bluetooth または同じネットワークで、スマホに触れずに。Tailscale 経由では行いません。</string>
+    <string name="details_exp_notification_sub">通知にロック解除ボタンを表示し、生体認証は求めません。</string>
+    <string name="details_exp_watch_sub">リクエストがウォッチに着信として届きます。無視でロック解除、拒否で却下（腕から外すとブロック）。</string>
+    <string name="details_exp_wear_sub">リクエストがウォッチに「ロック解除」と「拒否」付きで表示されます。</string>
+
+    <string name="details_section_history">履歴</string>
+    <string name="details_history_empty">まだありません。ロック、ロック解除、パソコンからのリクエストがここに表示されます。</string>
+    <string name="details_history_less">表示を減らす</string>
+    <string name="details_history_all">すべて表示（%1$d）</string>
+    <string name="details_history_clear">履歴を消去</string>
+
+    <string name="details_tech_pc_name">パソコン上の名前</string>
+    <string name="details_tech_user">ユーザー</string>
+    <string name="details_tech_os">OS</string>
+    <string name="details_tech_method">スマホの呼び出し方法</string>
+    <string name="details_tech_pc_addresses">パソコンのアドレス</string>
+    <string name="details_tech_phone_addresses">このスマホのアドレス</string>
+    <string name="details_tech_response">ロック状態の応答</string>
+    <string name="details_tech_sealed">暗号化</string>
+    <string name="details_tech_plain">平文（パソコンのプログラムが古い）</string>
+    <string name="details_tech_paired_at">ペアリング日時</string>
+    <string name="details_tech_public_id">公開 ID（タグとウォッチ）</string>
+    <string name="details_tech_identifier">識別子</string>
+
+    <string name="details_remove_pc">パソコンを削除</string>
+    <string name="details_remove_title">%1$s を削除しますか？</string>
+    <string name="details_remove_text">スマホでこのパソコンのロックを解除できなくなります。元に戻すには、もう一度ペアリングが必要です。</string>
+    <string name="details_rename_title">パソコンの名前</string>
+    <string name="details_rename_hint">空にすると、パソコン上の名前を使います。</string>
+
+    <string name="details_nfc_off_title">NFC がオフです</string>
+    <string name="details_nfc_write_title">%1$s のタグに書き込む</string>
+    <string name="details_nfc_off_text">スマホの設定で NFC をオンにして、ここに戻ってください。</string>
+    <string name="details_nfc_hold">スマホの背面にタグを当て、メッセージが出るまでそのままにしてください。</string>
+    <string name="details_nfc_readonly">タグを書き込み禁止にする</string>
+    <string name="details_nfc_readonly_warn">元に戻せません。このタグには二度と書き込めなくなります。</string>
+    <string name="details_nfc_open_settings">設定を開く</string>
+
+    <string name="about_title">概要</string>
+    <string name="about_section_credits">クレジット</string>
+    <string name="about_based_on">MeisApps の PC Bio Unlock（現在の PulseUnlock）をもとにしています。ライセンスは GPL バージョン 3 です。</string>
+    <string name="about_source_soon">ソースコード：近日 GitHub で公開予定。</string>
+    <string name="about_source">ソースコード：GitHub。</string>
+    <string name="about_license">ライセンス</string>
+    <string name="about_original">元のプロジェクト</string>
+    <string name="about_code">コード</string>
+    <string name="about_section_diag">診断</string>
+    <string name="about_export">ログをエクスポート</string>
+    <string name="about_export_sub">手伝ってくれる人に送るテキストファイルです。鍵やパスワードは含まれません。</string>
+
+    <string name="exp_title">試験運用機能</string>
+    <string name="exp_banner">試験運用中の機能です。正しく動かない、または今後のバージョンで変更や削除される可能性があります。自己責任でお使いください。</string>
+    <string name="exp_nearby">近くにいるときに自動でロック解除</string>
+    <string name="exp_nearby_sub">Bluetooth または同じネットワークで、スマホに触れずに解除します（Tailscale 経由では行いません）。リスク：パソコンのそばにいる人がロックを解除できてしまいます。</string>
+    <string name="exp_notification">通知からロック解除</string>
+    <string name="exp_notification_sub">通知にロック解除ボタンを表示し、生体認証は求めません。リスク：ロックを解除したスマホを手にした人がロックを解除できてしまいます。</string>
+    <string name="exp_watch">Amazfit ウォッチ（偽の着信）</string>
+    <string name="exp_watch_sub">リクエストがウォッチに着信として表示されます。無視でロック解除、拒否で却下します。腕から外すと操作はブロックされます。ウォッチとペアリングした Gadgetbridge Voz が必要です。リスク：あなたのウォッチを腕につけた人がロックを解除できてしまいます。</string>
+    <string name="exp_wear">Wear OS ウォッチ</string>
+    <string name="exp_wear_sub">リクエストがウォッチ（Galaxy Watch、Pixel Watch など）に「ロック解除」と「拒否」付きで表示され、タイルからロック、ロック解除、起動ができます。ウォッチに Ítalock アプリが入っていて、画面ロックがオンになっている必要があります。スマホから離れているときは Google のインターネット経由になります。リスク：ロックを解除したあなたのウォッチを持つ人がロックを解除できてしまいます。</string>
+    <string name="exp_footer">オンにしたら、各パソコンの詳細画面で使うパソコンを選んでください。ここでオフにすると、すべてでオフになります。</string>
+
+    <string name="pair_title">パソコンをペアリング</string>
+    <string name="pair_step1_title">パソコンで</string>
+    <string name="pair_step1_text">Ítalock を開いて「スマホをペアリング」を選ぶと、QRコードが表示されます。</string>
+    <string name="pair_step2_title">同じネットワークまたは Bluetooth</string>
+    <string name="pair_step2_text">両方を同じネットワークにつなぐか、USB ケーブルで接続します。Bluetooth の場合は、先にスマホとパソコンをペアリングしてください。</string>
+    <string name="pair_allow_bt">Bluetooth を許可</string>
+    <string name="pair_step3_title">QRコードを読み取る</string>
+    <string name="pair_step3_text">カメラを QRコードに向けるか、表示されたコードを入力してください。</string>
+    <string name="pair_scan">QRコードを読み取る</string>
+    <string name="pair_type">コードを入力</string>
+    <string name="pair_code_label">パソコンのコード</string>
+    <string name="pair_with_code">コードでペアリング</string>
+    <string name="pair_retry_save">もう一度確認</string>
+
+    <string name="danger_title">危険</string>
+    <string name="danger_heading">確認なしで %1$s のロックを解除します。</string>
+    <string name="danger_text">ロックを解除したあなたのスマホを持つ人なら誰でも、指紋、顔、パスワードなしでこのパソコンのロックを解除できるようになります。スマホをなくしたり、誰かに使われたりすると、パソコンが無防備になります。</string>
+    <string name="danger_scope">対象はスマホのロック解除ボタン（アプリ、ウィジェット、クイック設定タイル、アイコンのショートカット）だけです。誰かがパソコンを操作したときは、スマホは引き続き確認を求めます。</string>
+    <string name="danger_understood">リスクを理解しました</string>
+    <string name="danger_turn_on_wait">オンにする（%1$d）</string>
+
+    <string name="diag_header">Ítalock のログ</string>
+    <string name="diag_generated">作成日時</string>
+    <string name="diag_version">バージョン</string>
+    <string name="diag_device">端末</string>
+    <string name="diag_theme">テーマ</string>
+    <string name="diag_vibrate">バイブレーション</string>
+    <string name="diag_confirm_lock">ロック前に確認</string>
+    <string name="diag_prompt_timeout">リクエストの時間（秒）</string>
+    <string name="diag_approve_locked">スマホがロック中でもロック解除</string>
+    <string name="diag_fullscreen">ロック画面にリクエストを表示</string>
+    <string name="diag_hide_name">名前を隠す</string>
+    <string name="diag_allow_credential">PIN、パターン、パスワードを許可</string>
+    <string name="diag_poll">ロック状態の更新（秒、0 = 開いたとき）</string>
+    <string name="diag_ts_warning">Tailscale の通知</string>
+    <string name="diag_ts_installed">Tailscale インストール済み</string>
+    <string name="diag_ts_up">Tailscale 接続済み</string>
+    <string name="diag_google">Google サービス</string>
+    <string name="diag_experimental">試験運用（近く、通知、Zepp、Wear OS）</string>
+    <string name="diag_missing">許可が必要</string>
+    <string name="diag_nothing">なし</string>
+    <string name="diag_pcs">パソコン</string>
+    <string name="diag_pc_os">OS</string>
+    <string name="diag_pc_method">呼び出し方法</string>
+    <string name="diag_pc_addresses">既知のアドレス</string>
+    <string name="diag_pc_paths">経路（ローカルネットワーク、Bluetooth、Tailscale）</string>
+    <string name="diag_pc_sealed">暗号化された応答</string>
+    <string name="diag_pc_no_confirm">確認なし</string>
+    <string name="diag_pc_tag">NFCタグ</string>
+    <string name="diag_pc_wake">ネットワーク経由で起動</string>
+    <string name="diag_pc_last">最終使用</string>
+    <string name="diag_none">なし</string>
+    <string name="diag_events">最近のイベント</string>
+    <string name="diag_no_events">（なし）</string>
+
+    <string name="widget_removed">パソコンは削除されました</string>
+    <string name="widget_refresh">ロック状態を更新</string>
+    <string name="widget_tap_refresh">更新をタップしてロック状態を確認</string>
+    <string name="widget_clock_off">時刻がずれています</string>
+    <string name="widget_status_at">%1$s · %2$s</string>
+    <string name="widget_config_title">このウィジェットで操作するパソコンは？</string>
+    <string name="widget_config_empty">ペアリング済みのパソコンがありません。Ítalock を開いて、先にペアリングしてください。</string>
+</resources>

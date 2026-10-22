@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tile_description">你的电脑，以及每台电脑对应的按钮</string>
+    <string name="state_locked">已锁定</string>
+    <string name="state_unlocked">已解锁</string>
+    <string name="state_no_answer">无响应</string>
+    <string name="state_clock">时间不准</string>
+    <string name="state_unknown">未确认</string>
+    <string name="action_unlock">解锁</string>
+    <string name="action_wake">开机</string>
+    <string name="action_lock">锁定</string>
+    <string name="action_deny">拒绝</string>
+    <string name="close">关闭</string>
+    <string name="phone_missing_long">未找到手机。请在手机上打开 Ítalock，并在实验性功能中开启“Wear OS 手表”。</string>
+    <string name="open_on_phone">在手机上打开 Ítalock</string>
+    <string name="phone_missing">未找到手机。请在手机上打开 Ítalock。</string>
+    <string name="tile_sending">%1$s：正在发送</string>
+    <string name="sending">正在发送</string>
+    <string name="phone_no_answer">手机没有响应。手机是否在附近或已联网？</string>
+    <string name="result_confirm_on_phone">请在手机上确认</string>
+    <string name="result_done">完成</string>
+    <string name="result_failed">未成功</string>
+    <string name="prompt_title">解锁 %1$s？</string>
+    <string name="prompt_title_generic">解锁电脑？</string>
+    <string name="prompt_needs_lock_notif">开启手表屏幕锁定后，才能在这里解锁</string>
+    <string name="prompt_needs_lock">要通过手表解锁，请开启手表屏幕锁定</string>
+    <string name="channel_prompts">请求</string>
+    <string name="channel_prompts_desc">解锁电脑的请求</string>
+</resources>

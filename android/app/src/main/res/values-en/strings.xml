@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_description">Lock, unlock and power on a computer</string>
+
+    <string name="common_cancel">Cancel</string>
+    <string name="common_close">Close</string>
+    <string name="common_save">Save</string>
+    <string name="common_remove">Remove</string>
+    <string name="common_change">Change</string>
+    <string name="common_allow">Allow</string>
+    <string name="common_turn_on">Turn on</string>
+    <string name="common_back">Back</string>
+    <string name="common_show">Show</string>
+    <string name="common_collapse">Collapse</string>
+    <string name="common_expanded">expanded</string>
+    <string name="common_collapsed">collapsed</string>
+    <string name="common_not_informed">Not set</string>
+    <string name="common_none">None</string>
+    <string name="common_technical_details">Technical details</string>
+
+    <string name="action_unlock">Unlock</string>
+    <string name="action_lock">Lock</string>
+    <string name="action_wake">Power on</string>
+    <string name="action_fix_clock">Fix time</string>
+    <string name="action_pair">Pair</string>
+
+    <string name="status_locked">Locked</string>
+    <string name="status_unlocked">Unlocked</string>
+    <string name="status_no_answer">No answer</string>
+    <string name="status_clock_off">Phone clock is off</string>
+    <string name="status_not_paired">Does not recognize this phone</string>
+    <string name="status_error">Answered with an error</string>
+    <string name="status_querying">Checking</string>
+    <string name="status_unverified">%1$s · not verified</string>
+    <string name="danger_strip">No confirmation</string>
+
+    <string name="via_lan">local network</string>
+    <string name="via_internet">internet</string>
+
+    <string name="event_locked">Locked</string>
+    <string name="event_unlocked">Unlocked</string>
+    <string name="event_denied">Request denied</string>
+    <string name="event_expired">Request expired</string>
+    <string name="origin_app">app</string>
+    <string name="origin_widget">widget</string>
+    <string name="origin_shortcut">app icon shortcut</string>
+    <string name="origin_tile">Quick Settings tile</string>
+    <string name="origin_tag">NFC tag</string>
+    <string name="origin_watch">watch</string>
+    <string name="origin_pc">computer request</string>
+    <string name="origin_notification">notification</string>
+    <string name="origin_auto">automatic when nearby</string>
+    <string name="when_today">today at %1$s</string>
+    <string name="when_yesterday">yesterday at %1$s</string>
+    <string name="when_date">%2$s at %1$s</string>
+
+    <string name="notif_service_title">Ítalock is active</string>
+    <string name="notif_service_text">Waiting for requests from your computers</string>
+    <string name="channel_status">Active service</string>
+    <string name="channel_prompt">Unlock requests</string>
+    <string name="channel_waiting">Computer waiting</string>
+
+    <string name="list_separator">", "</string>
+    <string name="a11y_why_unavailable">Why it is unavailable</string>
+    <string name="a11y_unavailable">%1$s, unavailable. %2$s</string>
+
+    <string name="home_lock_all">Lock all</string>
+    <string name="home_pair_computer">Pair computer</string>
+    <string name="home_settings_attention">Settings (something needs permission)</string>
+    <string name="home_notifications_off">Notifications are off: requests from the computer will not show up.</string>
+    <string name="home_empty_title">No paired computers</string>
+    <string name="home_empty_text">Install Ítalock on the computer and scan the QR code it shows.</string>
+    <string name="home_open_details">Open details</string>
+    <string name="home_needs_repair">Pair again: the saved password was lost</string>
+    <string name="home_waiting_for">Waiting for %1$s</string>
+    <string name="lock_all_one">Computer locked</string>
+    <plurals name="lock_all_done">
+        <item quantity="one">All %d locked</item>
+        <item quantity="other">All %d locked</item>
+    </plurals>
+    <string name="lock_all_none">None locked: %1$s</string>
+    <plurals name="lock_all_partial">
+        <item quantity="one">%1$d of %2$d locked.</item>
+        <item quantity="other">%1$d of %2$d locked.</item>
+    </plurals>
+    <plurals name="lock_all_failed">
+        <item quantity="one">Did not lock: %1$s</item>
+        <item quantity="other">Did not lock: %1$s</item>
+    </plurals>
+
+    <string name="theme_dark">Dark</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_system">Same as system</string>
+
+    <string name="settings_title">Settings</string>
+    <string name="settings_missing">Needs permission</string>
+    <string name="settings_missing_notifications">Notifications: without them, requests from the computer do not show up.</string>
+    <string name="settings_missing_full_screen">Full screen: so the request shows up while the phone is locked.</string>
+    <string name="settings_missing_battery">Battery optimization: Android may close Ítalock.</string>
+    <string name="settings_missing_battery_action">Allow</string>
+    <string name="settings_missing_bluetooth">Bluetooth: so the computer can reach the phone without a network.</string>
+    <string name="settings_section_requests">Computer requests</string>
+    <string name="settings_timeout">Time to answer</string>
+    <plurals name="settings_seconds">
+        <item quantity="one">%d second</item>
+        <item quantity="other">%d seconds</item>
+    </plurals>
+    <string name="settings_lockscreen_prompt">Request on the lock screen</string>
+    <string name="settings_lockscreen_prompt_on">Turns on the screen and shows up over the lock screen. Uses more battery.</string>
+    <string name="settings_lockscreen_prompt_off">Notification only, the screen stays off. To answer, unlock the phone.</string>
+    <string name="settings_approve_locked">Unlock while the phone is locked</string>
+    <string name="settings_approve_locked_on">Accepts the request on the lock screen without unlocking the phone. Less secure.</string>
+    <string name="settings_approve_locked_off">Off: unlock the phone before accepting.</string>
+    <string name="settings_approve_locked_needs">Turn on \"%1$s\" first</string>
+    <string name="settings_approve_locked_ask">Unlock while the phone is locked?</string>
+    <string name="settings_approve_locked_ask_text">The computer can be unlocked right from the phone\'s lock screen with biometrics (or the PIN, if \"%1$s\" is on), without unlocking the phone. It is more convenient and less secure.</string>
+    <string name="settings_hide_name">Hide the computer name</string>
+    <string name="settings_hide_name_sub">While the phone is locked, requests and alerts do not say which one it is.</string>
+    <string name="settings_allow_credential">Accept PIN, pattern or password</string>
+    <string name="settings_allow_credential_sub">Besides biometrics. Off: only fingerprint or secure face unlock.</string>
+    <string name="settings_section_lock">Lock</string>
+    <string name="settings_confirm_lock">Ask for confirmation before locking</string>
+    <string name="settings_confirm_lock_sub">Asks before locking from the app, widget, shortcuts, tag, watch or notification.</string>
+    <string name="settings_tile">Quick Settings tile</string>
+    <string name="settings_tile_controls">Controls: %1$s</string>
+    <string name="settings_tile_no_pc">no computer</string>
+    <string name="settings_tile_choose">Quick Settings tile controls</string>
+    <string name="settings_section_look">Appearance and feedback</string>
+    <string name="settings_theme">Appearance</string>
+    <string name="settings_vibrate">Vibrate when done</string>
+    <string name="settings_vibrate_sub">Short when it works, double when it fails.</string>
+    <string name="settings_section_connection">Connection</string>
+    <string name="settings_poll">Refresh lock status</string>
+    <string name="settings_poll_open">Only when opening the app</string>
+    <plurals name="settings_poll_every">
+        <item quantity="one">Every %d second while the app is open</item>
+        <item quantity="other">Every %d seconds while the app is open</item>
+    </plurals>
+    <string name="settings_tailscale_warning">Warn when Tailscale turns off</string>
+    <string name="settings_tailscale_warning_sub">Without it, unlocking away from home does not work.</string>
+    <string name="settings_paths_note">Local network, Bluetooth and Tailscale are chosen per computer, in its details.</string>
+    <string name="settings_section_more">More</string>
+    <string name="settings_experimental">Experimental features</string>
+    <string name="settings_experimental_none">None turned on</string>
+    <string name="settings_beta">BETA</string>
+    <string name="settings_about">About Ítalock</string>
+    <string name="settings_about_sub">Credits, license, technical details and logs</string>
+    <plurals name="settings_experimental_on">
+        <item quantity="one">%d on</item>
+        <item quantity="other">%d on</item>
+    </plurals>
+
+    <string name="main_history_cleared">History of %1$s cleared</string>
+    <string name="main_lock_all_ask">Lock all computers?</string>
+    <string name="main_unlocked">%1$s unlocked</string>
+    <string name="main_not_unlocked">%1$s did not unlock</string>
+    <string name="main_lock_unconfirmed">%1$s got the request but did not confirm</string>
+    <string name="main_removed">%1$s removed</string>
+    <string name="main_no_paths">With all connection paths off, %1$s will not work.</string>
+    <string name="main_no_confirm_bio_title">Turn on unlock without confirmation</string>
+    <string name="main_key_error">Phone key error. Try again.</string>
+    <string name="main_no_confirm_on">%1$s: unlock without confirmation is on</string>
+    <string name="main_no_confirm_off">%1$s: asks for confirmation again</string>
+    <string name="main_confirm_for">Confirm for %1$s</string>
+    <string name="main_on_for">On for %1$s</string>
+    <string name="main_tech_version">Version</string>
+    <string name="main_tech_device">Device</string>
+    <string name="main_tech_phone_id">ID of this phone</string>
+    <string name="main_tech_paired">Paired computers</string>
+    <string name="main_tech_google">Google services (Wear OS watch)</string>
+    <string name="main_tech_available">Available</string>
+    <string name="main_tech_unavailable">Unavailable</string>
+    <string name="main_export_failed">Could not create the log file.</string>
+    <string name="main_export_subject">Ítalock logs</string>
+    <string name="main_export_chooser">Send logs</string>
+    <string name="main_export_no_app">No app available to share the file.</string>
+    <string name="main_scan_prompt">Point at the Ítalock QR code on the computer</string>
+    <string name="main_pair_invalid_code">Invalid code. Check it and try again.</string>
+    <string name="main_pair_searching">Looking for the computer</string>
+    <string name="main_pair_timeout">Pairing took too long. Check the network and try again.</string>
+    <string name="main_pair_confirm">Confirm to save the pairing</string>
+    <string name="main_pair_not_saved">The computer saved the pairing, but the phone did not. Tap Confirm again; if that does not work, remove this phone in Ítalock on the computer and pair again.</string>
+    <string name="main_pair_bio_title">Save pairing with %1$s</string>
+    <string name="main_paired_with">Paired with %1$s</string>
+    <string name="main_pair_cancelled">%1$s The computer already saved the pairing: tap Confirm again, or remove this phone in Ítalock on the computer.</string>
+    <string name="main_pair_cancelled_default">Confirmation canceled.</string>
+
+    <string name="settings_language">Language</string>
+    <string name="language_system">Automatic (system language)</string>
+</resources>

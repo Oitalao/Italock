@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tile_description">Deine Computer und die passende Taste für jeden</string>
+
+    <string name="state_locked">Gesperrt</string>
+    <string name="state_unlocked">Entsperrt</string>
+    <string name="state_no_answer">Keine Antwort</string>
+    <string name="state_clock">Uhrzeit falsch</string>
+    <string name="state_unknown">Nicht bestätigt</string>
+
+    <string name="action_unlock">Entsperren</string>
+    <string name="action_wake">Einschalten</string>
+    <string name="action_lock">Sperren</string>
+    <string name="action_deny">Ablehnen</string>
+    <string name="close">Schließen</string>
+
+    <string name="phone_missing_long">Telefon nicht gefunden. Öffne Ítalock auf dem Telefon und aktiviere Wear OS-Uhr in den experimentellen Funktionen.</string>
+    <string name="open_on_phone">Ítalock auf dem Telefon öffnen</string>
+    <string name="phone_missing">Telefon nicht gefunden. Öffne Ítalock auf dem Telefon.</string>
+    <string name="tile_sending">%1$s: wird gesendet</string>
+
+    <string name="sending">Wird gesendet</string>
+    <string name="phone_no_answer">Das Telefon hat nicht geantwortet. Ist es in der Nähe oder online?</string>
+    <string name="result_confirm_on_phone">Auf dem Telefon bestätigen</string>
+    <string name="result_done">Erledigt</string>
+    <string name="result_failed">Hat nicht geklappt</string>
+
+    <string name="prompt_title">%1$s entsperren?</string>
+    <string name="prompt_title_generic">Computer entsperren?</string>
+    <string name="prompt_needs_lock_notif">Aktiviere die Displaysperre der Uhr, um hier zu entsperren</string>
+    <string name="prompt_needs_lock">Um mit der Uhr zu entsperren, aktiviere die Displaysperre der Uhr</string>
+    <string name="channel_prompts">Anfragen</string>
+    <string name="channel_prompts_desc">Anfragen zum Entsperren des Computers</string>
+</resources>

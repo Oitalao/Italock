@@ -11,6 +11,8 @@ import br.italo.italock.data.EventKind
 import br.italo.italock.data.Events
 import br.italo.italock.data.Origin
 import br.italo.italock.data.PairingStore
+import br.italo.italock.R
+import br.italo.italock.i18n.L10n
 import br.italo.italock.lock.LockClient
 import br.italo.italock.lock.WakeOnLan
 import br.italo.italock.ui.UnlockActivity
@@ -41,12 +43,12 @@ class ActionReceiver : BroadcastReceiver() {
                             br.italo.italock.ui.Haptics.done(context, r.ok)
                             WidgetStatus.refreshLater(context, pc.deviceId, 1_500)
                             r.message(pc)
-                        } ?: "Computador não encontrado (foi removido?)")
+                        } ?: L10n.s(R.string.notif_pc_not_found))
                     // Widget: "atualizar" consulta o cadeado só deste computador, só agora.
                     ACTION_WIDGET_REFRESH -> intent.getStringExtra(EXTRA_DEVICE)?.let { WidgetStatus.refreshNow(context, it) }
                     ACTION_WAKE -> toast(context, PairingStore(context).byDeviceId(intent.getStringExtra(EXTRA_DEVICE) ?: "")
                         ?.let { WakeOnLan.wake(it.macAddresses).also { w -> br.italo.italock.ui.Haptics.done(context, w.ok) }.message }
-                        ?: "Computador não encontrado (foi removido?)")
+                        ?: L10n.s(R.string.notif_pc_not_found))
                 }
             } finally {
                 pending.finish()

@@ -88,14 +88,14 @@ void ServiceInstaller::SetProtection(bool enabled) {
 }
 
 void ServiceInstaller::Install() {
-  m_Logger("Copiando o módulo da tela de bloqueio...");
+  m_Logger(I18n::Tr("Copiando o módulo da tela de bloqueio..."));
   auto nativeLib = ResourceHelper::GetResource(":/res/natives/{}", LIB_MODULE_FILE);
   auto libPath = ServiceInstaller_GetSysDir() / LIB_MODULE_FILE;
   auto result = Shell::WriteBytes(libPath, nativeLib);
   if(!result)
     throw std::runtime_error(I18n::Get("error_file_write", libPath.string()));
 
-  m_Logger("Criando as entradas no registro...");
+  m_Logger(I18n::Tr("Criando as entradas no registro..."));
   result =
       Shell::RunCommand(
           fmt::format(
@@ -118,10 +118,10 @@ void ServiceInstaller::Install() {
   Shell::RunCommand(fmt::format(R"(netsh advfirewall firewall delete rule name="{0}")", APP_FIREWALL_RULE_NAME));
 
   auto logonUiPath = ServiceInstaller_GetSysDir() / "LogonUI.exe";
-  m_Logger("Removendo regras antigas do firewall da tela de bloqueio...");
+  m_Logger(I18n::Tr("Removendo regras antigas do firewall da tela de bloqueio..."));
   WinFirewallHelper::RemoveAllRulesForProgram(logonUiPath.string());
   Shell::RunCommand(fmt::format(R"(netsh advfirewall firewall delete rule name="{0}")", LOGONUI_TS_FIREWALL_RULE_NAME));
-  m_Logger("Adicionando a regra do firewall para a tela de bloqueio...");
+  m_Logger(I18n::Tr("Adicionando a regra do firewall para a tela de bloqueio..."));
   result = Shell::RunCommand(fmt::format(R"(netsh advfirewall firewall add rule name="{0}" dir=in program="{1}" profile=private,domain action=allow remoteip=localsubnet,100.64.0.0/10)",
                                          LOGONUI_FIREWALL_RULE_NAME, logonUiPath.string()))
                .exitCode == 0;
@@ -130,24 +130,24 @@ void ServiceInstaller::Install() {
       R"(powershell -NoProfile -NonInteractive -Command "if (Get-NetAdapter -Name 'Tailscale' -ErrorAction SilentlyContinue) {{ New-NetFirewallRule -DisplayName '{0}' -Direction Inbound -Program '{1}' -Action Allow -Profile Any -InterfaceAlias 'Tailscale' -RemoteAddress 100.64.0.0/10 | Out-Null }}")",
       LOGONUI_TS_FIREWALL_RULE_NAME, logonUiPath.string()));
   if(!result)
-    m_Logger(I18n::Get("error_firewall_rule_add", "Firewall do Windows (tela de bloqueio)"));
+    m_Logger(I18n::Get("error_firewall_rule_add", I18n::Tr("Firewall do Windows (tela de bloqueio)")));
 
-  m_Logger("Definindo o Ítalock como opção padrão da tela de bloqueio...");
+  m_Logger(I18n::Tr("Definindo o Ítalock como opção padrão da tela de bloqueio..."));
   for(auto device : PairedDevicesStorage::GetDevices()) {
     if(!PlatformHelper::SetDefaultCredProv(device.userName, CRED_PROVIDER_GUID))
-      m_Logger(fmt::format("Não foi possível definir a opção padrão da tela de bloqueio para '{}'.", device.userName));
+      m_Logger(I18n::Tr("Não foi possível definir a opção padrão da tela de bloqueio para '{}'.", device.userName));
   }
-  m_Logger("Pronto.");
+  m_Logger(I18n::Tr("Pronto."));
 }
 
 void ServiceInstaller::Uninstall() {
-  m_Logger("Removendo o módulo da tela de bloqueio...");
+  m_Logger(I18n::Tr("Removendo o módulo da tela de bloqueio..."));
   auto libPath = ServiceInstaller_GetSysDir() / LIB_MODULE_FILE;
   auto result = Shell::RemoveFile(libPath);
   if(!result)
     throw std::runtime_error(I18n::Get("error_file_remove", libPath.string()));
 
-  m_Logger("Removendo as entradas do registro...");
+  m_Logger(I18n::Tr("Removendo as entradas do registro..."));
   result = Shell::RunCommand(
                fmt::format(R"(reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication\Credential Providers\{0}" /f)",
                            CRED_PROVIDER_GUID))
@@ -156,11 +156,11 @@ void ServiceInstaller::Uninstall() {
   if(!result)
     throw std::runtime_error(I18n::Get("error_registry_remove"));
 
-  m_Logger("Removendo a regra do firewall da tela de bloqueio...");
+  m_Logger(I18n::Tr("Removendo a regra do firewall da tela de bloqueio..."));
   Shell::RunCommand(fmt::format(R"(netsh advfirewall firewall delete rule name="{0}")", APP_FIREWALL_RULE_NAME));
   Shell::RunCommand(fmt::format(R"(netsh advfirewall firewall delete rule name="{0}")", LOGONUI_TS_FIREWALL_RULE_NAME));
   result = Shell::RunCommand(fmt::format(R"(netsh advfirewall firewall delete rule name="{0}")", LOGONUI_FIREWALL_RULE_NAME)).exitCode == 0;
   if(!result)
-    m_Logger(I18n::Get("error_firewall_rule_remove", "Firewall do Windows (tela de bloqueio)"));
-  m_Logger("Pronto.");
+    m_Logger(I18n::Get("error_firewall_rule_remove", I18n::Tr("Firewall do Windows (tela de bloqueio)")));
+  m_Logger(I18n::Tr("Pronto."));
 }

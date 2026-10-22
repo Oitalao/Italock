@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notif_tailscale_off_title">Tailscale 꺼짐</string>
+    <string name="notif_tailscale_off_text">꺼져 있으면 외부에서 잠금 해제할 수 없습니다. 탭해서 다시 켜세요.</string>
+    <string name="notif_pc_not_found">컴퓨터를 찾을 수 없음(삭제되었나요?)</string>
+
+    <string name="prompt_title">%1$s 잠금을 해제할까요?</string>
+    <string name="prompt_generic_title">잠금 해제 요청</string>
+    <string name="prompt_generic_text">보려면 휴대폰 잠금을 해제하세요.</string>
+    <string name="prompt_via">%1$s 경유</string>
+    <string name="prompt_deny">거부</string>
+    <string name="prompt_your_computer">내 컴퓨터</string>
+    <string name="prompt_expires_in">%1$d:%2$02d 후 만료</string>
+    <string name="prompt_expired">만료됨</string>
+    <string name="prompt_wants_unlock">잠금 해제를 요청합니다</string>
+    <string name="prompt_user">사용자 %1$s</string>
+    <string name="prompt_unlock_phone_to_unlock">잠금을 해제하려면 휴대폰 잠금을 해제하세요.</string>
+    <string name="prompt_unlock_phone_first">컴퓨터 잠금을 해제하려면 휴대폰 잠금을 해제하세요.</string>
+    <string name="prompt_reply_failed">%1$s에 응답하지 못했습니다. 연결이 끊어졌나요?</string>
+
+    <string name="notice_unlocked">%1$s 잠금 해제됨</string>
+    <string name="notice_unlocked_auto">%1$s 자동으로 잠금 해제됨</string>
+    <string name="notice_lock_again">다시 잠그기</string>
+
+    <string name="flow_ask_lock">%1$s을(를) 잠글까요?</string>
+    <string name="flow_ask_unlock">%1$s 잠금을 해제할까요?</string>
+    <string name="flow_ask_lock_generic">컴퓨터를 잠글까요?</string>
+    <string name="flow_ask_unlock_generic">컴퓨터 잠금을 해제할까요?</string>
+    <string name="flow_ask_text">탭해서 휴대폰에서 확인하세요.</string>
+    <string name="flow_ask_quiet_text">잠금 화면 상태입니다. 탭해서 잠금을 해제하세요.</string>
+    <string name="flow_already_asking">%1$s이(가) 이미 요청 중입니다. 열려 있는 요청에서 확인하세요.</string>
+
+    <string name="tile_no_pc">컴퓨터 미지정</string>
+    <string name="tile_not_paired">페어링 안 됨</string>
+    <string name="tile_querying">확인 중</string>
+    <string name="tile_locked">잠김, 탭하여 해제</string>
+    <string name="tile_locked_unverified">잠김(확인 안 됨), 탭하여 해제</string>
+    <string name="tile_unlocked">해제됨, 탭하여 잠금</string>
+    <string name="tile_unlocked_unverified">해제됨(확인 안 됨), 탭하여 잠금</string>
+    <string name="tile_no_answer">응답 없음, 탭하여 잠금</string>
+    <string name="tile_locking">잠그는 중</string>
+    <string name="tile_failed">실패, 탭하여 재시도</string>
+
+    <string name="shortcut_unlock">%1$s 잠금 해제</string>
+    <string name="shortcut_lock">%1$s 잠금</string>
+    <string name="shortcut_removed">Ítalock에서 삭제된 컴퓨터입니다</string>
+
+    <string name="quick_confirm_lock_title">%1$s을(를) 잠글까요?</string>
+
+    <string name="bio_unlock_title">%1$s 잠금 해제</string>
+    <string name="bio_need_screen_lock">먼저 휴대폰에 화면 잠금(PIN, 패턴, 비밀번호)을 설정하세요.</string>
+    <string name="bio_no_fingerprint_settings">이 휴대폰에 등록된 지문이 없습니다. 지문을 등록하거나 설정에서 PIN, 패턴, 비밀번호 허용을 켜세요.</string>
+    <string name="bio_key_error_retry">키 오류입니다. 다시 확인하세요.</string>
+    <string name="bio_lockout">시도 횟수가 너무 많습니다. 잠시 후 다시 시도하세요.</string>
+    <string name="bio_lockout_permanent">생체 인증이 차단되었습니다. 비밀번호로 휴대폰 잠금을 해제하고 다시 시도하세요.</string>
+    <string name="bio_no_fingerprint">이 휴대폰에 등록된 지문이 없습니다.</string>
+    <string name="bio_timeout">확인 시간이 지났습니다. 다시 시도하세요.</string>
+    <string name="bio_hw_unavailable">지금은 생체 인식 센서를 사용할 수 없습니다.</string>
+    <string name="bio_not_completed">확인이 완료되지 않았습니다. 다시 시도하세요.</string>
+    <string name="bio_cannot_ask">확인을 요청하지 못했습니다. 다시 시도하세요.</string>
+    <string name="bio_not_authenticated">지문 또는 휴대폰의 PIN, 패턴, 비밀번호로 확인하세요. 이 Android에서는 얼굴 인식으로 키를 사용할 수 없습니다.</string>
+    <string name="bio_pair_again">컴퓨터를 다시 페어링하세요.</string>
+    <string name="bio_key_invalidated">휴대폰의 화면 잠금이 바뀌어 이 컴퓨터용으로 저장된 비밀번호가 사라졌습니다. 컴퓨터를 다시 페어링하세요.</string>
+    <string name="bio_key_error">휴대폰 키 오류입니다. 다시 시도하고, 계속되면 컴퓨터를 다시 페어링하세요.</string>
+</resources>

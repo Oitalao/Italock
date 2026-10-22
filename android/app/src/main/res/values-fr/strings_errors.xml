@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="err_ok_locked">%1$s verrouillé</string>
+    <string name="err_ok_waking">Déverrouillage de %1$s</string>
+    <string name="err_ok_done">Terminé</string>
+
+    <string name="err_no_path">Aucun chemin autorisé pour %1$s. Activez le réseau local ou Tailscale dans les détails de l\'ordinateur.</string>
+    <string name="err_no_answer">%1$s n\'a pas répondu. Est-il allumé et sur le même réseau (ou sur Tailscale) ?</string>
+    <string name="err_not_paired">%1$s ne reconnaît pas ce téléphone. Supprimez l\'ordinateur et associez-le à nouveau.</string>
+    <string name="err_time">Horloge du téléphone décalée : l\'écart avec %1$s dépasse 1 minute. Activez la date et l\'heure automatiques sur les deux.</string>
+    <string name="err_data">%1$s n\'a pas pu lire la demande (clé différente). Supprimez l\'ordinateur et associez-le à nouveau.</string>
+    <string name="err_bad_action">L\'Ítalock de %1$s est trop ancien pour cette commande. Mettez à jour le programme sur l\'ordinateur.</string>
+    <string name="err_bad_packet">%1$s n\'a pas compris la demande. Mettez à jour Ítalock sur l\'ordinateur.</string>
+    <string name="err_state_unknown">%1$s n\'a pas pu indiquer si l\'écran est verrouillé.</string>
+    <string name="err_not_waiting">L\'ordinateur n\'est pas sur l\'écran de verrouillage.</string>
+    <string name="err_lock_failed">%1$s a reçu la demande, mais n\'a pas pu verrouiller l\'écran.</string>
+    <string name="err_replay">%1$s a refusé la demande, car elle semblait répétée. Réessayez.</string>
+    <string name="err_busy">%1$s est occupé par d\'autres connexions. Réessayez dans un instant.</string>
+    <string name="err_not_logged_in">Personne n\'est connecté à %1$s avec le compte de cette association. Connectez-vous au compte et réessayez.</string>
+    <string name="err_lock_disabled">%1$s n\'accepte pas les demandes de verrouillage depuis le téléphone. Activez cette option dans Ítalock sur l\'ordinateur.</string>
+    <string name="err_path_disabled">%1$s n\'accepte pas les demandes par ce chemin (réseau local ou Tailscale). Vérifiez les options dans Ítalock sur l\'ordinateur.</string>
+    <string name="err_unsupported">%1$s n\'a pas cette fonction sur ce système.</string>
+    <string name="err_not_allowed">Ce compte de l\'ordinateur ne peut pas utiliser ce téléphone.</string>
+    <string name="err_launch_failed">%1$s n\'a pas pu ouvrir la fenêtre d\'Ítalock. Laissez une session ouverte dessus et réessayez.</string>
+    <string name="err_bad_nonce">La réponse ne correspond pas à la demande. Si cela continue, supprimez l\'ordinateur et associez-le à nouveau.</string>
+    <string name="err_bad_seal">La réponse de %1$s ne correspond pas à la clé de l\'association. Si cela continue, supprimez l\'ordinateur et associez-le à nouveau.</string>
+    <string name="err_unsealed">%1$s a répondu sans la protection habituelle. Par sécurité, la réponse a été ignorée.</string>
+    <string name="err_refused">%1$s a refusé la demande.</string>
+
+    <string name="wol_no_mac">Cet ordinateur n\'a pas d\'adresse de carte réseau filaire. Sans elle, impossible de l\'allumer via le réseau.</string>
+    <string name="wol_sent">Signal d\'allumage envoyé. Fonctionne seulement sur le même réseau que l\'ordinateur.</string>
+    <string name="wol_failed">Impossible d\'envoyer le signal d\'allumage. Le téléphone est-il sur le même réseau que l\'ordinateur ?</string>
+
+    <string name="nfc_write_ok">Tag écrit. Avec le téléphone déverrouillé, approchez-le du tag pour l\'utiliser.</string>
+    <string name="nfc_write_ok_locked">Tag écrit et protégé contre l\'écriture.</string>
+    <string name="nfc_write_ok_lock_unsupported">Tag écrit, mais ce modèle ne permet pas de le protéger contre l\'écriture.</string>
+    <string name="nfc_write_read_only">Ce tag est protégé contre l\'écriture. Utilisez-en un autre.</string>
+    <string name="nfc_write_too_small">Le tag n\'a pas assez d\'espace. Utilisez un NTAG213 ou plus grand.</string>
+    <string name="nfc_write_not_ndef">Ce tag n\'accepte pas le format NDEF. Utilisez-en un autre, par exemple NTAG213, 215 ou 216.</string>
+    <string name="nfc_write_lost">Le tag s\'est éloigné avant la fin. Approchez-le à nouveau et maintenez jusqu\'à l\'alerte.</string>
+    <string name="nfc_write_failed">Impossible d\'écrire le tag. Réessayez ou utilisez-en un autre.</string>
+
+    <string name="nfc_not_italock">Ce tag n\'est pas un tag Ítalock.</string>
+    <string name="nfc_unknown_pc">Ce tag appartient à un ordinateur qui n\'est pas associé à ce téléphone (a-t-il été supprimé ?).</string>
+    <string name="nfc_tag_off">Le tag de %1$s est désactivé. Activez Verrouiller par le tag ou Déverrouiller par le tag dans ses détails.</string>
+    <string name="nfc_querying">Vérification de %1$s</string>
+    <string name="nfc_clock_off">Horloge du téléphone décalée. Activez la date et l\'heure automatiques.</string>
+
+    <string name="tag_lock_and_unlock">Verrouille et déverrouille</string>
+    <string name="tag_unlock_only">Déverrouille seulement</string>
+    <string name="tag_lock_only">Verrouille seulement</string>
+    <string name="tag_off">Désactivé</string>
+
+    <string name="pairing_connecting">Connexion à l\'ordinateur</string>
+    <string name="pairing_waiting_reply">En attente de la réponse de l\'ordinateur</string>
+    <string name="pairing_searching">Recherche de l\'ordinateur sur le réseau</string>
+
+    <string name="pairing_err_not_found">Ordinateur introuvable. Les deux sont-ils sur le même réseau, ou reliés par câble USB avec partage de connexion ?</string>
+    <string name="pairing_err_refused">L\'ordinateur a refusé l\'association. Générez un nouveau QR code sur l\'ordinateur et réessayez.</string>
+    <string name="pairing_err_time">Horloge du téléphone décalée. Activez la date et l\'heure automatiques sur le téléphone et sur l\'ordinateur.</string>
+    <string name="pairing_err_timeout">L\'ordinateur a mis trop de temps à répondre. Vérifiez que l\'écran d\'association y est toujours ouvert.</string>
+    <string name="pairing_err_connect">Impossible de se connecter à l\'ordinateur. Vérifiez que l\'écran d\'association est ouvert et que les deux sont sur le même réseau.</string>
+    <string name="pairing_err_host">Adresse de l\'ordinateur invalide. Générez un nouveau QR code.</string>
+    <string name="pairing_err_code">Le code ne correspond pas à celui de l\'ordinateur. Scannez à nouveau le QR code.</string>
+    <string name="pairing_err_dropped">La connexion avec l\'ordinateur a été coupée en cours de route. Réessayez.</string>
+    <string name="pairing_err_format">Réponse de l\'ordinateur dans un format inattendu. Mettez à jour Ítalock sur l\'ordinateur.</string>
+    <string name="pairing_err_generic">Impossible d\'associer. Réessayez.</string>
+
+    <string name="crypto_key_lost">Le verrouillage de l\'écran du téléphone a changé et le mot de passe enregistré pour cet ordinateur a été perdu. Associez à nouveau l\'ordinateur.</string>
+
+    <string name="bip_hidden_pc_name">Votre ordinateur</string>
+</resources>

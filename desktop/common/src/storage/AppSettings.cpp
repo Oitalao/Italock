@@ -38,7 +38,7 @@ PCBUAppStorage AppSettings::Get() {
 // (antes, uma chave nova ausente caia no catch e gravava os padroes por cima de tudo).
 static PCBUAppStorage DefaultSettings() {
   auto def = PCBUAppStorage();
-  def.language = "auto";
+  def.language = "pt_BR"; // Italock: portugues do Brasil para todo mundo, ate a pessoa escolher outro
   def.serverIP = "auto";
   def.pairingDiscoveryPort = 43297;
   def.pairingServerPort = 43295;
@@ -94,7 +94,8 @@ PCBUAppStorage AppSettings::Load() {
     save = save || parsed;
   }
   settings.installedVersion = JsonGet<std::string>(json, "installedVersion", def.installedVersion);
-  settings.language = JsonGet<std::string>(json, "language", def.language);
+  // Italock: chave nova "idioma" (a antiga "language" era "auto" por padrao e so valia com o experimental ligado).
+  settings.language = JsonGet<std::string>(json, "idioma", def.language);
   settings.serverIP = JsonGet<std::string>(json, "serverIP", def.serverIP);
   settings.serverMAC = JsonGet<std::string>(json, "serverMAC", def.serverMAC);
   settings.pairingDiscoveryPort = JsonGet<uint16_t>(json, "pairingDiscoveryPort", def.pairingDiscoveryPort);
@@ -108,7 +109,6 @@ PCBUAppStorage AppSettings::Load() {
   settings.winHidePasswordField = JsonGet<bool>(json, "winHidePasswordField", def.winHidePasswordField);
   settings.winForceDefaultCredProv = JsonGet<bool>(json, "winForceDefaultCredProv", def.winForceDefaultCredProv);
   settings.unixSetPasswordPAM = JsonGet<bool>(json, "unixSetPasswordPAM", def.unixSetPasswordPAM);
-  settings.expLanguage = JsonGet<bool>(json, "expLanguage", false);
 
   settings.unlockWaitSeconds = JsonGet<uint32_t>(json, "unlockWaitSeconds", def.unlockWaitSeconds);
   if(settings.unlockWaitSeconds < 5 || settings.unlockWaitSeconds > 300)
@@ -136,7 +136,7 @@ void AppSettings::Save(const PCBUAppStorage &storage) {
     nlohmann::json json = {
         {"machineID", storage.machineID},
         {"installedVersion", storage.installedVersion},
-        {"language", storage.language},
+        {"idioma", storage.language},
         {"serverIP", storage.serverIP},
         {"serverMAC", storage.serverMAC},
         {"pairingDiscoveryPort", storage.pairingDiscoveryPort},
@@ -150,7 +150,6 @@ void AppSettings::Save(const PCBUAppStorage &storage) {
         {"winHidePasswordField", storage.winHidePasswordField},
         {"winForceDefaultCredProv", storage.winForceDefaultCredProv},
         {"unixSetPasswordPAM", storage.unixSetPasswordPAM},
-        {"expLanguage", storage.expLanguage},
 
         {"unlockWaitSeconds", storage.unlockWaitSeconds},
         {"bootAutoRetry", storage.bootAutoRetry},

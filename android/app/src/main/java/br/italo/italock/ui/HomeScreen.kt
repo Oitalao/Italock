@@ -40,6 +40,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import br.italo.italock.R
+import br.italo.italock.data.EventKind
+import br.italo.italock.i18n.L10n
 import br.italo.italock.data.PairedPc
 import br.italo.italock.lock.LockClient
 import br.italo.italock.lock.LockClient.LockStatus
@@ -55,8 +59,11 @@ import br.italo.italock.ui.components.statusLook
 import br.italo.italock.ui.theme.Italock
 
 /** O que o botão da linha faz, conforme o estado. */
-enum class RowAction(val label: String) {
-    UNLOCK("Destravar"), LOCK("Travar"), WAKE("Ligar"), FIX_CLOCK("Ajustar hora"), REPAIR("Parear")
+enum class RowAction(@androidx.annotation.StringRes val labelRes: Int) {
+    UNLOCK(R.string.action_unlock), LOCK(R.string.action_lock), WAKE(R.string.action_wake), FIX_CLOCK(R.string.action_fix_clock),
+    REPAIR(R.string.action_pair);
+
+    val label: String get() = L10n.s(labelRes)
 }
 
 fun rowAction(pc: PairedPc, status: LockStatus?, needsRepair: Boolean): RowAction? = when {
@@ -97,16 +104,17 @@ fun HomeScreen(
         snackbarHost = { SnackbarHost(snackbar) },
         topBar = {
             TopAppBar(
-                title = { Text("Ítalock", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold) },
+                title = { Text(stringResource(R.string.app_name), style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold) },
                 actions = {
                     // Discreto, só texto: a ação principal de cada computador continua sendo o botão da linha.
-                    if (onLockAll != null) QuietButton("Travar todos", onLockAll)
+                    if (onLockAll != null) QuietButton(stringResource(R.string.home_lock_all), onLockAll)
                     if (state.pcs.isNotEmpty()) IconButton(onClick = onPair) {
-                        Icon(Icons.Outlined.Add, contentDescription = "Parear computador")
+                        Icon(Icons.Outlined.Add, contentDescription = stringResource(R.string.home_pair_computer))
                     }
                     IconButton(onClick = onSettings) {
                         Box {
-                            Icon(Icons.Outlined.Settings, contentDescription = if (state.settingsAttention) "Configurações (falta permitir algo)" else "Configurações")
+                            Icon(Icons.Outlined.Settings, contentDescription = stringResource(
+                                if (state.settingsAttention) R.string.home_settings_attention else R.string.settings_title))
                             // Ponto laranja: há permissão faltando nas Configurações.
                             if (state.settingsAttention) Box(
                                 Modifier.align(Alignment.TopEnd).size(8.dp).background(Italock.colors.action, CircleShape),
@@ -125,7 +133,7 @@ fun HomeScreen(
         LazyColumn(Modifier.fillMaxSize().padding(pad), contentPadding = PaddingValues(top = 8.dp, bottom = 24.dp)) {
             if (state.notificationsMissing) item(key = "notif") {
                 Panel(Modifier.padding(bottom = 12.dp)) {
-                    FixRow("Notificações desligadas: os pedidos do computador não vão aparecer.", "Permitir", onFixNotifications)
+                    FixRow(stringResource(R.string.home_notifications_off), stringResource(R.string.common_allow), onFixNotifications)
                 }
             }
             // Um cartão por computador: cada um é uma coisa separada, com o próprio botão.
@@ -151,21 +159,21 @@ fun HomeScreen(
 private fun EmptyState(modifier: Modifier, notificationsMissing: Boolean, onFixNotifications: () -> Unit, onPair: () -> Unit) {
     Column(modifier.fillMaxSize()) {
         if (notificationsMissing) Panel(Modifier.padding(top = 8.dp)) {
-            FixRow("Notificações desligadas: os pedidos do computador não vão aparecer.", "Permitir", onFixNotifications)
+            FixRow(stringResource(R.string.home_notifications_off), stringResource(R.string.common_allow), onFixNotifications)
         }
         Column(
             Modifier.fillMaxSize().padding(horizontal = 32.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Text("Nenhum computador pareado", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+            Text(stringResource(R.string.home_empty_title), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
             Spacer(Modifier.padding(top = 8.dp))
             Text(
-                "Instale o Ítalock no computador e leia o QR code que ele mostra.",
+                stringResource(R.string.home_empty_text),
                 style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, textAlign = TextAlign.Center,
             )
             Spacer(Modifier.padding(top = 24.dp))
-            PrimaryButton("Parear computador", onPair)
+            PrimaryButton(stringResource(R.string.home_pair_computer), onPair)
         }
     }
 }
@@ -176,9 +184,10 @@ private fun PcRow(pc: PairedPc, result: LockClient.StatusResult?, busy: Boolean,
     val look = statusLook(status)
     val action = rowAction(pc, status, needsRepair)
     val last = lastEventText(pc)
+    val waitingFor = stringResource(R.string.home_waiting_for, pc.displayName)
     Row(
         Modifier.fillMaxWidth()
-            .clickable(onClickLabel = "Abrir detalhes", onClick = onOpen)
+            .clickable(onClickLabel = stringResource(R.string.home_open_details), onClick = onOpen)
             .heightIn(min = 80.dp)
             .padding(start = 16.dp, end = 12.dp, top = 14.dp, bottom = 14.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -192,9 +201,9 @@ private fun PcRow(pc: PairedPc, result: LockClient.StatusResult?, busy: Boolean,
             Text(pc.displayName, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold,
                 maxLines = 1, overflow = TextOverflow.Ellipsis)
             if (needsRepair) {
-                Text("Pareie de novo: a senha guardada se perdeu", style = MaterialTheme.typography.bodyMedium, color = Italock.colors.dangerText)
+                Text(stringResource(R.string.home_needs_repair), style = MaterialTheme.typography.bodyMedium, color = Italock.colors.dangerText)
             } else {
-                Text(look.label + unverifiedSuffix(result), style = MaterialTheme.typography.bodyMedium, color = look.textColor, maxLines = 2)
+                Text(unverified(look.label, result), style = MaterialTheme.typography.bodyMedium, color = look.textColor, maxLines = 2)
             }
             if (last != null) Text(last, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
                 maxLines = 2, overflow = TextOverflow.Ellipsis)
@@ -203,10 +212,10 @@ private fun PcRow(pc: PairedPc, result: LockClient.StatusResult?, busy: Boolean,
         Spacer(Modifier.width(12.dp))
         Box(Modifier.heightIn(min = 48.dp), contentAlignment = Alignment.Center) {
             when {
-                busy -> Box(Modifier.size(48.dp).semantics { contentDescription = "Aguardando ${pc.displayName}" }, contentAlignment = Alignment.Center) {
+                busy -> Box(Modifier.size(48.dp).semantics { contentDescription = waitingFor }, contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(Modifier.size(22.dp), strokeWidth = 2.dp)
                 }
-                action != null -> SecondaryButton(action.label, { onAction(action) })
+                action != null -> SecondaryButton(stringResource(action.labelRes), { onAction(action) })
             }
         }
     }
@@ -215,36 +224,40 @@ private fun PcRow(pc: PairedPc, result: LockClient.StatusResult?, busy: Boolean,
 /** "Destravado hoje às 20:10 · Tailscale" (ontem / data quando não for hoje). */
 fun lastEventText(pc: PairedPc): String? {
     if (pc.lastEvent.isEmpty() || pc.lastEventAt == 0L) return null
-    return "${pc.lastEvent} ${whenText(pc.lastEventAt)}" + if (pc.lastEventVia.isNotEmpty()) " · ${pc.lastEventVia}" else ""
+    val via = if (pc.lastEventVia.isNotEmpty()) " · ${L10n.via(pc.lastEventVia)}" else ""
+    return "${EventKind.displayStored(pc.lastEvent)} ${whenText(pc.lastEventAt)}$via"
 }
 
-/** "hoje às 20:10", "ontem às 20:10" ou "28/09 às 20:10". */
+/** "hoje às 20:10", "ontem às 20:10" ou "28/09 às 20:10" (no idioma escolhido). */
 fun whenText(at: Long): String {
-    val br = java.util.Locale.forLanguageTag("pt-BR")
     val then = java.util.Calendar.getInstance().apply { timeInMillis = at }
     val today = java.util.Calendar.getInstance()
-    val hour = java.text.SimpleDateFormat("HH:mm", br).format(then.time)
+    val hour = L10n.hourMinute(at)
     fun same(a: java.util.Calendar, b: java.util.Calendar) =
         a.get(java.util.Calendar.YEAR) == b.get(java.util.Calendar.YEAR) && a.get(java.util.Calendar.DAY_OF_YEAR) == b.get(java.util.Calendar.DAY_OF_YEAR)
     val sameDay = same(then, today)
     today.add(java.util.Calendar.DAY_OF_YEAR, -1)
     return when {
-        sameDay -> "hoje às $hour"
-        same(then, today) -> "ontem às $hour"
-        else -> java.text.SimpleDateFormat("dd/MM 'às' HH:mm", br).format(then.time)
+        sameDay -> L10n.s(R.string.when_today, hour)
+        same(then, today) -> L10n.s(R.string.when_yesterday, hour)
+        else -> L10n.s(R.string.when_date, hour, L10n.dayMonth(at))
     }
 }
 
 /** Resumo do "Travar todos": "Todos os 3 travados", "2 de 3 travados. Não travou: Notebook". */
 fun lockAllSummary(total: Int, notLocked: List<String>): String {
     val ok = total - notLocked.size
+    val names = notLocked.joinToString(L10n.s(R.string.list_separator))
     return when {
-        notLocked.isEmpty() -> if (total == 1) "Computador travado" else "Todos os $total travados"
-        ok <= 0 -> "Nenhum travou: ${notLocked.joinToString(", ")}"
-        else -> "$ok de $total travados. " + (if (notLocked.size == 1) "Não travou: " else "Não travaram: ") + notLocked.joinToString(", ")
+        notLocked.isEmpty() -> if (total == 1) L10n.s(R.string.lock_all_one) else L10n.q(R.plurals.lock_all_done, total, total)
+        ok <= 0 -> L10n.s(R.string.lock_all_none, names)
+        else -> L10n.q(R.plurals.lock_all_partial, total, ok, total) + " " + L10n.q(R.plurals.lock_all_failed, notLocked.size, names)
     }
 }
 
 /** Estado que veio em claro (agente antigo): aparece, mas com o aviso. */
-fun unverifiedSuffix(r: LockClient.StatusResult?): String =
-    if (r != null && !r.verified && (r.status == LockStatus.LOCKED || r.status == LockStatus.UNLOCKED)) " · não verificado" else ""
+fun unverified(label: String, r: LockClient.StatusResult?): String =
+    if (r != null && !r.verified && (r.status == LockStatus.LOCKED || r.status == LockStatus.UNLOCKED)) L10n.s(R.string.status_unverified, label) else label
+
+/** Só o aviso, para quem junta com o estado já escrito (" · não verificado"). */
+fun unverifiedSuffix(r: LockClient.StatusResult?): String = unverified("", r)

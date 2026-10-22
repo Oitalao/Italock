@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="wearmsg_your_computer">आपका कंप्यूटर</string>
+    <string name="wearmsg_computer">कंप्यूटर</string>
+    <string name="wearmsg_computer_n">कंप्यूटर %1$d</string>
+    <string name="wearmsg_feature_off">फ़ोन पर Ítalock की प्रायोगिक सुविधाओं में \"Wear OS घड़ी\" चालू करें।</string>
+    <string name="wearmsg_pc_not_found">फ़ोन में कंप्यूटर नहीं मिला।</string>
+    <string name="wearmsg_pc_off">%1$s के लिए घड़ी बंद है। फ़ोन पर उसकी जानकारी में चालू करें।</string>
+    <string name="wearmsg_confirm_on_phone">फ़ोन पर पुष्टि करें।</string>
+    <string name="wearmsg_unknown_action">अनजानी कार्रवाई।</string>
+    <string name="wearmsg_already_asking">%1$s पहले से अनुरोध कर रहा है। फ़ोन पर या घड़ी के अनुरोध में पुष्टि करें।</string>
+</resources>

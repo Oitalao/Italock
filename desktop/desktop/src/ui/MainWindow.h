@@ -58,6 +58,8 @@ public:
   static void ApplyAppearanceSetting();
   // Chamado quando uma preferencia muda (a bandeja relê o atalho de teclado). Definido pelo main.
   static void SetPrefChangedHandler(std::function<void(const QString &)> handler);
+  // Avisa a bandeja de uma mudanca feita fora do SetPref (ex.: "idioma", gravado no AppSettings).
+  static void NotifyPrefChanged(const QString &key);
   // Desenvolvimento (ITALOCK_PRINT, so sem administrador/root): pula as checagens de inicio.
   static bool s_PrintMode;
   // Trabalho em andamento numa thread (ligar/desligar a protecao): a bandeja nao fecha e a saida espera.

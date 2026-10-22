@@ -179,8 +179,8 @@ static void BackupPamFile(const std::string &configName, const std::function<voi
     return;
   std::filesystem::copy_file(path, backup, ec);
   if(ec)
-    throw std::runtime_error(fmt::format("Não consegui copiar {} antes de mexer; nada foi alterado.", path.string()));
-  logger(fmt::format("Cópia de segurança: {}", backup.string()));
+    throw std::runtime_error(I18n::Tr("Não consegui copiar {} antes de mexer; nada foi alterado.", path.string()));
+  logger(I18n::Tr("Cópia de segurança: {}", backup.string()));
 }
 
 // Linha "sufficient" so entra se o modulo existe na pasta do PAM: sem ele a linha seria ignorada, mas nao ha por que arriscar.
@@ -188,7 +188,7 @@ static void RequireModule() {
   for(const auto &dir : PamModuleDirs())
     if(std::filesystem::exists(dir / PAM_MODULE_FILE))
       return;
-  throw std::runtime_error("O módulo do Ítalock não está instalado na pasta do PAM. Ligue a proteção da tela primeiro.");
+  throw std::runtime_error(I18n::Tr("O módulo do Ítalock não está instalado na pasta do PAM. Ligue a proteção da tela primeiro."));
 }
 
 // Protecoes de tela com PAM proprio que o Italock sabe ligar (arquivo em /etc/pam.d com "@include common-auth").
@@ -203,12 +203,12 @@ static std::vector<std::string> SupportedScreensavers() {
 // Nome para mostrar na tela (sem o nome tecnico do servico)
 static std::string ScreensaverLabel(const std::string &name) {
   if(name == "cinnamon-screensaver")
-    return "proteção de tela do Cinnamon";
+    return I18n::Tr("proteção de tela do Cinnamon");
   if(name == "mate-screensaver")
-    return "proteção de tela do MATE";
+    return I18n::Tr("proteção de tela do MATE");
   if(name == "xfce4-screensaver")
-    return "proteção de tela do XFCE";
-  return "proteção de tela";
+    return I18n::Tr("proteção de tela do XFCE");
+  return I18n::Tr("proteção de tela");
 }
 
 static bool IsScreenEntryOn() {
@@ -261,10 +261,10 @@ static bool IsSshEnabled() {
 static void SetSshEnabled(bool enabled) {
   auto user = SshTargetUser();
   if(!user)
-    throw std::runtime_error("Não achei o usuário da sessão para ligar o SSH pelo celular.");
+    throw std::runtime_error(I18n::Tr("Não achei o usuário da sessão para ligar o SSH pelo celular."));
   if(!std::filesystem::exists(SSH_HELPER)) {
     if(enabled)
-      throw std::runtime_error("O auxiliar do SSH não está instalado. Instale o Ítalock de novo pelo instalador.");
+      throw std::runtime_error(I18n::Tr("O auxiliar do SSH não está instalado. Instale o Ítalock de novo pelo instalador."));
     return;
   }
   // O proprio auxiliar grava (environment.d + bloco marcado no ~/.xsessionrc), ja sem root, como o usuario.
@@ -287,8 +287,8 @@ std::vector<ServiceSetting> ServiceInstaller::GetSettings() {
           {"pamSetPassword", I18n::Get("service_setting_pam_set_pw"), AppSettings::Get().unixSetPasswordPAM, false},
           {"sudo", I18n::Get("service_setting_sudo"), PAMHelper::HasConfigEntry("sudo", PAM_CONFIG_ENTRY), IsProgramInstalled(SUDO_NAME)},
           {"polkit", I18n::Get("service_setting_polkit"), PAMHelper::HasConfigEntry("polkit-1", PAM_CONFIG_ENTRY), IsProgramInstalled(POLKIT_NAME)},
-          {"loginManager", "Tela de login", IsLoginManagerOn(), hasLoginManager},
-          {"ssh", "Destravar sessões SSH pelo celular", IsSshEnabled(), sshAvailable}};
+          {"loginManager", I18n::Tr("Tela de login"), IsLoginManagerOn(), hasLoginManager},
+          {"ssh", I18n::Tr("Destravar sessões SSH pelo celular"), IsSshEnabled(), sshAvailable}};
 }
 
 void ServiceInstaller::ApplySettings(const std::vector<ServiceSetting> &settings, bool useDefault) {
@@ -338,10 +338,10 @@ void ServiceInstaller::ApplySettings(const std::vector<ServiceSetting> &settings
         if(hasEntry == isEnabled && !migrate)
           continue;
         if(migrate)
-          m_Logger(fmt::format("Atualizando a {} para o formato novo (com o cofre de senhas)...", ScreensaverLabel(name)));
+          m_Logger(I18n::Tr("Atualizando a {} para o formato novo (com o cofre de senhas)...", ScreensaverLabel(name)));
         if(isEnabled)
           RequireModule();
-        m_Logger(isEnabled ? fmt::format("Ligando o celular na {}...", ScreensaverLabel(name)) : fmt::format("Desligando o celular da {}...", ScreensaverLabel(name)));
+        m_Logger(isEnabled ? I18n::Tr("Ligando o celular na {}...", ScreensaverLabel(name)) : I18n::Tr("Desligando o celular da {}...", ScreensaverLabel(name)));
         const auto current = ReadText(path);
         std::string content{};
         std::vector<std::string> backups = {"/root/" + name + ".antes-italock", "/etc/pam.d/" + name + ".antes-italock"};
@@ -352,7 +352,7 @@ void ServiceInstaller::ApplySettings(const std::vector<ServiceSetting> &settings
             Shell::WriteBytes(backups.front(), {current.begin(), current.end()});
           content = PamCinnamonEnable(current);
           if(content.empty())
-            throw std::runtime_error(fmt::format("Formato desconhecido em {}; nada foi alterado.", path.string()));
+            throw std::runtime_error(I18n::Tr("Formato desconhecido em {}; nada foi alterado.", path.string()));
         } else {
           // Volta a copia de antes do Italock, se houver uma que nao tenha o Italock; senao so tira as linhas dele.
           for(const auto &backup : backups) {
@@ -361,7 +361,7 @@ void ServiceInstaller::ApplySettings(const std::vector<ServiceSetting> &settings
             auto saved = ReadText(backup);
             if(!saved.empty() && saved.find("pam_pcbiounlock.so") == std::string::npos) {
               content = saved;
-              m_Logger(fmt::format("Restaurando a cópia {}...", backup));
+              m_Logger(I18n::Tr("Restaurando a cópia {}...", backup));
               break;
             }
           }
@@ -372,12 +372,12 @@ void ServiceInstaller::ApplySettings(const std::vector<ServiceSetting> &settings
           throw std::runtime_error(I18n::Get("error_file_write", path.string()));
       }
       if(!any && isEnabled)
-        throw std::runtime_error("A proteção de tela deste computador não é suportada (só Cinnamon, MATE e XFCE). O Ítalock trava a tela "
-                                 "pelo celular, mas destravar pelo celular não vai funcionar aqui.");
+        throw std::runtime_error(I18n::Tr("A proteção de tela deste computador não é suportada (só Cinnamon, MATE e XFCE). O Ítalock trava a tela "
+                                          "pelo celular, mas destravar pelo celular não vai funcionar aqui."));
     } else if(setting.id == "ssh") {
       if(isEnabled != IsSshEnabled()) {
-        m_Logger(isEnabled ? "Ligando o SSH pelo celular (vale a partir da próxima vez que entrar no computador)..."
-                           : "Desligando o SSH pelo celular...");
+        m_Logger(isEnabled ? I18n::Tr("Ligando o SSH pelo celular (vale a partir da próxima vez que entrar no computador)...")
+                           : I18n::Tr("Desligando o SSH pelo celular..."));
         SetSshEnabled(isEnabled);
       }
     } else if(setting.id == "pamSetPassword") {
@@ -428,7 +428,7 @@ bool ServiceInstaller::IsInstalled() {
 }
 
 void ServiceInstaller::Install() {
-  m_Logger("Copiando o auxiliar de autenticação...");
+  m_Logger(I18n::Tr("Copiando o auxiliar de autenticação..."));
   auto nativeExe = ResourceHelper::GetResource(":/res/natives/{}", EXE_MODULE_FILE);
   auto exePath = EXE_MODULE_DIR / EXE_MODULE_FILE;
   auto result = Shell::WriteBytes(EXE_MODULE_DIR / EXE_MODULE_FILE, nativeExe);
@@ -438,11 +438,11 @@ void ServiceInstaller::Install() {
   if(!result)
     throw std::runtime_error(I18n::Get("error_exec_setuid", exePath.string()));
 
-  m_Logger("Copiando o módulo PAM...");
+  m_Logger(I18n::Tr("Copiando o módulo PAM..."));
   auto pamModule = ResourceHelper::GetResource(":/res/natives/{}", PAM_MODULE_FILE);
   auto pamDirs = PamModuleDirs();
   if(pamDirs.empty())
-    throw std::runtime_error("Não achei a pasta de módulos do PAM (a que tem o pam_unix.so).");
+    throw std::runtime_error(I18n::Tr("Não achei a pasta de módulos do PAM (a que tem o pam_unix.so)."));
   for(const auto &pamDir : pamDirs) {
     auto pamPath = pamDir / PAM_MODULE_FILE;
     result = Shell::WriteBytes(pamPath, pamModule);
@@ -453,7 +453,7 @@ void ServiceInstaller::Install() {
   auto settings = AppSettings::Get();
   if(IsProgramInstalled(UFW_NAME)) {
     // Italock: so a rede local e o Tailscale (antes abria as portas para qualquer endereco).
-    m_Logger("Adicionando regras do firewall (ufw) só para a rede local e o Tailscale...");
+    m_Logger(I18n::Tr("Adicionando regras do firewall (ufw) só para a rede local e o Tailscale..."));
     result = Shell::RunCommand(fmt::format(
                  "for net in $(" LAN_SUBNETS_CMD "); do "
                  "ufw allow from \"$net\" to any port {1} proto tcp comment Italock && "
@@ -467,7 +467,7 @@ void ServiceInstaller::Install() {
   }
   if(IsProgramInstalled(FIREWALLD_NAME) && Shell::RunCommand("firewall-cmd --state >/dev/null 2>&1").exitCode == 0) {
     // Italock: so na zona padrao e so com origem (rich rules), como o instalador .run; nunca porta aberta para qualquer um.
-    m_Logger("Adicionando regras do firewall (firewalld) só para a rede local e o Tailscale...");
+    m_Logger(I18n::Tr("Adicionando regras do firewall (firewalld) só para a rede local e o Tailscale..."));
     result = Shell::RunCommand(fmt::format(
                  "Z=$(firewall-cmd --get-default-zone 2>/dev/null || echo public); "
                  "for p in {0} {1}; do for net in $(" LAN_SUBNETS_CMD ") 100.64.0.0/10; do "
@@ -479,7 +479,7 @@ void ServiceInstaller::Install() {
       m_Logger(I18n::Get("error_firewall_rule_add", "firewalld"));
   }
   if(IsProgramInstalled(SELINUX_NAME)) {
-    m_Logger("Instalando a política do SELinux...");
+    m_Logger(I18n::Tr("Instalando a política do SELinux..."));
     auto policyData = ResourceHelper::GetResource(":/res/selinux/pcbu_auth_policy.pp");
     // Pasta temporaria propria (mkdtemp, 0700): um /tmp/<nome fixo> poderia ser trocado por outro usuario no meio.
     char dirTemplate[] = "/tmp/italock-selinux-XXXXXX";
@@ -494,17 +494,17 @@ void ServiceInstaller::Install() {
     if(!result)
       throw std::runtime_error(I18n::Get("error_selinux_policy_install"));
   }
-  m_Logger("Pronto.");
+  m_Logger(I18n::Tr("Pronto."));
 }
 
 void ServiceInstaller::Uninstall() {
-  m_Logger("Removendo o auxiliar de autenticação...");
+  m_Logger(I18n::Tr("Removendo o auxiliar de autenticação..."));
   auto exePath = EXE_MODULE_DIR / EXE_MODULE_FILE;
   auto result = Shell::RemoveFile(exePath);
   if(!result)
     throw std::runtime_error(I18n::Get("error_file_remove", exePath.string()));
 
-  m_Logger("Removendo o módulo PAM...");
+  m_Logger(I18n::Tr("Removendo o módulo PAM..."));
   // Antes de apagar o modulo, tira todas as linhas do PAM que o usam (senha continua funcionando de qualquer jeito).
   SetProtection(false);
   for(auto setting : GetSettings()) {
@@ -526,7 +526,7 @@ void ServiceInstaller::Uninstall() {
 
   auto settings = AppSettings::Get();
   if(IsProgramInstalled(UFW_NAME)) {
-    m_Logger("Removendo regras do firewall (ufw)...");
+    m_Logger(I18n::Tr("Removendo regras do firewall (ufw)..."));
     // Regras abertas de versoes antigas e as restritas atuais (a do agente, porta 43301, fica: e do instalador).
     Shell::RunCommand(fmt::format("ufw delete allow {}/udp; ufw delete allow {}/tcp; ufw delete allow {}/tcp", settings.pairingDiscoveryPort,
                                   settings.pairingServerPort, settings.unlockServerPort));
@@ -544,7 +544,7 @@ void ServiceInstaller::Uninstall() {
       m_Logger(I18n::Get("error_firewall_rule_remove", "ufw"));
   }
   if(IsProgramInstalled(FIREWALLD_NAME) && Shell::RunCommand("firewall-cmd --state >/dev/null 2>&1").exitCode == 0) {
-    m_Logger("Removendo regras do firewall (firewalld)...");
+    m_Logger(I18n::Tr("Removendo regras do firewall (firewalld)..."));
     // Portas abertas de versoes antigas e as rich rules atuais, so na zona padrao
     result = Shell::RunCommand(fmt::format(
                  "Z=$(firewall-cmd --get-default-zone 2>/dev/null || echo public); "
@@ -559,12 +559,12 @@ void ServiceInstaller::Uninstall() {
       m_Logger(I18n::Get("error_firewall_rule_remove", "firewalld"));
   }
   if(IsProgramInstalled(SELINUX_NAME)) {
-    m_Logger("Removendo a política do SELinux...");
+    m_Logger(I18n::Tr("Removendo a política do SELinux..."));
     result = Shell::RunCommand("semodule -r pcbu_auth_policy").exitCode == 0;
     if(!result)
       throw std::runtime_error(I18n::Get("error_selinux_policy_uninstall"));
   }
-  m_Logger("Pronto.");
+  m_Logger(I18n::Tr("Pronto."));
 }
 
 bool ServiceInstaller::IsProgramInstalled(const std::string &pathName) {

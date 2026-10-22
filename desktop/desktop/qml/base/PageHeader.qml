@@ -13,10 +13,10 @@ RowLayout {
     Btn {
         kind: "icon"
         iconName: "back"
-        ToolTip.text: "Voltar"
+        ToolTip.text: qsTr("Voltar")
         ToolTip.visible: hovered
         ToolTip.delay: 600
-        Accessible.name: "Voltar"
+        Accessible.name: qsTr("Voltar")
         onClicked: root.back()
     }
     Text {

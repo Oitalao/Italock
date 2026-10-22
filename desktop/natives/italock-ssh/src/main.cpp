@@ -40,6 +40,7 @@
 #include "storage/AppSettings.h"
 #include "storage/LoggingSystem.h"
 #include "utils/CryptUtils.h"
+#include "utils/I18n.h"
 #include "utils/StringUtils.h"
 
 namespace {
@@ -117,7 +118,7 @@ std::vector<Server> LoadServers() {
         result.emplace_back(s);
     }
   } catch(...) {
-    fprintf(stderr, "Arquivo de senhas SSH ilegível: %s\n", path.c_str());
+    fprintf(stderr, "%s\n", I18n::Tr("Arquivo de senhas SSH ilegível: {}", path.c_str()).c_str());
   }
   return result;
 }
@@ -164,7 +165,7 @@ std::optional<std::string> ReadSecretFromTty(const std::string &prompt) {
     raw.c_lflag &= ~ECHO;
     tcsetattr(fd, TCSAFLUSH, &raw);
   }
-  auto shown = prompt.empty() ? std::string("Senha: ") : prompt;
+  auto shown = prompt.empty() ? I18n::Tr("Senha:") : prompt;
   if(shown.back() != ' ')
     shown += ' ';
   bool ok = write(fd, shown.data(), shown.size()) >= 0;
@@ -250,9 +251,9 @@ struct Prompt {
   // Texto que aparece no celular: "SSH para usuario@servidor" / "Chave SSH id_ed25519"
   std::string DisplayName() const {
     if(kind == Kind::Password)
-      return "SSH para " + Clean(user.empty() ? host : user + "@" + host, 96);
+      return I18n::Tr("SSH para {}", Clean(user.empty() ? host : user + "@" + host, 96));
     auto name = std::filesystem::path(keyPath).filename().string();
-    return "Chave SSH " + Clean(name.empty() ? keyPath : name, 96);
+    return I18n::Tr("Chave SSH {}", Clean(name.empty() ? keyPath : name, 96));
   }
 
   bool Matches(const Server &s, const std::string &home) const {
@@ -299,7 +300,7 @@ int RunAskpass(const std::string &raw, const std::string &userName, const std::s
   auto secret = CryptUtils::DecryptAES(mine.front().passwordEnc, *key);
   explicit_bzero(key->data(), key->size());
   if(!secret) {
-    fprintf(stderr, "Não consegui abrir a senha guardada (a senha deste computador mudou?). Guarde de novo com: italock-ssh adicionar\n");
+    fprintf(stderr, "%s\n", I18n::Tr("Não consegui abrir a senha guardada (a senha deste computador mudou?). Guarde de novo com: italock-ssh adicionar").c_str());
     return AskOnTty(raw);
   }
   fprintf(stdout, "%s\n", secret->c_str());
@@ -313,7 +314,7 @@ int RunAdd(const std::vector<std::string> &args, const std::string &userName, co
   if(args.size() == 2 && args[0] == "chave") {
     s.keyPath = ExpandPath(Clean(args[1], 512), home);
     if(!std::filesystem::exists(s.keyPath)) {
-      fprintf(stderr, "Chave não encontrada: %s\n", s.keyPath.c_str());
+      fprintf(stderr, "%s\n", I18n::Tr("Chave não encontrada: {}", s.keyPath).c_str());
       return 1;
     }
   } else if(args.size() == 1) {
@@ -325,34 +326,34 @@ int RunAdd(const std::vector<std::string> &args, const std::string &userName, co
       s.host = target;
     }
     if(s.host.empty() || s.host.find_first_of(" /'\"") != std::string::npos) {
-      fprintf(stderr, "Servidor inválido.\n");
+      fprintf(stderr, "%s\n", I18n::Tr("Servidor inválido.").c_str());
       return 1;
     }
   } else {
-    fprintf(stderr, "Uso: italock-ssh adicionar usuario@servidor | italock-ssh adicionar chave <caminho da chave>\n");
+    fprintf(stderr, "%s\n", I18n::Tr("Uso: italock-ssh adicionar usuario@servidor | italock-ssh adicionar chave <caminho da chave>").c_str());
     return 1;
   }
-  auto first = ReadSecretFromTty(s.keyPath.empty() ? "Senha de " + (s.sshUser.empty() ? s.host : s.sshUser + "@" + s.host) + ":"
-                                                   : "Frase secreta da chave:");
+  auto first = ReadSecretFromTty(s.keyPath.empty() ? I18n::Tr("Senha de {}:", s.sshUser.empty() ? s.host : s.sshUser + "@" + s.host)
+                                                   : I18n::Tr("Frase secreta da chave:"));
   if(!first || first->empty())
     return 1;
-  auto again = ReadSecretFromTty("Repita:");
+  auto again = ReadSecretFromTty(I18n::Tr("Repita:"));
   if(!again || *again != *first) {
-    fprintf(stderr, "As duas não conferem. Nada foi guardado.\n");
+    fprintf(stderr, "%s\n", I18n::Tr("As duas não conferem. Nada foi guardado.").c_str());
     return 1;
   }
   explicit_bzero(again->data(), again->size());
-  fprintf(stderr, "Confirme no celular...\n");
-  auto key = ApproveOnPhone(userName, "Guardar senha SSH");
+  fprintf(stderr, "%s\n", I18n::Tr("Confirme no celular...").c_str());
+  auto key = ApproveOnPhone(userName, "Guardar senha SSH"); // traduzido ao mandar ao celular
   if(!key) {
-    fprintf(stderr, "Celular não confirmou. Nada foi guardado.\n");
+    fprintf(stderr, "%s\n", I18n::Tr("Celular não confirmou. Nada foi guardado.").c_str());
     return 1;
   }
   auto enc = CryptUtils::EncryptAES(*first, *key);
   explicit_bzero(first->data(), first->size());
   explicit_bzero(key->data(), key->size());
   if(!enc) {
-    fprintf(stderr, "Não consegui cifrar a senha. Nada foi guardado.\n");
+    fprintf(stderr, "%s\n", I18n::Tr("Não consegui cifrar a senha. Nada foi guardado.").c_str());
     return 1;
   }
   s.passwordEnc = *enc;
@@ -361,10 +362,10 @@ int RunAdd(const std::vector<std::string> &args, const std::string &userName, co
   std::erase_if(all, [&](const Server &o) { return o.owner == s.owner && o.host == s.host && o.sshUser == s.sshUser && o.keyPath == s.keyPath; });
   all.emplace_back(s);
   if(!SaveServers(all)) {
-    fprintf(stderr, "Não consegui gravar. Nada foi guardado.\n");
+    fprintf(stderr, "%s\n", I18n::Tr("Não consegui gravar. Nada foi guardado.").c_str());
     return 1;
   }
-  fprintf(stderr, "Guardado. Da próxima vez, o ssh pede a digital no celular.\n");
+  fprintf(stderr, "%s\n", I18n::Tr("Guardado. Da próxima vez, o ssh pede a digital no celular.").c_str());
   return 0;
 }
 
@@ -382,10 +383,10 @@ int RunList(const std::string &userName) {
     if(s.keyPath.empty())
       printf("%d  %s\n", n, (s.sshUser.empty() ? s.host : s.sshUser + "@" + s.host).c_str());
     else
-      printf("%d  chave %s\n", n, s.keyPath.c_str());
+      printf("%d  %s\n", n, I18n::Tr("chave {}", s.keyPath).c_str());
   }
   if(n == 0)
-    printf("Nenhuma senha SSH guardada.\n");
+    printf("%s\n", I18n::Tr("Nenhuma senha SSH guardada.").c_str());
   return 0;
 }
 
@@ -471,7 +472,7 @@ int RunToggle(bool enable, const std::string &home) {
       ok = WriteUserFile(xrcPath, xrc);
   }
   if(ok)
-    printf(enable ? "SSH pelo celular ligado. Vale a partir da próxima vez que entrar no computador.\n" : "SSH pelo celular desligado.\n");
+    printf("%s\n", (enable ? I18n::Tr("SSH pelo celular ligado. Vale a partir da próxima vez que entrar no computador.") : I18n::Tr("SSH pelo celular desligado.")).c_str());
   return ok ? 0 : 1;
 }
 
@@ -480,7 +481,7 @@ int RunRemove(const std::string &which, const std::string &userName) {
   try {
     index = std::stoi(which);
   } catch(...) {
-    fprintf(stderr, "Use o número mostrado em: italock-ssh listar\n");
+    fprintf(stderr, "%s\n", I18n::Tr("Use o número mostrado em: italock-ssh listar").c_str());
     return 1;
   }
   RootGuard root{};
@@ -492,14 +493,14 @@ int RunRemove(const std::string &which, const std::string &userName) {
     if(++n == index) {
       all.erase(it);
       if(!SaveServers(all)) {
-        fprintf(stderr, "Não consegui gravar.\n");
+        fprintf(stderr, "%s\n", I18n::Tr("Não consegui gravar.").c_str());
         return 1;
       }
-      printf("Removido.\n");
+      printf("%s\n", I18n::Tr("Removido.").c_str());
       return 0;
     }
   }
-  fprintf(stderr, "Não existe o número %s.\n", which.c_str());
+  fprintf(stderr, "%s\n", I18n::Tr("Não existe o número {}.", which).c_str());
   return 1;
 }
 } // namespace
@@ -509,7 +510,7 @@ int main(int argc, char *argv[]) {
   setvbuf(stderr, nullptr, _IONBF, 0);
   auto *pw = getpwuid(getuid());
   if(!pw || !pw->pw_name) {
-    fprintf(stderr, "Usuário desconhecido.\n");
+    fprintf(stderr, "%s\n", I18n::Tr("Usuário desconhecido.").c_str());
     return 1;
   }
   const std::string userName = pw->pw_name;
@@ -524,7 +525,7 @@ int main(int argc, char *argv[]) {
     // Sem setuid (instalacao incompleta): ainda assim nao atrapalha o ssh
     if(argc >= 2 && std::string(argv[1]) != "adicionar" && std::string(argv[1]) != "listar" && std::string(argv[1]) != "remover")
       return AskOnTty(argv[1]);
-    fprintf(stderr, "O italock-ssh não está instalado direito (falta permissão). Reinstale o Ítalock.\n");
+    fprintf(stderr, "%s\n", I18n::Tr("O italock-ssh não está instalado direito (falta permissão). Reinstale o Ítalock.").c_str());
     return 1;
   }
   {

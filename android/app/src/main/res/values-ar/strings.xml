@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_description">قفل الكمبيوتر وفتح قفله وتشغيله</string>
+
+    <string name="common_cancel">إلغاء</string>
+    <string name="common_close">إغلاق</string>
+    <string name="common_save">حفظ</string>
+    <string name="common_remove">إزالة</string>
+    <string name="common_change">تغيير</string>
+    <string name="common_allow">سماح</string>
+    <string name="common_turn_on">تفعيل</string>
+    <string name="common_back">رجوع</string>
+    <string name="common_show">عرض</string>
+    <string name="common_collapse">طيّ</string>
+    <string name="common_expanded">موسّع</string>
+    <string name="common_collapsed">مطويّ</string>
+    <string name="common_not_informed">غير محدد</string>
+    <string name="common_none">لا شيء</string>
+    <string name="common_technical_details">التفاصيل الفنية</string>
+
+    <string name="action_unlock">فتح القفل</string>
+    <string name="action_lock">قفل</string>
+    <string name="action_wake">تشغيل</string>
+    <string name="action_fix_clock">ضبط الوقت</string>
+    <string name="action_pair">إقران</string>
+
+    <string name="status_locked">مقفل</string>
+    <string name="status_unlocked">مفتوح</string>
+    <string name="status_no_answer">لا يوجد رد</string>
+    <string name="status_clock_off">ساعة الهاتف غير مضبوطة</string>
+    <string name="status_not_paired">لا يتعرّف على هذا الهاتف</string>
+    <string name="status_error">ردّ بخطأ</string>
+    <string name="status_querying">جارٍ التحقق</string>
+    <string name="status_unverified">%1$s · لم يتم التحقق</string>
+    <string name="danger_strip">بدون تأكيد</string>
+
+    <string name="via_lan">الشبكة المحلية</string>
+    <string name="via_internet">الإنترنت</string>
+
+    <string name="event_locked">تم القفل</string>
+    <string name="event_unlocked">تم فتح القفل</string>
+    <string name="event_denied">تم رفض الطلب</string>
+    <string name="event_expired">انتهت مهلة الطلب</string>
+    <string name="origin_app">التطبيق</string>
+    <string name="origin_widget">الأداة</string>
+    <string name="origin_shortcut">اختصار أيقونة التطبيق</string>
+    <string name="origin_tile">مربع الإعدادات السريعة</string>
+    <string name="origin_tag">علامة NFC</string>
+    <string name="origin_watch">الساعة</string>
+    <string name="origin_pc">طلب من الكمبيوتر</string>
+    <string name="origin_notification">الإشعار</string>
+    <string name="origin_auto">تلقائي عند الاقتراب</string>
+    <string name="when_today">اليوم الساعة %1$s</string>
+    <string name="when_yesterday">أمس الساعة %1$s</string>
+    <string name="when_date">%2$s الساعة %1$s</string>
+
+    <string name="notif_service_title">Ítalock يعمل</string>
+    <string name="notif_service_text">في انتظار طلبات أجهزة الكمبيوتر</string>
+    <string name="channel_status">الخدمة قيد التشغيل</string>
+    <string name="channel_prompt">طلبات فتح القفل</string>
+    <string name="channel_waiting">الكمبيوتر في الانتظار</string>
+
+    <string name="list_separator">"، "</string>
+    <string name="a11y_why_unavailable">لماذا هذا غير متاح</string>
+    <string name="a11y_unavailable">%1$s، غير متاح. %2$s</string>
+
+    <string name="home_lock_all">قفل الكل</string>
+    <string name="home_pair_computer">إقران كمبيوتر</string>
+    <string name="home_settings_attention">الإعدادات (هناك إذن ناقص)</string>
+    <string name="home_notifications_off">الإشعارات متوقفة: لن تظهر طلبات الكمبيوتر.</string>
+    <string name="home_empty_title">لا يوجد كمبيوتر مقترن</string>
+    <string name="home_empty_text">ثبّت Ítalock على الكمبيوتر وامسح رمز QR الذي يعرضه.</string>
+    <string name="home_open_details">فتح التفاصيل</string>
+    <string name="home_needs_repair">أعد الإقران: فُقدت كلمة المرور المحفوظة</string>
+    <string name="home_waiting_for">في انتظار %1$s</string>
+    <string name="lock_all_one">تم قفل الكمبيوتر</string>
+    <plurals name="lock_all_done">
+        <item quantity="zero">تم قفل الكل (%d)</item>
+        <item quantity="one">تم قفل الكل (%d)</item>
+        <item quantity="two">تم قفل الكل (%d)</item>
+        <item quantity="few">تم قفل الكل (%d)</item>
+        <item quantity="many">تم قفل الكل (%d)</item>
+        <item quantity="other">تم قفل الكل (%d)</item>
+    </plurals>
+    <string name="lock_all_none">لم يُقفل أي جهاز: %1$s</string>
+    <plurals name="lock_all_partial">
+        <item quantity="zero">تم قفل %1$d من %2$d.</item>
+        <item quantity="one">تم قفل %1$d من %2$d.</item>
+        <item quantity="two">تم قفل %1$d من %2$d.</item>
+        <item quantity="few">تم قفل %1$d من %2$d.</item>
+        <item quantity="many">تم قفل %1$d من %2$d.</item>
+        <item quantity="other">تم قفل %1$d من %2$d.</item>
+    </plurals>
+    <plurals name="lock_all_failed">
+        <item quantity="zero">لم يُقفل: %1$s</item>
+        <item quantity="one">لم يُقفل: %1$s</item>
+        <item quantity="two">لم يُقفلا: %1$s</item>
+        <item quantity="few">لم تُقفل: %1$s</item>
+        <item quantity="many">لم تُقفل: %1$s</item>
+        <item quantity="other">لم تُقفل: %1$s</item>
+    </plurals>
+
+    <string name="theme_dark">داكن</string>
+    <string name="theme_light">فاتح</string>
+    <string name="theme_system">حسب النظام</string>
+
+    <string name="settings_title">الإعدادات</string>
+    <string name="settings_missing">أذونات ناقصة</string>
+    <string name="settings_missing_notifications">الإشعارات: بدونها لا تظهر طلبات الكمبيوتر.</string>
+    <string name="settings_missing_full_screen">ملء الشاشة: لكي يظهر الطلب والهاتف مقفل.</string>
+    <string name="settings_missing_battery">توفير البطارية: قد يغلق Android تطبيق Ítalock.</string>
+    <string name="settings_missing_battery_action">استثناء</string>
+    <string name="settings_missing_bluetooth">Bluetooth: لكي يستدعي الكمبيوتر الهاتف بدون شبكة.</string>
+    <string name="settings_section_requests">طلبات الكمبيوتر</string>
+    <string name="settings_timeout">مهلة الرد</string>
+    <plurals name="settings_seconds">
+        <item quantity="zero">%d ثانية</item>
+        <item quantity="one">%d ثانية</item>
+        <item quantity="two">%d ثانية</item>
+        <item quantity="few">%d ثوانٍ</item>
+        <item quantity="many">%d ثانية</item>
+        <item quantity="other">%d ثانية</item>
+    </plurals>
+    <string name="settings_lockscreen_prompt">الطلب على شاشة القفل</string>
+    <string name="settings_lockscreen_prompt_on">تُضاء الشاشة ويظهر الطلب فوق شاشة القفل. يستهلك بطارية أكثر.</string>
+    <string name="settings_lockscreen_prompt_off">إشعار فقط، بدون إضاءة الشاشة. للرد، افتح قفل الهاتف.</string>
+    <string name="settings_approve_locked">فتح قفل الكمبيوتر والهاتف مقفل</string>
+    <string name="settings_approve_locked_on">يُقبل الطلب من شاشة القفل، بدون فتح قفل الهاتف. أقل أمانًا.</string>
+    <string name="settings_approve_locked_off">متوقف: افتح قفل الهاتف قبل القبول.</string>
+    <string name="settings_approve_locked_needs">فعّل \"%1$s\" أولاً</string>
+    <string name="settings_approve_locked_ask">فتح قفل الكمبيوتر والهاتف مقفل؟</string>
+    <string name="settings_approve_locked_ask_text">سيمكن فتح قفل الكمبيوتر مباشرة من شاشة قفل الهاتف، بالمقاييس الحيوية (أو برقم PIN إذا كان \"%1$s\" مفعّلاً)، بدون فتح قفل الهاتف. هذا أسهل لكنه أقل أمانًا.</string>
+    <string name="settings_hide_name">إخفاء اسم الكمبيوتر</string>
+    <string name="settings_hide_name_sub">عندما يكون الهاتف مقفلاً، لا تذكر الطلبات والتنبيهات اسم الكمبيوتر.</string>
+    <string name="settings_allow_credential">قبول رقم PIN أو النقش أو كلمة المرور</string>
+    <string name="settings_allow_credential_sub">بالإضافة إلى المقاييس الحيوية. عند الإيقاف: بصمة الإصبع أو الوجه الآمن فقط.</string>
+    <string name="settings_section_lock">القفل</string>
+    <string name="settings_confirm_lock">طلب التأكيد قبل القفل</string>
+    <string name="settings_confirm_lock_sub">يسأل قبل القفل من التطبيق أو الأداة أو الاختصارات أو العلامة أو الساعة أو الإشعار.</string>
+    <string name="settings_tile">مربع الإعدادات السريعة</string>
+    <string name="settings_tile_controls">يتحكم في: %1$s</string>
+    <string name="settings_tile_no_pc">لا يوجد كمبيوتر</string>
+    <string name="settings_tile_choose">ما يتحكم فيه مربع الإعدادات السريعة</string>
+    <string name="settings_section_look">المظهر والتنبيه</string>
+    <string name="settings_theme">المظهر</string>
+    <string name="settings_vibrate">الاهتزاز عند الانتهاء</string>
+    <string name="settings_vibrate_sub">اهتزازة قصيرة عند النجاح، ومزدوجة عند الفشل.</string>
+    <string name="settings_section_connection">الاتصال</string>
+    <string name="settings_poll">تحديث حالة القفل</string>
+    <string name="settings_poll_open">عند فتح التطبيق فقط</string>
+    <plurals name="settings_poll_every">
+        <item quantity="zero">كل %d ثانية والتطبيق مفتوح</item>
+        <item quantity="one">كل %d ثانية والتطبيق مفتوح</item>
+        <item quantity="two">كل %d ثانية والتطبيق مفتوح</item>
+        <item quantity="few">كل %d ثوانٍ والتطبيق مفتوح</item>
+        <item quantity="many">كل %d ثانية والتطبيق مفتوح</item>
+        <item quantity="other">كل %d ثانية والتطبيق مفتوح</item>
+    </plurals>
+    <string name="settings_tailscale_warning">التنبيه عند إيقاف Tailscale</string>
+    <string name="settings_tailscale_warning_sub">بدونه، لا يعمل فتح القفل خارج المنزل.</string>
+    <string name="settings_paths_note">تُختار الشبكة المحلية وBluetooth وTailscale لكل كمبيوتر في تفاصيله.</string>
+    <string name="settings_section_more">المزيد</string>
+    <string name="settings_experimental">الميزات التجريبية</string>
+    <string name="settings_experimental_none">لا توجد ميزة مفعّلة</string>
+    <string name="settings_beta">BETA</string>
+    <string name="settings_about">حول Ítalock</string>
+    <string name="settings_about_sub">الشكر والتقدير، الترخيص، التفاصيل الفنية والسجلات</string>
+    <plurals name="settings_experimental_on">
+        <item quantity="zero">المفعّلة: %d</item>
+        <item quantity="one">المفعّلة: %d</item>
+        <item quantity="two">المفعّلة: %d</item>
+        <item quantity="few">المفعّلة: %d</item>
+        <item quantity="many">المفعّلة: %d</item>
+        <item quantity="other">المفعّلة: %d</item>
+    </plurals>
+
+    <string name="main_history_cleared">تم مسح سجل نشاط %1$s</string>
+    <string name="main_lock_all_ask">قفل كل أجهزة الكمبيوتر؟</string>
+    <string name="main_unlocked">تم فتح قفل %1$s</string>
+    <string name="main_not_unlocked">لم يُفتح قفل %1$s</string>
+    <string name="main_lock_unconfirmed">تلقّى %1$s الطلب، لكنه لم يؤكد</string>
+    <string name="main_removed">تمت إزالة %1$s</string>
+    <string name="main_no_paths">عند إيقاف كل المسارات، لن يعمل %1$s.</string>
+    <string name="main_no_confirm_bio_title">تفعيل فتح القفل بدون تأكيد</string>
+    <string name="main_key_error">خطأ في مفتاح الهاتف. حاول مرة أخرى.</string>
+    <string name="main_no_confirm_on">%1$s: تم تفعيل فتح القفل بدون تأكيد</string>
+    <string name="main_no_confirm_off">%1$s: عاد طلب التأكيد</string>
+    <string name="main_confirm_for">التأكيد لـ %1$s</string>
+    <string name="main_on_for">مفعّل لـ %1$s</string>
+    <string name="main_tech_version">الإصدار</string>
+    <string name="main_tech_device">الجهاز</string>
+    <string name="main_tech_phone_id">معرّف هذا الهاتف</string>
+    <string name="main_tech_paired">أجهزة الكمبيوتر المقترنة</string>
+    <string name="main_tech_google">خدمات Google (ساعة Wear OS)</string>
+    <string name="main_tech_available">متاحة</string>
+    <string name="main_tech_unavailable">غير متاحة</string>
+    <string name="main_export_failed">تعذّر إنشاء ملف السجلات.</string>
+    <string name="main_export_subject">سجلات Ítalock</string>
+    <string name="main_export_chooser">إرسال السجلات</string>
+    <string name="main_export_no_app">لا يوجد تطبيق لمشاركة الملف.</string>
+    <string name="main_scan_prompt">وجّه الكاميرا إلى رمز QR الذي يعرضه Ítalock على الكمبيوتر</string>
+    <string name="main_pair_invalid_code">رمز غير صالح. تحقّق منه وحاول مرة أخرى.</string>
+    <string name="main_pair_searching">جارٍ البحث عن الكمبيوتر</string>
+    <string name="main_pair_timeout">استغرق الإقران وقتًا طويلاً. تحقّق من الشبكة وحاول مرة أخرى.</string>
+    <string name="main_pair_confirm">أكّد لحفظ الإقران</string>
+    <string name="main_pair_not_saved">حفظ الكمبيوتر الإقران، لكن الهاتف لم يحفظه. انقر على \"التأكيد مرة أخرى\"، وإن لم ينجح ذلك، أزل هذا الهاتف من Ítalock على الكمبيوتر وأعد الإقران.</string>
+    <string name="main_pair_bio_title">حفظ الإقران مع %1$s</string>
+    <string name="main_paired_with">تم الإقران مع %1$s</string>
+    <string name="main_pair_cancelled">%1$s الكمبيوتر حفظ الإقران بالفعل: انقر على \"التأكيد مرة أخرى\"، أو أزل هذا الهاتف من Ítalock على الكمبيوتر.</string>
+    <string name="main_pair_cancelled_default">تم إلغاء التأكيد.</string>
+
+    <string name="settings_language">اللغة</string>
+    <string name="language_system">تلقائي (لغة النظام)</string>
+</resources>

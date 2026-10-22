@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="details_repair_needed">Associez à nouveau : le mot de passe enregistré a été perdu</string>
+    <string name="details_section_general">Général</string>
+    <string name="details_name">Nom</string>
+    <string name="details_order">Ordre dans la liste</string>
+    <string name="details_order_value">%1$d sur %2$d</string>
+    <string name="details_move_up">Monter dans la liste</string>
+    <string name="details_move_down">Descendre dans la liste</string>
+    <string name="details_tile">Utiliser dans la vignette rapide</string>
+    <string name="details_tile_sub">Le bouton Ítalock des réglages rapides contrôle cet ordinateur.</string>
+    <string name="details_wake">Allumer via le réseau</string>
+    <string name="details_wake_sub">Seulement sur le même réseau, avec l\'ordinateur branché en filaire et l\'option activée sur celui-ci.</string>
+    <string name="details_mac">Adresse de la carte réseau filaire</string>
+    <string name="details_mac_empty">Non renseignée. Sans elle, impossible d\'allumer via le réseau.</string>
+    <string name="details_mac_help">Plusieurs adresses : séparez-les par une virgule. Vide désactive Allumer via le réseau.</string>
+    <string name="details_mac_invalid">Format : six paires séparées par deux-points.</string>
+
+    <string name="details_section_paths">Chemins</string>
+    <string name="details_path_lan">Réseau local</string>
+    <string name="details_path_lan_sub">Même réseau Wi-Fi ou câble USB avec partage de connexion.</string>
+    <string name="details_path_bt_sub">L\'ordinateur appelle le téléphone sans réseau.</string>
+    <string name="details_path_ts_sub">Hors de chez vous, via Internet.</string>
+
+    <string name="details_section_tag">Tag NFC</string>
+    <string name="details_tag_write">Écrire un tag NFC</string>
+    <string name="details_tag_write_button">Écrire</string>
+    <string name="details_tag_lock">Verrouiller par le tag</string>
+    <string name="details_tag_lock_sub">Approcher le téléphone déverrouillé verrouille cet ordinateur.</string>
+    <string name="details_tag_unlock">Déverrouiller par le tag</string>
+    <string name="details_tag_unlock_sub">Demande toujours la biométrie.</string>
+    <string name="details_tag_both">Approcher le téléphone déverrouillé du tag verrouille ou déverrouille cet ordinateur, selon l\'état du verrou.</string>
+    <string name="details_tag_only_unlock">Approcher le téléphone déverrouillé du tag ne fait que déverrouiller cet ordinateur.</string>
+    <string name="details_tag_only_lock">Approcher le téléphone déverrouillé du tag ne fait que verrouiller cet ordinateur.</string>
+    <string name="details_tag_none">Avec les deux désactivés, le tag de cet ordinateur ne fait rien.</string>
+
+    <string name="details_section_security">Sécurité</string>
+    <string name="details_no_confirm">Déverrouiller sans confirmation</string>
+    <string name="details_no_confirm_sub">Le bouton Déverrouiller du téléphone ne demande pas la biométrie. Les demandes de l\'ordinateur la demandent toujours.</string>
+
+    <string name="details_section_experimental">Expérimental</string>
+    <string name="details_exp_nearby_sub">Par Bluetooth ou sur le même réseau, sans toucher le téléphone. Jamais via Tailscale.</string>
+    <string name="details_exp_notification_sub">Bouton Déverrouiller dans la notification, sans biométrie.</string>
+    <string name="details_exp_watch_sub">La demande sonne comme un appel sur la montre : ignorer déverrouille, refuser rejette (bloqué hors du poignet).</string>
+    <string name="details_exp_wear_sub">La demande apparaît sur la montre avec Déverrouiller et Refuser.</string>
+
+    <string name="details_section_history">Historique</string>
+    <string name="details_history_empty">Rien pour l\'instant. Les verrouillages, déverrouillages et demandes de l\'ordinateur apparaissent ici.</string>
+    <string name="details_history_less">Afficher moins</string>
+    <string name="details_history_all">Tout afficher (%1$d)</string>
+    <string name="details_history_clear">Effacer l\'historique</string>
+
+    <string name="details_tech_pc_name">Nom sur l\'ordinateur</string>
+    <string name="details_tech_user">Utilisateur</string>
+    <string name="details_tech_os">Système</string>
+    <string name="details_tech_method">Façon d\'appeler le téléphone</string>
+    <string name="details_tech_pc_addresses">Adresses de l\'ordinateur</string>
+    <string name="details_tech_phone_addresses">Adresses de ce téléphone</string>
+    <string name="details_tech_response">Réponse sur l\'état du verrou</string>
+    <string name="details_tech_sealed">Chiffrée</string>
+    <string name="details_tech_plain">En clair (ancien programme sur l\'ordinateur)</string>
+    <string name="details_tech_paired_at">Associé le</string>
+    <string name="details_tech_public_id">ID public (tag et montre)</string>
+    <string name="details_tech_identifier">Identifiant</string>
+
+    <string name="details_remove_pc">Supprimer l\'ordinateur</string>
+    <string name="details_remove_title">Supprimer %1$s ?</string>
+    <string name="details_remove_text">Le téléphone ne pourra plus déverrouiller cet ordinateur. Pour revenir en arrière, il faudra l\'associer à nouveau.</string>
+    <string name="details_rename_title">Nom de l\'ordinateur</string>
+    <string name="details_rename_hint">Vide : utilise le nom de l\'ordinateur.</string>
+
+    <string name="details_nfc_off_title">NFC désactivé</string>
+    <string name="details_nfc_write_title">Écrire le tag de %1$s</string>
+    <string name="details_nfc_off_text">Activez le NFC dans les réglages du téléphone et revenez ici.</string>
+    <string name="details_nfc_hold">Placez le tag au dos du téléphone et maintenez jusqu\'à l\'alerte.</string>
+    <string name="details_nfc_readonly">Protéger le tag contre l\'écriture</string>
+    <string name="details_nfc_readonly_warn">Irréversible : le tag ne pourra plus jamais être réécrit.</string>
+    <string name="details_nfc_open_settings">Ouvrir les réglages</string>
+
+    <string name="about_title">À propos</string>
+    <string name="about_section_credits">Crédits</string>
+    <string name="about_based_on">Basé sur PC Bio Unlock (aujourd\'hui PulseUnlock), de MeisApps, licence GPL version 3.</string>
+    <string name="about_source_soon">Code source : bientôt sur GitHub.</string>
+    <string name="about_source">Code source : GitHub.</string>
+    <string name="about_license">Licence</string>
+    <string name="about_original">Projet d\'origine</string>
+    <string name="about_code">Code</string>
+    <string name="about_section_diag">Diagnostic</string>
+    <string name="about_export">Exporter les journaux</string>
+    <string name="about_export_sub">Fichier texte à envoyer à la personne qui vous aide. Sans clés ni mots de passe.</string>
+
+    <string name="exp_title">Fonctions expérimentales</string>
+    <string name="exp_banner">Expérimental. Peut mal fonctionner, changer ou disparaître dans les prochaines versions. À utiliser à vos risques.</string>
+    <string name="exp_nearby">Déverrouillage automatique à proximité</string>
+    <string name="exp_nearby_sub">Par Bluetooth ou sur le même réseau, sans toucher le téléphone (jamais via Tailscale). Risque : quelqu\'un près de l\'ordinateur peut le déverrouiller.</string>
+    <string name="exp_notification">Déverrouiller depuis la notification</string>
+    <string name="exp_notification_sub">Bouton Déverrouiller dans la notification, sans biométrie. Risque : quiconque prend le téléphone déverrouillé peut déverrouiller.</string>
+    <string name="exp_watch">Montre Amazfit (faux appel)</string>
+    <string name="exp_watch_sub">La demande apparaît sur la montre comme un appel : ignorer déverrouille, refuser rejette. Hors du poignet, l\'action est bloquée. Nécessite Gadgetbridge Voz associé à la montre. Risque : quiconque porte votre montre au poignet peut déverrouiller.</string>
+    <string name="exp_wear">Montre Wear OS</string>
+    <string name="exp_wear_sub">La demande apparaît sur la montre (Galaxy Watch, Pixel Watch et autres) avec Déverrouiller et Refuser ; la vignette verrouille, déverrouille et allume. Nécessite l\'appli Ítalock sur la montre et le verrouillage de l\'écran activé dessus. Loin du téléphone, passe par Internet via Google. Risque : quiconque a votre montre déverrouillée peut déverrouiller.</string>
+    <string name="exp_footer">Après l\'activation, choisissez les ordinateurs dans les détails de chacun. Désactiver ici désactive pour tous.</string>
+
+    <string name="pair_title">Associer un ordinateur</string>
+    <string name="pair_step1_title">Sur l\'ordinateur</string>
+    <string name="pair_step1_text">Ouvrez Ítalock et choisissez d\'associer un téléphone : un QR code s\'affiche.</string>
+    <string name="pair_step2_title">Même réseau ou Bluetooth</string>
+    <string name="pair_step2_text">Les deux sur le même réseau, ou reliés par câble USB. Pour le Bluetooth, associez d\'abord le téléphone à l\'ordinateur.</string>
+    <string name="pair_allow_bt">Autoriser le Bluetooth</string>
+    <string name="pair_step3_title">Scanner le QR code</string>
+    <string name="pair_step3_text">Pointez l\'appareil photo vers le QR code ou saisissez le code affiché.</string>
+    <string name="pair_scan">Scanner le QR code</string>
+    <string name="pair_type">Saisir le code</string>
+    <string name="pair_code_label">Code de l\'ordinateur</string>
+    <string name="pair_with_code">Associer avec le code</string>
+    <string name="pair_retry_save">Confirmer à nouveau</string>
+
+    <string name="danger_title">Dangereux</string>
+    <string name="danger_heading">Déverrouiller %1$s sans confirmation.</string>
+    <string name="danger_text">Toute personne ayant votre téléphone déverrouillé pourra déverrouiller cet ordinateur sans empreinte, visage ni mot de passe. Si vous perdez le téléphone ou si quelqu\'un l\'utilise, votre ordinateur est exposé.</string>
+    <string name="danger_scope">Ne concerne que le bouton Déverrouiller du téléphone (appli, widget, vignette rapide et raccourcis de l\'icône). Quand quelqu\'un utilise l\'ordinateur, le téléphone continue de demander une confirmation.</string>
+    <string name="danger_understood">Je comprends le risque</string>
+    <string name="danger_turn_on_wait">Activer (%1$d)</string>
+
+    <string name="diag_header">Journaux d\'Ítalock</string>
+    <string name="diag_generated">Généré le</string>
+    <string name="diag_version">Version</string>
+    <string name="diag_device">Appareil</string>
+    <string name="diag_theme">Apparence</string>
+    <string name="diag_vibrate">Vibrer</string>
+    <string name="diag_confirm_lock">Confirmer avant de verrouiller</string>
+    <string name="diag_prompt_timeout">Délai de la demande (s)</string>
+    <string name="diag_approve_locked">Déverrouiller avec le téléphone verrouillé</string>
+    <string name="diag_fullscreen">Demande sur l\'écran de verrouillage</string>
+    <string name="diag_hide_name">Masquer le nom</string>
+    <string name="diag_allow_credential">Accepter PIN, schéma ou mot de passe</string>
+    <string name="diag_poll">Actualiser l\'état du verrou (s, 0 = à l\'ouverture)</string>
+    <string name="diag_ts_warning">Alerte Tailscale</string>
+    <string name="diag_ts_installed">Tailscale installé</string>
+    <string name="diag_ts_up">Tailscale connecté</string>
+    <string name="diag_google">Services Google</string>
+    <string name="diag_experimental">Expérimentales (proximité, notification, Zepp, Wear OS)</string>
+    <string name="diag_missing">Autorisations manquantes</string>
+    <string name="diag_nothing">rien</string>
+    <string name="diag_pcs">Ordinateurs</string>
+    <string name="diag_pc_os">Système</string>
+    <string name="diag_pc_method">Façon d\'appeler</string>
+    <string name="diag_pc_addresses">Adresses connues</string>
+    <string name="diag_pc_paths">Chemins (réseau local, Bluetooth, Tailscale)</string>
+    <string name="diag_pc_sealed">Réponse chiffrée</string>
+    <string name="diag_pc_no_confirm">Sans confirmation</string>
+    <string name="diag_pc_tag">Tag NFC</string>
+    <string name="diag_pc_wake">Allumer via le réseau</string>
+    <string name="diag_pc_last">Dernière utilisation</string>
+    <string name="diag_none">aucun</string>
+    <string name="diag_events">Événements récents</string>
+    <string name="diag_no_events">(aucun)</string>
+
+    <string name="widget_removed">Ordinateur supprimé</string>
+    <string name="widget_refresh">Actualiser l\'état</string>
+    <string name="widget_tap_refresh">Touchez Actualiser pour voir l\'état du verrou</string>
+    <string name="widget_clock_off">Horloge décalée</string>
+    <string name="widget_status_at">%1$s · %2$s</string>
+    <string name="widget_config_title">Quel ordinateur ce widget contrôle-t-il ?</string>
+    <string name="widget_config_empty">Aucun ordinateur associé. Ouvrez Ítalock et associez-en un d\'abord.</string>
+</resources>

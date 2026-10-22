@@ -46,26 +46,33 @@ Item {
     }
 
     readonly property var appearanceOptions: [
-        { text: "Escuro (padrão)", value: "escuro" },
-        { text: "Claro", value: "claro" },
-        { text: "Igual ao sistema", value: "sistema" }
+        { text: qsTr("Escuro (padrão)"), value: "escuro" },
+        { text: qsTr("Claro"), value: "claro" },
+        { text: qsTr("Igual ao sistema"), value: "sistema" }
     ]
+    // Idioma: Português (Brasil) é o padrão para todo mundo; vale também para a tela de bloqueio e os avisos.
+    property var languageOptions: QI18n.GetLanguageOptions()
+    function languageIndex() {
+        let v = QI18n.GetChoice();
+        for (let i = 0; i < languageOptions.length; i++) if (languageOptions[i].value === v) return i;
+        return 0;
+    }
     function appearanceIndex() {
         let v = MainWindow.GetPref("aparencia");
         for (let i = 0; i < appearanceOptions.length; i++) if (appearanceOptions[i].value === v) return i;
         return 0;
     }
     readonly property var waitOptions: [
-        { text: "10 segundos", value: 10 },
-        { text: "20 segundos (padrão)", value: 20 },
-        { text: "40 segundos", value: 40 }
+        { text: qsTr("10 segundos"), value: 10 },
+        { text: qsTr("20 segundos (padrão)"), value: 20 },
+        { text: qsTr("40 segundos"), value: 40 }
     ]
     // Atalho de teclado para travar (Windows; o ícone perto do relógio registra a combinação)
     readonly property var hotkeyOptions: [
-        { text: "Ctrl + Alt + L (padrão)", value: "ctrl+alt+l" },
-        { text: "Ctrl + Alt + Shift + L", value: "ctrl+alt+shift+l" },
-        { text: "Ctrl + Alt + K", value: "ctrl+alt+k" },
-        { text: "Ctrl + Alt + Espaço", value: "ctrl+alt+espaco" }
+        { text: qsTr("Ctrl + Alt + L (padrão)"), value: "ctrl+alt+l" },
+        { text: qsTr("Ctrl + Alt + Shift + L"), value: "ctrl+alt+shift+l" },
+        { text: qsTr("Ctrl + Alt + K"), value: "ctrl+alt+k" },
+        { text: qsTr("Ctrl + Alt + Espaço"), value: "ctrl+alt+espaco" }
     ]
     function hotkeyIndex() {
         let v = MainWindow.GetPref("atalhoTecla");
@@ -112,18 +119,18 @@ Item {
             load();
         };
         if (parseInt(unlockPort.text, 10) !== st.unlockServerPort && SettingsForm.HasUDPDevices()) {
-            window.ask("Mudar a porta de destravar?",
-                       "Os celulares pareados pela rede ou pela internet deixam de funcionar e vão ser removidos. Será preciso parear de novo.",
-                       "Mudar e remover", true, function() { SettingsForm.RemoveUDPDevices(); doSave(); });
+            window.ask(qsTr("Mudar a porta de destravar?"),
+                       qsTr("Os celulares pareados pela rede ou pela internet deixam de funcionar e vão ser removidos. Será preciso parear de novo."),
+                       qsTr("Mudar e remover"), true, function() { SettingsForm.RemoveUDPDevices(); doSave(); });
         } else {
             doSave();
         }
     }
 
     readonly property var behaviorOptions: [
-        { text: "Ao apertar uma tecla (recomendado)", value: "key_press_lock_only" },
-        { text: "Ao abrir a tela de bloqueio", value: "foreground_always" },
-        { text: "Só pelo botão Destravar do celular", value: "wake_only" }
+        { text: qsTr("Ao apertar uma tecla (recomendado)"), value: "key_press_lock_only" },
+        { text: qsTr("Ao abrir a tela de bloqueio"), value: "foreground_always" },
+        { text: qsTr("Só pelo botão Destravar do celular"), value: "wake_only" }
     ]
     function behaviorIndex() {
         let v = opts.winUnlockBehavior || "key_press_lock_only";
@@ -142,7 +149,7 @@ Item {
         PageHeader {
             Layout.maximumWidth: 680
             Layout.alignment: Qt.AlignHCenter
-            title: "Configurações"
+            title: qsTr("Configurações")
             onBack: stack.pop()
         }
 
@@ -159,10 +166,10 @@ Item {
                 spacing: 0
 
                 // ---- Geral ----
-                SectionLabel { text: "GERAL"; Layout.topMargin: 8 }
+                SectionLabel { text: qsTr("GERAL"); Layout.topMargin: 8 }
                 SettingRow {
-                    title: "Aparência"
-                    subtitle: "Vale para todas as janelas do Ítalock."
+                    title: qsTr("Aparência")
+                    subtitle: qsTr("Vale para todas as janelas do Ítalock.")
                     showDivider: false
                 }
                 Choice {
@@ -171,64 +178,84 @@ Item {
                     model: page.appearanceOptions
                     textRole: "text"
                     currentIndex: page.appearanceIndex()
-                    Accessible.name: "Aparência"
+                    Accessible.name: qsTr("Aparência")
                     onActivated: function(i) { MainWindow.SetPref("aparencia", page.appearanceOptions[i].value); }
                 }
                 SettingRow {
+                    title: qsTr("Idioma")
+                    subtitle: qsTr("Vale para as janelas, a tela de bloqueio e os avisos do Ítalock.")
+                    showDivider: false
+                }
+                Choice {
+                    id: languageBox
+                    Layout.fillWidth: true
+                    Layout.bottomMargin: 12
+                    model: page.languageOptions
+                    textRole: "text"
+                    currentIndex: page.languageIndex()
+                    Accessible.name: qsTr("Idioma")
+                    onActivated: function(i) {
+                        let err = QI18n.SetChoice(page.languageOptions[i].value);
+                        if (err !== "") window.showErrorMessage(err);
+                        page.languageOptions = QI18n.GetLanguageOptions(); // "Automático" no idioma novo
+                        languageBox.currentIndex = page.languageIndex();
+                    }
+                }
+                SettingRow {
                     visible: page.isWindows
-                    title: "Iniciar com o computador, perto do relógio"
-                    subtitle: "O ícone abre sozinho ao entrar no Windows. Por ali dá para travar na hora e abrir esta janela."
+                    title: qsTr("Iniciar com o computador, perto do relógio")
+                    subtitle: qsTr("O ícone abre sozinho ao entrar no Windows. Por ali dá para travar na hora e abrir esta janela.")
                     Toggle {
                         id: trayToggle
-                        Accessible.name: "Iniciar com o computador, perto do relógio"
+                        Accessible.name: qsTr("Iniciar com o computador, perto do relógio")
                         Component.onCompleted: checked = page.isWindows && SettingsForm.IsTrayAutostartEnabled()
                         onToggled: {
                             if (!SettingsForm.SetTrayAutostartEnabled(checked)) {
                                 checked = !checked;
-                                window.showErrorMessage("Não deu para mudar a inicialização do ícone.");
+                                window.showErrorMessage(qsTr("Não deu para mudar a inicialização do ícone."));
                             }
                         }
                     }
                 }
                 SettingRow {
                     visible: page.isWindows
-                    title: "Avisar quando o celular travar ou destravar"
-                    subtitle: "Mostra um aviso perto do relógio. Precisa do ícone aberto."
+                    title: qsTr("Avisar quando o celular travar ou destravar")
+                    subtitle: qsTr("Mostra um aviso perto do relógio. Precisa do ícone aberto.")
                     Toggle {
-                        Accessible.name: "Avisar quando o celular travar ou destravar"
+                        Accessible.name: qsTr("Avisar quando o celular travar ou destravar")
                         Component.onCompleted: checked = MainWindow.GetPref("avisos")
                         onToggled: MainWindow.SetPref("avisos", checked)
                     }
                 }
                 SettingRow {
                     visible: page.isWindows
-                    title: "Som ao destravar"
-                    subtitle: "Toca o som de destravar do Windows quando o celular destrava este computador."
+                    title: qsTr("Som ao destravar")
+                    subtitle: qsTr("Toca o som de destravar do Windows quando o celular destrava este computador.")
                     Toggle {
-                        Accessible.name: "Som ao destravar"
+                        Accessible.name: qsTr("Som ao destravar")
                         Component.onCompleted: checked = MainWindow.GetPref("som")
                         onToggled: MainWindow.SetPref("som", checked)
                     }
                 }
                 SettingRow {
                     visible: !page.isWindows
-                    title: "Abrir o chaveiro junto"
-                    subtitle: "Ao destravar pelo celular, abre também as senhas guardadas (redes sem fio, navegador)."
+                    title: qsTr("Abrir o chaveiro junto")
+                    subtitle: qsTr("Ao destravar pelo celular, abre também as senhas guardadas (redes sem fio, navegador).")
                     Toggle {
-                        Accessible.name: "Abrir o chaveiro junto"
+                        Accessible.name: qsTr("Abrir o chaveiro junto")
                         checked: page.service.pamSetPassword ? page.service.pamSetPassword.enabled : false
                         onToggled: page.applyService("pamSetPassword", checked)
                     }
                 }
                 SettingRow {
                     visible: page.isWindows
-                    title: "Atalho para travar"
+                    title: qsTr("Atalho para travar")
                     subtitle: page.hotkeyError
-                              ? "Outro programa já usa essa combinação. Escolha outra abaixo."
-                              : "Trava este computador na hora, e a tela de bloqueio fica esperando o celular. Precisa do ícone perto do relógio aberto."
+                              ? qsTr("Outro programa já usa essa combinação. Escolha outra abaixo.")
+                              : qsTr("Trava este computador na hora, e a tela de bloqueio fica esperando o celular. Precisa do ícone perto do relógio aberto.")
                     showDivider: !page.hotkeyOn
                     Toggle {
-                        Accessible.name: "Atalho para travar"
+                        Accessible.name: qsTr("Atalho para travar")
                         Component.onCompleted: {
                             checked = page.isWindows && MainWindow.GetPref("atalho");
                             page.hotkeyOn = checked;
@@ -249,7 +276,7 @@ Item {
                     model: page.hotkeyOptions
                     textRole: "text"
                     currentIndex: page.hotkeyIndex()
-                    Accessible.name: "Combinação de teclas para travar"
+                    Accessible.name: qsTr("Combinação de teclas para travar")
                     onActivated: function(i) {
                         MainWindow.SetPref("atalhoTecla", page.hotkeyOptions[i].value);
                         page.hotkeyError = false;
@@ -257,24 +284,24 @@ Item {
                     }
                 }
                 SettingRow {
-                    title: "Histórico"
-                    subtitle: "Os últimos 50 pedidos: quem travou ou destravou, por qual caminho e quando."
+                    title: qsTr("Histórico")
+                    subtitle: qsTr("Os últimos 50 pedidos: quem travou ou destravou, por qual caminho e quando.")
                     clickable: true
                     onClicked: stack.push("qrc:/ui/pages/HistoryPage.qml")
                 }
                 SettingRow {
-                    title: "Sobre o Ítalock"
+                    title: qsTr("Sobre o Ítalock")
                     clickable: true
                     showDivider: false
                     onClicked: stack.push("qrc:/ui/pages/AboutPage.qml")
                 }
 
                 // ---- Tela de bloqueio ----
-                SectionLabel { text: page.isWindows ? "TELA DE BLOQUEIO" : "PROTEÇÃO DE TELA" }
+                SectionLabel { text: page.isWindows ? qsTr("TELA DE BLOQUEIO") : qsTr("PROTEÇÃO DE TELA") }
                 SettingRow {
                     visible: page.isWindows
-                    title: "Quando chamar o celular"
-                    subtitle: "Esperar uma tecla evita chamar o celular à toa quando a tela apaga sozinha. O botão Destravar do celular funciona em todas."
+                    title: qsTr("Quando chamar o celular")
+                    subtitle: qsTr("Esperar uma tecla evita chamar o celular à toa quando a tela apaga sozinha. O botão Destravar do celular funciona em todas.")
                     showDivider: false
                 }
                 Choice {
@@ -284,12 +311,12 @@ Item {
                     model: page.behaviorOptions
                     textRole: "text"
                     currentIndex: page.behaviorIndex()
-                    Accessible.name: "Quando chamar o celular"
+                    Accessible.name: qsTr("Quando chamar o celular")
                     onActivated: function(i) { page.setOption("winUnlockBehavior", page.behaviorOptions[i].value); }
                 }
                 SettingRow {
-                    title: "Tempo de espera pelo celular"
-                    subtitle: "Se o celular nem responder nesse tempo, a tela desiste e fica esperando a senha."
+                    title: qsTr("Tempo de espera pelo celular")
+                    subtitle: qsTr("Se o celular nem responder nesse tempo, a tela desiste e fica esperando a senha.")
                     showDivider: false
                 }
                 Choice {
@@ -298,59 +325,59 @@ Item {
                     model: page.waitOptions
                     textRole: "text"
                     currentIndex: page.waitIndex()
-                    Accessible.name: "Tempo de espera pelo celular"
+                    Accessible.name: qsTr("Tempo de espera pelo celular")
                     onActivated: function(i) { page.setOption("unlockWaitSeconds", page.waitOptions[i].value); }
                 }
                 SettingRow {
                     visible: page.isWindows
-                    title: "Tentar de novo sozinho ao ligar o computador"
-                    subtitle: "Na tela de entrada logo depois de ligar, chama o celular de novo depois de 1, 2, 5 e 10 minutos se ele não respondeu."
+                    title: qsTr("Tentar de novo sozinho ao ligar o computador")
+                    subtitle: qsTr("Na tela de entrada logo depois de ligar, chama o celular de novo depois de 1, 2, 5 e 10 minutos se ele não respondeu.")
                     Toggle {
-                        Accessible.name: "Tentar de novo sozinho ao ligar o computador"
+                        Accessible.name: qsTr("Tentar de novo sozinho ao ligar o computador")
                         checked: page.opts.bootAutoRetry === true
                         onToggled: page.setOption("bootAutoRetry", checked)
                     }
                 }
                 SettingRow {
                     visible: page.isWindows
-                    title: "Começar a tela de bloqueio no Ítalock"
-                    subtitle: "A tela de bloqueio já abre na opção do Ítalock. Senha e PIN continuam em Opções de entrada."
+                    title: qsTr("Começar a tela de bloqueio no Ítalock")
+                    subtitle: qsTr("A tela de bloqueio já abre na opção do Ítalock. Senha e PIN continuam em Opções de entrada.")
                     Toggle {
-                        Accessible.name: "Começar a tela de bloqueio no Ítalock"
+                        Accessible.name: qsTr("Começar a tela de bloqueio no Ítalock")
                         checked: page.service.forceCredProv ? page.service.forceCredProv.enabled : false
                         onToggled: page.applyService("forceCredProv", checked)
                     }
                 }
                 SettingRow {
                     visible: page.isWindows
-                    title: "Esconder o campo de senha do Ítalock"
-                    subtitle: "Mostra só a mensagem do celular. Para digitar a senha, use Opções de entrada."
+                    title: qsTr("Esconder o campo de senha do Ítalock")
+                    subtitle: qsTr("Mostra só a mensagem do celular. Para digitar a senha, use Opções de entrada.")
                     Toggle {
-                        Accessible.name: "Esconder o campo de senha do Ítalock"
+                        Accessible.name: qsTr("Esconder o campo de senha do Ítalock")
                         checked: page.service.hidePasswordField ? page.service.hidePasswordField.enabled : false
                         onToggled: page.applyService("hidePasswordField", checked)
                     }
                 }
                 SettingRow {
-                    title: "Cancelar a chamada ao celular"
-                    subtitle: "Aperte juntas as teclas Ctrl e Alt do lado esquerdo. A tela para de esperar o celular e fica só a senha."
+                    title: qsTr("Cancelar a chamada ao celular")
+                    subtitle: qsTr("Aperte juntas as teclas Ctrl e Alt do lado esquerdo. A tela para de esperar o celular e fica só a senha.")
                     showDivider: false
                 }
 
                 // ---- Conexão ----
-                SectionLabel { text: "CONEXÃO" }
+                SectionLabel { text: qsTr("CONEXÃO") }
                 SettingRow {
-                    title: "Mesma rede e cabo USB"
-                    subtitle: "Celular e computador na mesma rede, ou ligados por cabo com ancoragem."
+                    title: qsTr("Mesma rede e cabo USB")
+                    subtitle: qsTr("Celular e computador na mesma rede, ou ligados por cabo com ancoragem.")
                     Toggle {
-                        Accessible.name: "Mesma rede e cabo USB"
+                        Accessible.name: qsTr("Mesma rede e cabo USB")
                         checked: page.opts.allowLan === true
                         onToggled: page.setOption("allowLan", checked)
                     }
                 }
                 SettingRow {
                     title: "Bluetooth"
-                    subtitle: "Celular perto do computador, sem precisar de rede."
+                    subtitle: qsTr("Celular perto do computador, sem precisar de rede.")
                     Toggle {
                         Accessible.name: "Bluetooth"
                         checked: page.opts.allowBluetooth === true
@@ -359,7 +386,7 @@ Item {
                 }
                 SettingRow {
                     title: "Tailscale"
-                    subtitle: "De qualquer lugar, com o Tailscale ligado no celular e neste computador."
+                    subtitle: qsTr("De qualquer lugar, com o Tailscale ligado no celular e neste computador.")
                     Toggle {
                         Accessible.name: "Tailscale"
                         checked: page.opts.allowTailscale === true
@@ -367,11 +394,11 @@ Item {
                     }
                 }
                 SettingRow {
-                    title: "Aceitar pedidos de travar pelo celular"
-                    subtitle: "Desligado, o botão Travar do celular não faz nada aqui. Ver se está travado e destravar continuam."
+                    title: qsTr("Aceitar pedidos de travar pelo celular")
+                    subtitle: qsTr("Desligado, o botão Travar do celular não faz nada aqui. Ver se está travado e destravar continuam.")
                     showDivider: false
                     Toggle {
-                        Accessible.name: "Aceitar pedidos de travar pelo celular"
+                        Accessible.name: qsTr("Aceitar pedidos de travar pelo celular")
                         checked: page.opts.agentLockEnabled === true
                         onToggled: page.setOption("agentLockEnabled", checked)
                     }
@@ -384,7 +411,7 @@ Item {
                     implicitHeight: 52
                     activeFocusOnTab: true
                     Accessible.role: Accessible.Button
-                    Accessible.name: page.advancedOpen ? "Recolher Avançado" : "Mostrar Avançado"
+                    Accessible.name: page.advancedOpen ? qsTr("Recolher Avançado") : qsTr("Mostrar Avançado")
                     Keys.onReturnPressed: page.advancedOpen = !page.advancedOpen
                     Keys.onSpacePressed: page.advancedOpen = !page.advancedOpen
                     MouseArea {
@@ -396,14 +423,14 @@ Item {
                         anchors.fill: parent
                         Text {
                             Layout.fillWidth: true
-                            text: "Avançado"
+                            text: qsTr("Avançado")
                             color: Theme.text
                             font.family: Theme.fontFamily
                             font.pixelSize: Theme.bodySize
                             font.weight: Font.DemiBold
                         }
                         Text {
-                            text: page.advancedOpen ? "" : "Portas, tempos, registros"
+                            text: page.advancedOpen ? "" : qsTr("Portas, tempos, registros")
                             color: Theme.text2
                             font.family: Theme.fontFamily
                             font.pixelSize: Theme.smallSize
@@ -423,7 +450,7 @@ Item {
                     spacing: 0
 
                     // Portas e tempos
-                    SectionLabel { text: "PORTAS E TEMPOS"; Layout.topMargin: 4 }
+                    SectionLabel { text: qsTr("PORTAS E TEMPOS"); Layout.topMargin: 4 }
                     GridLayout {
                         Layout.fillWidth: true
                         Layout.topMargin: 6
@@ -432,12 +459,12 @@ Item {
                         rowSpacing: 10
                         Repeater {
                             model: [
-                                { label: "Porta de pareamento" },
-                                { label: "Porta de destravar" },
-                                { label: "Porta de descoberta (no celular)" },
-                                { label: "Espera para conectar (s)" },
-                                { label: "Tentativas de conexão" },
-                                { label: "Espera pela resposta do celular (s)" }
+                                { label: qsTr("Porta de pareamento") },
+                                { label: qsTr("Porta de destravar") },
+                                { label: qsTr("Porta de descoberta (no celular)") },
+                                { label: qsTr("Espera para conectar (s)") },
+                                { label: qsTr("Tentativas de conexão") },
+                                { label: qsTr("Espera pela resposta do celular (s)") }
                             ]
                             delegate: Text {
                                 required property var modelData
@@ -451,12 +478,12 @@ Item {
                                 font.pixelSize: Theme.bodySize
                             }
                         }
-                        Field { id: pairingPort; Layout.row: 0; Layout.column: 1; mono: true; Layout.preferredWidth: 120; invalid: !page.portOk(text); onTextEdited: page.netDirty = true; Accessible.name: "Porta de pareamento" }
-                        Field { id: unlockPort; Layout.row: 1; Layout.column: 1; mono: true; Layout.preferredWidth: 120; invalid: !page.portOk(text); onTextEdited: page.netDirty = true; Accessible.name: "Porta de destravar" }
-                        Field { id: discoveryPort; Layout.row: 2; Layout.column: 1; mono: true; Layout.preferredWidth: 120; invalid: !page.portOk(text); onTextEdited: page.netDirty = true; Accessible.name: "Porta de descoberta" }
-                        Field { id: connectTimeout; Layout.row: 3; Layout.column: 1; mono: true; Layout.preferredWidth: 120; invalid: !page.numOk(text, 1); onTextEdited: page.netDirty = true; Accessible.name: "Espera para conectar" }
-                        Field { id: connectRetries; Layout.row: 4; Layout.column: 1; mono: true; Layout.preferredWidth: 120; invalid: !page.numOk(text, 0); onTextEdited: page.netDirty = true; Accessible.name: "Tentativas de conexão" }
-                        Field { id: socketTimeout; Layout.row: 5; Layout.column: 1; mono: true; Layout.preferredWidth: 120; invalid: !page.numOk(text, 10); onTextEdited: page.netDirty = true; Accessible.name: "Espera pela resposta do celular" }
+                        Field { id: pairingPort; Layout.row: 0; Layout.column: 1; mono: true; Layout.preferredWidth: 120; invalid: !page.portOk(text); onTextEdited: page.netDirty = true; Accessible.name: qsTr("Porta de pareamento") }
+                        Field { id: unlockPort; Layout.row: 1; Layout.column: 1; mono: true; Layout.preferredWidth: 120; invalid: !page.portOk(text); onTextEdited: page.netDirty = true; Accessible.name: qsTr("Porta de destravar") }
+                        Field { id: discoveryPort; Layout.row: 2; Layout.column: 1; mono: true; Layout.preferredWidth: 120; invalid: !page.portOk(text); onTextEdited: page.netDirty = true; Accessible.name: qsTr("Porta de descoberta") }
+                        Field { id: connectTimeout; Layout.row: 3; Layout.column: 1; mono: true; Layout.preferredWidth: 120; invalid: !page.numOk(text, 1); onTextEdited: page.netDirty = true; Accessible.name: qsTr("Espera para conectar") }
+                        Field { id: connectRetries; Layout.row: 4; Layout.column: 1; mono: true; Layout.preferredWidth: 120; invalid: !page.numOk(text, 0); onTextEdited: page.netDirty = true; Accessible.name: qsTr("Tentativas de conexão") }
+                        Field { id: socketTimeout; Layout.row: 5; Layout.column: 1; mono: true; Layout.preferredWidth: 120; invalid: !page.numOk(text, 10); onTextEdited: page.netDirty = true; Accessible.name: qsTr("Espera pela resposta do celular") }
                     }
                     RowLayout {
                         Layout.fillWidth: true
@@ -464,35 +491,35 @@ Item {
                         visible: page.netDirty
                         Text {
                             Layout.fillWidth: true
-                            text: page.netValid ? "Alterações não salvas." : "Confira os números marcados em vermelho."
+                            text: page.netValid ? qsTr("Alterações não salvas.") : qsTr("Confira os números marcados em vermelho.")
                             color: page.netValid ? Theme.text2 : Theme.danger
                             font.family: Theme.fontFamily
                             font.pixelSize: Theme.smallSize
                         }
-                        Btn { kind: "text"; text: "Desfazer"; onClicked: page.load() }
-                        Btn { kind: "secondary"; text: "Salvar"; enabled: page.netValid; onClicked: page.saveNetwork() }
+                        Btn { kind: "text"; text: qsTr("Desfazer"); onClicked: page.load() }
+                        Btn { kind: "secondary"; text: qsTr("Salvar"); enabled: page.netValid; onClicked: page.saveNetwork() }
                     }
 
                     // Diagnóstico
-                    SectionLabel { text: "DIAGNÓSTICO" }
+                    SectionLabel { text: qsTr("DIAGNÓSTICO") }
                     SettingRow {
-                        title: "Registro detalhado"
-                        subtitle: "Grava mais informação nos registros, para achar problemas. Vale depois de reabrir o app."
+                        title: qsTr("Registro detalhado")
+                        subtitle: qsTr("Grava mais informação nos registros, para achar problemas. Vale depois de reabrir o app.")
                         Toggle {
-                            Accessible.name: "Registro detalhado"
+                            Accessible.name: qsTr("Registro detalhado")
                             Component.onCompleted: checked = SettingsForm.IsDebugLoggingEnabled()
                             onToggled: SettingsForm.SetDebugLoggingEnabled(checked)
                         }
                     }
                     SettingRow {
-                        title: "Registros"
-                        subtitle: "O que o app e a tela de bloqueio anotaram."
+                        title: qsTr("Registros")
+                        subtitle: qsTr("O que o app e a tela de bloqueio anotaram.")
                         clickable: true
                         onClicked: window.openLogs()
                     }
                     SettingRow {
-                        title: "Testar destravar"
-                        subtitle: page.devices.length === 0 ? "Pareie um celular primeiro." : "Pede a confirmação no celular sem travar o computador."
+                        title: qsTr("Testar destravar")
+                        subtitle: page.devices.length === 0 ? qsTr("Pareie um celular primeiro.") : qsTr("Pede a confirmação no celular sem travar o computador.")
                         clickable: page.devices.length > 0
                         showDivider: false
                         onClicked: {
@@ -522,7 +549,7 @@ Item {
                     Layout.bottomMargin: 16
                     kind: "text"
                     leftPadding: 0
-                    text: "Recursos experimentais"
+                    text: qsTr("Recursos experimentais")
                     font.pixelSize: Theme.smallSize
                     onClicked: stack.push("qrc:/ui/pages/ExperimentalPage.qml")
                 }

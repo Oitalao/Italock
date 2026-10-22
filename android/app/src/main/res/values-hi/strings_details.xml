@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="details_repair_needed">फिर से पेयर करें: सेव किया गया पासवर्ड खो गया</string>
+    <string name="details_section_general">सामान्य</string>
+    <string name="details_name">नाम</string>
+    <string name="details_order">सूची में क्रम</string>
+    <string name="details_order_value">%2$d में से %1$d</string>
+    <string name="details_move_up">सूची में ऊपर करें</string>
+    <string name="details_move_down">सूची में नीचे करें</string>
+    <string name="details_tile">फटाफट सेटिंग टाइल में इस्तेमाल करें</string>
+    <string name="details_tile_sub">फटाफट सेटिंग में Ítalock बटन इस कंप्यूटर को नियंत्रित करता है।</string>
+    <string name="details_wake">नेटवर्क से चालू करें</string>
+    <string name="details_wake_sub">सिर्फ़ उसी नेटवर्क पर, जब कंप्यूटर केबल से जुड़ा हो और उसमें यह विकल्प चालू हो।</string>
+    <string name="details_mac">केबल वाले नेटवर्क कार्ड का पता</string>
+    <string name="details_mac_empty">नहीं बताया गया। इसके बिना नेटवर्क से चालू नहीं हो सकता।</string>
+    <string name="details_mac_help">कई पते: कॉमा से अलग करें। खाली छोड़ने पर नेटवर्क से चालू करना बंद हो जाता है।</string>
+    <string name="details_mac_invalid">फ़ॉर्मैट: कोलन से अलग किए गए छह जोड़े।</string>
+
+    <string name="details_section_paths">रास्ते</string>
+    <string name="details_path_lan">लोकल नेटवर्क</string>
+    <string name="details_path_lan_sub">एक ही Wi-Fi नेटवर्क, या USB टेदरिंग वाली केबल।</string>
+    <string name="details_path_bt_sub">कंप्यूटर बिना नेटवर्क के फ़ोन को बुलाता है।</string>
+    <string name="details_path_ts_sub">घर से बाहर, इंटरनेट से।</string>
+
+    <string name="details_section_tag">NFC टैग</string>
+    <string name="details_tag_write">NFC टैग लिखें</string>
+    <string name="details_tag_write_button">लिखें</string>
+    <string name="details_tag_lock">टैग से लॉक करें</string>
+    <string name="details_tag_lock_sub">अनलॉक फ़ोन को टैग से छुआने पर यह कंप्यूटर लॉक हो जाता है।</string>
+    <string name="details_tag_unlock">टैग से अनलॉक करें</string>
+    <string name="details_tag_unlock_sub">हमेशा बायोमेट्रिक मांगता है।</string>
+    <string name="details_tag_both">अनलॉक फ़ोन को टैग से छुआने पर, लॉक की स्थिति के हिसाब से यह कंप्यूटर लॉक या अनलॉक होता है।</string>
+    <string name="details_tag_only_unlock">अनलॉक फ़ोन को टैग से छुआने पर यह कंप्यूटर सिर्फ़ अनलॉक होता है।</string>
+    <string name="details_tag_only_lock">अनलॉक फ़ोन को टैग से छुआने पर यह कंप्यूटर सिर्फ़ लॉक होता है।</string>
+    <string name="details_tag_none">दोनों बंद होने पर, इस कंप्यूटर का टैग कुछ नहीं करता।</string>
+
+    <string name="details_section_security">सुरक्षा</string>
+    <string name="details_no_confirm">बिना पुष्टि के अनलॉक</string>
+    <string name="details_no_confirm_sub">फ़ोन का अनलॉक बटन बायोमेट्रिक नहीं मांगता। कंप्यूटर के अनुरोधों पर पुष्टि अब भी मांगी जाती है।</string>
+
+    <string name="details_section_experimental">प्रायोगिक</string>
+    <string name="details_exp_nearby_sub">Bluetooth से या एक ही नेटवर्क पर, फ़ोन छुए बिना। Tailscale से कभी नहीं।</string>
+    <string name="details_exp_notification_sub">सूचना में अनलॉक बटन, बिना बायोमेट्रिक के।</string>
+    <string name="details_exp_watch_sub">अनुरोध घड़ी पर कॉल की तरह बजता है: अनदेखा करने पर अनलॉक, काटने पर मना (कलाई से उतरी हो तो रोक दिया जाता है)।</string>
+    <string name="details_exp_wear_sub">अनुरोध घड़ी पर अनलॉक और मना करें बटनों के साथ दिखता है।</string>
+
+    <string name="details_section_history">इतिहास</string>
+    <string name="details_history_empty">अभी कुछ नहीं। लॉक, अनलॉक और कंप्यूटर के अनुरोध यहां दिखेंगे।</string>
+    <string name="details_history_less">कम दिखाएं</string>
+    <string name="details_history_all">सभी दिखाएं (%1$d)</string>
+    <string name="details_history_clear">इतिहास मिटाएं</string>
+
+    <string name="details_tech_pc_name">कंप्यूटर पर नाम</string>
+    <string name="details_tech_user">यूज़र</string>
+    <string name="details_tech_os">सिस्टम</string>
+    <string name="details_tech_method">फ़ोन को बुलाने का तरीका</string>
+    <string name="details_tech_pc_addresses">कंप्यूटर के पते</string>
+    <string name="details_tech_phone_addresses">इस फ़ोन के पते</string>
+    <string name="details_tech_response">लॉक की स्थिति का जवाब</string>
+    <string name="details_tech_sealed">एन्क्रिप्टेड</string>
+    <string name="details_tech_plain">बिना एन्क्रिप्शन (कंप्यूटर पर पुराना प्रोग्राम)</string>
+    <string name="details_tech_paired_at">पेयर करने का समय</string>
+    <string name="details_tech_public_id">सार्वजनिक ID (टैग और घड़ी)</string>
+    <string name="details_tech_identifier">पहचानकर्ता</string>
+
+    <string name="details_remove_pc">कंप्यूटर हटाएं</string>
+    <string name="details_remove_title">%1$s हटाएं?</string>
+    <string name="details_remove_text">फ़ोन इस कंप्यूटर को अनलॉक नहीं कर पाएगा। वापस जोड़ने के लिए फिर से पेयर करना होगा।</string>
+    <string name="details_rename_title">कंप्यूटर का नाम</string>
+    <string name="details_rename_hint">खाली छोड़ने पर कंप्यूटर का अपना नाम इस्तेमाल होगा।</string>
+
+    <string name="details_nfc_off_title">NFC बंद है</string>
+    <string name="details_nfc_write_title">%1$s का टैग लिखें</string>
+    <string name="details_nfc_off_text">फ़ोन की सेटिंग में NFC चालू करें और यहां वापस आएं।</string>
+    <string name="details_nfc_hold">टैग को फ़ोन के पीछे लगाएं और सूचना आने तक पकड़े रखें।</string>
+    <string name="details_nfc_readonly">टैग को लिखने से सुरक्षित करें</string>
+    <string name="details_nfc_readonly_warn">यह वापस नहीं होगा: टैग पर फिर कभी नहीं लिखा जा सकेगा।</string>
+    <string name="details_nfc_open_settings">सेटिंग खोलें</string>
+
+    <string name="about_title">बारे में</string>
+    <string name="about_section_credits">श्रेय</string>
+    <string name="about_based_on">MeisApps के PC Bio Unlock (अब PulseUnlock) पर आधारित, GPL वर्शन 3 लाइसेंस।</string>
+    <string name="about_source_soon">प्रोग्राम का कोड: जल्द ही GitHub पर।</string>
+    <string name="about_source">प्रोग्राम का कोड: GitHub पर।</string>
+    <string name="about_license">लाइसेंस</string>
+    <string name="about_original">मूल प्रोजेक्ट</string>
+    <string name="about_code">कोड</string>
+    <string name="about_section_diag">जांच</string>
+    <string name="about_export">लॉग एक्सपोर्ट करें</string>
+    <string name="about_export_sub">मदद करने वाले को भेजने के लिए टेक्स्ट फ़ाइल। इसमें कोई कुंजी या पासवर्ड नहीं होता।</string>
+
+    <string name="exp_title">प्रायोगिक सुविधाएं</string>
+    <string name="exp_banner">प्रायोगिक। हो सकता है ठीक से काम न करे, बदल जाए या आगे के वर्शन में हट जाए। अपनी ज़िम्मेदारी पर इस्तेमाल करें।</string>
+    <string name="exp_nearby">पास होने पर अपने-आप अनलॉक</string>
+    <string name="exp_nearby_sub">Bluetooth से या एक ही नेटवर्क पर, फ़ोन छुए बिना (Tailscale से कभी नहीं)। जोखिम: कंप्यूटर के पास खड़ा कोई भी उसे अनलॉक कर सकता है।</string>
+    <string name="exp_notification">सूचना से अनलॉक</string>
+    <string name="exp_notification_sub">सूचना में अनलॉक बटन, बिना बायोमेट्रिक के। जोखिम: जिसके हाथ आपका अनलॉक फ़ोन लगे, वह अनलॉक कर सकता है।</string>
+    <string name="exp_watch">Amazfit घड़ी (नकली कॉल)</string>
+    <string name="exp_watch_sub">अनुरोध घड़ी पर कॉल की तरह दिखता है: अनदेखा करने पर अनलॉक, काटने पर मना। कलाई से उतरी हो तो कार्रवाई रोक दी जाती है। घड़ी से पेयर किया हुआ Gadgetbridge Voz चाहिए। जोखिम: जिसकी कलाई पर आपकी घड़ी हो, वह अनलॉक कर सकता है।</string>
+    <string name="exp_wear">Wear OS घड़ी</string>
+    <string name="exp_wear_sub">अनुरोध घड़ी (Galaxy Watch, Pixel Watch और दूसरी) पर अनलॉक और मना करें बटनों के साथ दिखता है; टाइल से लॉक, अनलॉक और चालू कर सकते हैं। घड़ी में Ítalock ऐप और स्क्रीन लॉक चालू होना चाहिए। फ़ोन से दूर होने पर यह Google के इंटरनेट से जाता है। जोखिम: जिसके पास आपकी अनलॉक घड़ी हो, वह अनलॉक कर सकता है।</string>
+    <string name="exp_footer">चालू करने के बाद, हर कंप्यूटर की जानकारी में उसे चुनें। यहां बंद करने पर सब में बंद हो जाता है।</string>
+
+    <string name="pair_title">कंप्यूटर पेयर करें</string>
+    <string name="pair_step1_title">कंप्यूटर पर</string>
+    <string name="pair_step1_text">Ítalock खोलें और फ़ोन पेयर करना चुनें: एक QR कोड दिखेगा।</string>
+    <string name="pair_step2_title">एक ही नेटवर्क या Bluetooth</string>
+    <string name="pair_step2_text">दोनों एक ही नेटवर्क पर हों, या USB केबल से जुड़े हों। Bluetooth के लिए, पहले फ़ोन को कंप्यूटर से पेयर करें।</string>
+    <string name="pair_allow_bt">Bluetooth की अनुमति दें</string>
+    <string name="pair_step3_title">QR कोड स्कैन करें</string>
+    <string name="pair_step3_text">कैमरे को QR कोड की ओर करें या दिखाया गया कोड टाइप करें।</string>
+    <string name="pair_scan">QR कोड स्कैन करें</string>
+    <string name="pair_type">कोड टाइप करें</string>
+    <string name="pair_code_label">कंप्यूटर का कोड</string>
+    <string name="pair_with_code">कोड से पेयर करें</string>
+    <string name="pair_retry_save">फिर से पुष्टि करें</string>
+
+    <string name="danger_title">खतरनाक</string>
+    <string name="danger_heading">%1$s को बिना पुष्टि के अनलॉक करना।</string>
+    <string name="danger_text">आपका अनलॉक फ़ोन जिसके भी हाथ में हो, वह बिना फ़िंगरप्रिंट, चेहरे या पासवर्ड के इस कंप्यूटर को अनलॉक कर सकेगा। अगर फ़ोन खो जाए या कोई और उसे इस्तेमाल करे, तो आपका कंप्यूटर असुरक्षित रहेगा।</string>
+    <string name="danger_scope">यह सिर्फ़ फ़ोन के अनलॉक बटन पर लागू होता है (ऐप, विजेट, फटाफट सेटिंग टाइल और ऐप आइकन शॉर्टकट)। जब कोई कंप्यूटर पर कुछ करेगा, तो फ़ोन पुष्टि मांगता रहेगा।</string>
+    <string name="danger_understood">मैंने जोखिम समझ लिया</string>
+    <string name="danger_turn_on_wait">चालू करें (%1$d)</string>
+
+    <string name="diag_header">Ítalock के लॉग</string>
+    <string name="diag_generated">बनाने का समय</string>
+    <string name="diag_version">वर्शन</string>
+    <string name="diag_device">डिवाइस</string>
+    <string name="diag_theme">दिखावट</string>
+    <string name="diag_vibrate">वाइब्रेट</string>
+    <string name="diag_confirm_lock">लॉक से पहले पुष्टि</string>
+    <string name="diag_prompt_timeout">अनुरोध का समय (सेकंड)</string>
+    <string name="diag_approve_locked">फ़ोन लॉक रहते हुए अनलॉक</string>
+    <string name="diag_fullscreen">लॉक स्क्रीन पर अनुरोध</string>
+    <string name="diag_hide_name">नाम छिपाएं</string>
+    <string name="diag_allow_credential">PIN, पैटर्न या पासवर्ड स्वीकार करें</string>
+    <string name="diag_poll">लॉक की स्थिति अपडेट (सेकंड, 0 = खोलने पर)</string>
+    <string name="diag_ts_warning">Tailscale की चेतावनी</string>
+    <string name="diag_ts_installed">Tailscale इंस्टॉल है</string>
+    <string name="diag_ts_up">Tailscale कनेक्ट है</string>
+    <string name="diag_google">Google सेवाएं</string>
+    <string name="diag_experimental">प्रायोगिक (पास, सूचना, Zepp, Wear OS)</string>
+    <string name="diag_missing">अनुमति बाकी</string>
+    <string name="diag_nothing">कुछ नहीं</string>
+    <string name="diag_pcs">कंप्यूटर</string>
+    <string name="diag_pc_os">सिस्टम</string>
+    <string name="diag_pc_method">बुलाने का तरीका</string>
+    <string name="diag_pc_addresses">ज्ञात पते</string>
+    <string name="diag_pc_paths">रास्ते (लोकल नेटवर्क, Bluetooth, Tailscale)</string>
+    <string name="diag_pc_sealed">एन्क्रिप्टेड जवाब</string>
+    <string name="diag_pc_no_confirm">बिना पुष्टि के</string>
+    <string name="diag_pc_tag">NFC टैग</string>
+    <string name="diag_pc_wake">नेटवर्क से चालू करें</string>
+    <string name="diag_pc_last">आखिरी इस्तेमाल</string>
+    <string name="diag_none">कोई नहीं</string>
+    <string name="diag_events">हाल की घटनाएं</string>
+    <string name="diag_no_events">(कोई नहीं)</string>
+
+    <string name="widget_removed">कंप्यूटर हटाया गया</string>
+    <string name="widget_refresh">लॉक की स्थिति अपडेट करें</string>
+    <string name="widget_tap_refresh">लॉक की स्थिति देखने के लिए अपडेट पर टैप करें</string>
+    <string name="widget_clock_off">घड़ी का समय गलत है</string>
+    <string name="widget_status_at">%1$s · %2$s</string>
+    <string name="widget_config_title">यह विजेट किस कंप्यूटर को नियंत्रित करेगा?</string>
+    <string name="widget_config_empty">कोई कंप्यूटर पेयर नहीं है। Ítalock खोलें और पहले एक कंप्यूटर पेयर करें।</string>
+</resources>

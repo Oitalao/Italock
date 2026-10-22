@@ -88,7 +88,7 @@ void PairingForm::CheckAccountAsync(QObject *window, const QString &userNameQ, c
 QVariantMap PairingForm::DoCheckAccount(const std::string &userName, const std::string &password, bool isManualUserName, bool skipCheck) {
   QVariantMap result{{"ok", false}, {"error", QString()}, {"canSkip", false}};
   if(userName.empty()) {
-    result["error"] = "Escolha a conta.";
+    result["error"] = QString::fromStdString(I18n::Tr("Escolha a conta."));
     return result;
   }
 #ifdef WINDOWS
@@ -195,7 +195,7 @@ std::string PairingForm::BuildPayload() {
 QVariantMap PairingForm::StartQR(QObject *window, const QString &methodQ, const QString &bluetoothAddress) {
   QVariantMap result{{"qr", QString()}, {"code", QString()}, {"error", QString()}};
   if(m_UserName.empty()) {
-    result["error"] = "Confirme a conta primeiro.";
+    result["error"] = QString::fromStdString(I18n::Tr("Confirme a conta primeiro."));
     return result;
   }
   StopBluetoothScan();
@@ -213,7 +213,7 @@ QVariantMap PairingForm::StartQR(QObject *window, const QString &methodQ, const 
   if(m_Method == "tailscale") {
     m_LegacyIP = GetTailscaleIP().toStdString();
     if(m_LegacyIP.empty()) {
-      result["error"] = "O Tailscale não está ligado neste computador. Ligue e tente de novo.";
+      result["error"] = QString::fromStdString(I18n::Tr("O Tailscale não está ligado neste computador. Ligue e tente de novo."));
       return result;
     }
   }

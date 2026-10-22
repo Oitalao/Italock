@@ -26,6 +26,7 @@ import br.italo.italock.data.EventKind
 import br.italo.italock.data.Events
 import br.italo.italock.data.Origin
 import br.italo.italock.data.PairingStore
+import br.italo.italock.i18n.L10n
 import br.italo.italock.net.NetInfo
 import br.italo.italock.ui.UnlockActivity
 import br.italo.italock.watch.WearBridge
@@ -78,7 +79,7 @@ class UnlockService : Service() {
         prefs.registerListener(prefListener)
         createChannels(this)
         ServiceCompat.startForeground(
-            this, NOTIF_ID, statusNotification(),
+            this, NOTIF_ID, statusNotification(this),
             if (Build.VERSION.SDK_INT >= 29) ServiceInfo.FOREGROUND_SERVICE_TYPE_CONNECTED_DEVICE else 0,
         )
         // Economia de bateria: a trava de multicast deixava o Wi-Fi acordado para todo broadcast da rede, o tempo todo.
@@ -91,6 +92,7 @@ class UnlockService : Service() {
         listenTcp()
         listenBluetooth()
         watchTailscale()
+        alive = true
     }
 
     private var vpnCallback: android.net.ConnectivityManager.NetworkCallback? = null
@@ -145,8 +147,8 @@ class UnlockService : Service() {
             val pi = PendingIntent.getActivity(this, 77, launch, PendingIntent.FLAG_IMMUTABLE)
             nm.notify(TAILSCALE_NOTIF_ID, NotificationCompat.Builder(this, CHANNEL_PROMPT)
                 .setSmallIcon(R.drawable.ic_lock).setColor(BRAND_BLUE)
-                .setContentTitle("Tailscale desligado")
-                .setContentText("Sem ele, destravar fora de casa não funciona. Toque para religar.")
+                .setContentTitle(L10n.s(R.string.notif_tailscale_off_title))
+                .setContentText(L10n.s(R.string.notif_tailscale_off_text))
                 .setContentIntent(pi).setAutoCancel(true).build())
             tailscaleWarned = true
             DiagLog.i("Tailscale desligado: aviso mostrado")
@@ -163,6 +165,7 @@ class UnlockService : Service() {
     }
 
     override fun onDestroy() {
+        alive = false
         running = false
         synchronized(btSignal) { btSignal.notifyAll() } // a thread do Bluetooth pode estar dormindo sem prazo
         synchronized(sockets) { sockets.forEach { runCatching { it.close() } } }
@@ -350,7 +353,8 @@ class UnlockService : Service() {
                 val key = runCatching { br.italo.italock.crypto.KeyGuard.openAuto(session.pc.autoKeyEnc, session.pc.autoKeyIv) }.getOrNull()
                 if (key != null) {
                     if (session.approve(key, Origin.AUTO)) {
-                        UnlockedNotice.show(this, session.pc, NetInfo.viaLabel(session.via), "Destravado ${session.pc.displayName} automaticamente")
+                        UnlockedNotice.show(this, session.pc, NetInfo.viaLabel(session.via),
+                            L10n.s(R.string.notice_unlocked_auto, session.pc.displayName))
                     }
                 } else session.deny("APP_ERROR")
                 Thread.sleep(1500)
@@ -409,9 +413,9 @@ class UnlockService : Service() {
         val hideNow = hide
         val n = NotificationCompat.Builder(this, CHANNEL_PROMPT)
             .setSmallIcon(R.drawable.ic_lock).setColor(BRAND_BLUE)
-            .setContentTitle(if (hideNow) "Pedido de desbloqueio" else "Destravar ${session.pc.displayName}?")
-            .setContentText(if (hideNow) "Desbloqueie o celular para ver." else
-                listOfNotNull(session.user.takeIf { it.isNotBlank() }, "via ${NetInfo.viaLabel(session.via)}").joinToString(" · "))
+            .setContentTitle(if (hideNow) L10n.s(R.string.prompt_generic_title) else L10n.s(R.string.prompt_title, session.pc.displayName))
+            .setContentText(if (hideNow) L10n.s(R.string.prompt_generic_text) else
+                listOfNotNull(session.user.takeIf { it.isNotBlank() }, L10n.s(R.string.prompt_via, L10n.via(NetInfo.viaLabel(session.via)))).joinToString(" · "))
             .setCategory(if (fullScreen) NotificationCompat.CATEGORY_CALL else NotificationCompat.CATEGORY_STATUS)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .apply {
@@ -421,7 +425,7 @@ class UnlockService : Service() {
                     setPublicVersion(
                         NotificationCompat.Builder(this@UnlockService, CHANNEL_PROMPT)
                             .setSmallIcon(R.drawable.ic_lock).setColor(BRAND_BLUE)
-                            .setContentTitle("Pedido de desbloqueio").setContentText("Desbloqueie o celular para ver.")
+                            .setContentTitle(L10n.s(R.string.prompt_generic_title)).setContentText(L10n.s(R.string.prompt_generic_text))
                             .build(),
                     )
                 } else setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
@@ -431,12 +435,12 @@ class UnlockService : Service() {
             .setContentIntent(pi)
             .setAutoCancel(true)
             .setTimeoutAfter((session.expiresAt - android.os.SystemClock.elapsedRealtime()).coerceAtLeast(1000))
-            .addAction(actionFor(session, ActionReceiver.ACTION_DENY, "Recusar"))
+            .addAction(actionFor(session, ActionReceiver.ACTION_DENY, L10n.s(R.string.prompt_deny)))
             // Sem aprovação direta, o botão abre a confirmação com biometria (atividade direta: o Android bloqueia
             // abrir tela a partir de um receiver em segundo plano).
             .addAction(
                 if (session.pc.notificationApprove && session.pc.hasAutoKey && prefs.expNotification) approveAction(session)
-                else NotificationCompat.Action.Builder(R.drawable.ic_lock, "Destravar", pi).build(),
+                else NotificationCompat.Action.Builder(R.drawable.ic_lock, L10n.s(R.string.action_unlock), pi).build(),
             )
             .build()
         getSystemService(NotificationManager::class.java).notify(session.id.hashCode(), n)
@@ -450,7 +454,7 @@ class UnlockService : Service() {
      */
     private fun approveAction(session: UnlockSession): NotificationCompat.Action =
         if (Build.VERSION.SDK_INT >= 31) {
-            NotificationCompat.Action.Builder(R.drawable.ic_lock, "Destravar", broadcastFor(session, ActionReceiver.ACTION_APPROVE))
+            NotificationCompat.Action.Builder(R.drawable.ic_lock, L10n.s(R.string.action_unlock), broadcastFor(session, ActionReceiver.ACTION_APPROVE))
                 .setAuthenticationRequired(true).build()
         } else {
             val intent = Intent(this, br.italo.italock.ui.ApproveActivity::class.java)
@@ -458,7 +462,7 @@ class UnlockService : Service() {
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             val pi = PendingIntent.getActivity(this, (session.id + "approve").hashCode(), intent,
                 PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
-            NotificationCompat.Action.Builder(R.drawable.ic_lock, "Destravar", pi).build()
+            NotificationCompat.Action.Builder(R.drawable.ic_lock, L10n.s(R.string.action_unlock), pi).build()
         }
 
     private fun broadcastFor(session: UnlockSession, action: String): PendingIntent {
@@ -475,15 +479,28 @@ class UnlockService : Service() {
         sendBroadcast(Intent(ACTION_SESSION_ENDED).setPackage(packageName).putExtra(UnlockActivity.EXTRA_SESSION, session.id))
     }
 
-    private fun statusNotification(): android.app.Notification = NotificationCompat.Builder(this, CHANNEL_STATUS)
-        .setSmallIcon(R.drawable.ic_lock).setColor(BRAND_BLUE)
-        .setPriority(NotificationCompat.PRIORITY_MIN)
-        .setContentTitle("Ítalock ativo")
-        .setContentText("Esperando pedidos dos seus computadores")
-        .setOngoing(true)
-        .build()
-
     companion object {
+        /** Aviso fixo do serviço (no idioma escolhido). */
+        private fun statusNotification(ctx: Context): android.app.Notification = NotificationCompat.Builder(ctx, CHANNEL_STATUS)
+            .setSmallIcon(R.drawable.ic_lock).setColor(BRAND_BLUE)
+            .setPriority(NotificationCompat.PRIORITY_MIN)
+            .setContentTitle(L10n.s(R.string.notif_service_title))
+            .setContentText(L10n.s(R.string.notif_service_text))
+            .setOngoing(true)
+            .build()
+
+        /** O serviço está de pé (para repor o aviso fixo ao mudar o idioma). */
+        @Volatile private var alive = false
+
+        /** Idioma mudou: nomes dos canais e o aviso fixo do serviço passam para o idioma novo. */
+        @SuppressLint("MissingPermission")
+        fun languageChanged(ctx: Context) {
+            createChannels(ctx)
+            if (alive && NotificationManagerCompat.from(ctx).areNotificationsEnabled()) {
+                runCatching { NotificationManagerCompat.from(ctx).notify(NOTIF_ID, statusNotification(ctx)) }
+            }
+        }
+
         const val NOTIF_ID = 1
         const val TAILSCALE_NOTIF_ID = 2
         const val CHANNEL_STATUS = "status"
@@ -521,9 +538,9 @@ class UnlockService : Service() {
         fun createChannels(ctx: Context) {
             if (Build.VERSION.SDK_INT < 26) return // antes do Android 8 não existem canais
             val nm = ctx.getSystemService(NotificationManager::class.java)
-            nm.createNotificationChannel(NotificationChannel(CHANNEL_STATUS, "Serviço ativo", NotificationManager.IMPORTANCE_MIN))
-            nm.createNotificationChannel(NotificationChannel(CHANNEL_PROMPT, "Pedidos de desbloqueio", NotificationManager.IMPORTANCE_HIGH))
-            nm.createNotificationChannel(NotificationChannel(CHANNEL_WAITING, "Computador esperando", NotificationManager.IMPORTANCE_LOW))
+            nm.createNotificationChannel(NotificationChannel(CHANNEL_STATUS, L10n.s(R.string.channel_status), NotificationManager.IMPORTANCE_MIN))
+            nm.createNotificationChannel(NotificationChannel(CHANNEL_PROMPT, L10n.s(R.string.channel_prompt), NotificationManager.IMPORTANCE_HIGH))
+            nm.createNotificationChannel(NotificationChannel(CHANNEL_WAITING, L10n.s(R.string.channel_waiting), NotificationManager.IMPORTANCE_LOW))
         }
 
         fun start(ctx: Context) {

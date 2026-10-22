@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="details_repair_needed">다시 페어링하세요. 저장된 비밀번호가 사라졌습니다</string>
+    <string name="details_section_general">일반</string>
+    <string name="details_name">이름</string>
+    <string name="details_order">목록 순서</string>
+    <string name="details_order_value">%2$d개 중 %1$d번째</string>
+    <string name="details_move_up">목록에서 위로</string>
+    <string name="details_move_down">목록에서 아래로</string>
+    <string name="details_tile">빠른 설정 타일에 사용</string>
+    <string name="details_tile_sub">빠른 설정의 Ítalock 버튼이 이 컴퓨터를 제어합니다.</string>
+    <string name="details_wake">네트워크로 전원 켜기</string>
+    <string name="details_wake_sub">같은 네트워크에서, 컴퓨터가 유선으로 연결되어 있고 컴퓨터에서 이 옵션이 켜져 있을 때만 가능합니다.</string>
+    <string name="details_mac">유선 네트워크 카드 주소</string>
+    <string name="details_mac_empty">입력되지 않았습니다. 이 주소가 없으면 네트워크로 전원을 켤 수 없습니다.</string>
+    <string name="details_mac_help">주소가 여러 개면 쉼표로 구분하세요. 비워 두면 네트워크로 전원 켜기가 꺼집니다.</string>
+    <string name="details_mac_invalid">형식: 콜론으로 구분한 두 자리 6쌍.</string>
+
+    <string name="details_section_paths">경로</string>
+    <string name="details_path_lan">로컬 네트워크</string>
+    <string name="details_path_lan_sub">같은 Wi-Fi 네트워크 또는 USB 테더링 케이블.</string>
+    <string name="details_path_bt_sub">네트워크 없이 컴퓨터가 휴대폰을 호출합니다.</string>
+    <string name="details_path_ts_sub">외부에서 인터넷을 통해.</string>
+
+    <string name="details_section_tag">NFC 태그</string>
+    <string name="details_tag_write">NFC 태그 기록</string>
+    <string name="details_tag_write_button">기록</string>
+    <string name="details_tag_lock">태그로 잠금</string>
+    <string name="details_tag_lock_sub">잠금 해제된 휴대폰을 대면 이 컴퓨터가 잠깁니다.</string>
+    <string name="details_tag_unlock">태그로 잠금 해제</string>
+    <string name="details_tag_unlock_sub">항상 생체 인증을 요청합니다.</string>
+    <string name="details_tag_both">잠금 해제된 휴대폰을 태그에 대면 잠금 상태에 따라 이 컴퓨터를 잠그거나 잠금 해제합니다.</string>
+    <string name="details_tag_only_unlock">잠금 해제된 휴대폰을 태그에 대면 이 컴퓨터의 잠금 해제만 합니다.</string>
+    <string name="details_tag_only_lock">잠금 해제된 휴대폰을 태그에 대면 이 컴퓨터를 잠그기만 합니다.</string>
+    <string name="details_tag_none">둘 다 꺼져 있으면 이 컴퓨터의 태그는 아무 동작도 하지 않습니다.</string>
+
+    <string name="details_section_security">보안</string>
+    <string name="details_no_confirm">확인 없이 잠금 해제</string>
+    <string name="details_no_confirm_sub">휴대폰의 잠금 해제 버튼이 생체 인증을 요청하지 않습니다. 컴퓨터의 요청은 계속 확인을 요청합니다.</string>
+
+    <string name="details_section_experimental">실험적 기능</string>
+    <string name="details_exp_nearby_sub">Bluetooth 또는 같은 네트워크로, 휴대폰을 만지지 않고. Tailscale로는 절대 안 됩니다.</string>
+    <string name="details_exp_notification_sub">알림에 잠금 해제 버튼 표시, 생체 인증 없음.</string>
+    <string name="details_exp_watch_sub">요청이 워치에 전화처럼 울립니다. 무시하면 잠금 해제, 거절하면 거부(손목에서 벗으면 차단).</string>
+    <string name="details_exp_wear_sub">요청이 워치에 잠금 해제와 거부 버튼과 함께 표시됩니다.</string>
+
+    <string name="details_section_history">기록</string>
+    <string name="details_history_empty">아직 없습니다. 잠금, 잠금 해제, 컴퓨터의 요청이 여기에 표시됩니다.</string>
+    <string name="details_history_less">간단히 보기</string>
+    <string name="details_history_all">모두 보기(%1$d)</string>
+    <string name="details_history_clear">기록 삭제</string>
+
+    <string name="details_tech_pc_name">컴퓨터의 이름</string>
+    <string name="details_tech_user">사용자</string>
+    <string name="details_tech_os">운영체제</string>
+    <string name="details_tech_method">휴대폰 호출 방식</string>
+    <string name="details_tech_pc_addresses">컴퓨터 주소</string>
+    <string name="details_tech_phone_addresses">이 휴대폰의 주소</string>
+    <string name="details_tech_response">잠금 상태 응답</string>
+    <string name="details_tech_sealed">암호화됨</string>
+    <string name="details_tech_plain">평문(컴퓨터의 프로그램이 오래됨)</string>
+    <string name="details_tech_paired_at">페어링 날짜</string>
+    <string name="details_tech_public_id">공개 ID(태그 및 워치)</string>
+    <string name="details_tech_identifier">식별자</string>
+
+    <string name="details_remove_pc">컴퓨터 삭제</string>
+    <string name="details_remove_title">%1$s을(를) 삭제할까요?</string>
+    <string name="details_remove_text">휴대폰으로 이 컴퓨터의 잠금을 해제할 수 없게 됩니다. 다시 사용하려면 다시 페어링해야 합니다.</string>
+    <string name="details_rename_title">컴퓨터 이름</string>
+    <string name="details_rename_hint">비워 두면 컴퓨터의 이름을 사용합니다.</string>
+
+    <string name="details_nfc_off_title">NFC 꺼짐</string>
+    <string name="details_nfc_write_title">%1$s 태그 기록</string>
+    <string name="details_nfc_off_text">휴대폰 설정에서 NFC를 켜고 여기로 돌아오세요.</string>
+    <string name="details_nfc_hold">휴대폰 뒷면에 태그를 대고 알림이 나올 때까지 그대로 두세요.</string>
+    <string name="details_nfc_readonly">태그 쓰기 방지</string>
+    <string name="details_nfc_readonly_warn">되돌릴 수 없습니다. 이 태그에는 다시 기록할 수 없게 됩니다.</string>
+    <string name="details_nfc_open_settings">설정 열기</string>
+
+    <string name="about_title">정보</string>
+    <string name="about_section_credits">크레딧</string>
+    <string name="about_based_on">MeisApps의 PC Bio Unlock(현재 PulseUnlock)을 기반으로 하며, 라이선스는 GPL 버전 3입니다.</string>
+    <string name="about_source_soon">소스 코드: 곧 GitHub에 공개됩니다.</string>
+    <string name="about_source">소스 코드: GitHub.</string>
+    <string name="about_license">라이선스</string>
+    <string name="about_original">원본 프로젝트</string>
+    <string name="about_code">코드</string>
+    <string name="about_section_diag">진단</string>
+    <string name="about_export">로그 내보내기</string>
+    <string name="about_export_sub">도와줄 사람에게 보낼 텍스트 파일입니다. 키나 비밀번호는 포함되지 않습니다.</string>
+
+    <string name="exp_title">실험적 기능</string>
+    <string name="exp_banner">실험적 기능입니다. 제대로 작동하지 않거나, 이후 버전에서 바뀌거나 없어질 수 있습니다. 본인 책임하에 사용하세요.</string>
+    <string name="exp_nearby">가까이 있을 때 자동 잠금 해제</string>
+    <string name="exp_nearby_sub">Bluetooth 또는 같은 네트워크로, 휴대폰을 만지지 않고 해제합니다(Tailscale로는 절대 안 됨). 위험: 컴퓨터 옆에 있는 사람이 잠금을 해제할 수 있습니다.</string>
+    <string name="exp_notification">알림에서 잠금 해제</string>
+    <string name="exp_notification_sub">알림에 잠금 해제 버튼을 표시하며 생체 인증은 없습니다. 위험: 잠금 해제된 휴대폰을 손에 넣은 사람이 잠금을 해제할 수 있습니다.</string>
+    <string name="exp_watch">Amazfit 워치(가짜 전화)</string>
+    <string name="exp_watch_sub">요청이 워치에 전화처럼 표시됩니다. 무시하면 잠금 해제, 거절하면 거부합니다. 손목에서 벗으면 동작이 차단됩니다. 워치와 페어링된 Gadgetbridge Voz가 필요합니다. 위험: 내 워치를 손목에 찬 사람이 잠금을 해제할 수 있습니다.</string>
+    <string name="exp_wear">Wear OS 워치</string>
+    <string name="exp_wear_sub">요청이 워치(Galaxy Watch, Pixel Watch 등)에 잠금 해제와 거부 버튼과 함께 표시되고, 타일로 잠금, 잠금 해제, 전원 켜기를 할 수 있습니다. 워치에 Ítalock 앱이 있고 화면 잠금이 켜져 있어야 합니다. 휴대폰과 멀리 있으면 Google의 인터넷을 통해 연결됩니다. 위험: 잠금 해제된 내 워치를 가진 사람이 잠금을 해제할 수 있습니다.</string>
+    <string name="exp_footer">켠 다음 각 컴퓨터의 세부정보에서 사용할 컴퓨터를 선택하세요. 여기서 끄면 모든 컴퓨터에서 꺼집니다.</string>
+
+    <string name="pair_title">컴퓨터 페어링</string>
+    <string name="pair_step1_title">컴퓨터에서</string>
+    <string name="pair_step1_text">Ítalock을 열고 휴대폰 페어링을 선택하면 QR 코드가 나타납니다.</string>
+    <string name="pair_step2_title">같은 네트워크 또는 Bluetooth</string>
+    <string name="pair_step2_text">두 기기를 같은 네트워크에 연결하거나 USB 케이블로 연결하세요. Bluetooth를 쓰려면 먼저 휴대폰과 컴퓨터를 페어링하세요.</string>
+    <string name="pair_allow_bt">Bluetooth 허용</string>
+    <string name="pair_step3_title">QR 코드 스캔</string>
+    <string name="pair_step3_text">카메라로 QR 코드를 비추거나 표시된 코드를 입력하세요.</string>
+    <string name="pair_scan">QR 코드 스캔</string>
+    <string name="pair_type">코드 입력</string>
+    <string name="pair_code_label">컴퓨터 코드</string>
+    <string name="pair_with_code">코드로 페어링</string>
+    <string name="pair_retry_save">다시 확인</string>
+
+    <string name="danger_title">위험</string>
+    <string name="danger_heading">확인 없이 %1$s 잠금 해제.</string>
+    <string name="danger_text">잠금 해제된 내 휴대폰을 가진 사람은 누구나 지문, 얼굴, 비밀번호 없이 이 컴퓨터의 잠금을 해제할 수 있습니다. 휴대폰을 잃어버리거나 다른 사람이 쓰면 컴퓨터가 노출됩니다.</string>
+    <string name="danger_scope">휴대폰의 잠금 해제 버튼(앱, 위젯, 빠른 설정 타일, 아이콘 바로가기)에만 적용됩니다. 누군가 컴퓨터를 사용하려 하면 휴대폰은 계속 확인을 요청합니다.</string>
+    <string name="danger_understood">위험을 이해합니다</string>
+    <string name="danger_turn_on_wait">켜기(%1$d)</string>
+
+    <string name="diag_header">Ítalock 로그</string>
+    <string name="diag_generated">생성 일시</string>
+    <string name="diag_version">버전</string>
+    <string name="diag_device">기기</string>
+    <string name="diag_theme">테마</string>
+    <string name="diag_vibrate">진동</string>
+    <string name="diag_confirm_lock">잠그기 전에 확인</string>
+    <string name="diag_prompt_timeout">요청 시간(초)</string>
+    <string name="diag_approve_locked">휴대폰이 잠긴 상태에서 잠금 해제</string>
+    <string name="diag_fullscreen">잠금 화면에 요청 표시</string>
+    <string name="diag_hide_name">이름 숨기기</string>
+    <string name="diag_allow_credential">PIN, 패턴, 비밀번호 허용</string>
+    <string name="diag_poll">잠금 상태 새로고침(초, 0 = 열 때)</string>
+    <string name="diag_ts_warning">Tailscale 알림</string>
+    <string name="diag_ts_installed">Tailscale 설치됨</string>
+    <string name="diag_ts_up">Tailscale 연결됨</string>
+    <string name="diag_google">Google 서비스</string>
+    <string name="diag_experimental">실험적 기능(근처, 알림, Zepp, Wear OS)</string>
+    <string name="diag_missing">허용 필요</string>
+    <string name="diag_nothing">없음</string>
+    <string name="diag_pcs">컴퓨터</string>
+    <string name="diag_pc_os">운영체제</string>
+    <string name="diag_pc_method">호출 방식</string>
+    <string name="diag_pc_addresses">알려진 주소</string>
+    <string name="diag_pc_paths">경로(로컬 네트워크, Bluetooth, Tailscale)</string>
+    <string name="diag_pc_sealed">암호화된 응답</string>
+    <string name="diag_pc_no_confirm">확인 없이</string>
+    <string name="diag_pc_tag">NFC 태그</string>
+    <string name="diag_pc_wake">네트워크로 전원 켜기</string>
+    <string name="diag_pc_last">마지막 사용</string>
+    <string name="diag_none">없음</string>
+    <string name="diag_events">최근 이벤트</string>
+    <string name="diag_no_events">(없음)</string>
+
+    <string name="widget_removed">컴퓨터가 삭제됨</string>
+    <string name="widget_refresh">잠금 상태 새로고침</string>
+    <string name="widget_tap_refresh">새로고침을 탭해 잠금 상태 확인</string>
+    <string name="widget_clock_off">시간이 맞지 않음</string>
+    <string name="widget_status_at">%1$s · %2$s</string>
+    <string name="widget_config_title">이 위젯으로 제어할 컴퓨터는?</string>
+    <string name="widget_config_empty">페어링된 컴퓨터가 없습니다. Ítalock을 열고 먼저 페어링하세요.</string>
+</resources>

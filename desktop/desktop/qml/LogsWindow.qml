@@ -13,13 +13,17 @@ ApplicationWindow {
     height: 600
     minimumWidth: 480
     minimumHeight: 360
-    title: "Registros · Ítalock"
+    title: qsTr("Registros · Ítalock")
     color: Theme.bg
     font.family: Theme.fontFamily
 
-    property string appLog: "Carregando…"
-    property string moduleLog: "Carregando…"
-    property string agentLog: "Carregando…"
+    // Arabe: telas espelhadas (da direita para a esquerda)
+    LayoutMirroring.enabled: QI18n.rtl
+    LayoutMirroring.childrenInherit: true
+
+    property string appLog: qsTr("Carregando…")
+    property string moduleLog: qsTr("Carregando…")
+    property string agentLog: qsTr("Carregando…")
     property int tab: 0
 
     ColumnLayout {
@@ -30,7 +34,7 @@ ApplicationWindow {
         RowLayout {
             spacing: 4
             Repeater {
-                model: [MainWindow.IsWindows() ? "Tela de bloqueio" : "Proteção de tela (PAM)", "Aplicativo", "Agente (travar pelo celular)"]
+                model: [MainWindow.IsWindows() ? qsTr("Tela de bloqueio") : qsTr("Proteção de tela (PAM)"), qsTr("Aplicativo"), qsTr("Agente (travar pelo celular)")]
                 delegate: Btn {
                     required property string modelData
                     required property int index
@@ -42,8 +46,8 @@ ApplicationWindow {
             Item { Layout.fillWidth: true }
             Btn {
                 kind: "text"
-                text: "Atualizar"
-                onClicked: { logsWindow.appLog = "Carregando…"; logsWindow.moduleLog = "Carregando…"; logsWindow.agentLog = "Carregando…"; LogsWindow.LoadLogs(logsWindow); }
+                text: qsTr("Atualizar")
+                onClicked: { logsWindow.appLog = qsTr("Carregando…"); logsWindow.moduleLog = qsTr("Carregando…"); logsWindow.agentLog = qsTr("Carregando…"); LogsWindow.LoadLogs(logsWindow); }
             }
         }
 
@@ -72,9 +76,9 @@ ApplicationWindow {
     Component.onCompleted: LogsWindow.LoadLogs(logsWindow)
 
     function setLogs(desktopLogs, moduleLogs, agentLogs) {
-        appLog = desktopLogs !== "" ? desktopLogs : "Nada registrado ainda.";
-        moduleLog = moduleLogs !== "" ? moduleLogs : "Nada registrado ainda.";
-        agentLog = agentLogs !== "" ? agentLogs : "Nada registrado ainda.";
+        appLog = desktopLogs !== "" ? desktopLogs : qsTr("Nada registrado ainda.");
+        moduleLog = moduleLogs !== "" ? moduleLogs : qsTr("Nada registrado ainda.");
+        agentLog = agentLogs !== "" ? agentLogs : qsTr("Nada registrado ainda.");
     }
     // Fechou: a janela some de verdade (antes ficava na memória até sair do app).
     onClosing: destroy()

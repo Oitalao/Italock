@@ -34,6 +34,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
@@ -43,6 +44,8 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import br.italo.italock.BuildConfig
+import br.italo.italock.R
+import br.italo.italock.i18n.L10n
 import br.italo.italock.net.NetInfo
 import br.italo.italock.service.UnlockService
 import br.italo.italock.service.UnlockSession
@@ -117,7 +120,7 @@ class UnlockActivity : GatedActivity() {
         val hide = prefs.hideNameNow(this)
         setContent {
             ItalockTheme {
-                UnlockPrompt(if (hide) "Seu computador" else s.pc.displayName, if (hide) "" else s.user, NetInfo.viaLabel(s.via),
+                UnlockPrompt(if (hide) L10n.s(R.string.prompt_your_computer) else s.pc.displayName, if (hide) "" else s.user, NetInfo.viaLabel(s.via),
                     if (hide) "" else program, s.expiresAt, prefs.needsPhoneUnlock(this), onUnlock = { confirm(s) }, onDeny = { deny(s) })
             }
         }
@@ -140,18 +143,18 @@ class UnlockActivity : GatedActivity() {
     }
 
     private fun authenticate(s: UnlockSession) {
-        BioAuth.openPasswordKey(this, s.pc, "Destravar ${s.pc.displayName}", s.user,
+        BioAuth.openPasswordKey(this, s.pc, L10n.s(R.string.bio_unlock_title, s.pc.displayName), s.user,
             onOk = { key ->
                 // O celular voltou a bloquear entre o desbloqueio e a biometria: não vale.
                 if (br.italo.italock.data.AppPrefs(this).needsPhoneUnlock(this)) {
-                    Toast.makeText(this, "Desbloqueie o celular para destravar o computador.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, L10n.s(R.string.prompt_unlock_phone_first), Toast.LENGTH_LONG).show()
                     return@openPasswordKey
                 }
                 thread(name = "approve", isDaemon = true) {
                     val alreadyAnswered = s.finished
                     val sent = s.approve(key)
                     runOnUiThread {
-                        if (!sent && !alreadyAnswered) Toast.makeText(this, "Não deu para responder a ${s.pc.displayName}. A conexão caiu?", Toast.LENGTH_LONG).show()
+                        if (!sent && !alreadyAnswered) Toast.makeText(this, L10n.s(R.string.prompt_reply_failed, s.pc.displayName), Toast.LENGTH_LONG).show()
                         finish()
                     }
                 }
@@ -169,7 +172,10 @@ class UnlockActivity : GatedActivity() {
     }
 }
 
-/** A tela do pedido: nome do computador grande, a pergunta, Destravar (laranja) e Recusar; tempo restante discreto. */
+/**
+ * A tela do pedido: nome do computador grande, a pergunta, Destravar (laranja) e Recusar; tempo restante discreto.
+ * [via]: rótulo interno do caminho (NetInfo.viaLabel); aparece no idioma escolhido.
+ */
 @Composable
 fun UnlockPrompt(
     name: String,
@@ -186,7 +192,7 @@ fun UnlockPrompt(
     Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
         Column(Modifier.fillMaxSize().safeDrawingPadding().padding(horizontal = 24.dp, vertical = 16.dp)) {
             Text(
-                if (left > 0) "Expira em %d:%02d".format(left / 60, left % 60) else "Expirado",
+                if (left > 0) stringResource(R.string.prompt_expires_in, left / 60, left % 60) else stringResource(R.string.prompt_expired),
                 style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.align(Alignment.End),
             )
@@ -201,10 +207,11 @@ fun UnlockPrompt(
                     name, style = MaterialTheme.typography.displaySmall, fontWeight = FontWeight.SemiBold, textAlign = TextAlign.Center,
                     maxLines = 2, overflow = TextOverflow.Ellipsis, modifier = Modifier.semantics { heading() },
                 )
-                Text("quer destravar", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(stringResource(R.string.prompt_wants_unlock), style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 Spacer(Modifier.padding(top = 16.dp))
                 Text(
-                    listOf(user.takeIf { it.isNotBlank() }?.let { "Usuário $it" }, "via $via").filterNotNull().joinToString(" · "),
+                    listOf(user.takeIf { it.isNotBlank() }?.let { stringResource(R.string.prompt_user, it) },
+                        stringResource(R.string.prompt_via, L10n.via(via))).filterNotNull().joinToString(" · "),
                     style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, textAlign = TextAlign.Center,
                 )
                 if (program.isNotEmpty()) Text(
@@ -213,13 +220,13 @@ fun UnlockPrompt(
                 )
             }
             if (needsPhoneUnlock) Text(
-                "Desbloqueie o celular para destravar.", style = MaterialTheme.typography.bodyMedium,
+                stringResource(R.string.prompt_unlock_phone_to_unlock), style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant, textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp),
             )
-            PrimaryButton("Destravar", onUnlock, modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp))
+            PrimaryButton(stringResource(R.string.action_unlock), onUnlock, modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp))
             Spacer(Modifier.padding(top = 8.dp))
-            SecondaryButton("Recusar", onDeny, modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp))
+            SecondaryButton(stringResource(R.string.prompt_deny), onDeny, modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp))
         }
     }
 }

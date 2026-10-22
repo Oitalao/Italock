@@ -15,6 +15,7 @@
 #include "storage/AppSettings.h"
 #include "storage/PairedDevicesStorage.h"
 #include "utils/AppInfo.h"
+#include "utils/I18n.h"
 #include "utils/ResourceHelper.h"
 #include "utils/StringUtils.h"
 
@@ -24,6 +25,11 @@ bool MainWindow::s_PrintMode = false;
 
 void MainWindow::SetPrefChangedHandler(std::function<void(const QString &)> handler) {
   g_PrefChanged = std::move(handler);
+}
+
+void MainWindow::NotifyPrefChanged(const QString &key) {
+  if(g_PrefChanged)
+    g_PrefChanged(key);
 }
 
 bool MainWindow::IsBusy() {
@@ -144,14 +150,14 @@ static QString MethodLabel(const PairedDevice &device) {
       return "Bluetooth";
     case PairingMethod::UDP:
     case PairingMethod::MANUAL_UDP:
-      return hasTailscale ? "Mesma rede e internet (Tailscale)" : "Mesma rede";
+      return hasTailscale ? QString::fromStdString(I18n::Tr("Mesma rede e internet (Tailscale)")) : QString::fromStdString(I18n::Tr("Mesma rede"));
     case PairingMethod::TCP:
-      return "Mesma rede (conexão direta)";
+      return QString::fromStdString(I18n::Tr("Mesma rede (conexão direta)"));
     case PairingMethod::CLOUD_TCP:
     case PairingMethod::CLOUD_BT:
-      return "Pela internet";
+      return QString::fromStdString(I18n::Tr("Pela internet"));
   }
-  return "Mesma rede";
+  return QString::fromStdString(I18n::Tr("Mesma rede"));
 }
 
 QVariantList MainWindow::GetDevices() {
@@ -160,7 +166,7 @@ QVariantList MainWindow::GetDevices() {
   for(const auto &device : PairedDevicesStorage::GetDevices()) {
     QVariantMap entry{};
     entry["id"] = QString::fromUtf8(device.id);
-    entry["name"] = QString::fromUtf8(device.deviceName.empty() ? std::string("Celular") : device.deviceName);
+    entry["name"] = QString::fromUtf8(device.deviceName.empty() ? I18n::Tr("Celular") : device.deviceName);
     entry["user"] = QString::fromUtf8(device.userName);
     entry["method"] = MethodLabel(device);
     auto it = lastUses.find(device.id);
@@ -172,7 +178,7 @@ QVariantList MainWindow::GetDevices() {
 
 QString MainWindow::RemoveDevice(const QString &pairingId) {
   if(!PairedDevicesStorage::RemoveDevice(pairingId.toStdString()))
-    return "Não deu para remover agora: o arquivo de pareamentos está ocupado ou ilegível. Nada foi apagado; tente de novo.";
+    return QString::fromStdString(I18n::Tr("Não deu para remover agora: o arquivo de pareamentos está ocupado ou ilegível. Nada foi apagado; tente de novo."));
   return {};
 }
 
@@ -194,7 +200,7 @@ QVariantList MainWindow::GetHistory() {
 
 QString MainWindow::ClearHistory() {
   if(!PairedDevicesStorage::ClearHistory())
-    return "Não deu para limpar agora: o arquivo está ocupado. Tente de novo em alguns segundos.";
+    return QString::fromStdString(I18n::Tr("Não deu para limpar agora: o arquivo está ocupado. Tente de novo em alguns segundos."));
   return {};
 }
 
@@ -240,7 +246,7 @@ void MainWindow::SetProtection(QObject *window, bool enabled) {
       ~BusyGuard() { g_BusyCount--; }
     } busyGuard;
     QMetaObject::invokeMethod(window, "showLoadingScreen",
-                              Q_ARG(QVariant, QString(enabled ? "Ligando a proteção da tela de bloqueio…" : "Desligando a proteção…")));
+                              Q_ARG(QVariant, QString::fromStdString(enabled ? I18n::Tr("Ligando a proteção da tela de bloqueio…") : I18n::Tr("Desligando a proteção…"))));
     auto logCallback = [window](const std::string &str) {
       spdlog::info(str);
       QMetaObject::invokeMethod(window, "appendLoadingOutput", Q_ARG(QVariant, QString::fromUtf8(str)));
@@ -250,7 +256,7 @@ void MainWindow::SetProtection(QObject *window, bool enabled) {
       installer.SetProtection(enabled);
       AppSettings::SetInstalledVersion(ServiceInstaller::IsInstalled());
       QMetaObject::invokeMethod(window, "finishLoadingScreen", Q_ARG(QVariant, true),
-                                Q_ARG(QVariant, QString(enabled ? "Proteção ligada." : "Proteção desligada.")));
+                                Q_ARG(QVariant, QString::fromStdString(enabled ? I18n::Tr("Proteção ligada.") : I18n::Tr("Proteção desligada."))));
     } catch(const std::exception &ex) {
       logCallback(ex.what());
       QMetaObject::invokeMethod(window, "finishLoadingScreen", Q_ARG(QVariant, false), Q_ARG(QVariant, QString::fromUtf8(ex.what())));

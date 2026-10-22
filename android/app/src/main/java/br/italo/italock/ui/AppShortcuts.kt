@@ -9,6 +9,7 @@ import br.italo.italock.R
 import br.italo.italock.data.DiagLog
 import br.italo.italock.data.Origin
 import br.italo.italock.data.PairedPc
+import br.italo.italock.i18n.L10n
 
 /**
  * Atalhos do ícone do app (toque longo no ícone, Android 7.1+): "Destravar <PC>" e "Travar <PC>" dos primeiros
@@ -26,8 +27,8 @@ object AppShortcuts {
     /** Pares Destravar/Travar dos primeiros computadores, até [max] atalhos. */
     fun plan(pcs: List<PairedPc>, max: Int = MAX): List<Entry> = pcs.flatMap { pc ->
         listOf(
-            Entry(id(pc.deviceId, QuickUnlockActivity.ACTION_UNLOCK), pc.deviceId, QuickUnlockActivity.ACTION_UNLOCK, "Destravar ${pc.displayName}"),
-            Entry(id(pc.deviceId, QuickUnlockActivity.ACTION_LOCK), pc.deviceId, QuickUnlockActivity.ACTION_LOCK, "Travar ${pc.displayName}"),
+            Entry(id(pc.deviceId, QuickUnlockActivity.ACTION_UNLOCK), pc.deviceId, QuickUnlockActivity.ACTION_UNLOCK, L10n.s(R.string.shortcut_unlock, pc.displayName)),
+            Entry(id(pc.deviceId, QuickUnlockActivity.ACTION_LOCK), pc.deviceId, QuickUnlockActivity.ACTION_LOCK, L10n.s(R.string.shortcut_lock, pc.displayName)),
         )
     }.take(max.coerceAtLeast(0))
 
@@ -63,7 +64,7 @@ object AppShortcuts {
                 ShortcutManagerCompat.getShortcuts(app, ShortcutManagerCompat.FLAG_MATCH_DYNAMIC or ShortcutManagerCompat.FLAG_MATCH_PINNED)
                     .map { it.id }.filter { it !in keep }
             }.getOrDefault(emptyList())
-            if (gone.isNotEmpty()) ShortcutManagerCompat.disableShortcuts(app, gone, "Computador removido do Ítalock")
+            if (gone.isNotEmpty()) ShortcutManagerCompat.disableShortcuts(app, gone, L10n.s(R.string.shortcut_removed))
             // Computador pareado de novo: um atalho fixado que tinha sido desativado volta a funcionar.
             runCatching { ShortcutManagerCompat.enableShortcuts(app, plan(pcs, Int.MAX_VALUE).map(::info)) }
             if (!ShortcutManagerCompat.setDynamicShortcuts(app, infos)) return // limite de chamadas: tenta na próxima mudança

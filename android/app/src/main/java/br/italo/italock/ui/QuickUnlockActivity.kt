@@ -19,8 +19,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.FragmentActivity
+import br.italo.italock.R
+import br.italo.italock.i18n.L10n
 import br.italo.italock.data.AppPrefs
 import br.italo.italock.data.EventKind
 import br.italo.italock.data.Events
@@ -68,9 +71,9 @@ open class QuickUnlockActivity : GatedActivity() {
                 confirmLockFor?.let { pc ->
                     AlertDialog(
                         onDismissRequest = { confirmLockFor = null; finish() },
-                        title = { Text("Travar ${pc.displayName}?") },
-                        confirmButton = { QuietButton("Travar", { confirmLockFor = null; lockNow(pc) }) },
-                        dismissButton = { QuietButton("Cancelar", { confirmLockFor = null; finish() }) },
+                        title = { Text(stringResource(R.string.quick_confirm_lock_title, pc.displayName)) },
+                        confirmButton = { QuietButton(stringResource(R.string.action_lock), { confirmLockFor = null; lockNow(pc) }) },
+                        dismissButton = { QuietButton(stringResource(R.string.common_cancel), { confirmLockFor = null; finish() }) },
                     )
                 }
             }
@@ -81,7 +84,7 @@ open class QuickUnlockActivity : GatedActivity() {
     /** Ponto de partida (a tela da tag NFC troca por outro). */
     protected open fun begin() {
         val pc = PairingStore(this).byDeviceId(intent.getStringExtra(EXTRA_DEVICE) ?: "") ?: run {
-            toast("Computador não encontrado (foi removido?)"); finish(); return
+            toast(L10n.s(R.string.notif_pc_not_found)); finish(); return
         }
         UnlockFlow.cancelAsk(this, pc)
         val action = intent.getStringExtra(EXTRA_ACTION) ?: ACTION_UNLOCK
@@ -159,6 +162,6 @@ object UnlockKey {
     fun obtain(activity: FragmentActivity, pc: PairedPc, unverified: Boolean = false, onOk: (String) -> Unit, onFail: (String?) -> Unit) {
         // MODO PERIGOSO: só para pedidos iniciados aqui no celular, que já está destravado.
         UnlockFlow.noConfirmKey(pc, unverified)?.let { onOk(it); return }
-        BioAuth.openPasswordKey(activity, pc, "Destravar ${pc.displayName}", onOk = onOk, onFail = onFail)
+        BioAuth.openPasswordKey(activity, pc, L10n.s(R.string.bio_unlock_title, pc.displayName), onOk = onOk, onFail = onFail)
     }
 }

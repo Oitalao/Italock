@@ -10,7 +10,7 @@
 struct PCBUAppStorage {
   std::string machineID{};
   std::string installedVersion{};
-  std::string language{};
+  std::string language{}; // Italock: "pt_BR" (padrao), "auto" (idioma do sistema) ou um codigo de I18n::Languages()
   std::string serverIP{};
   std::string serverMAC{};
   uint16_t pairingDiscoveryPort{};
@@ -25,8 +25,6 @@ struct PCBUAppStorage {
   bool winForceDefaultCredProv{};
   bool unixSetPasswordPAM{};
 
-  // Italock: recursos experimentais (desligados = nao rodam)
-  bool expLanguage{}; // usar "language" nas mensagens; desligado = sempre portugues do Brasil
 
   // Italock: tela de bloqueio / PAM
   // winUnlockBehavior tambem aceita "wake_only" (so pelo botao Destravar do celular; tecla nao chama o celular).

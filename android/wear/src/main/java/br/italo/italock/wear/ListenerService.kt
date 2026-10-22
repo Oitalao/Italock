@@ -13,6 +13,12 @@ class ListenerService : WearableListenerService() {
 
     override fun onMessageReceived(event: MessageEvent) {
         val json = runCatching { JSONObject(String(event.data, Charsets.UTF_8)) }.getOrNull() ?: JSONObject()
+        // Idioma escolhido no celular: guardado antes de montar qualquer aviso ou tile.
+        val lang = json.optString("lang")
+        if (lang.isNotEmpty() && WearLang.save(this, lang)) {
+            Bus.langChanged.tryEmit(Unit)
+            if (event.path != Proto.PCS) TileService.getUpdater(this).requestUpdate(PcTileService::class.java)
+        }
         when (event.path) {
             Proto.PROMPT -> {
                 val p = Prompt(
@@ -43,7 +49,7 @@ class ListenerService : WearableListenerService() {
                 if (Bus.results.subscriptionCount.value > 0) {
                     Bus.results.tryEmit(r)
                 } else {
-                    val text = resultText(r)
+                    val text = resultText(this, r)
                     Handler(Looper.getMainLooper()).post {
                         Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT).show()
                     }
@@ -55,9 +61,9 @@ class ListenerService : WearableListenerService() {
     }
 }
 
-fun resultText(r: ActionResult): String = when {
-    r.confirmOnPhone -> "Confirme no celular"
+fun resultText(ctx: android.content.Context, r: ActionResult): String = when {
+    r.confirmOnPhone -> WearLang.s(ctx, R.string.result_confirm_on_phone)
     r.message.isNotBlank() -> r.message
-    r.ok -> "Feito"
-    else -> "Não deu certo"
+    r.ok -> WearLang.s(ctx, R.string.result_done)
+    else -> WearLang.s(ctx, R.string.result_failed)
 }

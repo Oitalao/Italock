@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="wearmsg_your_computer">Dein Computer</string>
+    <string name="wearmsg_computer">Computer</string>
+    <string name="wearmsg_computer_n">Computer %1$d</string>
+    <string name="wearmsg_feature_off">Aktiviere Wear OS-Uhr in den experimentellen Funktionen von Ítalock auf dem Telefon.</string>
+    <string name="wearmsg_pc_not_found">Computer auf dem Telefon nicht gefunden.</string>
+    <string name="wearmsg_pc_off">Uhr für %1$s ausgeschaltet. Aktiviere sie in seinen Details auf dem Telefon.</string>
+    <string name="wearmsg_confirm_on_phone">Auf dem Telefon bestätigen.</string>
+    <string name="wearmsg_unknown_action">Unbekannte Aktion.</string>
+    <string name="wearmsg_already_asking">%1$s fragt schon. Bestätige auf dem Telefon oder in der Anfrage auf der Uhr.</string>
+</resources>

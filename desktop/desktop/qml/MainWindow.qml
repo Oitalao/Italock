@@ -18,6 +18,10 @@ ApplicationWindow {
     font.family: Theme.fontFamily
     font.pixelSize: Theme.bodySize
 
+    // Arabe: telas espelhadas (da direita para a esquerda)
+    LayoutMirroring.enabled: QI18n.rtl
+    LayoutMirroring.childrenInherit: true
+
     property bool busy: false
     onClosing: function(close) { close.accepted = !window.busy }
 
@@ -45,7 +49,7 @@ ApplicationWindow {
         dialog.title = title;
         dialog.text = text;
         dialog.confirmText = confirmText;
-        dialog.cancelText = "Cancelar";
+        dialog.cancelText = qsTr("Cancelar");
         dialog.extraText = "";
         dialog.danger = danger;
         dialog.acceptFn = onAccept;
@@ -53,7 +57,7 @@ ApplicationWindow {
         dialog.open();
     }
     function showErrorMessage(text) {
-        dialog.title = "Não deu certo";
+        dialog.title = qsTr("Não deu certo");
         dialog.text = text;
         dialog.confirmText = "OK";
         dialog.cancelText = "";
@@ -69,11 +73,11 @@ ApplicationWindow {
     }
     // Senha que o sistema recusou mas pode estar certa (ex.: conta Microsoft com PIN): deixa seguir, por conta da pessoa.
     function showSkipPasswordCheck(text, onSkip) {
-        dialog.title = "Senha não conferida";
-        dialog.text = text + "\n\nSe tiver certeza de que a senha está certa, dá para seguir sem conferir. Com a senha errada, o celular não vai conseguir destravar.";
-        dialog.confirmText = "Corrigir";
+        dialog.title = qsTr("Senha não conferida");
+        dialog.text = text + "\n\n" + qsTr("Se tiver certeza de que a senha está certa, dá para seguir sem conferir. Com a senha errada, o celular não vai conseguir destravar.");
+        dialog.confirmText = qsTr("Corrigir");
         dialog.cancelText = "";
-        dialog.extraText = "Seguir sem conferir";
+        dialog.extraText = qsTr("Seguir sem conferir");
         dialog.danger = false;
         dialog.acceptFn = null;
         dialog.extraFn = onSkip;
@@ -81,9 +85,9 @@ ApplicationWindow {
     }
 
     function confirmRemove(id, name) {
-        ask("Remover “" + name + "”?",
-            "Este celular não vai mais destravar este computador. Para usar de novo, é preciso parear outra vez.",
-            "Remover", true, function() {
+        ask(qsTr("Remover “%1”?").arg(name),
+            qsTr("Este celular não vai mais destravar este computador. Para usar de novo, é preciso parear outra vez."),
+            qsTr("Remover"), true, function() {
                 let err = MainWindow.RemoveDevice(id);
                 if (err !== "") showErrorMessage(err);
                 if (stack.currentItem && stack.currentItem.refresh) stack.currentItem.refresh();
@@ -191,7 +195,7 @@ ApplicationWindow {
             Btn {
                 visible: working.log !== "" && !working.showLog
                 kind: "text"
-                text: "Ver detalhes"
+                text: qsTr("Ver detalhes")
                 onClicked: working.showLog = true
             }
             ScrollView {
@@ -212,7 +216,7 @@ ApplicationWindow {
                 visible: working.done && !working.ok
                 Layout.alignment: Qt.AlignRight
                 kind: "secondary"
-                text: "Fechar"
+                text: qsTr("Fechar")
                 onClicked: working.close()
             }
         }

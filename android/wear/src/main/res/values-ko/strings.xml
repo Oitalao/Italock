@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tile_description">내 컴퓨터와 각 컴퓨터에 맞는 버튼</string>
+
+    <string name="state_locked">잠김</string>
+    <string name="state_unlocked">해제됨</string>
+    <string name="state_no_answer">응답 없음</string>
+    <string name="state_clock">시간이 맞지 않음</string>
+    <string name="state_unknown">확인 안 됨</string>
+
+    <string name="action_unlock">잠금 해제</string>
+    <string name="action_wake">전원 켜기</string>
+    <string name="action_lock">잠금</string>
+    <string name="action_deny">거부</string>
+    <string name="close">닫기</string>
+
+    <string name="phone_missing_long">휴대폰을 찾을 수 없습니다. 휴대폰에서 Ítalock을 열고 실험적 기능에서 Wear OS 워치를 켜세요.</string>
+    <string name="open_on_phone">휴대폰에서 Ítalock을 여세요</string>
+    <string name="phone_missing">휴대폰을 찾을 수 없습니다. 휴대폰에서 Ítalock을 여세요.</string>
+    <string name="tile_sending">%1$s: 보내는 중</string>
+
+    <string name="sending">보내는 중</string>
+    <string name="phone_no_answer">휴대폰이 응답하지 않습니다. 가까이 있거나 인터넷에 연결되어 있나요?</string>
+    <string name="result_confirm_on_phone">휴대폰에서 확인</string>
+    <string name="result_done">완료</string>
+    <string name="result_failed">실패</string>
+
+    <string name="prompt_title">%1$s 잠금을 해제할까요?</string>
+    <string name="prompt_title_generic">컴퓨터 잠금을 해제할까요?</string>
+    <string name="prompt_needs_lock_notif">여기서 잠금 해제하려면 워치 화면 잠금을 켜세요</string>
+    <string name="prompt_needs_lock">워치로 잠금 해제하려면 워치 화면 잠금을 켜세요</string>
+    <string name="channel_prompts">요청</string>
+    <string name="channel_prompts_desc">컴퓨터 잠금 해제 요청</string>
+</resources>

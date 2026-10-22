@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android 13+: idiomas que aparecem em Ajustes > Apps > Ítalock > Idioma. Português (Brasil) é o padrão (values). -->
+<locale-config xmlns:android="http://schemas.android.com/apk/res/android">
+    <locale android:name="pt-BR" />
+    <locale android:name="en" />
+    <locale android:name="es" />
+    <locale android:name="fr" />
+    <locale android:name="de" />
+    <locale android:name="it" />
+    <locale android:name="ja" />
+    <locale android:name="ko" />
+    <locale android:name="zh-CN" />
+    <locale android:name="ru" />
+    <locale android:name="pl" />
+    <locale android:name="hi" />
+    <locale android:name="ar" />
+</locale-config>

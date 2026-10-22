@@ -12,6 +12,7 @@ import br.italo.italock.R
 import br.italo.italock.data.AppPrefs
 import br.italo.italock.data.PairingStore
 import br.italo.italock.data.ThemeMode
+import br.italo.italock.i18n.L10n
 import br.italo.italock.service.ActionReceiver
 import br.italo.italock.ui.QuickUnlockActivity
 
@@ -54,7 +55,13 @@ class PcWidgetProvider : AppWidgetProvider() {
             val deviceId = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getString("w$id", null) ?: return
             val pc = PairingStore(context).byDeviceId(deviceId)
             val views = RemoteViews(context.packageName, layoutFor(context))
-            views.setTextViewText(R.id.pc_name, pc?.displayName ?: "Computador removido")
+            views.setTextViewText(R.id.pc_name, pc?.displayName ?: L10n.s(R.string.widget_removed))
+            // O lançador desenha o widget no idioma do sistema: todo texto vem daqui, no idioma escolhido no app.
+            views.setTextViewText(R.id.btn_lock, L10n.s(R.string.action_lock))
+            views.setTextViewText(R.id.btn_unlock, L10n.s(R.string.action_unlock))
+            views.setTextViewText(R.id.btn_wake, L10n.s(R.string.action_wake))
+            views.setTextViewText(R.id.danger, L10n.s(R.string.danger_strip))
+            views.setContentDescription(R.id.btn_refresh, L10n.s(R.string.widget_refresh))
             fun activity(action: String) = PendingIntent.getActivity(
                 context, (action + id).hashCode(),
                 Intent(context, QuickUnlockActivity::class.java).putExtra(QuickUnlockActivity.EXTRA_DEVICE, deviceId)

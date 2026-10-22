@@ -68,7 +68,7 @@ Item {
             Text {
                 Layout.fillWidth: true
                 visible: root.risk !== ""
-                text: "Risco: " + root.risk
+                text: qsTr("Risco: %1").arg(root.risk)
                 color: Theme.amberText
                 font.family: Theme.fontFamily
                 font.pixelSize: Theme.smallSize

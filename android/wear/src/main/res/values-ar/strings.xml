@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tile_description">أجهزة الكمبيوتر لديك والزر المناسب لكل منها</string>
+
+    <string name="state_locked">مقفل</string>
+    <string name="state_unlocked">مفتوح</string>
+    <string name="state_no_answer">لا يوجد رد</string>
+    <string name="state_clock">الساعة غير مضبوطة</string>
+    <string name="state_unknown">غير مؤكد</string>
+
+    <string name="action_unlock">فتح القفل</string>
+    <string name="action_wake">تشغيل</string>
+    <string name="action_lock">قفل</string>
+    <string name="action_deny">رفض</string>
+    <string name="close">إغلاق</string>
+
+    <string name="phone_missing_long">لم يتم العثور على الهاتف. افتح Ítalock على الهاتف وفعّل \"ساعة Wear OS\" في الميزات التجريبية.</string>
+    <string name="open_on_phone">افتح Ítalock على الهاتف</string>
+    <string name="phone_missing">لم يتم العثور على الهاتف. افتح Ítalock على الهاتف.</string>
+    <string name="tile_sending">%1$s: جارٍ الإرسال</string>
+
+    <string name="sending">جارٍ الإرسال</string>
+    <string name="phone_no_answer">لم يرد الهاتف. هل هو قريب أو متصل بالإنترنت؟</string>
+    <string name="result_confirm_on_phone">أكّد على الهاتف</string>
+    <string name="result_done">تم</string>
+    <string name="result_failed">لم ينجح</string>
+
+    <string name="prompt_title">فتح قفل %1$s؟</string>
+    <string name="prompt_title_generic">فتح قفل الكمبيوتر؟</string>
+    <string name="prompt_needs_lock_notif">فعّل قفل شاشة الساعة لفتح القفل من هنا</string>
+    <string name="prompt_needs_lock">لفتح القفل من الساعة، فعّل قفل شاشة الساعة</string>
+    <string name="channel_prompts">الطلبات</string>
+    <string name="channel_prompts_desc">طلبات فتح قفل الكمبيوتر</string>
+</resources>

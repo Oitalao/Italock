@@ -18,11 +18,15 @@ ApplicationWindow {
     minimumHeight: height
     maximumWidth: width
     maximumHeight: height
-    title: "Testar destravar · Ítalock"
+    title: qsTr("Testar destravar · Ítalock")
     flags: Qt.Dialog
     modality: Qt.ApplicationModal
     color: Theme.bg
     font.family: Theme.fontFamily
+
+    // Arabe: telas espelhadas (da direita para a esquerda)
+    LayoutMirroring.enabled: QI18n.rtl
+    LayoutMirroring.childrenInherit: true
 
     ColumnLayout {
         anchors.fill: parent
@@ -31,7 +35,7 @@ ApplicationWindow {
 
         Text {
             Layout.fillWidth: true
-            text: "Testar destravar"
+            text: qsTr("Testar destravar")
             color: Theme.text
             font.family: Theme.fontFamily
             font.pixelSize: 17
@@ -46,7 +50,7 @@ ApplicationWindow {
                 id: lblUnlockMsg
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignVCenter
-                text: "Preparando…"
+                text: qsTr("Preparando…")
                 color: Theme.text
                 font.family: Theme.fontFamily
                 font.pixelSize: Theme.bodySize
@@ -55,7 +59,7 @@ ApplicationWindow {
         }
         Text {
             Layout.fillWidth: true
-            text: "Nada é destravado de verdade: é só para ver se o celular responde."
+            text: qsTr("Nada é destravado de verdade: é só para ver se o celular responde.")
             color: Theme.text2
             font.family: Theme.fontFamily
             font.pixelSize: Theme.smallSize
@@ -66,7 +70,7 @@ ApplicationWindow {
             Btn {
                 id: btnUnlockAction
                 kind: "secondary"
-                text: "Cancelar"
+                text: qsTr("Cancelar")
                 onClicked: {
                     if (UnlockTestWindow.IsRunning()) UnlockTestWindow.StopUnlock(unlockTestWindow);
                     else UnlockTestWindow.StartUnlock(unlockTestWindow, deviceId);

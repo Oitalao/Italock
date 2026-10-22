@@ -9,6 +9,7 @@ import br.italo.italock.R
 import br.italo.italock.data.AppPrefs
 import br.italo.italock.data.Origin
 import br.italo.italock.data.PairedPc
+import br.italo.italock.i18n.L10n
 import br.italo.italock.ui.QuickUnlockActivity
 
 /**
@@ -22,7 +23,8 @@ object UnlockedNotice {
 
     fun id(deviceId: String) = BASE_ID + deviceId.lowercase().hashCode()
 
-    fun show(context: Context, pc: PairedPc, via: String, title: String = "Destravado ${pc.displayName}") {
+    /** [via]: rótulo interno do caminho (NetInfo.viaLabel); aparece no idioma escolhido. */
+    fun show(context: Context, pc: PairedPc, via: String, title: String = L10n.s(R.string.notice_unlocked, pc.displayName)) {
         val app = context.applicationContext
         UnlockService.createChannels(app)
         val prefs = AppPrefs(app)
@@ -49,13 +51,13 @@ object UnlockedNotice {
         val b = NotificationCompat.Builder(app, UnlockService.CHANNEL_PROMPT)
             .setSmallIcon(R.drawable.ic_lock_open).setColor(UnlockService.BRAND_BLUE)
             .setContentTitle(title)
-            .setContentText("via $via")
+            .setContentText(L10n.s(R.string.prompt_via, L10n.via(via)))
             .setCategory(NotificationCompat.CATEGORY_STATUS)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setOnlyAlertOnce(true)
             .setAutoCancel(true)
             .setTimeoutAfter(VISIBLE_MS)
-            .addAction(NotificationCompat.Action.Builder(R.drawable.ic_lock, "Travar de novo", lockPi).build())
+            .addAction(NotificationCompat.Action.Builder(R.drawable.ic_lock, L10n.s(R.string.notice_lock_again), lockPi).build())
         // "Esconder nome no bloqueio": o aviso nem aparece na tela de bloqueio (dura 15 s; com o celular destravado ele
         // fica na barra normalmente). Versão privada com versão pública não bastaria: o Android só usa a pública se a
         // pessoa tiver mandado ocultar conteúdo sensível.

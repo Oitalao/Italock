@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="wearmsg_your_computer">Tu computadora</string>
+    <string name="wearmsg_computer">Computadora</string>
+    <string name="wearmsg_computer_n">Computadora %1$d</string>
+    <string name="wearmsg_feature_off">Activa Reloj Wear OS en las funciones experimentales de Ítalock en el teléfono.</string>
+    <string name="wearmsg_pc_not_found">No se encontró la computadora en el teléfono.</string>
+    <string name="wearmsg_pc_off">Reloj desactivado para %1$s. Actívalo en sus detalles en el teléfono.</string>
+    <string name="wearmsg_confirm_on_phone">Confirma en el teléfono.</string>
+    <string name="wearmsg_unknown_action">Acción desconocida.</string>
+    <string name="wearmsg_already_asking">%1$s ya está pidiendo. Confirma en el teléfono o en la solicitud del reloj.</string>
+</resources>

@@ -212,7 +212,13 @@ fun ItalockTheme(forceDark: Boolean = false, opaqueWindow: Boolean = true, conte
             if (opaqueWindow) window.setBackgroundDrawable(ColorDrawable(windowBackgroundFor(dark)))
         }
     }
-    CompositionLocalProvider(LocalItalockColors provides if (dark) DarkExtra else LightExtra) {
+    // Direção do texto pelo idioma escolhido no app (árabe da direita para a esquerda), não pelo do sistema.
+    val rtl = android.text.TextUtils.getLayoutDirectionFromLocale(br.italo.italock.i18n.L10n.currentLocale()) == android.view.View.LAYOUT_DIRECTION_RTL
+    CompositionLocalProvider(
+        LocalItalockColors provides if (dark) DarkExtra else LightExtra,
+        androidx.compose.ui.platform.LocalLayoutDirection provides
+            if (rtl) androidx.compose.ui.unit.LayoutDirection.Rtl else androidx.compose.ui.unit.LayoutDirection.Ltr,
+    ) {
         MaterialTheme(colorScheme = if (dark) DarkScheme else LightScheme, shapes = ItalockShapes, typography = ItalockType, content = content)
     }
 }

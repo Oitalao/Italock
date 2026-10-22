@@ -17,11 +17,15 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Assert.fail
+import org.junit.Before
 import org.junit.Test
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 
 class QolTest {
+    /** Textos vêm dos XML de res/values (português, o padrão). */
+    @Before fun strings() = TestStrings.install()
+
     private fun pc(id: String, name: String) = PairedPc(
         deviceId = id, encKey = "k", passwordKeyEnc = "", passwordKeyIv = "", pcName = name, pcOs = "", userName = "",
         pairingMethod = "UDP", pcIp = "192.168.0.2", unlockServerPort = 43296, macAddresses = emptyList(),

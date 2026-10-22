@@ -24,6 +24,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringResource
+import br.italo.italock.R
+import br.italo.italock.i18n.L10n
 import br.italo.italock.data.AppPrefs
 import br.italo.italock.data.PairedPc
 import br.italo.italock.data.PairingStore
@@ -53,11 +57,13 @@ data class SettingsValues(
     val allowCredential: Boolean = true,
     val pollSec: Int = 15,
     val tailscaleWarning: Boolean = true,
+    /** Idioma escolhido (um item de [L10n.TAGS]). */
+    val language: String = L10n.DEFAULT,
 ) {
     companion object {
-        fun from(p: AppPrefs) = SettingsValues(
+        fun from(p: AppPrefs, language: String = L10n.DEFAULT) = SettingsValues(
             p.theme, p.vibrate, p.confirmLock, p.promptTimeoutSec, p.approveWhileLocked, p.fullScreenPrompt, p.hideNameOnLockscreen,
-            p.allowDeviceCredential, p.pollSec, p.tailscaleWarning,
+            p.allowDeviceCredential, p.pollSec, p.tailscaleWarning, language,
         )
     }
 }
@@ -74,6 +80,7 @@ sealed interface SettingChange {
     data class AllowCredential(val v: Boolean) : SettingChange
     data class Poll(val sec: Int) : SettingChange
     data class TailscaleWarning(val v: Boolean) : SettingChange
+    data class Language(val tag: String) : SettingChange
 }
 
 class SettingsActions(
@@ -85,7 +92,7 @@ class SettingsActions(
     val onExperimental: () -> Unit,
 )
 
-private enum class Picker { THEME, TIMEOUT, POLL, TILE }
+private enum class Picker { THEME, TIMEOUT, POLL, TILE, LANGUAGE }
 
 @Composable
 fun SettingsScreen(
@@ -101,129 +108,145 @@ fun SettingsScreen(
     var picker by rememberSaveable { mutableStateOf(if (openTileChooser) Picker.TILE else null) }
     var askLocked by rememberSaveable { mutableStateOf(false) }
     val tilePc = PairingStore.tilePcOf(pcs, tileDeviceId)
-    Scaffold(containerColor = MaterialTheme.colorScheme.background, topBar = { InnerTopBar("Configurações", a.onBack) }) { pad ->
+    Scaffold(containerColor = MaterialTheme.colorScheme.background, topBar = { InnerTopBar(stringResource(R.string.settings_title), a.onBack) }) { pad ->
         Column(Modifier.fillMaxSize().padding(pad).verticalScroll(rememberScrollState()).padding(bottom = 24.dp)) {
             if (missing.isNotEmpty()) {
-                SectionTitle("Falta permitir")
+                SectionTitle(stringResource(R.string.settings_missing))
                 Panel {
                     missing.forEachIndexed { i, m ->
                         if (i > 0) ThinDivider()
                         val (text, action) = when (m) {
-                            Missing.NOTIFICATIONS -> "Notificações: sem elas, os pedidos do computador não aparecem." to "Permitir"
-                            Missing.FULL_SCREEN -> "Tela cheia: para o pedido aparecer com o celular bloqueado." to "Permitir"
-                            Missing.BATTERY -> "Economia de bateria: o Android pode fechar o Ítalock." to "Liberar"
-                            Missing.BLUETOOTH -> "Bluetooth: para o computador chamar o celular sem rede." to "Permitir"
+                            Missing.NOTIFICATIONS -> R.string.settings_missing_notifications to R.string.common_allow
+                            Missing.FULL_SCREEN -> R.string.settings_missing_full_screen to R.string.common_allow
+                            Missing.BATTERY -> R.string.settings_missing_battery to R.string.settings_missing_battery_action
+                            Missing.BLUETOOTH -> R.string.settings_missing_bluetooth to R.string.common_allow
                         }
-                        FixRow(text, action, { a.onFix(m) })
+                        FixRow(stringResource(text), stringResource(action), { a.onFix(m) })
                     }
                 }
             }
 
-            SectionTitle("Pedidos do computador")
+            SectionTitle(stringResource(R.string.settings_section_requests))
             Panel {
-                SettingRow("Tempo para responder", subtitle = "${values.promptTimeoutSec} segundos", icon = ItalockIcons.Timer,
+                SettingRow(stringResource(R.string.settings_timeout), subtitle = seconds(values.promptTimeoutSec), icon = ItalockIcons.Timer,
                     onClick = { picker = Picker.TIMEOUT })
                 ThinDivider()
-                SwitchRow("Pedido na tela de bloqueio",
-                    if (values.fullScreenPrompt) "Acende a tela e aparece por cima do bloqueio. Gasta mais bateria."
-                    else "Só notificação, sem acender a tela. Para responder, desbloqueie o celular.",
+                SwitchRow(stringResource(R.string.settings_lockscreen_prompt),
+                    stringResource(if (values.fullScreenPrompt) R.string.settings_lockscreen_prompt_on else R.string.settings_lockscreen_prompt_off),
                     values.fullScreenPrompt, { a.onChange(SettingChange.FullScreen(it)) }, icon = ItalockIcons.PhoneLock)
-                SwitchRow("Destravar com o celular bloqueado",
-                    if (values.approveWhileLocked) "Aceita o pedido na tela de bloqueio, sem desbloquear o celular. Menos seguro."
-                    else "Desligado: desbloqueie o celular antes de aceitar.",
+                SwitchRow(stringResource(R.string.settings_approve_locked),
+                    stringResource(if (values.approveWhileLocked) R.string.settings_approve_locked_on else R.string.settings_approve_locked_off),
                     values.approveWhileLocked && values.fullScreenPrompt,
                     { on -> if (on) askLocked = true else a.onChange(SettingChange.ApproveWhileLocked(false)) },
                     enabled = values.fullScreenPrompt, dependent = true,
-                    disabledReason = "Ligue antes \"Pedido na tela de bloqueio\"")
+                    disabledReason = stringResource(R.string.settings_approve_locked_needs, stringResource(R.string.settings_lockscreen_prompt)))
                 ThinDivider()
-                SwitchRow("Esconder o nome do computador", "Com o celular bloqueado, pedidos e avisos não dizem qual é.",
+                SwitchRow(stringResource(R.string.settings_hide_name), stringResource(R.string.settings_hide_name_sub),
                     values.hideName, { a.onChange(SettingChange.HideName(it)) }, icon = ItalockIcons.VisibilityOff)
                 ThinDivider()
-                SwitchRow("Aceitar PIN, padrão ou senha", "Além da biometria. Desligado: só digital ou rosto seguro.",
+                SwitchRow(stringResource(R.string.settings_allow_credential), stringResource(R.string.settings_allow_credential_sub),
                     values.allowCredential, { a.onChange(SettingChange.AllowCredential(it)) }, icon = ItalockIcons.Pin)
             }
 
-            SectionTitle("Travar")
+            SectionTitle(stringResource(R.string.settings_section_lock))
             Panel {
-                SwitchRow("Pedir confirmação antes de travar", "Pergunta antes de travar por app, widget, atalhos, tag, relógio ou notificação.",
+                SwitchRow(stringResource(R.string.settings_confirm_lock), stringResource(R.string.settings_confirm_lock_sub),
                     values.confirmLock, { a.onChange(SettingChange.ConfirmLock(it)) }, icon = ItalockIcons.Security)
                 if (Build.VERSION.SDK_INT >= 24 && pcs.isNotEmpty()) {
                     ThinDivider()
-                    SettingRow("Atalho rápido", subtitle = "Controla: ${tilePc?.displayName ?: "nenhum computador"}", icon = ItalockIcons.TouchApp,
-                        onClick = { picker = Picker.TILE })
+                    SettingRow(stringResource(R.string.settings_tile),
+                        subtitle = stringResource(R.string.settings_tile_controls, tilePc?.displayName ?: stringResource(R.string.settings_tile_no_pc)),
+                        icon = ItalockIcons.TouchApp, onClick = { picker = Picker.TILE })
                 }
             }
 
-            SectionTitle("Aparência e aviso")
+            SectionTitle(stringResource(R.string.settings_section_look))
             Panel {
-                SettingRow("Aparência", subtitle = values.theme.label, icon = ItalockIcons.Palette, onClick = { picker = Picker.THEME })
+                SettingRow(stringResource(R.string.settings_language), subtitle = languageName(values.language), icon = ItalockIcons.Language,
+                    onClick = { picker = Picker.LANGUAGE })
                 ThinDivider()
-                SwitchRow("Vibrar ao concluir", "Curta quando dá certo, dupla quando falha.",
+                SettingRow(stringResource(R.string.settings_theme), subtitle = stringResource(values.theme.labelRes), icon = ItalockIcons.Palette,
+                    onClick = { picker = Picker.THEME })
+                ThinDivider()
+                SwitchRow(stringResource(R.string.settings_vibrate), stringResource(R.string.settings_vibrate_sub),
                     values.vibrate, { a.onChange(SettingChange.Vibrate(it)) }, icon = ItalockIcons.Vibration)
             }
 
-            SectionTitle("Conexão")
+            SectionTitle(stringResource(R.string.settings_section_connection))
             Panel {
-                SettingRow("Atualizar o cadeado", subtitle = pollLabel(values.pollSec), icon = ItalockIcons.Sync, onClick = { picker = Picker.POLL })
+                SettingRow(stringResource(R.string.settings_poll), subtitle = pollLabel(values.pollSec), icon = ItalockIcons.Sync, onClick = { picker = Picker.POLL })
                 if (tailscaleInstalled) {
                     ThinDivider()
-                    SwitchRow("Avisar quando o Tailscale desligar", "Sem ele, destravar fora de casa não funciona.",
+                    SwitchRow(stringResource(R.string.settings_tailscale_warning), stringResource(R.string.settings_tailscale_warning_sub),
                         values.tailscaleWarning, { a.onChange(SettingChange.TailscaleWarning(it)) }, icon = ItalockIcons.VpnLock)
                 }
             }
             Text(
-                "Rede local, Bluetooth e Tailscale se escolhem por computador, nos detalhes dele.",
+                stringResource(R.string.settings_paths_note),
                 style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(horizontal = 20.dp, vertical = 8.dp),
             )
 
-            SectionTitle("Mais")
+            SectionTitle(stringResource(R.string.settings_section_more))
             Panel {
                 NavRow(
-                    "Recursos experimentais",
-                    subtitle = when (experimentalOn) { 0 -> "Nenhum ligado"; 1 -> "1 ligado"; else -> "$experimentalOn ligados" },
+                    stringResource(R.string.settings_experimental),
+                    subtitle = if (experimentalOn == 0) stringResource(R.string.settings_experimental_none)
+                    else pluralStringResource(R.plurals.settings_experimental_on, experimentalOn, experimentalOn),
                     icon = ItalockIcons.Science,
-                    badge = { Tag("BETA", Italock.colors.amberBg, Italock.colors.amberText) },
+                    badge = { Tag(stringResource(R.string.settings_beta), Italock.colors.amberBg, Italock.colors.amberText) },
                     onClick = a.onExperimental,
                 )
                 ThinDivider()
-                NavRow("Sobre o Ítalock", subtitle = "Créditos, licença, detalhes técnicos e registros", icon = ItalockIcons.Info, onClick = a.onAbout)
+                NavRow(stringResource(R.string.settings_about), subtitle = stringResource(R.string.settings_about_sub), icon = ItalockIcons.Info,
+                    onClick = a.onAbout)
             }
         }
     }
 
     if (askLocked) AlertDialog(
         onDismissRequest = { askLocked = false },
-        title = { Text("Destravar com o celular bloqueado?") },
+        title = { Text(stringResource(R.string.settings_approve_locked_ask)) },
         text = {
-            Text("O computador poderá ser destravado direto da tela de bloqueio do celular, com a biometria " +
-                "(ou o PIN, se \"Aceitar PIN, padrão ou senha\" estiver ligado), sem desbloquear o celular. É mais cômodo e menos seguro.")
+            Text(stringResource(R.string.settings_approve_locked_ask_text, stringResource(R.string.settings_allow_credential)))
         },
-        confirmButton = { QuietButton("Ligar", { askLocked = false; a.onChange(SettingChange.ApproveWhileLocked(true)) }, danger = true) },
-        dismissButton = { QuietButton("Cancelar", { askLocked = false }) },
+        confirmButton = { QuietButton(stringResource(R.string.common_turn_on), { askLocked = false; a.onChange(SettingChange.ApproveWhileLocked(true)) }, danger = true) },
+        dismissButton = { QuietButton(stringResource(R.string.common_cancel), { askLocked = false }) },
     )
 
     when (picker) {
-        Picker.THEME -> Choice("Aparência", ThemeMode.entries.map { it to it.label }, values.theme, { picker = null }) {
+        Picker.THEME -> Choice(stringResource(R.string.settings_theme), ThemeMode.entries.map { it to stringResource(it.labelRes) }, values.theme, { picker = null }) {
             a.onChange(SettingChange.Theme(it))
         }
-        Picker.TIMEOUT -> Choice("Tempo para responder", AppPrefs.PROMPT_TIMEOUTS.map { it to "$it segundos" }, values.promptTimeoutSec, { picker = null }) {
+        Picker.TIMEOUT -> Choice(stringResource(R.string.settings_timeout), AppPrefs.PROMPT_TIMEOUTS.map { it to seconds(it) }, values.promptTimeoutSec, { picker = null }) {
             a.onChange(SettingChange.PromptTimeout(it))
         }
-        Picker.POLL -> Choice("Atualizar o cadeado", AppPrefs.POLL_OPTIONS.map { it to pollLabel(it) }, values.pollSec, { picker = null }) {
+        Picker.POLL -> Choice(stringResource(R.string.settings_poll), AppPrefs.POLL_OPTIONS.map { it to pollLabel(it) }, values.pollSec, { picker = null }) {
             a.onChange(SettingChange.Poll(it))
         }
         // Com um computador só também dá para escolher "nenhum" (o atalho fica sem ação).
         Picker.TILE -> Choice(
-            "Atalho rápido controla",
-            pcs.map { it.deviceId to it.displayName } + (PairingStore.TILE_NONE to "Nenhum"),
+            stringResource(R.string.settings_tile_choose),
+            pcs.map { it.deviceId to it.displayName } + (PairingStore.TILE_NONE to stringResource(R.string.common_none)),
             tilePc?.deviceId ?: PairingStore.TILE_NONE, { picker = null },
         ) { a.onTilePc(it) }
+        // Cada idioma no próprio nome; Português (Brasil) é o padrão.
+        Picker.LANGUAGE -> Choice(stringResource(R.string.settings_language), L10n.TAGS.map { it to languageName(it) }, values.language, { picker = null }) {
+            a.onChange(SettingChange.Language(it))
+        }
         null -> Unit
     }
 }
 
-fun pollLabel(sec: Int) = if (sec == 0) "Só ao abrir o app" else "A cada $sec segundos com o app aberto"
+@Composable
+private fun languageName(tag: String): String = L10n.nativeName(tag) ?: stringResource(R.string.language_system)
+
+@Composable
+private fun seconds(sec: Int): String = pluralStringResource(R.plurals.settings_seconds, sec, sec)
+
+@Composable
+fun pollLabel(sec: Int) = if (sec == 0) stringResource(R.string.settings_poll_open)
+else pluralStringResource(R.plurals.settings_poll_every, sec, sec)
 
 @Composable
 private fun <T> Choice(title: String, options: List<Pair<T, String>>, selected: T, onClose: () -> Unit, onPick: (T) -> Unit) {
@@ -244,6 +267,6 @@ private fun <T> Choice(title: String, options: List<Pair<T, String>>, selected: 
                 }
             }
         },
-        confirmButton = { QuietButton("Fechar", onClose) },
+        confirmButton = { QuietButton(stringResource(R.string.common_close), onClose) },
     )
 }

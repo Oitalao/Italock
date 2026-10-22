@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notif_tailscale_off_title">Tailscale is off</string>
+    <string name="notif_tailscale_off_text">Without it, unlocking away from home does not work. Tap to turn it back on.</string>
+    <string name="notif_pc_not_found">Computer not found (was it removed?)</string>
+
+    <string name="prompt_title">Unlock %1$s?</string>
+    <string name="prompt_generic_title">Unlock request</string>
+    <string name="prompt_generic_text">Unlock the phone to see it.</string>
+    <string name="prompt_via">via %1$s</string>
+    <string name="prompt_deny">Deny</string>
+    <string name="prompt_your_computer">Your computer</string>
+    <string name="prompt_expires_in">Expires in %1$d:%2$02d</string>
+    <string name="prompt_expired">Expired</string>
+    <string name="prompt_wants_unlock">wants to unlock</string>
+    <string name="prompt_user">User %1$s</string>
+    <string name="prompt_unlock_phone_to_unlock">Unlock the phone to unlock.</string>
+    <string name="prompt_unlock_phone_first">Unlock the phone to unlock the computer.</string>
+    <string name="prompt_reply_failed">Could not answer %1$s. Did the connection drop?</string>
+
+    <string name="notice_unlocked">Unlocked %1$s</string>
+    <string name="notice_unlocked_auto">Unlocked %1$s automatically</string>
+    <string name="notice_lock_again">Lock again</string>
+
+    <string name="flow_ask_lock">Lock %1$s?</string>
+    <string name="flow_ask_unlock">Unlock %1$s?</string>
+    <string name="flow_ask_lock_generic">Lock the computer?</string>
+    <string name="flow_ask_unlock_generic">Unlock the computer?</string>
+    <string name="flow_ask_text">Tap to confirm on the phone.</string>
+    <string name="flow_ask_quiet_text">The phone is on the lock screen. Tap to unlock.</string>
+    <string name="flow_already_asking">%1$s is already asking: confirm in the open request.</string>
+
+    <string name="tile_no_pc">tile without a computer</string>
+    <string name="tile_not_paired">not paired</string>
+    <string name="tile_querying">checking</string>
+    <string name="tile_locked">locked, tap to unlock</string>
+    <string name="tile_locked_unverified">locked (not verified), tap to unlock</string>
+    <string name="tile_unlocked">unlocked, tap to lock</string>
+    <string name="tile_unlocked_unverified">unlocked (not verified), tap to lock</string>
+    <string name="tile_no_answer">no answer, tap to lock</string>
+    <string name="tile_locking">locking</string>
+    <string name="tile_failed">failed, tap to retry</string>
+
+    <string name="shortcut_unlock">Unlock %1$s</string>
+    <string name="shortcut_lock">Lock %1$s</string>
+    <string name="shortcut_removed">Computer removed from Ítalock</string>
+
+    <string name="quick_confirm_lock_title">Lock %1$s?</string>
+
+    <string name="bio_unlock_title">Unlock %1$s</string>
+    <string name="bio_need_screen_lock">Set up a screen lock (PIN, pattern or password) on the phone first.</string>
+    <string name="bio_no_fingerprint_settings">No fingerprint set up on this phone. Add one, or turn on Accept PIN, pattern or password in Settings.</string>
+    <string name="bio_key_error_retry">Key error: confirm again.</string>
+    <string name="bio_lockout">Too many attempts. Wait a little and try again.</string>
+    <string name="bio_lockout_permanent">Biometrics locked. Unlock the phone with your password and try again.</string>
+    <string name="bio_no_fingerprint">No fingerprint set up on this phone.</string>
+    <string name="bio_timeout">Time to confirm ran out. Try again.</string>
+    <string name="bio_hw_unavailable">The biometric sensor is not available right now.</string>
+    <string name="bio_not_completed">Confirmation not completed. Try again.</string>
+    <string name="bio_cannot_ask">Could not ask for confirmation. Try again.</string>
+    <string name="bio_not_authenticated">Confirm with your fingerprint or with the phone\'s PIN, pattern or password. On this Android version, face unlock does not release the key.</string>
+    <string name="bio_pair_again">Pair the computer again.</string>
+    <string name="bio_key_invalidated">The phone\'s screen lock changed and the saved password for this computer was lost. Pair the computer again.</string>
+    <string name="bio_key_error">Phone key error. Try again; if it keeps happening, pair the computer again.</string>
+</resources>

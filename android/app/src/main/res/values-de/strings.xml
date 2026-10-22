@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_description">Einen Computer sperren, entsperren und einschalten</string>
+
+    <string name="common_cancel">Abbrechen</string>
+    <string name="common_close">Schließen</string>
+    <string name="common_save">Speichern</string>
+    <string name="common_remove">Entfernen</string>
+    <string name="common_change">Ändern</string>
+    <string name="common_allow">Zulassen</string>
+    <string name="common_turn_on">Aktivieren</string>
+    <string name="common_back">Zurück</string>
+    <string name="common_show">Anzeigen</string>
+    <string name="common_collapse">Einklappen</string>
+    <string name="common_expanded">ausgeklappt</string>
+    <string name="common_collapsed">eingeklappt</string>
+    <string name="common_not_informed">Nicht angegeben</string>
+    <string name="common_none">Keiner</string>
+    <string name="common_technical_details">Technische Details</string>
+
+    <string name="action_unlock">Entsperren</string>
+    <string name="action_lock">Sperren</string>
+    <string name="action_wake">Einschalten</string>
+    <string name="action_fix_clock">Uhrzeit korrigieren</string>
+    <string name="action_pair">Koppeln</string>
+
+    <string name="status_locked">Gesperrt</string>
+    <string name="status_unlocked">Entsperrt</string>
+    <string name="status_no_answer">Keine Antwort</string>
+    <string name="status_clock_off">Uhrzeit des Telefons falsch</string>
+    <string name="status_not_paired">Erkennt dieses Telefon nicht</string>
+    <string name="status_error">Mit Fehler geantwortet</string>
+    <string name="status_querying">Wird abgefragt</string>
+    <string name="status_unverified">%1$s · nicht überprüft</string>
+    <string name="danger_strip">Ohne Bestätigung</string>
+
+    <string name="via_lan">lokales Netzwerk</string>
+    <string name="via_internet">Internet</string>
+
+    <string name="event_locked">Gesperrt</string>
+    <string name="event_unlocked">Entsperrt</string>
+    <string name="event_denied">Anfrage abgelehnt</string>
+    <string name="event_expired">Anfrage abgelaufen</string>
+    <string name="origin_app">App</string>
+    <string name="origin_widget">Widget</string>
+    <string name="origin_shortcut">App-Verknüpfung</string>
+    <string name="origin_tile">Schnelleinstellungs-Kachel</string>
+    <string name="origin_tag">NFC-Tag</string>
+    <string name="origin_watch">Uhr</string>
+    <string name="origin_pc">Anfrage vom Computer</string>
+    <string name="origin_notification">Benachrichtigung</string>
+    <string name="origin_auto">automatisch in der Nähe</string>
+    <string name="when_today">heute um %1$s</string>
+    <string name="when_yesterday">gestern um %1$s</string>
+    <string name="when_date">%2$s um %1$s</string>
+
+    <string name="notif_service_title">Ítalock aktiv</string>
+    <string name="notif_service_text">Wartet auf Anfragen deiner Computer</string>
+    <string name="channel_status">Dienst aktiv</string>
+    <string name="channel_prompt">Entsperranfragen</string>
+    <string name="channel_waiting">Computer wartet</string>
+
+    <string name="list_separator">", "</string>
+    <string name="a11y_why_unavailable">Warum nicht verfügbar</string>
+    <string name="a11y_unavailable">%1$s, nicht verfügbar. %2$s</string>
+
+    <string name="home_lock_all">Alle sperren</string>
+    <string name="home_pair_computer">Computer koppeln</string>
+    <string name="home_settings_attention">Einstellungen (Berechtigung fehlt)</string>
+    <string name="home_notifications_off">Benachrichtigungen aus: Anfragen vom Computer werden nicht angezeigt.</string>
+    <string name="home_empty_title">Kein Computer gekoppelt</string>
+    <string name="home_empty_text">Installiere Ítalock auf dem Computer und scanne den angezeigten QR-Code.</string>
+    <string name="home_open_details">Details öffnen</string>
+    <string name="home_needs_repair">Neu koppeln: Das gespeicherte Passwort ist verloren gegangen</string>
+    <string name="home_waiting_for">Warte auf %1$s</string>
+    <string name="lock_all_one">Computer gesperrt</string>
+    <plurals name="lock_all_done">
+        <item quantity="one">%d Computer gesperrt</item>
+        <item quantity="other">Alle %d gesperrt</item>
+    </plurals>
+    <string name="lock_all_none">Keiner gesperrt: %1$s</string>
+    <plurals name="lock_all_partial">
+        <item quantity="one">%1$d von %2$d gesperrt.</item>
+        <item quantity="other">%1$d von %2$d gesperrt.</item>
+    </plurals>
+    <plurals name="lock_all_failed">
+        <item quantity="one">Nicht gesperrt: %1$s</item>
+        <item quantity="other">Nicht gesperrt: %1$s</item>
+    </plurals>
+
+    <string name="theme_dark">Dunkel</string>
+    <string name="theme_light">Hell</string>
+    <string name="theme_system">Systemstandard</string>
+
+    <string name="settings_title">Einstellungen</string>
+    <string name="settings_missing">Noch zulassen</string>
+    <string name="settings_missing_notifications">Benachrichtigungen: Ohne sie werden Anfragen vom Computer nicht angezeigt.</string>
+    <string name="settings_missing_full_screen">Vollbild: damit die Anfrage auch bei gesperrtem Telefon erscheint.</string>
+    <string name="settings_missing_battery">Energiesparen: Android kann Ítalock beenden.</string>
+    <string name="settings_missing_battery_action">Ausnehmen</string>
+    <string name="settings_missing_bluetooth">Bluetooth: damit der Computer das Telefon ohne Netzwerk erreicht.</string>
+    <string name="settings_section_requests">Anfragen vom Computer</string>
+    <string name="settings_timeout">Zeit zum Antworten</string>
+    <plurals name="settings_seconds">
+        <item quantity="one">%d Sekunde</item>
+        <item quantity="other">%d Sekunden</item>
+    </plurals>
+    <string name="settings_lockscreen_prompt">Anfrage auf dem Sperrbildschirm</string>
+    <string name="settings_lockscreen_prompt_on">Schaltet den Bildschirm ein und erscheint über der Sperre. Braucht mehr Akku.</string>
+    <string name="settings_lockscreen_prompt_off">Nur Benachrichtigung, Bildschirm bleibt aus. Zum Antworten das Telefon entsperren.</string>
+    <string name="settings_approve_locked">Bei gesperrtem Telefon entsperren</string>
+    <string name="settings_approve_locked_on">Anfrage auf dem Sperrbildschirm annehmen, ohne das Telefon zu entsperren. Weniger sicher.</string>
+    <string name="settings_approve_locked_off">Aus: Telefon vor dem Annehmen entsperren.</string>
+    <string name="settings_approve_locked_needs">Zuerst „%1$s“ aktivieren</string>
+    <string name="settings_approve_locked_ask">Bei gesperrtem Telefon entsperren?</string>
+    <string name="settings_approve_locked_ask_text">Der Computer kann dann direkt vom Sperrbildschirm des Telefons entsperrt werden, mit Biometrie (oder mit der PIN, wenn „%1$s“ aktiv ist), ohne das Telefon zu entsperren. Bequemer, aber weniger sicher.</string>
+    <string name="settings_hide_name">Computernamen ausblenden</string>
+    <string name="settings_hide_name_sub">Bei gesperrtem Telefon verraten Anfragen und Hinweise nicht, welcher es ist.</string>
+    <string name="settings_allow_credential">PIN, Muster oder Passwort zulassen</string>
+    <string name="settings_allow_credential_sub">Zusätzlich zur Biometrie. Aus: nur Fingerabdruck oder sichere Gesichtserkennung.</string>
+    <string name="settings_section_lock">Sperren</string>
+    <string name="settings_confirm_lock">Vor dem Sperren nachfragen</string>
+    <string name="settings_confirm_lock_sub">Fragt nach, bevor per App, Widget, Verknüpfungen, Tag, Uhr oder Benachrichtigung gesperrt wird.</string>
+    <string name="settings_tile">Schnelleinstellungs-Kachel</string>
+    <string name="settings_tile_controls">Steuert: %1$s</string>
+    <string name="settings_tile_no_pc">keinen Computer</string>
+    <string name="settings_tile_choose">Kachel steuert</string>
+    <string name="settings_section_look">Aussehen und Rückmeldung</string>
+    <string name="settings_theme">Design</string>
+    <string name="settings_vibrate">Vibrieren nach Abschluss</string>
+    <string name="settings_vibrate_sub">Kurz bei Erfolg, doppelt bei Fehler.</string>
+    <string name="settings_section_connection">Verbindung</string>
+    <string name="settings_poll">Sperrstatus aktualisieren</string>
+    <string name="settings_poll_open">Nur beim Öffnen der App</string>
+    <plurals name="settings_poll_every">
+        <item quantity="one">Im %d-Sekunden-Takt bei geöffneter App</item>
+        <item quantity="other">Alle %d Sekunden bei geöffneter App</item>
+    </plurals>
+    <string name="settings_tailscale_warning">Warnen, wenn Tailscale ausgeht</string>
+    <string name="settings_tailscale_warning_sub">Ohne Tailscale funktioniert Entsperren von unterwegs nicht.</string>
+    <string name="settings_paths_note">Lokales Netzwerk, Bluetooth und Tailscale wählst du pro Computer in seinen Details.</string>
+    <string name="settings_section_more">Mehr</string>
+    <string name="settings_experimental">Experimentelle Funktionen</string>
+    <string name="settings_experimental_none">Keine aktiv</string>
+    <string name="settings_beta">BETA</string>
+    <string name="settings_about">Über Ítalock</string>
+    <string name="settings_about_sub">Danksagungen, Lizenz, technische Details und Protokolle</string>
+    <plurals name="settings_experimental_on">
+        <item quantity="one">%d aktiv</item>
+        <item quantity="other">%d aktiv</item>
+    </plurals>
+
+    <string name="main_history_cleared">Verlauf von %1$s gelöscht</string>
+    <string name="main_lock_all_ask">Alle Computer sperren?</string>
+    <string name="main_unlocked">%1$s entsperrt</string>
+    <string name="main_not_unlocked">%1$s wurde nicht entsperrt</string>
+    <string name="main_lock_unconfirmed">%1$s hat die Anfrage erhalten, aber nicht bestätigt</string>
+    <string name="main_removed">%1$s entfernt</string>
+    <string name="main_no_paths">Wenn alle Wege aus sind, funktioniert %1$s nicht.</string>
+    <string name="main_no_confirm_bio_title">Entsperren ohne Bestätigung aktivieren</string>
+    <string name="main_key_error">Fehler beim Schlüssel des Telefons. Versuch es noch einmal.</string>
+    <string name="main_no_confirm_on">%1$s: Entsperren ohne Bestätigung aktiv</string>
+    <string name="main_no_confirm_off">%1$s: Bestätigung wird wieder verlangt</string>
+    <string name="main_confirm_for">Für %1$s bestätigen</string>
+    <string name="main_on_for">Aktiv für %1$s</string>
+    <string name="main_tech_version">Version</string>
+    <string name="main_tech_device">Gerät</string>
+    <string name="main_tech_phone_id">ID dieses Telefons</string>
+    <string name="main_tech_paired">Gekoppelte Computer</string>
+    <string name="main_tech_google">Google-Dienste (Wear OS-Uhr)</string>
+    <string name="main_tech_available">Verfügbar</string>
+    <string name="main_tech_unavailable">Nicht verfügbar</string>
+    <string name="main_export_failed">Die Protokolldatei konnte nicht erstellt werden.</string>
+    <string name="main_export_subject">Ítalock-Protokolle</string>
+    <string name="main_export_chooser">Protokolle senden</string>
+    <string name="main_export_no_app">Keine App zum Teilen der Datei.</string>
+    <string name="main_scan_prompt">Auf den Ítalock-QR-Code am Computer richten</string>
+    <string name="main_pair_invalid_code">Ungültiger Code. Prüf ihn und versuch es noch einmal.</string>
+    <string name="main_pair_searching">Suche nach dem Computer</string>
+    <string name="main_pair_timeout">Das Koppeln hat zu lange gedauert. Prüf das Netzwerk und versuch es noch einmal.</string>
+    <string name="main_pair_confirm">Bestätigen, um die Kopplung zu speichern</string>
+    <string name="main_pair_not_saved">Der Computer hat die Kopplung gespeichert, das Telefon aber nicht. Tippe noch einmal auf Bestätigen; wenn das nicht klappt, entferne dieses Telefon in Ítalock am Computer und kopple neu.</string>
+    <string name="main_pair_bio_title">Kopplung mit %1$s speichern</string>
+    <string name="main_paired_with">Gekoppelt mit %1$s</string>
+    <string name="main_pair_cancelled">%1$s Der Computer hat die Kopplung schon gespeichert: Tippe noch einmal auf Bestätigen oder entferne dieses Telefon in Ítalock am Computer.</string>
+    <string name="main_pair_cancelled_default">Bestätigung abgebrochen.</string>
+
+    <string name="settings_language">Sprache</string>
+    <string name="language_system">Automatisch (Systemsprache)</string>
+</resources>

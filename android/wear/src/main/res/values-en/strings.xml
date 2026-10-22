@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tile_description">Your computers and the right button for each one</string>
+
+    <string name="state_locked">Locked</string>
+    <string name="state_unlocked">Unlocked</string>
+    <string name="state_no_answer">No answer</string>
+    <string name="state_clock">Clock is off</string>
+    <string name="state_unknown">Not confirmed</string>
+
+    <string name="action_unlock">Unlock</string>
+    <string name="action_wake">Power on</string>
+    <string name="action_lock">Lock</string>
+    <string name="action_deny">Deny</string>
+    <string name="close">Close</string>
+
+    <string name="phone_missing_long">Phone not found. Open Ítalock on the phone and turn on Wear OS watch in the experimental features.</string>
+    <string name="open_on_phone">Open Ítalock on the phone</string>
+    <string name="phone_missing">Phone not found. Open Ítalock on the phone.</string>
+    <string name="tile_sending">%1$s: sending</string>
+
+    <string name="sending">Sending</string>
+    <string name="phone_no_answer">The phone did not answer. Is it nearby or online?</string>
+    <string name="result_confirm_on_phone">Confirm on the phone</string>
+    <string name="result_done">Done</string>
+    <string name="result_failed">Did not work</string>
+
+    <string name="prompt_title">Unlock %1$s?</string>
+    <string name="prompt_title_generic">Unlock the computer?</string>
+    <string name="prompt_needs_lock_notif">Turn on the watch screen lock to unlock from here</string>
+    <string name="prompt_needs_lock">To unlock from the watch, turn on the watch screen lock</string>
+    <string name="channel_prompts">Requests</string>
+    <string name="channel_prompts_desc">Requests to unlock the computer</string>
+</resources>

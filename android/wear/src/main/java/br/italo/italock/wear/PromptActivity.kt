@@ -1,6 +1,7 @@
 package br.italo.italock.wear
 
 import android.app.KeyguardManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -15,6 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.lifecycleScope
@@ -29,6 +31,8 @@ import kotlinx.coroutines.launch
 class PromptActivity : ComponentActivity() {
 
     private var prompt by mutableStateOf<Prompt?>(null)
+
+    override fun attachBaseContext(newBase: Context) = super.attachBaseContext(WearLang.wrap(newBase))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -110,7 +114,7 @@ private fun PromptScreen(p: Prompt, secure: Boolean, onAnswer: (Boolean) -> Unit
     ) {
         item {
             Text(
-                if (p.pc.isNotBlank()) "Destravar ${p.pc}?" else "Destravar o computador?",
+                if (p.pc.isNotBlank()) stringResource(R.string.prompt_title, p.pc) else stringResource(R.string.prompt_title_generic),
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.title2,
@@ -120,17 +124,17 @@ private fun PromptScreen(p: Prompt, secure: Boolean, onAnswer: (Boolean) -> Unit
         if (p.user.isNotBlank()) item { CenterText(p.user, secondary = true) }
         if (secure) {
             item {
-                WideButton("Destravar", primary = true, onClick = { onAnswer(true) }, modifier = Modifier.padding(top = 6.dp))
+                WideButton(stringResource(R.string.action_unlock), primary = true, onClick = { onAnswer(true) }, modifier = Modifier.padding(top = 6.dp))
             }
         } else {
             item {
                 CenterText(
-                    "Para destravar pelo relógio, ative o bloqueio de tela do relógio",
+                    stringResource(R.string.prompt_needs_lock),
                     modifier = Modifier.padding(top = 4.dp),
                     secondary = true,
                 )
             }
         }
-        item { WideButton("Recusar", primary = false, onClick = { onAnswer(false) }) }
+        item { WideButton(stringResource(R.string.action_deny), primary = false, onClick = { onAnswer(false) }) }
     }
 }

@@ -74,12 +74,12 @@ class PcTileService : TileService() {
         prefs.edit { putString(K_LAST_CLICK, clickId) }
         val app = applicationContext
         val name = PcStore.load(this).firstOrNull { it.id == id }?.name.orEmpty()
-        toast(app, listOf(Pc.actionLabel(action), name).filter { it.isNotBlank() }.joinToString(" ") + ": enviando")
+        toast(app, WearLang.s(app, R.string.tile_sending, listOf(Pc.actionLabel(app, action), name).filter { it.isNotBlank() }.joinToString(" ")))
         Phone.scope.launch {
             val sent = runCatching {
                 Phone.send(app, Proto.ACTION, JSONObject().put("id", id).put("action", action))
             }.getOrDefault(false)
-            if (!sent) toast(app, "Celular não encontrado. Abra o Ítalock no celular.")
+            if (!sent) toast(app, WearLang.s(app, R.string.phone_missing))
         }
     }
 
@@ -101,7 +101,7 @@ class PcTileService : TileService() {
                     LayoutElementBuilders.Box.Builder()
                         .setWidth(dp(device.screenWidthDp * 0.75f))
                         .addContent(
-                            Text.Builder(this, "Abra o Ítalock no celular")
+                            Text.Builder(this, WearLang.s(this, R.string.open_on_phone))
                                 .setTypography(Typography.TYPOGRAPHY_BODY1)
                                 .setColor(argb(TEXT))
                                 .setMaxLines(3)
@@ -141,7 +141,7 @@ class PcTileService : TileService() {
                     .build(),
             )
             .addContent(
-                Text.Builder(this, pc.stateLabel)
+                Text.Builder(this, pc.stateLabel(this))
                     .setTypography(Typography.TYPOGRAPHY_CAPTION2)
                     .setColor(argb(TEXT2))
                     .setMaxLines(1)
@@ -154,7 +154,7 @@ class PcTileService : TileService() {
         val load = ActionBuilders.LoadAction.Builder().build()
         val chip = CompactChip.Builder(
             this,
-            pc.actionLabel,
+            pc.actionLabel(this),
             clickable("$CLICK_PREFIX${layoutToken}:${pc.action}:${pc.id}", load),
             device,
         ).setChipColors(colors).build()

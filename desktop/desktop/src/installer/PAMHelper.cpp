@@ -49,7 +49,7 @@ void PAMHelper::SetConfigEntry(const std::string &configName, const std::string 
   auto hasEntry = HasConfigEntry(configName, entry);
   if(enabled && !hasEntry) {
     if(configName == "polkit-1") {
-      m_Logger("Liberando o celular nas janelas de senha de administrador...");
+      m_Logger(I18n::Tr("Liberando o celular nas janelas de senha de administrador..."));
       SetPolkitRestrictions(false);
       AddToConfig(configName, entry);
     } else {
@@ -58,7 +58,7 @@ void PAMHelper::SetConfigEntry(const std::string &configName, const std::string 
   } else if(!enabled && hasEntry) {
     RemoveFromConfig(configName, entry);
     if(configName == "polkit-1") {
-      m_Logger("Voltando as proteções das janelas de senha de administrador...");
+      m_Logger(I18n::Tr("Voltando as proteções das janelas de senha de administrador..."));
       SetPolkitRestrictions(true);
     }
   }
@@ -77,9 +77,9 @@ void PAMHelper::AddToConfig(const std::string &configName, const std::string &en
     auto hasSystemAuth = std::filesystem::exists(PAM_CONFIG_DIR / "system-auth");
     // Italock: sem common-auth nem system-auth o arquivo gerado nao teria como pedir a senha: nao cria nada.
     if(!hasCommonAuth && !hasSystemAuth)
-      throw std::runtime_error(fmt::format("Configuração do PAM desconhecida em {}: nada foi alterado.", configName));
+      throw std::runtime_error(I18n::Tr("Configuração do PAM desconhecida em {}: nada foi alterado.", configName));
 
-    m_Logger(fmt::format("Gerando a configuração {}...", configName));
+    m_Logger(I18n::Tr("Gerando a configuração {}...", configName));
     std::string fileStr{};
     if(hasSystemAuth)
       fileStr = fmt::format(PAM_CONFIG_GEN_SYSTEM, entry, PAM_CONFIG_GEN_ENTRY);
@@ -99,7 +99,7 @@ void PAMHelper::RemoveFromConfig(const std::string &configName, const std::strin
     return;
 
   if(IsConfigGenerated(configPath)) {
-    m_Logger(fmt::format("Removendo a configuração gerada {}...", configName));
+    m_Logger(I18n::Tr("Removendo a configuração gerada {}...", configName));
     if(!Shell::RemoveFile(configPath))
       throw std::runtime_error(I18n::Get("error_file_remove", configPath.string()));
   } else {
@@ -111,7 +111,7 @@ void PAMHelper::AddEntryToFile(const std::filesystem::path &filePath, const std:
   auto fileData = Shell::ReadBytes(filePath);
   auto fileStr = std::string(fileData.begin(), fileData.end());
 
-  m_Logger(fmt::format("Adicionando a entrada do PAM em {}...", filePath.string()));
+  m_Logger(I18n::Tr("Adicionando a entrada do PAM em {}...", filePath.string()));
   std::string resultStr{};
   auto hasBegin = fileStr.contains("#%PAM-1.0\n");
   if(!hasBegin) {
@@ -136,7 +136,7 @@ void PAMHelper::RemoveEntryFromFile(const std::filesystem::path &filePath, const
   auto fileStr = std::string(fileData.begin(), fileData.end());
   auto entries = StringUtils::Split(entry, "\n");
 
-  m_Logger(fmt::format("Removendo a entrada do PAM de {}...", filePath.string()));
+  m_Logger(I18n::Tr("Removendo a entrada do PAM de {}...", filePath.string()));
   std::string resultStr{};
   for(const auto &line : StringUtils::Split(fileStr, "\n"))  {
     auto shouldRemove = false;
@@ -171,7 +171,7 @@ bool PAMHelper::SetPolkitRestrictions(bool enabled) {
 
 POLKIT_FOUND:
   if(!servicePath.has_value()) {
-    m_Logger("Não encontrei o serviço das janelas de senha de administrador.");
+    m_Logger(I18n::Tr("Não encontrei o serviço das janelas de senha de administrador."));
     return false;
   }
   auto fileData = Shell::ReadBytes(servicePath.value());

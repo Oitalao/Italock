@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notif_tailscale_off_title">Tailscale बंद है</string>
+    <string name="notif_tailscale_off_text">इसके बिना, घर से बाहर अनलॉक नहीं होता। फिर से चालू करने के लिए टैप करें।</string>
+    <string name="notif_pc_not_found">कंप्यूटर नहीं मिला (क्या उसे हटा दिया गया?)</string>
+
+    <string name="prompt_title">%1$s अनलॉक करें?</string>
+    <string name="prompt_generic_title">अनलॉक का अनुरोध</string>
+    <string name="prompt_generic_text">देखने के लिए फ़ोन अनलॉक करें।</string>
+    <string name="prompt_via">%1$s से</string>
+    <string name="prompt_deny">मना करें</string>
+    <string name="prompt_your_computer">आपका कंप्यूटर</string>
+    <string name="prompt_expires_in">%1$d:%2$02d में खत्म</string>
+    <string name="prompt_expired">समय खत्म</string>
+    <string name="prompt_wants_unlock">अनलॉक करना चाहता है</string>
+    <string name="prompt_user">यूज़र %1$s</string>
+    <string name="prompt_unlock_phone_to_unlock">अनलॉक करने के लिए पहले फ़ोन अनलॉक करें।</string>
+    <string name="prompt_unlock_phone_first">कंप्यूटर अनलॉक करने के लिए फ़ोन अनलॉक करें।</string>
+    <string name="prompt_reply_failed">%1$s को जवाब नहीं दिया जा सका। क्या कनेक्शन टूट गया?</string>
+
+    <string name="notice_unlocked">%1$s अनलॉक हुआ</string>
+    <string name="notice_unlocked_auto">%1$s अपने-आप अनलॉक हुआ</string>
+    <string name="notice_lock_again">फिर से लॉक करें</string>
+
+    <string name="flow_ask_lock">%1$s लॉक करें?</string>
+    <string name="flow_ask_unlock">%1$s अनलॉक करें?</string>
+    <string name="flow_ask_lock_generic">कंप्यूटर लॉक करें?</string>
+    <string name="flow_ask_unlock_generic">कंप्यूटर अनलॉक करें?</string>
+    <string name="flow_ask_text">फ़ोन पर पुष्टि करने के लिए टैप करें।</string>
+    <string name="flow_ask_quiet_text">लॉक स्क्रीन पर है। अनलॉक करने के लिए टैप करें।</string>
+    <string name="flow_already_asking">%1$s पहले से अनुरोध कर रहा है: खुले अनुरोध में पुष्टि करें।</string>
+
+    <string name="tile_no_pc">टाइल में कोई कंप्यूटर नहीं</string>
+    <string name="tile_not_paired">पेयर नहीं है</string>
+    <string name="tile_querying">जांच हो रही है</string>
+    <string name="tile_locked">लॉक है, अनलॉक के लिए टैप करें</string>
+    <string name="tile_locked_unverified">लॉक है (सत्यापित नहीं), अनलॉक के लिए टैप करें</string>
+    <string name="tile_unlocked">अनलॉक है, लॉक के लिए टैप करें</string>
+    <string name="tile_unlocked_unverified">अनलॉक है (सत्यापित नहीं), लॉक के लिए टैप करें</string>
+    <string name="tile_no_answer">जवाब नहीं, लॉक के लिए टैप करें</string>
+    <string name="tile_locking">लॉक हो रहा है</string>
+    <string name="tile_failed">नहीं हुआ, फिर कोशिश के लिए टैप करें</string>
+
+    <string name="shortcut_unlock">%1$s अनलॉक करें</string>
+    <string name="shortcut_lock">%1$s लॉक करें</string>
+    <string name="shortcut_removed">कंप्यूटर Ítalock से हटा दिया गया</string>
+
+    <string name="quick_confirm_lock_title">%1$s लॉक करें?</string>
+
+    <string name="bio_unlock_title">%1$s अनलॉक करें</string>
+    <string name="bio_need_screen_lock">पहले फ़ोन में स्क्रीन लॉक (PIN, पैटर्न या पासवर्ड) सेट करें।</string>
+    <string name="bio_no_fingerprint_settings">इस फ़ोन में कोई फ़िंगरप्रिंट नहीं जोड़ा गया है। एक जोड़ें, या सेटिंग में \"PIN, पैटर्न या पासवर्ड स्वीकार करें\" चालू करें।</string>
+    <string name="bio_key_error_retry">कुंजी में गड़बड़ी: फिर से पुष्टि करें।</string>
+    <string name="bio_lockout">बहुत ज़्यादा कोशिशें हो गईं। थोड़ा रुकें और फिर से कोशिश करें।</string>
+    <string name="bio_lockout_permanent">बायोमेट्रिक लॉक हो गया। पासवर्ड से फ़ोन अनलॉक करें और फिर से कोशिश करें।</string>
+    <string name="bio_no_fingerprint">इस फ़ोन में कोई फ़िंगरप्रिंट नहीं जोड़ा गया है।</string>
+    <string name="bio_timeout">पुष्टि का समय खत्म हो गया। फिर से कोशिश करें।</string>
+    <string name="bio_hw_unavailable">बायोमेट्रिक सेंसर अभी उपलब्ध नहीं है।</string>
+    <string name="bio_not_completed">पुष्टि पूरी नहीं हुई। फिर से कोशिश करें।</string>
+    <string name="bio_cannot_ask">पुष्टि नहीं मांगी जा सकी। फिर से कोशिश करें।</string>
+    <string name="bio_not_authenticated">फ़िंगरप्रिंट से या फ़ोन के PIN, पैटर्न या पासवर्ड से पुष्टि करें। इस Android में चेहरा पहचान से कुंजी नहीं खुलती।</string>
+    <string name="bio_pair_again">कंप्यूटर को फिर से पेयर करें।</string>
+    <string name="bio_key_invalidated">फ़ोन का स्क्रीन लॉक बदल गया और इस कंप्यूटर का सेव किया गया पासवर्ड खो गया। कंप्यूटर को फिर से पेयर करें।</string>
+    <string name="bio_key_error">फ़ोन की कुंजी में गड़बड़ी। फिर से कोशिश करें; अगर ऐसा होता रहे, तो कंप्यूटर को फिर से पेयर करें।</string>
+</resources>

@@ -26,9 +26,9 @@ object PromptNotifier {
 
     private fun ensureChannel(ctx: Context) {
         val nm = ctx.getSystemService(NotificationManager::class.java) ?: return
-        if (nm.getNotificationChannel(CHANNEL) != null) return
-        val ch = NotificationChannel(CHANNEL, "Pedidos", NotificationManager.IMPORTANCE_HIGH).apply {
-            description = "Pedidos para destravar o computador"
+        // Canal que já existe: recriar só atualiza nome e descrição (idioma novo); o resto fica como está.
+        val ch = NotificationChannel(CHANNEL, WearLang.s(ctx, R.string.channel_prompts), NotificationManager.IMPORTANCE_HIGH).apply {
+            description = WearLang.s(ctx, R.string.channel_prompts_desc)
             enableVibration(true)
             vibrationPattern = longArrayOf(0, 120, 100, 120)
         }
@@ -53,11 +53,11 @@ object PromptNotifier {
             return PendingIntent.getBroadcast(ctx, p.session.hashCode() * 2 + if (approve) 1 else 0, i, flags)
         }
         val secure = watchHasLock(ctx)
-        val title = if (p.pc.isNotBlank()) "Destravar ${p.pc}?" else "Destravar o computador?"
+        val title = if (p.pc.isNotBlank()) WearLang.s(ctx, R.string.prompt_title, p.pc) else WearLang.s(ctx, R.string.prompt_title_generic)
         val b = NotificationCompat.Builder(ctx, CHANNEL)
             .setSmallIcon(R.drawable.ic_lock)
             .setContentTitle(title)
-            .setContentText(if (secure) p.user else "Ative o bloqueio de tela do relógio para destravar por aqui")
+            .setContentText(if (secure) p.user else WearLang.s(ctx, R.string.prompt_needs_lock_notif))
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setCategory(NotificationCompat.CATEGORY_CALL)
             .setContentIntent(open)
@@ -69,8 +69,8 @@ object PromptNotifier {
         // Destravar abre a tela do pedido (não aprova direto): com o relógio travado, ela pede para destravar antes.
         val approveOpen = PendingIntent.getActivity(ctx, p.session.hashCode() * 2 + 1,
             promptIntent(ctx, p).putExtra(EXTRA_APPROVE, true), flags)
-        if (secure) b.addAction(R.drawable.ic_lock_open, "Destravar", approveOpen)
-        b.addAction(R.drawable.ic_lock, "Recusar", answer(false))
+        if (secure) b.addAction(R.drawable.ic_lock_open, WearLang.s(ctx, R.string.action_unlock), approveOpen)
+        b.addAction(R.drawable.ic_lock, WearLang.s(ctx, R.string.action_deny), answer(false))
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU ||
             ContextCompat.checkSelfPermission(ctx, Manifest.permission.POST_NOTIFICATIONS) ==

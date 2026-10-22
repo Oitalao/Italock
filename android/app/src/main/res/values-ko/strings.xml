@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_description">컴퓨터 잠금, 잠금 해제, 전원 켜기</string>
+
+    <string name="common_cancel">취소</string>
+    <string name="common_close">닫기</string>
+    <string name="common_save">저장</string>
+    <string name="common_remove">삭제</string>
+    <string name="common_change">변경</string>
+    <string name="common_allow">허용</string>
+    <string name="common_turn_on">켜기</string>
+    <string name="common_back">뒤로</string>
+    <string name="common_show">보기</string>
+    <string name="common_collapse">접기</string>
+    <string name="common_expanded">펼쳐짐</string>
+    <string name="common_collapsed">접힘</string>
+    <string name="common_not_informed">입력 안 됨</string>
+    <string name="common_none">없음</string>
+    <string name="common_technical_details">기술 정보</string>
+
+    <string name="action_unlock">잠금 해제</string>
+    <string name="action_lock">잠금</string>
+    <string name="action_wake">전원 켜기</string>
+    <string name="action_fix_clock">시간 맞추기</string>
+    <string name="action_pair">페어링</string>
+
+    <string name="status_locked">잠김</string>
+    <string name="status_unlocked">잠금 해제됨</string>
+    <string name="status_no_answer">응답 없음</string>
+    <string name="status_clock_off">휴대폰 시간이 맞지 않음</string>
+    <string name="status_not_paired">이 휴대폰을 인식하지 못함</string>
+    <string name="status_error">오류 응답</string>
+    <string name="status_querying">확인 중</string>
+    <string name="status_unverified">%1$s · 확인 안 됨</string>
+    <string name="danger_strip">확인 없이</string>
+
+    <string name="via_lan">로컬 네트워크</string>
+    <string name="via_internet">인터넷</string>
+
+    <string name="event_locked">잠김</string>
+    <string name="event_unlocked">잠금 해제됨</string>
+    <string name="event_denied">요청 거부됨</string>
+    <string name="event_expired">요청 만료됨</string>
+    <string name="origin_app">앱</string>
+    <string name="origin_widget">위젯</string>
+    <string name="origin_shortcut">아이콘 바로가기</string>
+    <string name="origin_tile">빠른 설정 타일</string>
+    <string name="origin_tag">NFC 태그</string>
+    <string name="origin_watch">워치</string>
+    <string name="origin_pc">컴퓨터의 요청</string>
+    <string name="origin_notification">알림</string>
+    <string name="origin_auto">가까이 있을 때 자동</string>
+    <string name="when_today">오늘 %1$s</string>
+    <string name="when_yesterday">어제 %1$s</string>
+    <string name="when_date">%2$s %1$s</string>
+
+    <string name="notif_service_title">Ítalock 실행 중</string>
+    <string name="notif_service_text">컴퓨터의 요청을 기다리는 중</string>
+    <string name="channel_status">서비스 실행 중</string>
+    <string name="channel_prompt">잠금 해제 요청</string>
+    <string name="channel_waiting">대기 중인 컴퓨터</string>
+
+    <string name="list_separator">", "</string>
+    <string name="a11y_why_unavailable">사용할 수 없는 이유</string>
+    <string name="a11y_unavailable">%1$s, 사용할 수 없음. %2$s</string>
+
+    <string name="home_lock_all">모두 잠금</string>
+    <string name="home_pair_computer">컴퓨터 페어링</string>
+    <string name="home_settings_attention">설정(허용이 필요한 항목 있음)</string>
+    <string name="home_notifications_off">알림이 꺼져 있습니다. 컴퓨터의 요청이 표시되지 않습니다.</string>
+    <string name="home_empty_title">페어링된 컴퓨터 없음</string>
+    <string name="home_empty_text">컴퓨터에 Ítalock을 설치하고 화면에 나오는 QR 코드를 스캔하세요.</string>
+    <string name="home_open_details">세부정보 열기</string>
+    <string name="home_needs_repair">다시 페어링하세요. 저장된 비밀번호가 사라졌습니다</string>
+    <string name="home_waiting_for">%1$s 기다리는 중</string>
+    <string name="lock_all_one">컴퓨터를 잠갔습니다</string>
+    <plurals name="lock_all_done">
+        <item quantity="other">%d대 모두 잠갔습니다</item>
+    </plurals>
+    <string name="lock_all_none">잠기지 않음: %1$s</string>
+    <plurals name="lock_all_partial">
+        <item quantity="other">%2$d대 중 %1$d대를 잠갔습니다.</item>
+    </plurals>
+    <plurals name="lock_all_failed">
+        <item quantity="other">잠기지 않음: %1$s</item>
+    </plurals>
+
+    <string name="theme_dark">어둡게</string>
+    <string name="theme_light">밝게</string>
+    <string name="theme_system">시스템 설정과 같게</string>
+
+    <string name="settings_title">설정</string>
+    <string name="settings_missing">허용 필요</string>
+    <string name="settings_missing_notifications">알림: 꺼져 있으면 컴퓨터의 요청이 표시되지 않습니다.</string>
+    <string name="settings_missing_full_screen">전체 화면: 휴대폰이 잠겨 있어도 요청이 표시되게 합니다.</string>
+    <string name="settings_missing_battery">배터리 최적화: Android가 Ítalock을 종료할 수 있습니다.</string>
+    <string name="settings_missing_battery_action">제외하기</string>
+    <string name="settings_missing_bluetooth">Bluetooth: 네트워크 없이도 컴퓨터가 휴대폰을 호출할 수 있게 합니다.</string>
+    <string name="settings_section_requests">컴퓨터의 요청</string>
+    <string name="settings_timeout">응답 시간</string>
+    <plurals name="settings_seconds">
+        <item quantity="other">%d초</item>
+    </plurals>
+    <string name="settings_lockscreen_prompt">잠금 화면에 요청 표시</string>
+    <string name="settings_lockscreen_prompt_on">화면을 켜고 잠금 화면 위에 표시합니다. 배터리를 더 사용합니다.</string>
+    <string name="settings_lockscreen_prompt_off">화면을 켜지 않고 알림만 표시합니다. 응답하려면 휴대폰 잠금을 해제하세요.</string>
+    <string name="settings_approve_locked">휴대폰이 잠긴 상태에서 잠금 해제</string>
+    <string name="settings_approve_locked_on">휴대폰 잠금을 해제하지 않고 잠금 화면에서 요청을 수락합니다. 보안이 약해집니다.</string>
+    <string name="settings_approve_locked_off">꺼짐: 수락하기 전에 휴대폰 잠금을 해제하세요.</string>
+    <string name="settings_approve_locked_needs">먼저 \"%1$s\"을(를) 켜세요</string>
+    <string name="settings_approve_locked_ask">휴대폰이 잠긴 상태에서 잠금 해제할까요?</string>
+    <string name="settings_approve_locked_ask_text">휴대폰 잠금을 해제하지 않아도 휴대폰 잠금 화면에서 생체 인증(\"%1$s\"이(가) 켜져 있으면 PIN도)으로 컴퓨터 잠금을 해제할 수 있습니다. 더 편리하지만 보안은 약해집니다.</string>
+    <string name="settings_hide_name">컴퓨터 이름 숨기기</string>
+    <string name="settings_hide_name_sub">휴대폰이 잠겨 있으면 요청과 알림에 어떤 컴퓨터인지 표시하지 않습니다.</string>
+    <string name="settings_allow_credential">PIN, 패턴, 비밀번호 허용</string>
+    <string name="settings_allow_credential_sub">생체 인증과 함께 사용합니다. 꺼짐: 지문 또는 보안 얼굴 인식만 사용합니다.</string>
+    <string name="settings_section_lock">잠금</string>
+    <string name="settings_confirm_lock">잠그기 전에 확인</string>
+    <string name="settings_confirm_lock_sub">앱, 위젯, 바로가기, 태그, 워치, 알림으로 잠그기 전에 확인합니다.</string>
+    <string name="settings_tile">빠른 설정 타일</string>
+    <string name="settings_tile_controls">제어 대상: %1$s</string>
+    <string name="settings_tile_no_pc">컴퓨터 없음</string>
+    <string name="settings_tile_choose">빠른 설정 타일 제어 대상</string>
+    <string name="settings_section_look">모양 및 피드백</string>
+    <string name="settings_theme">테마</string>
+    <string name="settings_vibrate">완료 시 진동</string>
+    <string name="settings_vibrate_sub">성공하면 짧게 한 번, 실패하면 두 번 진동합니다.</string>
+    <string name="settings_section_connection">연결</string>
+    <string name="settings_poll">잠금 상태 새로고침</string>
+    <string name="settings_poll_open">앱을 열 때만</string>
+    <plurals name="settings_poll_every">
+        <item quantity="other">앱이 열려 있을 때 %d초마다</item>
+    </plurals>
+    <string name="settings_tailscale_warning">Tailscale이 꺼지면 알림</string>
+    <string name="settings_tailscale_warning_sub">꺼져 있으면 외부에서 잠금 해제할 수 없습니다.</string>
+    <string name="settings_paths_note">로컬 네트워크, Bluetooth, Tailscale은 컴퓨터별로 세부정보에서 선택합니다.</string>
+    <string name="settings_section_more">더보기</string>
+    <string name="settings_experimental">실험적 기능</string>
+    <string name="settings_experimental_none">모두 꺼짐</string>
+    <string name="settings_beta">BETA</string>
+    <string name="settings_about">Ítalock 정보</string>
+    <string name="settings_about_sub">크레딧, 라이선스, 기술 정보, 로그</string>
+    <plurals name="settings_experimental_on">
+        <item quantity="other">%d개 켜짐</item>
+    </plurals>
+
+    <string name="main_history_cleared">%1$s 기록을 삭제했습니다</string>
+    <string name="main_lock_all_ask">모든 컴퓨터를 잠글까요?</string>
+    <string name="main_unlocked">%1$s 잠금 해제됨</string>
+    <string name="main_not_unlocked">%1$s 잠금 해제 실패</string>
+    <string name="main_lock_unconfirmed">%1$s에서 요청을 받았지만 잠금을 확인하지 못했습니다</string>
+    <string name="main_removed">%1$s 삭제됨</string>
+    <string name="main_no_paths">모든 경로가 꺼져 있으면 %1$s을(를) 사용할 수 없습니다.</string>
+    <string name="main_no_confirm_bio_title">확인 없이 잠금 해제 켜기</string>
+    <string name="main_key_error">휴대폰 키 오류입니다. 다시 시도하세요.</string>
+    <string name="main_no_confirm_on">%1$s: 확인 없이 잠금 해제 켜짐</string>
+    <string name="main_no_confirm_off">%1$s: 다시 확인을 요청합니다</string>
+    <string name="main_confirm_for">%1$s: 본인 확인</string>
+    <string name="main_on_for">%1$s에 켜짐</string>
+    <string name="main_tech_version">버전</string>
+    <string name="main_tech_device">기기</string>
+    <string name="main_tech_phone_id">이 휴대폰의 ID</string>
+    <string name="main_tech_paired">페어링된 컴퓨터</string>
+    <string name="main_tech_google">Google 서비스(Wear OS 워치)</string>
+    <string name="main_tech_available">사용 가능</string>
+    <string name="main_tech_unavailable">사용 불가</string>
+    <string name="main_export_failed">로그 파일을 만들지 못했습니다.</string>
+    <string name="main_export_subject">Ítalock 로그</string>
+    <string name="main_export_chooser">로그 보내기</string>
+    <string name="main_export_no_app">파일을 공유할 앱이 없습니다.</string>
+    <string name="main_scan_prompt">컴퓨터에 표시된 Ítalock QR 코드를 비추세요</string>
+    <string name="main_pair_invalid_code">잘못된 코드입니다. 확인하고 다시 시도하세요.</string>
+    <string name="main_pair_searching">컴퓨터를 찾는 중</string>
+    <string name="main_pair_timeout">페어링이 너무 오래 걸렸습니다. 네트워크를 확인하고 다시 시도하세요.</string>
+    <string name="main_pair_confirm">페어링을 저장하려면 확인하세요</string>
+    <string name="main_pair_not_saved">컴퓨터에는 페어링이 저장되었지만 휴대폰에는 저장되지 않았습니다. \"다시 확인\"을 탭하세요. 그래도 안 되면 컴퓨터의 Ítalock에서 이 휴대폰을 삭제하고 다시 페어링하세요.</string>
+    <string name="main_pair_bio_title">%1$s와(과)의 페어링 저장</string>
+    <string name="main_paired_with">%1$s와(과) 페어링됨</string>
+    <string name="main_pair_cancelled">%1$s 컴퓨터에는 이미 페어링이 저장되었습니다. \"다시 확인\"을 탭하거나 컴퓨터의 Ítalock에서 이 휴대폰을 삭제하세요.</string>
+    <string name="main_pair_cancelled_default">확인이 취소되었습니다.</string>
+
+    <string name="settings_language">언어</string>
+    <string name="language_system">자동(시스템 언어)</string>
+</resources>

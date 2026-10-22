@@ -8,6 +8,8 @@ import android.nfc.Tag
 import android.nfc.TagLostException
 import android.nfc.tech.Ndef
 import android.nfc.tech.NdefFormatable
+import br.italo.italock.R
+import br.italo.italock.i18n.L10n
 import java.io.IOException
 
 /**
@@ -16,15 +18,18 @@ import java.io.IOException
  * na da tela: connect/write bloqueiam.
  */
 object NfcWriter {
-    enum class Result(val ok: Boolean, val message: String) {
-        OK(true, "Tag gravada. Com o celular desbloqueado, encoste nela para usar."),
-        OK_LOCKED(true, "Tag gravada e protegida contra escrita."),
-        OK_LOCK_UNSUPPORTED(true, "Tag gravada, mas este modelo não permite proteger contra escrita."),
-        READ_ONLY(false, "Esta tag está protegida contra escrita. Use outra."),
-        TOO_SMALL(false, "A tag não tem espaço suficiente. Use uma NTAG213 ou maior."),
-        NOT_NDEF(false, "Esta tag não aceita o formato NDEF. Use outra, por exemplo NTAG213, 215 ou 216."),
-        LOST(false, "A tag se afastou antes de terminar. Encoste de novo e segure até o aviso."),
-        FAILED(false, "Não deu para gravar a tag. Tente de novo ou use outra."),
+    enum class Result(val ok: Boolean, private val messageRes: Int) {
+        OK(true, R.string.nfc_write_ok),
+        OK_LOCKED(true, R.string.nfc_write_ok_locked),
+        OK_LOCK_UNSUPPORTED(true, R.string.nfc_write_ok_lock_unsupported),
+        READ_ONLY(false, R.string.nfc_write_read_only),
+        TOO_SMALL(false, R.string.nfc_write_too_small),
+        NOT_NDEF(false, R.string.nfc_write_not_ndef),
+        LOST(false, R.string.nfc_write_lost),
+        FAILED(false, R.string.nfc_write_failed);
+
+        /** Frase para a tela, no idioma escolhido. */
+        val message: String get() = L10n.s(messageRes)
     }
 
     fun message(publicId: String, packageName: String): NdefMessage = NdefMessage(

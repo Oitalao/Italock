@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tile_description">Tus computadoras y el botón correcto para cada una</string>
+
+    <string name="state_locked">Bloqueada</string>
+    <string name="state_unlocked">Desbloqueada</string>
+    <string name="state_no_answer">Sin respuesta</string>
+    <string name="state_clock">Hora incorrecta</string>
+    <string name="state_unknown">Sin confirmar</string>
+
+    <string name="action_unlock">Desbloquear</string>
+    <string name="action_wake">Encender</string>
+    <string name="action_lock">Bloquear</string>
+    <string name="action_deny">Rechazar</string>
+    <string name="close">Cerrar</string>
+
+    <string name="phone_missing_long">No se encontró el teléfono. Abre Ítalock en el teléfono y activa Reloj Wear OS en las funciones experimentales.</string>
+    <string name="open_on_phone">Abre Ítalock en el teléfono</string>
+    <string name="phone_missing">No se encontró el teléfono. Abre Ítalock en el teléfono.</string>
+    <string name="tile_sending">%1$s: enviando</string>
+
+    <string name="sending">Enviando</string>
+    <string name="phone_no_answer">El teléfono no respondió. ¿Está cerca o con internet?</string>
+    <string name="result_confirm_on_phone">Confirma en el teléfono</string>
+    <string name="result_done">Hecho</string>
+    <string name="result_failed">No funcionó</string>
+
+    <string name="prompt_title">¿Desbloquear %1$s?</string>
+    <string name="prompt_title_generic">¿Desbloquear la computadora?</string>
+    <string name="prompt_needs_lock_notif">Activa el bloqueo de pantalla del reloj para desbloquear desde aquí</string>
+    <string name="prompt_needs_lock">Para desbloquear desde el reloj, activa el bloqueo de pantalla del reloj</string>
+    <string name="channel_prompts">Solicitudes</string>
+    <string name="channel_prompts_desc">Solicitudes para desbloquear la computadora</string>
+</resources>

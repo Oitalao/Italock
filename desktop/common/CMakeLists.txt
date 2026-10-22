@@ -156,47 +156,26 @@ add_custom_command(
 add_custom_target(update_commit DEPENDS ${COMMIT_HEADER_FILE})
 add_dependencies(pcbu_common update_commit)
 
-# Json headers
+# Italock: textos e traducoes embutidos (res/pt_BR.json com as chaves antigas + res/i18n/<codigo>.json). Viram arrays de
+# bytes (cabe qualquer tamanho; literal de texto grande estoura o limite do MSVC) e sao lidos so quando usados. O script
+# confere o JSON: arquivo invalido para a compilacao (nunca chega quebrado na tela de bloqueio).
 function(embed_json TARGET JSON_FILE VARIABLE_PREFIX)
     get_filename_component(JSON_PATH ${JSON_FILE} ABSOLUTE)
     set(GENERATED_HEADER ${CMAKE_CURRENT_SOURCE_DIR}/src/generated/${VARIABLE_PREFIX}.h)
+    set(EMBED_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/../cmake/EmbedJson.cmake)
     file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/src/generated)
-    if(LINUX OR APPLE)
-        add_custom_command(
-            OUTPUT ${GENERATED_HEADER}
-            COMMAND sh -c "echo '#ifndef PCBU_${VARIABLE_PREFIX}_H' > ${GENERATED_HEADER} && \
-                        echo '#define PCBU_${VARIABLE_PREFIX}_H' >> ${GENERATED_HEADER} && \
-                        echo '#include <nlohmann/json.hpp>' >> ${GENERATED_HEADER} && \
-                        echo 'inline const nlohmann::json ${VARIABLE_PREFIX}_DATA = nlohmann::json::parse(R\"json(' >> ${GENERATED_HEADER} && \
-                        cat ${JSON_PATH} >> ${GENERATED_HEADER} && \
-                        echo ')json\");' >> ${GENERATED_HEADER} && \
-                        echo '#endif' >> ${GENERATED_HEADER}"
-            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-            DEPENDS ${JSON_PATH}
-            COMMENT "Generating JSON header: ${GENERATED_HEADER}"
-            VERBATIM
-        )
-    else()
-        add_custom_command(
-            OUTPUT ${GENERATED_HEADER}
-            COMMAND sh -c "echo '#ifndef PCBU_${VARIABLE_PREFIX}_H' > ${GENERATED_HEADER} && \
-                        echo '#define PCBU_${VARIABLE_PREFIX}_H' >> ${GENERATED_HEADER} && \
-                        echo '#include <nlohmann/json.hpp>' >> ${GENERATED_HEADER} && \
-                        echo -e 'inline const nlohmann::json ${VARIABLE_PREFIX}_DATA = nlohmann::json::parse(R\\x22json(' >> ${GENERATED_HEADER} && \
-                        cat ${JSON_PATH} >> ${GENERATED_HEADER} && \
-                        echo -e ')json\\x22);' >> ${GENERATED_HEADER} && \
-                        echo '#endif' >> ${GENERATED_HEADER}"
-            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-            DEPENDS ${JSON_PATH}
-            COMMENT "Generating JSON header: ${GENERATED_HEADER}"
-            VERBATIM
-        )
-    endif()
+    add_custom_command(
+        OUTPUT ${GENERATED_HEADER}
+        COMMAND ${CMAKE_COMMAND} -DIN=${JSON_PATH} -DOUT=${GENERATED_HEADER} -DNAME=${VARIABLE_PREFIX} -P ${EMBED_SCRIPT}
+        DEPENDS ${JSON_PATH} ${EMBED_SCRIPT}
+        COMMENT "Generating JSON header: ${GENERATED_HEADER}"
+        VERBATIM
+    )
     add_custom_target(generate_json_header_${VARIABLE_PREFIX} DEPENDS ${GENERATED_HEADER})
     add_dependencies(${TARGET} generate_json_header_${VARIABLE_PREFIX})
 endfunction()
-embed_json(pcbu_common res/en_US.json LANG_EN_US)
-embed_json(pcbu_common res/de_DE.json LANG_DE_DE)
-embed_json(pcbu_common res/zh_CN.json LANG_ZH_CN)
-embed_json(pcbu_common res/pt_PT.json LANG_PT_PT)
-embed_json(pcbu_common res/pt_BR.json LANG_PT_BR)
+embed_json(pcbu_common res/pt_BR.json I18N_PT_BR)
+foreach(ITALOCK_LANG en es fr de it ja ko zh_CN ru pl hi ar)
+    string(TOUPPER ${ITALOCK_LANG} ITALOCK_LANG_UPPER)
+    embed_json(pcbu_common res/i18n/${ITALOCK_LANG}.json I18N_${ITALOCK_LANG_UPPER})
+endforeach()

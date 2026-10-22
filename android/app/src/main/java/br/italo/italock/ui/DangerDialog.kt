@@ -32,6 +32,8 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import br.italo.italock.ui.theme.ButtonShape
+import br.italo.italock.R
+import androidx.compose.ui.res.stringResource
 import kotlinx.coroutines.delay
 
 private val DialogRed = Color(0xFFB71C1C)
@@ -49,17 +51,13 @@ fun DangerDialog(name: String, onConfirm: () -> Unit, onDismiss: () -> Unit) {
         titleContentColor = Color.White,
         textContentColor = Color.White,
         icon = { Icon(Icons.Outlined.Warning, contentDescription = null, modifier = Modifier.size(36.dp)) },
-        title = { Text("Perigoso", fontWeight = FontWeight.Bold) },
+        title = { Text(stringResource(R.string.danger_title), fontWeight = FontWeight.Bold) },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                Text("Destravar $name sem confirmação.", fontWeight = FontWeight.SemiBold)
+                Text(stringResource(R.string.danger_heading, name), fontWeight = FontWeight.SemiBold)
+                Text(stringResource(R.string.danger_text))
                 Text(
-                    "Qualquer pessoa com seu celular desbloqueado poderá destravar este computador sem digital, rosto ou senha. " +
-                        "Se você perder o celular ou alguém usar o aparelho, seu computador fica exposto.",
-                )
-                Text(
-                    "Vale só para o botão Destravar do celular (app, widget, atalho rápido e atalhos do ícone). Quando alguém mexer no computador, " +
-                        "o celular continua pedindo confirmação.",
+                    stringResource(R.string.danger_scope),
                     style = MaterialTheme.typography.bodySmall,
                 )
                 Row(
@@ -70,7 +68,7 @@ fun DangerDialog(name: String, onConfirm: () -> Unit, onDismiss: () -> Unit) {
                         checked = understood, onCheckedChange = null,
                         colors = CheckboxDefaults.colors(checkedColor = Color.White, uncheckedColor = Color.White, checkmarkColor = DialogRed),
                     )
-                    Text("Entendo o risco", fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(start = 8.dp))
+                    Text(stringResource(R.string.danger_understood), fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(start = 8.dp))
                 }
             }
         },
@@ -83,10 +81,10 @@ fun DangerDialog(name: String, onConfirm: () -> Unit, onDismiss: () -> Unit) {
                     containerColor = Color.White, contentColor = DialogRed,
                     disabledContainerColor = Color.White.copy(alpha = 0.3f), disabledContentColor = Color.White.copy(alpha = 0.8f),
                 ),
-            ) { Text(if (secondsLeft > 0) "Ligar ($secondsLeft)" else "Ligar", fontWeight = FontWeight.SemiBold) }
+            ) { Text(if (secondsLeft > 0) stringResource(R.string.danger_turn_on_wait, secondsLeft) else stringResource(R.string.common_turn_on), fontWeight = FontWeight.SemiBold) }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss, colors = ButtonDefaults.textButtonColors(contentColor = Color.White)) { Text("Cancelar") }
+            TextButton(onClick = onDismiss, colors = ButtonDefaults.textButtonColors(contentColor = Color.White)) { Text(stringResource(R.string.common_cancel)) }
         },
     )
 }

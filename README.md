@@ -1,3 +1,5 @@
+**Português (Brasil)** · [English](README.en.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [简体中文](README.zh-CN.md) · [Русский](README.ru.md) · [Polski](README.pl.md) · [हिन्दी](README.hi.md) · [العربية](README.ar.md)
+
 <div align="center">
 
 <img src="desktop/desktop/res/icons/hicolor/256x256/apps/italock.png" width="112" alt="Ícone do Ítalock">
@@ -34,6 +36,7 @@ Tudo é gratuito, sem propaganda, sem cadastro e sem internet obrigatória. As v
 - 🖥️ **Vários computadores no mesmo celular**, e vários celulares no mesmo computador, sem limite.
 - 🔑 **Sua senha continua valendo.** O Ítalock é só um jeito mais rápido de entrar. Se o celular estiver sem bateria ou longe, é só digitar a senha como sempre.
 - 🇧🇷 **Tudo em português.** Tema escuro de fábrica, com opção de tema claro.
+- 🌐 **Também em outros 12 idiomas.** O programa abre em português; para trocar, use a opção **Idioma** nas **Configurações**, no computador e no celular.
 
 <p align="center">
   <img src="docs/prints/windows-inicio.png" width="49%" alt="Tela inicial do Ítalock no Windows">
@@ -65,7 +68,7 @@ São três passos: instalar no computador, instalar no celular e ligar os dois u
 1. No celular, baixe o [**Italock.apk**](https://github.com/Oitalao/Italock/releases/latest/download/Italock.apk) e toque no arquivo baixado.
 2. Se o Android avisar que não pode instalar apps desta fonte, toque em **Configurações**, ligue **Permitir desta fonte** e volte.
 3. Se aparecer um aviso do Google Play Protect, toque em **Mais detalhes** e em **Instalar mesmo assim**. O aviso aparece para qualquer app que não veio da Play Store.
-4. Abra o Ítalock e aceite as notificações. Em **Configurações**, toque em **Liberar** em cada item da seção *Falta permitir*, para o Android não fechar o app.
+4. Abra o Ítalock e aceite as notificações. Em **Configurações**, toque em **Permitir** / **Liberar** em cada item da seção *Falta permitir*, para o Android não fechar o app.
 
 ### 3. Ligar o celular ao computador (só uma vez)
 
@@ -151,9 +154,9 @@ No Linux, o Ítalock protege a **proteção de tela** (a tela que aparece quando
 
 ## Recursos experimentais
 
-Ficam desligados de fábrica, em **Configurações › Experimentais** no celular. São para quem gosta de testar:
+Ficam desligados de fábrica, em **Configurações › Recursos experimentais** no celular. São para quem gosta de testar:
 
-- **Destravar sozinho quando o celular estiver perto**, por Bluetooth ou pela mesma rede.
+- **Destravar automático quando perto**, por Bluetooth ou pela mesma rede.
 - **Destravar pela notificação**, sem abrir o aplicativo.
 - **Relógio Wear OS** (Galaxy Watch, Pixel Watch e outros): o pedido aparece no relógio. Precisa instalar o [ItalockRelogio.apk](https://github.com/Oitalao/Italock/releases/latest/download/ItalockRelogio.apk) no relógio.
 

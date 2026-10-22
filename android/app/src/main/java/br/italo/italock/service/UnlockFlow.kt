@@ -10,6 +10,7 @@ import br.italo.italock.crypto.KeyGuard
 import br.italo.italock.data.DiagLog
 import br.italo.italock.data.Origin
 import br.italo.italock.data.PairedPc
+import br.italo.italock.i18n.L10n
 import br.italo.italock.lock.LockClient
 import br.italo.italock.ui.QuickUnlockActivity
 import kotlin.concurrent.thread
@@ -24,7 +25,7 @@ object UnlockFlow {
     /** [origin]: de onde partiu o toque (app, widget, atalho, tag, relógio); vai para o histórico quando o PC entrar. */
     fun wakeWithKey(pc: PairedPc, key: String, origin: Origin = Origin.APP): Result {
         val token = PreApproval.grant(pc.deviceId, key, origin)
-            ?: return Result(false, "${pc.displayName} já está pedindo: confirme no pedido aberto.", null, alreadyOpen = true)
+            ?: return Result(false, L10n.s(R.string.flow_already_asking, pc.displayName), null, alreadyOpen = true)
         val r = LockClient.wakeOutcome(pc)
         if (!r.ok) {
             // Não chegou ao computador (ou ele recusou): a pré aprovação não pode ficar valendo.
@@ -73,11 +74,14 @@ object UnlockFlow {
         UnlockService.createChannels(context)
         val lock = action == QuickUnlockActivity.ACTION_LOCK
         val prefs = br.italo.italock.data.AppPrefs(context)
-        val name = if (prefs.hideNameNow(context)) "o computador" else pc.displayName
+        val hideNow = prefs.hideNameNow(context)
         val b = NotificationCompat.Builder(context, if (quiet) UnlockService.CHANNEL_WAITING else UnlockService.CHANNEL_PROMPT)
             .setSmallIcon(R.drawable.ic_lock).setColor(UnlockService.BRAND_BLUE)
-            .setContentTitle(if (lock) "Travar $name?" else "Destravar $name?")
-            .setContentText(if (quiet) "Está na tela de bloqueio. Toque para destravar." else "Toque para confirmar no celular.")
+            .setContentTitle(when {
+                hideNow -> L10n.s(if (lock) R.string.flow_ask_lock_generic else R.string.flow_ask_unlock_generic)
+                else -> L10n.s(if (lock) R.string.flow_ask_lock else R.string.flow_ask_unlock, pc.displayName)
+            })
+            .setContentText(L10n.s(if (quiet) R.string.flow_ask_quiet_text else R.string.flow_ask_text))
             .setPriority(if (quiet) NotificationCompat.PRIORITY_LOW else NotificationCompat.PRIORITY_HIGH)
             .setCategory(if (quiet) NotificationCompat.CATEGORY_STATUS else NotificationCompat.CATEGORY_REMINDER)
             .setSilent(quiet).setOnlyAlertOnce(quiet)
@@ -87,7 +91,7 @@ object UnlockFlow {
             b.setVisibility(NotificationCompat.VISIBILITY_PRIVATE)
             b.setPublicVersion(NotificationCompat.Builder(context, UnlockService.CHANNEL_PROMPT)
                 .setSmallIcon(R.drawable.ic_lock).setColor(UnlockService.BRAND_BLUE)
-                .setContentTitle(if (lock) "Travar o computador?" else "Destravar o computador?").build())
+                .setContentTitle(L10n.s(if (lock) R.string.flow_ask_lock_generic else R.string.flow_ask_unlock_generic)).build())
         }
         val n = b.build()
         runCatching { context.getSystemService(NotificationManager::class.java).notify(ASK_NOTIF_BASE + pc.deviceId.hashCode(), n) }

@@ -12,26 +12,12 @@ Item {
     function load() { features = SettingsForm.GetExperimental(); }
     Component.onCompleted: load()
 
-    readonly property var languages: [
-        { text: "Automático (idioma do sistema)", value: "auto" },
-        { text: "English", value: "en" },
-        { text: "Deutsch", value: "de" },
-        { text: "Português (Portugal)", value: "pt_PT" },
-        { text: "Português (Brasil)", value: "pt_BR" },
-        { text: "中文（简体）", value: "zh_CN" }
-    ]
-    function languageIndex() {
-        let v = SettingsForm.GetLanguage();
-        for (let i = 0; i < languages.length; i++) if (languages[i].value === v) return i;
-        return 0;
-    }
-
     // Linux: minutos sem o celular por perto até travar (Windows usa o tempo fixo do Bloqueio dinâmico).
     readonly property var proximityOptions: [
-        { text: "Depois de 1 minuto", value: 1 },
-        { text: "Depois de 2 minutos (padrão)", value: 2 },
-        { text: "Depois de 5 minutos", value: 5 },
-        { text: "Depois de 10 minutos", value: 10 }
+        { text: qsTr("Depois de 1 minuto"), value: 1 },
+        { text: qsTr("Depois de 2 minutos (padrão)"), value: 2 },
+        { text: qsTr("Depois de 5 minutos"), value: 5 },
+        { text: qsTr("Depois de 10 minutos"), value: 10 }
     ]
     function proximityIndex() {
         let v = SettingsForm.GetOptions().proximityMinutes;
@@ -46,9 +32,9 @@ Item {
             page.load();
         };
         if (on && f.needsConfirm) {
-            window.ask("Ligar “" + f.name + "”?",
-                       f.risk + "\n\nA senha continua valendo sempre: se o celular falhar ou não responder, o sistema pede a senha.",
-                       "Ligar mesmo assim", true, apply);
+            window.ask(qsTr("Ligar “%1”?").arg(f.name),
+                       f.risk + "\n\n" + qsTr("A senha continua valendo sempre: se o celular falhar ou não responder, o sistema pede a senha."),
+                       qsTr("Ligar mesmo assim"), true, apply);
             page.load(); // o interruptor só fica ligado depois de confirmar
         } else {
             apply();
@@ -64,7 +50,7 @@ Item {
         PageHeader {
             Layout.maximumWidth: 680
             Layout.alignment: Qt.AlignHCenter
-            title: "Recursos experimentais"
+            title: qsTr("Recursos experimentais")
             onBack: stack.pop()
         }
 
@@ -86,7 +72,7 @@ Item {
                 Icon { name: "warning"; color: Theme.amberText; size: 20; Layout.alignment: Qt.AlignTop }
                 Text {
                     Layout.fillWidth: true
-                    text: "Experimental. Pode não funcionar direito, mudar ou sumir em versões futuras. Use por sua conta."
+                    text: qsTr("Experimental. Pode não funcionar direito, mudar ou sumir em versões futuras. Use por sua conta.")
                     color: Theme.amberText
                     font.family: Theme.fontFamily
                     font.pixelSize: Theme.bodySize
@@ -116,9 +102,9 @@ Item {
                         spacing: 0
                         SettingRow {
                             title: feat.modelData.name
-                            subtitle: feat.modelData.available ? feat.modelData.desc : feat.modelData.desc + " (não disponível neste computador)"
+                            subtitle: feat.modelData.available ? feat.modelData.desc : feat.modelData.desc + " " + qsTr("(não disponível neste computador)")
                             risk: feat.modelData.risk
-                            showDivider: !(feat.modelData.enabled && (feat.modelData.id === "language" || (feat.modelData.id === "proximity" && !MainWindow.IsWindows()))) && feat.index < page.features.length - 1
+                            showDivider: !(feat.modelData.enabled && feat.modelData.id === "proximity" && !MainWindow.IsWindows()) && feat.index < page.features.length - 1
                             Toggle {
                                 Accessible.name: feat.modelData.name
                                 enabled: feat.modelData.available || feat.modelData.enabled
@@ -133,21 +119,11 @@ Item {
                             model: page.proximityOptions
                             textRole: "text"
                             currentIndex: page.proximityIndex()
-                            Accessible.name: "Travar depois de quanto tempo"
+                            Accessible.name: qsTr("Travar depois de quanto tempo")
                             onActivated: function(i) {
                                 let err = SettingsForm.SetOption("proximityMinutes", page.proximityOptions[i].value);
                                 if (err !== "") window.showErrorMessage(err);
                             }
-                        }
-                        Choice {
-                            visible: feat.modelData.id === "language" && feat.modelData.enabled
-                            Layout.fillWidth: true
-                            Layout.bottomMargin: 14
-                            model: page.languages
-                            textRole: "text"
-                            currentIndex: page.languageIndex()
-                            Accessible.name: "Idioma das mensagens"
-                            onActivated: function(i) { SettingsForm.SetLanguage(page.languages[i].value); }
                         }
                     }
                 }
@@ -155,7 +131,7 @@ Item {
                     Layout.fillWidth: true
                     Layout.topMargin: 16
                     visible: !MainWindow.IsWindows()
-                    text: "Os recursos que mexem no login do sistema guardam uma cópia do arquivo original em /root antes da primeira alteração."
+                    text: qsTr("Os recursos que mexem no login do sistema guardam uma cópia do arquivo original em /root antes da primeira alteração.")
                     color: Theme.text2
                     font.family: Theme.fontFamily
                     font.pixelSize: Theme.smallSize

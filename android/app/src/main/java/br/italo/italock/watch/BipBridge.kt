@@ -20,7 +20,7 @@ object BipBridge {
         val leftMs = (session.expiresAt - SystemClock.elapsedRealtime()).coerceAtLeast(5_000L)
         val i = Intent(ACTION_PROMPT).setPackage(FORK_PKG)
             .putExtra("session", session.id)
-            .putExtra("pc", if (hideName) "Seu computador" else session.pc.displayName)
+            .putExtra("pc", if (hideName) br.italo.italock.i18n.L10n.s(br.italo.italock.R.string.bip_hidden_pc_name) else session.pc.displayName)
             .putExtra("expiresMs", leftMs)
         runCatching { context.sendBroadcast(i) }
             .onFailure { DiagLog.w("ponte do relógio: anúncio falhou: ${it.javaClass.simpleName}") }

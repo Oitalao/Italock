@@ -2,7 +2,9 @@ package br.italo.italock.watch
 
 import android.content.Context
 import android.os.SystemClock
+import br.italo.italock.R
 import br.italo.italock.data.DiagLog
+import br.italo.italock.i18n.L10n
 import br.italo.italock.service.UnlockSession
 import org.json.JSONObject
 import java.util.concurrent.TimeUnit
@@ -34,15 +36,21 @@ object WearBridge {
             .isGooglePlayServicesAvailable(context) == com.google.android.gms.common.ConnectionResult.SUCCESS
     }.getOrDefault(false)
 
+    /**
+     * Idioma escolhido no celular ("pt-BR", "system", "en"...): vai junto em toda mensagem para o relógio, que passa a
+     * usar o mesmo idioma ("system" = o idioma do próprio relógio).
+     */
+    fun withLang(context: Context, json: JSONObject): JSONObject = json.put("lang", L10n.tag(context))
+
     fun sendPrompt(context: Context, session: UnlockSession, hideName: Boolean) {
         val leftMs = (session.expiresAt - SystemClock.elapsedRealtime()).coerceAtLeast(5_000)
         val json = JSONObject()
             .put("session", session.id)
             // O relógio fica no pulso, mas segue a mesma regra de privacidade da tela de bloqueio.
-            .put("pc", if (hideName) "Seu computador" else session.pc.displayName)
+            .put("pc", if (hideName) L10n.s(R.string.wearmsg_your_computer) else session.pc.displayName)
             .put("user", if (hideName) "" else session.user)
             .put("expiresAt", System.currentTimeMillis() + leftMs)
-        toWatches(context, PATH_PROMPT, json)
+        toWatches(context, PATH_PROMPT, withLang(context, json))
     }
 
     fun endPrompt(context: Context, sessionId: String) =

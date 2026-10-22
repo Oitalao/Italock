@@ -5,6 +5,8 @@ import android.nfc.NdefMessage
 import android.nfc.NfcAdapter
 import android.os.Parcelable
 import androidx.core.content.IntentCompat
+import br.italo.italock.R
+import br.italo.italock.i18n.L10n
 import br.italo.italock.data.PairingStore
 import br.italo.italock.data.Origin
 import br.italo.italock.data.TagRule
@@ -29,12 +31,12 @@ class NfcTagActivity : QuickUnlockActivity() {
     override val origin: Origin get() = Origin.TAG
 
     override fun begin() {
-        val id = idFrom(intent) ?: run { toast("Esta tag não é do Ítalock."); finish(); return }
+        val id = idFrom(intent) ?: run { toast(L10n.s(R.string.nfc_not_italock)); finish(); return }
         val pc = PairingStore(this).byPublicId(id) ?: run {
-            toast("Esta tag é de um computador que não está pareado neste celular (ele foi removido?)."); finish(); return
+            toast(L10n.s(R.string.nfc_unknown_pc)); finish(); return
         }
         if (TagRule.first(pc.tagLock, pc.tagUnlock) == TagRule.Step.NOTHING) {
-            toast("A tag de ${pc.displayName} está desligada. Ligue Travar pela tag ou Destravar pela tag nos detalhes dele.")
+            toast(L10n.s(R.string.nfc_tag_off, pc.displayName))
             finish(); return
         }
         requireUnlocked {
@@ -43,7 +45,7 @@ class NfcTagActivity : QuickUnlockActivity() {
                 TagRule.Step.LOCK -> perform(pc, ACTION_LOCK, unverified = false)
                 TagRule.Step.NOTHING -> finish()
                 TagRule.Step.ASK_STATE -> {
-                    progress = "Consultando ${pc.displayName}"
+                    progress = L10n.s(R.string.nfc_querying, pc.displayName)
                     thread {
                         val s = runCatching { LockClient.status(pc) }.getOrNull()
                         runOnUiThread {
@@ -54,9 +56,9 @@ class NfcTagActivity : QuickUnlockActivity() {
                                 TagRule.Step.LOCK -> perform(pc, ACTION_LOCK, unverified = s?.verified != true)
                                 else -> {
                                     toast(when (s?.status) {
-                                        LockStatus.CLOCK_OFF -> "Relógio do celular fora de hora. Ative a data e hora automáticas."
-                                        LockStatus.NOT_PAIRED, LockStatus.ERROR -> s.detail.ifEmpty { "${pc.displayName} recusou o pedido." }
-                                        else -> "${pc.displayName} não respondeu. Ele está ligado e na mesma rede (ou no Tailscale)?"
+                                        LockStatus.CLOCK_OFF -> L10n.s(R.string.nfc_clock_off)
+                                        LockStatus.NOT_PAIRED, LockStatus.ERROR -> s.detail.ifEmpty { L10n.s(R.string.err_refused, pc.displayName) }
+                                        else -> L10n.s(R.string.err_no_answer, pc.displayName)
                                     })
                                     finish()
                                 }

@@ -4,29 +4,39 @@ import android.content.Context
 import org.json.JSONArray
 import org.json.JSONObject
 
-/** O que aconteceu com o computador. */
-enum class EventKind(val key: String, val label: String) {
-    LOCKED("locked", "Travado"),
-    UNLOCKED("unlocked", "Destravado"),
-    DENIED("denied", "Pedido recusado"),
-    EXPIRED("expired", "Pedido expirado");
+/**
+ * O que aconteceu com o computador. [stored] é o texto gravado no "último uso" (sempre em português, como nas versões
+ * antigas); a tela mostra [label], no idioma escolhido.
+ */
+enum class EventKind(val key: String, val stored: String, @androidx.annotation.StringRes val labelRes: Int) {
+    LOCKED("locked", "Travado", br.italo.italock.R.string.event_locked),
+    UNLOCKED("unlocked", "Destravado", br.italo.italock.R.string.event_unlocked),
+    DENIED("denied", "Pedido recusado", br.italo.italock.R.string.event_denied),
+    EXPIRED("expired", "Pedido expirado", br.italo.italock.R.string.event_expired);
+
+    val label: String get() = br.italo.italock.i18n.L10n.s(labelRes)
 
     companion object {
         fun fromKey(k: String?) = entries.firstOrNull { it.key == k }
+
+        /** "Último uso" gravado ("Travado"/"Destravado") no idioma escolhido; texto desconhecido fica como está. */
+        fun displayStored(stored: String): String = entries.firstOrNull { it.stored == stored || it.key == stored }?.label ?: stored
     }
 }
 
 /** De onde partiu a ação. */
-enum class Origin(val key: String, val label: String) {
-    APP("app", "app"),
-    WIDGET("widget", "widget"),
-    SHORTCUT("shortcut", "atalho do ícone"),
-    TILE("tile", "atalho rápido"),
-    TAG("tag", "tag NFC"),
-    WATCH("watch", "relógio"),
-    PC("pc", "pedido do computador"),
-    NOTIFICATION("notification", "notificação"),
-    AUTO("auto", "automático perto");
+enum class Origin(val key: String, @androidx.annotation.StringRes val labelRes: Int) {
+    APP("app", br.italo.italock.R.string.origin_app),
+    WIDGET("widget", br.italo.italock.R.string.origin_widget),
+    SHORTCUT("shortcut", br.italo.italock.R.string.origin_shortcut),
+    TILE("tile", br.italo.italock.R.string.origin_tile),
+    TAG("tag", br.italo.italock.R.string.origin_tag),
+    WATCH("watch", br.italo.italock.R.string.origin_watch),
+    PC("pc", br.italo.italock.R.string.origin_pc),
+    NOTIFICATION("notification", br.italo.italock.R.string.origin_notification),
+    AUTO("auto", br.italo.italock.R.string.origin_auto);
+
+    val label: String get() = br.italo.italock.i18n.L10n.s(labelRes)
 
     /** A ação começou no celular (vale para a pré aprovação e para a notificação "Travar de novo"). */
     val fromPhone get() = this != PC && this != AUTO
@@ -93,7 +103,7 @@ object Events {
     fun record(context: Context, deviceId: String, kind: EventKind, origin: Origin, via: String) {
         runCatching {
             HistoryStore(context).add(deviceId, HistoryEvent(System.currentTimeMillis(), kind, origin, via))
-            if (kind == EventKind.LOCKED || kind == EventKind.UNLOCKED) PairingStore(context).recordEvent(deviceId, kind.label, via)
+            if (kind == EventKind.LOCKED || kind == EventKind.UNLOCKED) PairingStore(context).recordEvent(deviceId, kind.stored, via)
         }.onFailure { DiagLog.w("histórico: ${it.javaClass.simpleName}") }
     }
 }

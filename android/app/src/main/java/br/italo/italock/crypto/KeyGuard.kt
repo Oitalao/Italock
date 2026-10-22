@@ -118,7 +118,7 @@ object KeyGuard {
 
     /** A chave foi recriada: a senha deste PC (cifrada com a antiga) não pode mais ser aberta. */
     class KeyLostException : Exception(
-        "O bloqueio de tela do celular mudou e a senha guardada deste computador se perdeu. Pareie o computador de novo.",
+        br.italo.italock.i18n.L10n.s(br.italo.italock.R.string.crypto_key_lost),
     )
 
     /** Usa um Cipher já autenticado. Retorna (textoCifradoB64, ivB64). */

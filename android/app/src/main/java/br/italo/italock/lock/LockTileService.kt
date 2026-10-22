@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import br.italo.italock.R
 import br.italo.italock.data.PairingStore
+import br.italo.italock.i18n.L10n
 import br.italo.italock.ui.QuickUnlockActivity
 import kotlin.concurrent.thread
 
@@ -34,11 +35,11 @@ class LockTileService : TileService() {
         val pc = PairingStore(this).tilePc()
         if (pc == null) {
             val none = PairingStore(this).tileDeviceId == PairingStore.TILE_NONE
-            show(Tile.STATE_UNAVAILABLE, "Ítalock", if (none) "atalho sem computador" else "sem pareamento", R.drawable.ic_lock)
+            show(Tile.STATE_UNAVAILABLE, "Ítalock", L10n.s(if (none) R.string.tile_no_pc else R.string.tile_not_paired), R.drawable.ic_lock)
             return
         }
         val name = if (br.italo.italock.data.AppPrefs(this).hideNameNow(this)) "Ítalock" else pc.displayName
-        show(Tile.STATE_INACTIVE, name, "consultando", R.drawable.ic_lock)
+        show(Tile.STATE_INACTIVE, name, L10n.s(R.string.tile_querying), R.drawable.ic_lock)
         busy = true
         thread(isDaemon = true) {
             val r = runCatching { LockClient.status(pc) }.getOrNull()
@@ -49,11 +50,13 @@ class LockTileService : TileService() {
                 else -> null
             }
             busy = false
-            val tag = if (r != null && !r.verified && locked != null) " (não verificado)" else ""
+            val unverified = r != null && !r.verified && locked != null
             when (locked) {
-                true -> show(Tile.STATE_INACTIVE, name, "travado$tag, toque para destravar", R.drawable.ic_lock)
-                false -> show(Tile.STATE_ACTIVE, name, "destravado$tag, toque para travar", R.drawable.ic_lock_open)
-                null -> show(Tile.STATE_INACTIVE, name, "sem resposta, toque para travar", R.drawable.ic_lock)
+                true -> show(Tile.STATE_INACTIVE, name,
+                    L10n.s(if (unverified) R.string.tile_locked_unverified else R.string.tile_locked), R.drawable.ic_lock)
+                false -> show(Tile.STATE_ACTIVE, name,
+                    L10n.s(if (unverified) R.string.tile_unlocked_unverified else R.string.tile_unlocked), R.drawable.ic_lock_open)
+                null -> show(Tile.STATE_INACTIVE, name, L10n.s(R.string.tile_no_answer), R.drawable.ic_lock)
             }
         }
     }
@@ -75,7 +78,7 @@ class LockTileService : TileService() {
             return
         }
         busy = true
-        show(Tile.STATE_INACTIVE, pc.displayName, "travando", R.drawable.ic_lock)
+        show(Tile.STATE_INACTIVE, pc.displayName, L10n.s(R.string.tile_locking), R.drawable.ic_lock)
         thread {
             val r = LockClient.lockOutcome(pc)
             if (r.ok) {
@@ -83,9 +86,9 @@ class LockTileService : TileService() {
                 br.italo.italock.service.UnlockedNotice.cancel(this, pc.deviceId)
                 br.italo.italock.widget.WidgetStatus.refreshLater(this, pc.deviceId, 1_500)
                 locked = true
-                show(Tile.STATE_INACTIVE, pc.displayName, "travado, toque para destravar", R.drawable.ic_lock)
+                show(Tile.STATE_INACTIVE, pc.displayName, L10n.s(R.string.tile_locked), R.drawable.ic_lock)
             } else {
-                show(Tile.STATE_INACTIVE, pc.displayName, "falhou, toque para tentar", R.drawable.ic_lock)
+                show(Tile.STATE_INACTIVE, pc.displayName, L10n.s(R.string.tile_failed), R.drawable.ic_lock)
             }
             busy = false
             br.italo.italock.ui.Haptics.done(this, r.ok)

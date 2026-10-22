@@ -1,4 +1,5 @@
 import QtQuick
+import PCBioUnlock
 
 // Ícones de linha (traço 1,75 px, cantos arredondados), desenhados aqui mesmo — um conjunto só.
 Image {
@@ -12,6 +13,8 @@ Image {
     sourceSize: Qt.size(size * 2, size * 2)
     fillMode: Image.PreserveAspectFit
     smooth: true
+    // Setas de direção viram para o outro lado nas telas espelhadas (árabe)
+    mirror: QI18n.rtl && (name === "back" || name === "chevron-right")
 
     readonly property var paths: ({
         "back": '<path d="M19 12H5M11 6l-6 6 6 6"/>',

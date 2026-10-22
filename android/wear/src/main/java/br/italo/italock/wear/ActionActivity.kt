@@ -1,5 +1,6 @@
 package br.italo.italock.wear
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -27,11 +28,14 @@ import org.json.JSONObject
 class ActionActivity : ComponentActivity() {
 
     private var title by mutableStateOf("")
-    private var message by mutableStateOf("Enviando")
+    private var message by mutableStateOf("")
     private var closeJob: Job? = null
+
+    override fun attachBaseContext(newBase: Context) = super.attachBaseContext(WearLang.wrap(newBase))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        message = getString(R.string.sending)
         val id = intent.getStringExtra(EXTRA_ID)
         val action = intent.getStringExtra(EXTRA_ACTION)
         if (id.isNullOrEmpty() || action == null || action !in ACTIONS) {
@@ -39,14 +43,14 @@ class ActionActivity : ComponentActivity() {
             return
         }
         val name = PcStore.load(this).firstOrNull { it.id == id }?.name.orEmpty()
-        title = listOf(Pc.actionLabel(action), name).filter { it.isNotBlank() }.joinToString(" ")
+        title = listOf(Pc.actionLabel(this, action), name).filter { it.isNotBlank() }.joinToString(" ")
 
         setContent {
             ItalockTheme {
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .clickable(onClickLabel = "Fechar", role = Role.Button) { finish() }
+                        .clickable(onClickLabel = getString(R.string.close), role = Role.Button) { finish() }
                         .padding(horizontal = 20.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -67,14 +71,14 @@ class ActionActivity : ComponentActivity() {
                 val r = withTimeoutOrNull(TIMEOUT_MS) {
                     Bus.results.first { it.id == id && (it.action.isEmpty() || it.action == action) }
                 }
-                show(if (r == null) "O celular não respondeu. Ele está perto ou com internet?" else resultText(r))
+                show(if (r == null) getString(R.string.phone_no_answer) else resultText(this@ActionActivity, r))
             }
             val sent = Phone.send(
                 this@ActionActivity, Proto.ACTION, JSONObject().put("id", id).put("action", action),
             )
             if (!sent) {
                 waiting.cancel()
-                show("Celular não encontrado. Abra o Ítalock no celular.")
+                show(getString(R.string.phone_missing))
             }
         }
     }

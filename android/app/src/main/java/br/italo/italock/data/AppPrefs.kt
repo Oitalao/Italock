@@ -153,8 +153,11 @@ class AppPrefs(context: Context) {
 }
 
 /** Aparência escolhida pelo usuário. */
-enum class ThemeMode(val key: String, val label: String) {
-    DARK("dark", "Escuro"), LIGHT("light", "Claro"), SYSTEM("system", "Igual ao sistema");
+enum class ThemeMode(val key: String, @androidx.annotation.StringRes val labelRes: Int) {
+    DARK("dark", br.italo.italock.R.string.theme_dark), LIGHT("light", br.italo.italock.R.string.theme_light),
+    SYSTEM("system", br.italo.italock.R.string.theme_system);
+
+    val label: String get() = br.italo.italock.i18n.L10n.s(labelRes)
 
     companion object {
         fun fromKey(k: String?) = entries.firstOrNull { it.key == k } ?: DARK

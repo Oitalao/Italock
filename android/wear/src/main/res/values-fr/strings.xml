@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tile_description">Vos ordinateurs et le bon bouton pour chacun</string>
+
+    <string name="state_locked">Verrouillé</string>
+    <string name="state_unlocked">Déverrouillé</string>
+    <string name="state_no_answer">Pas de réponse</string>
+    <string name="state_clock">Horloge décalée</string>
+    <string name="state_unknown">Non confirmé</string>
+
+    <string name="action_unlock">Déverrouiller</string>
+    <string name="action_wake">Allumer</string>
+    <string name="action_lock">Verrouiller</string>
+    <string name="action_deny">Refuser</string>
+    <string name="close">Fermer</string>
+
+    <string name="phone_missing_long">Téléphone introuvable. Ouvrez Ítalock sur le téléphone et activez Montre Wear OS dans les fonctions expérimentales.</string>
+    <string name="open_on_phone">Ouvrez Ítalock sur le téléphone</string>
+    <string name="phone_missing">Téléphone introuvable. Ouvrez Ítalock sur le téléphone.</string>
+    <string name="tile_sending">%1$s : envoi</string>
+
+    <string name="sending">Envoi</string>
+    <string name="phone_no_answer">Le téléphone n\'a pas répondu. Est-il à proximité ou connecté à Internet ?</string>
+    <string name="result_confirm_on_phone">Confirmez sur le téléphone</string>
+    <string name="result_done">Fait</string>
+    <string name="result_failed">Échec</string>
+
+    <string name="prompt_title">Déverrouiller %1$s ?</string>
+    <string name="prompt_title_generic">Déverrouiller l\'ordinateur ?</string>
+    <string name="prompt_needs_lock_notif">Activez le verrouillage de l\'écran de la montre pour déverrouiller d\'ici</string>
+    <string name="prompt_needs_lock">Pour déverrouiller depuis la montre, activez son verrouillage de l\'écran</string>
+    <string name="channel_prompts">Demandes</string>
+    <string name="channel_prompts_desc">Demandes de déverrouillage de l\'ordinateur</string>
+</resources>

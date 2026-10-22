@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="wearmsg_your_computer">あなたのパソコン</string>
+    <string name="wearmsg_computer">パソコン</string>
+    <string name="wearmsg_computer_n">パソコン %1$d</string>
+    <string name="wearmsg_feature_off">スマホの Ítalock の試験運用機能で「Wear OS ウォッチ」をオンにしてください。</string>
+    <string name="wearmsg_pc_not_found">スマホにパソコンが見つかりません。</string>
+    <string name="wearmsg_pc_off">%1$s ではウォッチがオフです。スマホでパソコンの詳細画面からオンにしてください。</string>
+    <string name="wearmsg_confirm_on_phone">スマホで確認してください。</string>
+    <string name="wearmsg_unknown_action">不明な操作です。</string>
+    <string name="wearmsg_already_asking">%1$s はすでにリクエスト中です。スマホかウォッチのリクエストで確認してください。</string>
+</resources>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notif_tailscale_off_title">Tailscale متوقف</string>
+    <string name="notif_tailscale_off_text">بدونه، لا يعمل فتح القفل خارج المنزل. انقر لإعادة تشغيله.</string>
+    <string name="notif_pc_not_found">لم يتم العثور على الكمبيوتر (هل تمت إزالته؟)</string>
+
+    <string name="prompt_title">فتح قفل %1$s؟</string>
+    <string name="prompt_generic_title">طلب فتح القفل</string>
+    <string name="prompt_generic_text">افتح قفل الهاتف للعرض.</string>
+    <string name="prompt_via">عبر %1$s</string>
+    <string name="prompt_deny">رفض</string>
+    <string name="prompt_your_computer">كمبيوترك</string>
+    <string name="prompt_expires_in">ينتهي خلال %1$d:%2$02d</string>
+    <string name="prompt_expired">انتهت المهلة</string>
+    <string name="prompt_wants_unlock">يريد فتح القفل</string>
+    <string name="prompt_user">المستخدم %1$s</string>
+    <string name="prompt_unlock_phone_to_unlock">افتح قفل الهاتف أولاً لفتح القفل.</string>
+    <string name="prompt_unlock_phone_first">افتح قفل الهاتف لفتح قفل الكمبيوتر.</string>
+    <string name="prompt_reply_failed">تعذّر الرد على %1$s. هل انقطع الاتصال؟</string>
+
+    <string name="notice_unlocked">تم فتح قفل %1$s</string>
+    <string name="notice_unlocked_auto">تم فتح قفل %1$s تلقائيًا</string>
+    <string name="notice_lock_again">القفل مرة أخرى</string>
+
+    <string name="flow_ask_lock">قفل %1$s؟</string>
+    <string name="flow_ask_unlock">فتح قفل %1$s؟</string>
+    <string name="flow_ask_lock_generic">قفل الكمبيوتر؟</string>
+    <string name="flow_ask_unlock_generic">فتح قفل الكمبيوتر؟</string>
+    <string name="flow_ask_text">انقر للتأكيد على الهاتف.</string>
+    <string name="flow_ask_quiet_text">على شاشة القفل. انقر لفتح القفل.</string>
+    <string name="flow_already_asking">%1$s يطلب بالفعل: أكّد في الطلب المفتوح.</string>
+
+    <string name="tile_no_pc">المربع بدون كمبيوتر</string>
+    <string name="tile_not_paired">غير مقترن</string>
+    <string name="tile_querying">جارٍ التحقق</string>
+    <string name="tile_locked">مقفل، انقر لفتح القفل</string>
+    <string name="tile_locked_unverified">مقفل (لم يتم التحقق)، انقر لفتح القفل</string>
+    <string name="tile_unlocked">مفتوح، انقر للقفل</string>
+    <string name="tile_unlocked_unverified">مفتوح (لم يتم التحقق)، انقر للقفل</string>
+    <string name="tile_no_answer">لا يوجد رد، انقر للقفل</string>
+    <string name="tile_locking">جارٍ القفل</string>
+    <string name="tile_failed">فشل، انقر للمحاولة</string>
+
+    <string name="shortcut_unlock">فتح قفل %1$s</string>
+    <string name="shortcut_lock">قفل %1$s</string>
+    <string name="shortcut_removed">تمت إزالة الكمبيوتر من Ítalock</string>
+
+    <string name="quick_confirm_lock_title">قفل %1$s؟</string>
+
+    <string name="bio_unlock_title">فتح قفل %1$s</string>
+    <string name="bio_need_screen_lock">اضبط قفل شاشة (رقم PIN أو نقش أو كلمة مرور) على الهاتف أولاً.</string>
+    <string name="bio_no_fingerprint_settings">لا توجد بصمة إصبع مسجّلة على هذا الهاتف. سجّل بصمة، أو فعّل \"قبول رقم PIN أو النقش أو كلمة المرور\" في الإعدادات.</string>
+    <string name="bio_key_error_retry">خطأ في المفتاح: أكّد مرة أخرى.</string>
+    <string name="bio_lockout">محاولات كثيرة جدًا. انتظر قليلاً وحاول مرة أخرى.</string>
+    <string name="bio_lockout_permanent">المقاييس الحيوية مقفلة. افتح قفل الهاتف بكلمة المرور وحاول مرة أخرى.</string>
+    <string name="bio_no_fingerprint">لا توجد بصمة إصبع مسجّلة على هذا الهاتف.</string>
+    <string name="bio_timeout">انتهت مهلة التأكيد. حاول مرة أخرى.</string>
+    <string name="bio_hw_unavailable">قارئ المقاييس الحيوية غير متاح الآن.</string>
+    <string name="bio_not_completed">لم يكتمل التأكيد. حاول مرة أخرى.</string>
+    <string name="bio_cannot_ask">تعذّر طلب التأكيد. حاول مرة أخرى.</string>
+    <string name="bio_not_authenticated">أكّد ببصمة الإصبع أو برقم PIN أو النقش أو كلمة مرور الهاتف. في إصدار Android هذا، لا يفتح التعرّف على الوجه المفتاح.</string>
+    <string name="bio_pair_again">أعد إقران الكمبيوتر.</string>
+    <string name="bio_key_invalidated">تغيّر قفل شاشة الهاتف وفُقدت كلمة المرور المحفوظة لهذا الكمبيوتر. أعد إقران الكمبيوتر.</string>
+    <string name="bio_key_error">خطأ في مفتاح الهاتف. حاول مرة أخرى، وإذا تكرر ذلك، أعد إقران الكمبيوتر.</string>
+</resources>

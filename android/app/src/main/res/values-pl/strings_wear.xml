@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="wearmsg_your_computer">Twój komputer</string>
+    <string name="wearmsg_computer">Komputer</string>
+    <string name="wearmsg_computer_n">Komputer %1$d</string>
+    <string name="wearmsg_feature_off">Włącz Zegarek z Wear OS w funkcjach eksperymentalnych Ítalock na telefonie.</string>
+    <string name="wearmsg_pc_not_found">Nie znaleziono komputera w telefonie.</string>
+    <string name="wearmsg_pc_off">Zegarek wyłączony dla %1$s. Włącz go w szczegółach komputera na telefonie.</string>
+    <string name="wearmsg_confirm_on_phone">Potwierdź na telefonie.</string>
+    <string name="wearmsg_unknown_action">Nieznana akcja.</string>
+    <string name="wearmsg_already_asking">%1$s już prosi. Potwierdź na telefonie lub w prośbie na zegarku.</string>
+</resources>

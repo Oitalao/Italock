@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="err_ok_locked">%1$s gesperrt</string>
+    <string name="err_ok_waking">%1$s wird entsperrt</string>
+    <string name="err_ok_done">Fertig</string>
+
+    <string name="err_no_path">Kein Weg für %1$s freigegeben. Aktiviere lokales Netzwerk oder Tailscale in den Details des Computers.</string>
+    <string name="err_no_answer">%1$s hat nicht geantwortet. Ist er eingeschaltet und im selben Netzwerk (oder in Tailscale)?</string>
+    <string name="err_not_paired">%1$s erkennt dieses Telefon nicht. Entferne den Computer und kopple neu.</string>
+    <string name="err_time">Uhrzeit des Telefons falsch: Der Unterschied zu %1$s ist größer als 1 Minute. Aktiviere auf beiden automatisches Datum und automatische Uhrzeit.</string>
+    <string name="err_data">%1$s konnte die Anfrage nicht lesen (anderer Schlüssel). Entferne den Computer und kopple neu.</string>
+    <string name="err_bad_action">Ítalock auf %1$s ist für diesen Befehl zu alt. Aktualisiere das Programm auf dem Computer.</string>
+    <string name="err_bad_packet">%1$s hat die Anfrage nicht verstanden. Aktualisiere Ítalock auf dem Computer.</string>
+    <string name="err_state_unknown">%1$s konnte nicht sagen, ob der Bildschirm gesperrt ist.</string>
+    <string name="err_not_waiting">Der Computer ist nicht auf dem Sperrbildschirm.</string>
+    <string name="err_lock_failed">%1$s hat die Anfrage erhalten, konnte den Bildschirm aber nicht sperren.</string>
+    <string name="err_replay">%1$s hat die Anfrage abgelehnt, weil sie wie eine Wiederholung aussah. Versuch es noch einmal.</string>
+    <string name="err_busy">%1$s ist mit anderen Verbindungen beschäftigt. Versuch es gleich noch einmal.</string>
+    <string name="err_not_logged_in">Auf %1$s ist niemand mit dem Konto dieser Kopplung angemeldet. Melde dich an und versuch es noch einmal.</string>
+    <string name="err_lock_disabled">%1$s nimmt keine Sperranfragen vom Telefon an. Aktiviere diese Option in Ítalock auf dem Computer.</string>
+    <string name="err_path_disabled">%1$s nimmt auf diesem Weg (lokales Netzwerk oder Tailscale) keine Anfragen an. Sieh dir die Optionen in Ítalock auf dem Computer an.</string>
+    <string name="err_unsupported">%1$s hat diese Funktion auf diesem System nicht.</string>
+    <string name="err_not_allowed">Dieses Konto auf dem Computer darf dieses Telefon nicht verwenden.</string>
+    <string name="err_launch_failed">%1$s konnte das Ítalock-Fenster nicht öffnen. Lass jemanden dort angemeldet und versuch es noch einmal.</string>
+    <string name="err_bad_nonce">Die Antwort passt nicht zur Anfrage. Wenn das weiter passiert, entferne den Computer und kopple neu.</string>
+    <string name="err_bad_seal">Die Antwort von %1$s passt nicht zum Schlüssel der Kopplung. Wenn das weiter passiert, entferne den Computer und kopple neu.</string>
+    <string name="err_unsealed">%1$s hat ohne den üblichen Schutz geantwortet. Aus Sicherheitsgründen wurde die Antwort ignoriert.</string>
+    <string name="err_refused">%1$s hat die Anfrage abgelehnt.</string>
+
+    <string name="wol_no_mac">Für diesen Computer ist keine Adresse einer kabelgebundenen Netzwerkkarte hinterlegt. Ohne sie ist Einschalten über das Netzwerk nicht möglich.</string>
+    <string name="wol_sent">Einschaltsignal gesendet. Funktioniert nur im selben Netzwerk wie der Computer.</string>
+    <string name="wol_failed">Das Einschaltsignal konnte nicht gesendet werden. Ist das Telefon im selben Netzwerk wie der Computer?</string>
+
+    <string name="nfc_write_ok">Tag beschrieben. Halte das entsperrte Telefon daran, um ihn zu verwenden.</string>
+    <string name="nfc_write_ok_locked">Tag beschrieben und schreibgeschützt.</string>
+    <string name="nfc_write_ok_lock_unsupported">Tag beschrieben, aber dieses Modell lässt keinen Schreibschutz zu.</string>
+    <string name="nfc_write_read_only">Dieser Tag ist schreibgeschützt. Nimm einen anderen.</string>
+    <string name="nfc_write_too_small">Der Tag hat nicht genug Speicher. Nimm einen NTAG213 oder größer.</string>
+    <string name="nfc_write_not_ndef">Dieser Tag unterstützt das NDEF-Format nicht. Nimm einen anderen, zum Beispiel NTAG213, 215 oder 216.</string>
+    <string name="nfc_write_lost">Der Tag wurde zu früh entfernt. Halte ihn noch einmal daran, bis die Meldung erscheint.</string>
+    <string name="nfc_write_failed">Der Tag konnte nicht beschrieben werden. Versuch es noch einmal oder nimm einen anderen.</string>
+
+    <string name="nfc_not_italock">Dieser Tag gehört nicht zu Ítalock.</string>
+    <string name="nfc_unknown_pc">Dieser Tag gehört zu einem Computer, der mit diesem Telefon nicht gekoppelt ist (wurde er entfernt?).</string>
+    <string name="nfc_tag_off">Der Tag von %1$s ist aus. Aktiviere Per Tag sperren oder Per Tag entsperren in seinen Details.</string>
+    <string name="nfc_querying">%1$s wird abgefragt</string>
+    <string name="nfc_clock_off">Uhrzeit des Telefons falsch. Aktiviere automatisches Datum und automatische Uhrzeit.</string>
+
+    <string name="tag_lock_and_unlock">Sperrt und entsperrt</string>
+    <string name="tag_unlock_only">Nur entsperren</string>
+    <string name="tag_lock_only">Nur sperren</string>
+    <string name="tag_off">Aus</string>
+
+    <string name="pairing_connecting">Verbindung zum Computer wird hergestellt</string>
+    <string name="pairing_waiting_reply">Warte auf Antwort des Computers</string>
+    <string name="pairing_searching">Suche den Computer im Netzwerk</string>
+
+    <string name="pairing_err_not_found">Computer nicht gefunden. Sind beide im selben Netzwerk oder per USB-Kabel mit USB-Tethering verbunden?</string>
+    <string name="pairing_err_refused">Der Computer hat das Koppeln abgelehnt. Erzeuge am Computer einen neuen QR-Code und versuch es noch einmal.</string>
+    <string name="pairing_err_time">Uhrzeit des Telefons falsch. Aktiviere automatisches Datum und automatische Uhrzeit auf Telefon und Computer.</string>
+    <string name="pairing_err_timeout">Der Computer hat zu lange gebraucht. Prüf, ob das Kopplungsfenster dort noch offen ist.</string>
+    <string name="pairing_err_connect">Keine Verbindung zum Computer möglich. Prüf, ob das Kopplungsfenster offen ist und beide im selben Netzwerk sind.</string>
+    <string name="pairing_err_host">Ungültige Adresse des Computers. Erzeuge einen neuen QR-Code.</string>
+    <string name="pairing_err_code">Der Code stimmt nicht mit dem des Computers überein. Scanne den QR-Code noch einmal.</string>
+    <string name="pairing_err_dropped">Die Verbindung zum Computer ist abgebrochen. Versuch es noch einmal.</string>
+    <string name="pairing_err_format">Antwort des Computers in unerwartetem Format. Aktualisiere Ítalock auf dem Computer.</string>
+    <string name="pairing_err_generic">Koppeln fehlgeschlagen. Versuch es noch einmal.</string>
+
+    <string name="crypto_key_lost">Die Displaysperre des Telefons wurde geändert und das gespeicherte Passwort für diesen Computer ist verloren gegangen. Kopple den Computer neu.</string>
+
+    <string name="bip_hidden_pc_name">Dein Computer</string>
+</resources>

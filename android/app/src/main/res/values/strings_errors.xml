@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Mensagens de erro e de resultado: respostas do computador, ligar pela rede, tag NFC, pareamento, relógio Amazfit. -->
+<resources>
+    <!-- Resultado de uma ação sobre o computador. %1$s = nome do computador. -->
+    <string name="err_ok_locked">%1$s travado</string>
+    <!-- Destravar: o computador vai entrar sozinho (não é ligar o computador). -->
+    <string name="err_ok_waking">Destravando %1$s</string>
+    <string name="err_ok_done">Pronto</string>
+
+    <!-- Respostas de erro do computador. %1$s = nome do computador. -->
+    <string name="err_no_path">Nenhum caminho liberado para %1$s. Ligue rede local ou Tailscale nos detalhes do computador.</string>
+    <string name="err_no_answer">%1$s não respondeu. Ele está ligado e na mesma rede (ou no Tailscale)?</string>
+    <string name="err_not_paired">%1$s não reconhece este celular. Remova o computador e pareie de novo.</string>
+    <string name="err_time">Relógio do celular fora de hora: a diferença para %1$s passa de 1 minuto. Ligue a data e hora automáticas nos dois.</string>
+    <string name="err_data">%1$s não conseguiu ler o pedido (chave diferente). Remova o computador e pareie de novo.</string>
+    <string name="err_bad_action">O Ítalock de %1$s está desatualizado para esse comando. Atualize o programa no computador.</string>
+    <string name="err_bad_packet">%1$s não entendeu o pedido. Atualize o Ítalock no computador.</string>
+    <string name="err_state_unknown">%1$s não conseguiu dizer se a tela está travada.</string>
+    <string name="err_not_waiting">O computador não está na tela de bloqueio.</string>
+    <string name="err_lock_failed">%1$s recebeu o pedido, mas não conseguiu travar a tela.</string>
+    <string name="err_replay">%1$s recusou o pedido por parecer repetido. Tente de novo.</string>
+    <string name="err_busy">%1$s está ocupado atendendo outras conexões. Tente de novo em instantes.</string>
+    <string name="err_not_logged_in">Ninguém está conectado em %1$s com a conta deste pareamento. Entre na conta e tente de novo.</string>
+    <string name="err_lock_disabled">%1$s não aceita pedidos de travar pelo celular. Ligue essa opção no Ítalock do computador.</string>
+    <string name="err_path_disabled">%1$s não aceita pedidos por este caminho (rede local ou Tailscale). Veja as opções no Ítalock do computador.</string>
+    <string name="err_unsupported">%1$s não tem esse recurso neste sistema.</string>
+    <string name="err_not_allowed">Esta conta do computador não pode usar este celular.</string>
+    <string name="err_launch_failed">%1$s não conseguiu abrir a janela do Ítalock. Deixe alguém conectado nele e tente de novo.</string>
+    <string name="err_bad_nonce">A resposta não confere com o pedido. Se continuar, remova o computador e pareie de novo.</string>
+    <string name="err_bad_seal">A resposta de %1$s não confere com a chave do pareamento. Se continuar, remova o computador e pareie de novo.</string>
+    <string name="err_unsealed">%1$s respondeu sem a proteção de sempre. Por segurança a resposta foi ignorada.</string>
+    <string name="err_refused">%1$s recusou o pedido.</string>
+
+    <!-- Ligar o computador pela rede (Wake-on-LAN). -->
+    <string name="wol_no_mac">Este computador não tem endereço de placa de rede com cabo. Sem ele não dá para ligar pela rede.</string>
+    <string name="wol_sent">Sinal de ligar enviado. Só funciona na mesma rede do computador.</string>
+    <string name="wol_failed">Não consegui enviar o sinal de ligar. O celular está na mesma rede do computador?</string>
+
+    <!-- Gravar a tag NFC. -->
+    <string name="nfc_write_ok">Tag gravada. Com o celular desbloqueado, encoste nela para usar.</string>
+    <string name="nfc_write_ok_locked">Tag gravada e protegida contra escrita.</string>
+    <string name="nfc_write_ok_lock_unsupported">Tag gravada, mas este modelo não permite proteger contra escrita.</string>
+    <string name="nfc_write_read_only">Esta tag está protegida contra escrita. Use outra.</string>
+    <string name="nfc_write_too_small">A tag não tem espaço suficiente. Use uma NTAG213 ou maior.</string>
+    <string name="nfc_write_not_ndef">Esta tag não aceita o formato NDEF. Use outra, por exemplo NTAG213, 215 ou 216.</string>
+    <string name="nfc_write_lost">A tag se afastou antes de terminar. Encoste de novo e segure até o aviso.</string>
+    <string name="nfc_write_failed">Não deu para gravar a tag. Tente de novo ou use outra.</string>
+
+    <!-- Encostar o celular na tag NFC. %1$s = nome do computador. -->
+    <string name="nfc_not_italock">Esta tag não é do Ítalock.</string>
+    <string name="nfc_unknown_pc">Esta tag é de um computador que não está pareado neste celular (ele foi removido?).</string>
+    <string name="nfc_tag_off">A tag de %1$s está desligada. Ligue Travar pela tag ou Destravar pela tag nos detalhes dele.</string>
+    <string name="nfc_querying">Consultando %1$s</string>
+    <string name="nfc_clock_off">Relógio do celular fora de hora. Ative a data e hora automáticas.</string>
+
+    <!-- Resumo do que a tag faz (registros). -->
+    <string name="tag_lock_and_unlock">Trava e destrava</string>
+    <string name="tag_unlock_only">Só destrava</string>
+    <string name="tag_lock_only">Só trava</string>
+    <string name="tag_off">Desligada</string>
+
+    <!-- Pareamento: andamento. -->
+    <string name="pairing_connecting">Conectando ao computador</string>
+    <string name="pairing_waiting_reply">Esperando a resposta do computador</string>
+    <string name="pairing_searching">Procurando o computador na rede</string>
+
+    <!-- Pareamento: falhas. -->
+    <string name="pairing_err_not_found">Computador não encontrado. Os dois estão na mesma rede, ou ligados pelo cabo USB com ancoragem?</string>
+    <string name="pairing_err_refused">O computador recusou o pareamento. Gere um QR code novo no computador e tente de novo.</string>
+    <string name="pairing_err_time">Relógio do celular fora de hora. Ative a data e hora automáticas no celular e no computador.</string>
+    <string name="pairing_err_timeout">O computador demorou demais para responder. Confira se a tela de parear continua aberta nele.</string>
+    <string name="pairing_err_connect">Não deu para conectar ao computador. Confira se a tela de parear está aberta e se os dois estão na mesma rede.</string>
+    <string name="pairing_err_host">Endereço do computador inválido. Gere um QR code novo.</string>
+    <string name="pairing_err_code">O código não confere com o do computador. Leia o QR code de novo.</string>
+    <string name="pairing_err_dropped">A conexão com o computador caiu no meio. Tente de novo.</string>
+    <string name="pairing_err_format">Resposta do computador em formato inesperado. Atualize o Ítalock no computador.</string>
+    <string name="pairing_err_generic">Não deu para parear. Tente de novo.</string>
+
+    <!-- Chave do celular. -->
+    <string name="crypto_key_lost">O bloqueio de tela do celular mudou e a senha guardada deste computador se perdeu. Pareie o computador de novo.</string>
+
+    <!-- Nome mostrado no relógio Amazfit quando "Esconder o nome do computador" está ligado. -->
+    <string name="bip_hidden_pc_name">Seu computador</string>
+</resources>

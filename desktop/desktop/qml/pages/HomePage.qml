@@ -31,17 +31,17 @@ Item {
     }
 
     function lastUsedText(ts) {
-        if (!ts) return "Ainda não usado";
+        if (!ts) return qsTr("Ainda não usado");
         let d = new Date(ts * 1000);
         let now = new Date();
         let diff = (now - d) / 1000;
-        if (diff < 60) return "Usado agora há pouco";
-        if (diff < 3600) return "Usado há " + Math.floor(diff / 60) + " min";
+        if (diff < 60) return qsTr("Usado agora há pouco");
+        if (diff < 3600) return qsTr("Usado há %1 min").arg(Math.floor(diff / 60));
         let hm = Qt.formatTime(d, "HH:mm");
-        if (d.toDateString() === now.toDateString()) return "Usado hoje às " + hm;
+        if (d.toDateString() === now.toDateString()) return qsTr("Usado hoje às %1").arg(hm);
         let y = new Date(now); y.setDate(now.getDate() - 1);
-        if (d.toDateString() === y.toDateString()) return "Usado ontem às " + hm;
-        return "Usado em " + Qt.formatDate(d, "dd/MM/yyyy");
+        if (d.toDateString() === y.toDateString()) return qsTr("Usado ontem às %1").arg(hm);
+        return qsTr("Usado em %1").arg(Theme.shortDate(d));
     }
     function shortUser(u) {
         let i = u.lastIndexOf("\\");
@@ -81,8 +81,8 @@ Item {
             Btn {
                 kind: "icon"
                 iconName: "tune"
-                Accessible.name: "Configurações"
-                ToolTip.text: "Configurações"
+                Accessible.name: qsTr("Configurações")
+                ToolTip.text: qsTr("Configurações")
                 ToolTip.visible: hovered
                 ToolTip.delay: 500
                 onClicked: stack.push("qrc:/ui/pages/SettingsPage.qml")
@@ -123,7 +123,7 @@ Item {
                     spacing: 2
                     Text {
                         Layout.fillWidth: true
-                        text: "Tela de bloqueio protegida pelo Ítalock"
+                        text: qsTr("Tela de bloqueio protegida pelo Ítalock")
                         color: Theme.text
                         font.family: Theme.fontFamily
                         font.pixelSize: Theme.bodySize
@@ -133,8 +133,8 @@ Item {
                     Text {
                         Layout.fillWidth: true
                         text: page.protectionOn
-                              ? "Ligado. Ao travar, este computador chama o celular."
-                              : "Desligado. Só a senha destrava."
+                              ? qsTr("Ligado. Ao travar, este computador chama o celular.")
+                              : qsTr("Desligado. Só a senha destrava.")
                         color: Theme.text2
                         font.family: Theme.fontFamily
                         font.pixelSize: Theme.smallSize
@@ -145,14 +145,14 @@ Item {
                     id: protectionToggle
                     Layout.alignment: Qt.AlignVCenter
                     checked: page.protectionOn
-                    Accessible.name: "Tela de bloqueio protegida pelo Ítalock"
+                    Accessible.name: qsTr("Tela de bloqueio protegida pelo Ítalock")
                     onToggled: {
                         let want = checked;
                         checked = Qt.binding(() => page.protectionOn); // só muda depois de aplicar
                         if (!want && page.devices.length > 0) {
-                            window.ask("Desligar a proteção?",
-                                       "A tela de bloqueio volta a pedir só a senha. Os celulares pareados continuam guardados.",
-                                       "Desligar", true, () => MainWindow.SetProtection(window, false));
+                            window.ask(qsTr("Desligar a proteção?"),
+                                       qsTr("A tela de bloqueio volta a pedir só a senha. Os celulares pareados continuam guardados."),
+                                       qsTr("Desligar"), true, () => MainWindow.SetProtection(window, false));
                         } else {
                             MainWindow.SetProtection(window, want);
                         }
@@ -170,7 +170,7 @@ Item {
             visible: page.devices.length > 0
             Text {
                 Layout.fillWidth: true
-                text: page.devices.length === 1 ? "1 celular pareado" : page.devices.length + " celulares pareados"
+                text: page.devices.length === 1 ? qsTr("1 celular pareado") : qsTr("%1 celulares pareados").arg(page.devices.length)
                 color: Theme.text2
                 font.family: Theme.fontFamily
                 font.pixelSize: Theme.smallSize
@@ -178,7 +178,7 @@ Item {
             }
             Btn {
                 kind: "primary"
-                text: "Parear celular"
+                text: qsTr("Parear celular")
                 enabled: page.protectionOn
                 onClicked: window.startPairing()
             }
@@ -245,7 +245,7 @@ Item {
                             Text {
                                 Layout.fillWidth: true
                                 text: [row.modelData.method,
-                                       page.multiUser ? "conta " + page.shortUser(row.modelData.user) : "",
+                                       page.multiUser ? qsTr("conta %1").arg(page.shortUser(row.modelData.user)) : "",
                                        page.lastUsedText(row.modelData.lastUsed)].filter(s => s !== "").join("  ·  ")
                                 textFormat: Text.PlainText
                                 color: Theme.text2
@@ -257,8 +257,8 @@ Item {
                         Btn {
                             kind: "icon"
                             iconName: "more"
-                            Accessible.name: "Opções de " + row.modelData.name
-                            ToolTip.text: "Opções"
+                            Accessible.name: qsTr("Opções de %1").arg(row.modelData.name)
+                            ToolTip.text: qsTr("Opções")
                             ToolTip.visible: hovered
                             ToolTip.delay: 500
                             onClicked: rowMenu.popup(this, 0, height)
@@ -277,11 +277,11 @@ Item {
                     AppMenu {
                         id: rowMenu
                         AppMenuItem {
-                            text: "Testar destravar"
+                            text: qsTr("Testar destravar")
                             onTriggered: window.openUnlockTest(row.modelData.id)
                         }
                         AppMenuItem {
-                            text: "Remover…"
+                            text: qsTr("Remover…")
                             danger: true
                             onTriggered: window.confirmRemove(row.modelData.id, row.modelData.name)
                         }
@@ -303,7 +303,7 @@ Item {
                 }
                 Text {
                     Layout.fillWidth: true
-                    text: "Nenhum celular pareado"
+                    text: qsTr("Nenhum celular pareado")
                     horizontalAlignment: Text.AlignHCenter
                     color: Theme.text
                     font.family: Theme.fontFamily
@@ -313,8 +313,8 @@ Item {
                 Text {
                     Layout.fillWidth: true
                     text: page.protectionOn
-                          ? "Pareie o celular para destravar este computador com a digital ou o rosto."
-                          : "Ligue a proteção acima e depois pareie o celular."
+                          ? qsTr("Pareie o celular para destravar este computador com a digital ou o rosto.")
+                          : qsTr("Ligue a proteção acima e depois pareie o celular.")
                     horizontalAlignment: Text.AlignHCenter
                     wrapMode: Text.WordWrap
                     color: Theme.text2
@@ -325,7 +325,7 @@ Item {
                     Layout.alignment: Qt.AlignHCenter
                     Layout.topMargin: 6
                     kind: "primary"
-                    text: "Parear celular"
+                    text: qsTr("Parear celular")
                     enabled: page.protectionOn
                     onClicked: window.startPairing()
                 }

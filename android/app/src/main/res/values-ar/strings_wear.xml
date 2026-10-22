@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="wearmsg_your_computer">كمبيوترك</string>
+    <string name="wearmsg_computer">كمبيوتر</string>
+    <string name="wearmsg_computer_n">كمبيوتر %1$d</string>
+    <string name="wearmsg_feature_off">فعّل \"ساعة Wear OS\" في الميزات التجريبية في Ítalock على الهاتف.</string>
+    <string name="wearmsg_pc_not_found">لم يتم العثور على الكمبيوتر في الهاتف.</string>
+    <string name="wearmsg_pc_off">الساعة متوقفة لـ %1$s. فعّلها في تفاصيله على الهاتف.</string>
+    <string name="wearmsg_confirm_on_phone">أكّد على الهاتف.</string>
+    <string name="wearmsg_unknown_action">إجراء غير معروف.</string>
+    <string name="wearmsg_already_asking">%1$s يطلب بالفعل. أكّد على الهاتف أو في طلب الساعة.</string>
+</resources>

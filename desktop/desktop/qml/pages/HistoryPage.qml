@@ -22,44 +22,44 @@ Item {
         onTriggered: page.refresh()
     }
 
-    function phone(e) { return e.name !== "" ? e.name : "celular"; }
+    function phone(e) { return e.name !== "" ? e.name : qsTr("celular"); }
     function titleOf(e) {
         let n = phone(e);
         if (e.action === "destravar") {
-            if (e.result === "ok") return "Destravado pelo " + n;
-            if (e.result === "recusado") return "Recusado no " + n;
-            if (e.result === "expirou") return "Pedido não confirmado a tempo no " + n;
-            if (e.result === "sem_resposta") return "Nenhum celular respondeu";
-            return "Destravar não deu certo";
+            if (e.result === "ok") return qsTr("Destravado pelo %1").arg(n);
+            if (e.result === "recusado") return qsTr("Recusado no %1").arg(n);
+            if (e.result === "expirou") return qsTr("Pedido não confirmado a tempo no %1").arg(n);
+            if (e.result === "sem_resposta") return qsTr("Nenhum celular respondeu");
+            return qsTr("Destravar não deu certo");
         }
         if (e.action === "travar") {
-            if (e.result === "ok") return "Travado pelo " + n;
-            if (e.result === "desligado") return "Pedido de travar do " + n + " recusado";
-            if (e.result === "falhou") return "O " + n + " pediu para travar, mas não deu certo";
-            return "Travar não deu certo";
+            if (e.result === "ok") return qsTr("Travado pelo %1").arg(n);
+            if (e.result === "desligado") return qsTr("Pedido de travar do %1 recusado").arg(n);
+            if (e.result === "falhou") return qsTr("O %1 pediu para travar, mas não deu certo").arg(n);
+            return qsTr("Travar não deu certo");
         }
-        if (e.action === "acordar") return n + " pediu para destravar";
-        return "Evento do " + n;
+        if (e.action === "acordar") return qsTr("%1 pediu para destravar").arg(n);
+        return qsTr("Evento do %1").arg(n);
     }
     function failed(e) { return e.result !== "ok"; }
     function pathText(p) {
-        if (p === "rede local") return "mesma rede";
-        return p;
+        if (p === "rede local") return qsTr("mesma rede");
+        return qsTr(p); // "Bluetooth", "Tailscale", "este computador" (gravados em português)
     }
     function whenText(ts) {
         let d = new Date(ts * 1000);
         let now = new Date();
         let hm = Qt.formatTime(d, "HH:mm");
-        if (d.toDateString() === now.toDateString()) return "hoje às " + hm;
+        if (d.toDateString() === now.toDateString()) return qsTr("hoje às %1").arg(hm);
         let y = new Date(now); y.setDate(now.getDate() - 1);
-        if (d.toDateString() === y.toDateString()) return "ontem às " + hm;
-        return Qt.formatDate(d, "dd/MM/yyyy") + " às " + hm;
+        if (d.toDateString() === y.toDateString()) return qsTr("ontem às %1").arg(hm);
+        return qsTr("%1 às %2").arg(Theme.shortDate(d)).arg(hm);
     }
     function detailOf(e) {
         let parts = [whenText(e.ts)];
         if (e.path !== "") parts.push(pathText(e.path));
-        if (e.result === "desligado") parts.push("opção desligada nas Configurações");
-        if (e.program !== "") parts.push(e.program);
+        if (e.result === "desligado") parts.push(qsTr("opção desligada nas Configurações"));
+        if (e.program !== "") parts.push(qsTr(e.program)); // nome do programa gravado em português
         return parts.join("  ·  ");
     }
 
@@ -74,16 +74,16 @@ Item {
             Layout.maximumWidth: 680
             Layout.alignment: Qt.AlignHCenter
             PageHeader {
-                title: "Histórico"
+                title: qsTr("Histórico")
                 onBack: stack.pop()
             }
             Btn {
                 kind: "text"
-                text: "Limpar"
+                text: qsTr("Limpar")
                 visible: page.events.length > 0
-                onClicked: window.ask("Limpar o histórico?",
-                                      "Os eventos anotados até agora somem desta lista. Os registros técnicos continuam.",
-                                      "Limpar", true, function() {
+                onClicked: window.ask(qsTr("Limpar o histórico?"),
+                                      qsTr("Os eventos anotados até agora somem desta lista. Os registros técnicos continuam."),
+                                      qsTr("Limpar"), true, function() {
                                           let err = MainWindow.ClearHistory();
                                           if (err !== "") window.showErrorMessage(err);
                                           page.refresh();
@@ -113,7 +113,7 @@ Item {
                 boundsBehavior: Flickable.StopAtBounds
                 ScrollBar.vertical: ScrollBar {}
                 Accessible.role: Accessible.List
-                Accessible.name: "Histórico"
+                Accessible.name: qsTr("Histórico")
                 delegate: Item {
                     id: row
                     required property var modelData
@@ -186,7 +186,7 @@ Item {
                 }
                 Text {
                     Layout.fillWidth: true
-                    text: "Nada anotado ainda"
+                    text: qsTr("Nada anotado ainda")
                     horizontalAlignment: Text.AlignHCenter
                     color: Theme.text
                     font.family: Theme.fontFamily
@@ -195,7 +195,7 @@ Item {
                 }
                 Text {
                     Layout.fillWidth: true
-                    text: "Quando o celular travar ou destravar este computador, aparece aqui com o caminho e a hora."
+                    text: qsTr("Quando o celular travar ou destravar este computador, aparece aqui com o caminho e a hora.")
                     horizontalAlignment: Text.AlignHCenter
                     wrapMode: Text.WordWrap
                     color: Theme.text2

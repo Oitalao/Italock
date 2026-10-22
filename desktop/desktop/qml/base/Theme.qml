@@ -55,6 +55,12 @@ QtObject {
         return "monospace";
     }
 
+    // Data curta no idioma escolhido (em português do Brasil, como sempre: 31/12/2026)
+    function shortDate(d) {
+        return QI18n.language === "pt_BR" ? Qt.formatDate(d, "dd/MM/yyyy")
+                                          : d.toLocaleDateString(Qt.locale(QI18n.language), Locale.ShortFormat);
+    }
+
     // Três tamanhos por tela, no máximo
     readonly property int titleSize: 20
     readonly property int bodySize: 14

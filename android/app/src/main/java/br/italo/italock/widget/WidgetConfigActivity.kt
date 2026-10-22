@@ -21,12 +21,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import br.italo.italock.data.PairingStore
+import br.italo.italock.R
+import androidx.compose.ui.res.stringResource
 import br.italo.italock.ui.components.Panel
 import br.italo.italock.ui.components.ThinDivider
 import br.italo.italock.ui.theme.ItalockTheme
 
 /** Escolhe qual computador o widget controla. */
 class WidgetConfigActivity : ComponentActivity() {
+    override fun attachBaseContext(newBase: android.content.Context) = super.attachBaseContext(br.italo.italock.i18n.L10n.wrap(newBase))
+
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
@@ -39,9 +43,9 @@ class WidgetConfigActivity : ComponentActivity() {
             ItalockTheme {
                 Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
                     Column(Modifier.safeDrawingPadding().padding(vertical = 16.dp)) {
-                        Text("Qual computador este widget controla?", style = MaterialTheme.typography.titleLarge,
+                        Text(stringResource(R.string.widget_config_title), style = MaterialTheme.typography.titleLarge,
                             fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(16.dp))
-                        if (pcs.isEmpty()) Text("Nenhum computador pareado. Abra o Ítalock e pareie um primeiro.",
+                        if (pcs.isEmpty()) Text(stringResource(R.string.widget_config_empty),
                             style = MaterialTheme.typography.bodyMedium, modifier = Modifier.padding(horizontal = 16.dp))
                         else Panel {
                             pcs.forEachIndexed { i, pc ->

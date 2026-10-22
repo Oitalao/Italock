@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tile_description">आपके कंप्यूटर और हर एक के लिए सही बटन</string>
+
+    <string name="state_locked">लॉक है</string>
+    <string name="state_unlocked">अनलॉक है</string>
+    <string name="state_no_answer">जवाब नहीं</string>
+    <string name="state_clock">समय गलत है</string>
+    <string name="state_unknown">पुष्टि नहीं</string>
+
+    <string name="action_unlock">अनलॉक</string>
+    <string name="action_wake">चालू करें</string>
+    <string name="action_lock">लॉक</string>
+    <string name="action_deny">मना करें</string>
+    <string name="close">बंद करें</string>
+
+    <string name="phone_missing_long">फ़ोन नहीं मिला। फ़ोन पर Ítalock खोलें और प्रायोगिक सुविधाओं में \"Wear OS घड़ी\" चालू करें।</string>
+    <string name="open_on_phone">फ़ोन पर Ítalock खोलें</string>
+    <string name="phone_missing">फ़ोन नहीं मिला। फ़ोन पर Ítalock खोलें।</string>
+    <string name="tile_sending">%1$s: भेजा जा रहा है</string>
+
+    <string name="sending">भेजा जा रहा है</string>
+    <string name="phone_no_answer">फ़ोन ने जवाब नहीं दिया। क्या वह पास है या इंटरनेट से जुड़ा है?</string>
+    <string name="result_confirm_on_phone">फ़ोन पर पुष्टि करें</string>
+    <string name="result_done">हो गया</string>
+    <string name="result_failed">नहीं हुआ</string>
+
+    <string name="prompt_title">%1$s अनलॉक करें?</string>
+    <string name="prompt_title_generic">कंप्यूटर अनलॉक करें?</string>
+    <string name="prompt_needs_lock_notif">यहां से अनलॉक करने के लिए घड़ी का स्क्रीन लॉक चालू करें</string>
+    <string name="prompt_needs_lock">घड़ी से अनलॉक करने के लिए, घड़ी का स्क्रीन लॉक चालू करें</string>
+    <string name="channel_prompts">अनुरोध</string>
+    <string name="channel_prompts_desc">कंप्यूटर अनलॉक करने के अनुरोध</string>
+</resources>

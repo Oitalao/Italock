@@ -17,6 +17,8 @@ import br.italo.italock.ui.components.Panel
 import br.italo.italock.ui.components.SwitchRow
 import br.italo.italock.ui.components.ThinDivider
 import br.italo.italock.ui.theme.ItalockIcons
+import br.italo.italock.R
+import androidx.compose.ui.res.stringResource
 
 @Composable
 fun ExperimentalScreen(
@@ -25,46 +27,40 @@ fun ExperimentalScreen(
     onBack: () -> Unit,
     onFeature: (ExpFeature, Boolean) -> Unit,
 ) {
-    Scaffold(containerColor = MaterialTheme.colorScheme.background, topBar = { InnerTopBar("Recursos experimentais", onBack) }) { pad ->
+    Scaffold(containerColor = MaterialTheme.colorScheme.background, topBar = { InnerTopBar(stringResource(R.string.exp_title), onBack) }) { pad ->
         Column(Modifier.fillMaxSize().padding(pad)) {
             // Faixa fixa: fica fora da rolagem.
-            AmberBanner("Experimental. Pode não funcionar direito, mudar ou sumir em versões futuras. Use por sua conta.")
+            AmberBanner(stringResource(R.string.exp_banner))
             Column(Modifier.verticalScroll(rememberScrollState()).padding(top = 16.dp, bottom = 24.dp)) {
                 Panel {
                     SwitchRow(
-                        "Destravar automático quando perto",
-                        "Por Bluetooth ou na mesma rede, sem tocar no celular (nunca pelo Tailscale). " +
-                            "Risco: alguém ao lado do computador destrava.",
+                        stringResource(R.string.exp_nearby),
+                        stringResource(R.string.exp_nearby_sub),
                         flags.nearby, { onFeature(ExpFeature.NEARBY, it) }, icon = ItalockIcons.Bluetooth,
                     )
                     ThinDivider()
                     SwitchRow(
-                        "Destravar pela notificação",
-                        "Botão Destravar na notificação, sem biometria. " +
-                            "Risco: quem pegar o celular desbloqueado destrava.",
+                        stringResource(R.string.exp_notification),
+                        stringResource(R.string.exp_notification_sub),
                         flags.notification, { onFeature(ExpFeature.NOTIFICATION, it) }, icon = ItalockIcons.Notify,
                     )
                     ThinDivider()
                     SwitchRow(
-                        "Relógio Amazfit (chamada falsa)",
-                        "O pedido aparece no relógio como uma chamada: ignorar destrava, recusar nega. " +
-                            "Fora do pulso, a ação é bloqueada. Precisa do Gadgetbridge Voz pareado ao relógio. " +
-                            "Risco: quem estiver com seu relógio no pulso destrava.",
+                        stringResource(R.string.exp_watch),
+                        stringResource(R.string.exp_watch_sub),
                         flags.watch, { onFeature(ExpFeature.WATCH, it) }, icon = ItalockIcons.LockClock,
                     )
                     if (wearAvailable) {
                         ThinDivider()
                         SwitchRow(
-                            "Relógio Wear OS",
-                            "O pedido aparece no relógio (Galaxy Watch, Pixel Watch e outros) com Destravar e Recusar; o tile trava, " +
-                                "destrava e liga. Precisa do app Ítalock no relógio e do bloqueio de tela ligado nele. " +
-                                "Longe do celular, passa pela internet do Google. Risco: quem estiver com seu relógio desbloqueado destrava.",
+                            stringResource(R.string.exp_wear),
+                            stringResource(R.string.exp_wear_sub),
                             flags.wear, { onFeature(ExpFeature.WEAR, it) }, icon = ItalockIcons.LockClock,
                         )
                     }
                 }
                 Text(
-                    "Depois de ligar, escolha os computadores nos detalhes de cada um. Desligar aqui desliga em todos.",
+                    stringResource(R.string.exp_footer),
                     style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp),
                 )

@@ -112,8 +112,6 @@ public:
   Q_INVOKABLE QVariantList GetExperimental();
   // Liga/desliga ja aplicando (PAM etc.); "" ou o erro
   Q_INVOKABLE QString SetExperimental(const QString &id, bool enabled);
-  Q_INVOKABLE QString GetLanguage();
-  Q_INVOKABLE void SetLanguage(const QString &lang);
 
   // Opcoes do sistema (arquivo app_settings.json, vale para todos os usuarios; exige administrador):
   // winUnlockBehavior, unlockWaitSeconds, bootAutoRetry, allowLan, allowBluetooth, allowTailscale, agentLockEnabled,

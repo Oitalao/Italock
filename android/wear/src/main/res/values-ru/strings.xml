@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tile_description">Ваши компьютеры и нужная кнопка для каждого</string>
+    <string name="state_locked">Заблокирован</string>
+    <string name="state_unlocked">Разблокирован</string>
+    <string name="state_no_answer">Нет ответа</string>
+    <string name="state_clock">Неверное время</string>
+    <string name="state_unknown">Не подтверждено</string>
+    <string name="action_unlock">Разблокировать</string>
+    <string name="action_wake">Включить</string>
+    <string name="action_lock">Заблокировать</string>
+    <string name="action_deny">Отклонить</string>
+    <string name="close">Закрыть</string>
+    <string name="phone_missing_long">Телефон не найден. Откройте Ítalock на телефоне и включите «Часы Wear OS» в экспериментальных функциях.</string>
+    <string name="open_on_phone">Откройте Ítalock на телефоне</string>
+    <string name="phone_missing">Телефон не найден. Откройте Ítalock на телефоне.</string>
+    <string name="tile_sending">%1$s: отправка</string>
+    <string name="sending">Отправка</string>
+    <string name="phone_no_answer">Телефон не ответил. Он рядом или подключён к интернету?</string>
+    <string name="result_confirm_on_phone">Подтвердите на телефоне</string>
+    <string name="result_done">Готово</string>
+    <string name="result_failed">Не получилось</string>
+    <string name="prompt_title">Разблокировать %1$s?</string>
+    <string name="prompt_title_generic">Разблокировать компьютер?</string>
+    <string name="prompt_needs_lock_notif">Включите блокировку экрана на часах, чтобы разблокировать отсюда</string>
+    <string name="prompt_needs_lock">Чтобы разблокировать с часов, включите на них блокировку экрана</string>
+    <string name="channel_prompts">Запросы</string>
+    <string name="channel_prompts_desc">Запросы на разблокировку компьютера</string>
+</resources>

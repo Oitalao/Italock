@@ -34,6 +34,8 @@ import br.italo.italock.ui.components.SectionTitle
 import br.italo.italock.ui.components.SettingRow
 import br.italo.italock.ui.components.ThinDivider
 import br.italo.italock.ui.theme.Mono
+import br.italo.italock.R
+import androidx.compose.ui.res.stringResource
 
 /** Linhas de "Detalhes técnicos" do Sobre (versão, ids). */
 data class TechInfo(val lines: List<Pair<String, String>>)
@@ -47,41 +49,42 @@ class AboutActions(
 @Composable
 fun AboutScreen(tech: TechInfo, a: AboutActions) {
     var technical by rememberSaveable { mutableStateOf(false) }
-    Scaffold(containerColor = MaterialTheme.colorScheme.background, topBar = { InnerTopBar("Sobre", a.onBack) }) { pad ->
+    Scaffold(containerColor = MaterialTheme.colorScheme.background, topBar = { InnerTopBar(stringResource(R.string.about_title), a.onBack) }) { pad ->
         Column(Modifier.fillMaxSize().padding(pad).verticalScroll(rememberScrollState()).padding(bottom = 24.dp)) {
-            SectionTitle("Créditos")
+            SectionTitle(stringResource(R.string.about_section_credits))
             Panel {
                 Column(Modifier.padding(start = 16.dp, end = 8.dp, top = 12.dp, bottom = 4.dp)) {
-                    Text("Baseado no PC Bio Unlock (hoje PulseUnlock), de MeisApps, licença GPL versão 3.", style = MaterialTheme.typography.bodyMedium)
+                    Text(stringResource(R.string.about_based_on), style = MaterialTheme.typography.bodyMedium)
                     Text(
-                        if (SOURCE_URL.isEmpty()) "Código do programa: em breve no GitHub." else "Código do programa: GitHub.",
+                        stringResource(if (SOURCE_URL.isEmpty()) R.string.about_source_soon else R.string.about_source),
                         style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.padding(top = 8.dp),
                     )
                     Row {
-                        QuietButton("Licença", { a.onLink(LICENSE_URL) })
-                        QuietButton("Projeto original", { a.onLink(ORIGINAL_URL) })
-                        if (SOURCE_URL.isNotEmpty()) QuietButton("Código", { a.onLink(SOURCE_URL) })
+                        QuietButton(stringResource(R.string.about_license), { a.onLink(LICENSE_URL) })
+                        QuietButton(stringResource(R.string.about_original), { a.onLink(ORIGINAL_URL) })
+                        if (SOURCE_URL.isNotEmpty()) QuietButton(stringResource(R.string.about_code), { a.onLink(SOURCE_URL) })
                     }
                 }
             }
 
-            SectionTitle("Diagnóstico")
+            SectionTitle(stringResource(R.string.about_section_diag))
             Panel {
-                SettingRow("Exportar registros", subtitle = "Arquivo de texto para enviar a quem for ajudar. Sem chaves nem senhas.",
+                SettingRow(stringResource(R.string.about_export), subtitle = stringResource(R.string.about_export_sub),
                     onClick = a.onExport)
             }
 
             Spacer16()
+            val techState = stringResource(if (technical) R.string.common_expanded else R.string.common_collapsed)
             Panel {
                 Row(
                     Modifier.fillMaxWidth()
-                        .clickable(role = Role.Button, onClickLabel = if (technical) "Recolher" else "Mostrar") { technical = !technical }
+                        .clickable(role = Role.Button, onClickLabel = stringResource(if (technical) R.string.common_collapse else R.string.common_show)) { technical = !technical }
                         .heightIn(min = 56.dp).padding(horizontal = 16.dp)
-                        .semantics { stateDescription = if (technical) "aberto" else "fechado" },
+                        .semantics { stateDescription = techState },
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Text("Detalhes técnicos", style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
+                    Text(stringResource(R.string.common_technical_details), style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
                     Icon(if (technical) Icons.Outlined.KeyboardArrowUp else Icons.Outlined.KeyboardArrowDown, contentDescription = null,
                         tint = MaterialTheme.colorScheme.onSurfaceVariant)
                 }

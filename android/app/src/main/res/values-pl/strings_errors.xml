@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="err_ok_locked">%1$s zablokowany</string>
+    <string name="err_ok_waking">Odblokowuję %1$s</string>
+    <string name="err_ok_done">Gotowe</string>
+
+    <string name="err_no_path">Brak dozwolonej drogi do %1$s. Włącz sieć lokalną lub Tailscale w szczegółach komputera.</string>
+    <string name="err_no_answer">%1$s nie odpowiedział. Czy jest włączony i w tej samej sieci (lub w Tailscale)?</string>
+    <string name="err_not_paired">%1$s nie rozpoznaje tego telefonu. Usuń komputer i sparuj go ponownie.</string>
+    <string name="err_time">Zła godzina w telefonie: różnica względem %1$s przekracza 1 minutę. Włącz automatyczną datę i godzinę na obu urządzeniach.</string>
+    <string name="err_data">%1$s nie mógł odczytać prośby (inny klucz). Usuń komputer i sparuj go ponownie.</string>
+    <string name="err_bad_action">Ítalock na %1$s jest za stary na to polecenie. Zaktualizuj program na komputerze.</string>
+    <string name="err_bad_packet">%1$s nie zrozumiał prośby. Zaktualizuj Ítalock na komputerze.</string>
+    <string name="err_state_unknown">%1$s nie potrafił określić, czy ekran jest zablokowany.</string>
+    <string name="err_not_waiting">Komputer nie jest na ekranie blokady.</string>
+    <string name="err_lock_failed">%1$s otrzymał prośbę, ale nie zdołał zablokować ekranu.</string>
+    <string name="err_replay">%1$s odrzucił prośbę, bo wyglądała na powtórzoną. Spróbuj ponownie.</string>
+    <string name="err_busy">%1$s jest zajęty obsługą innych połączeń. Spróbuj ponownie za chwilę.</string>
+    <string name="err_not_logged_in">Na %1$s nikt nie jest zalogowany na konto z tego parowania. Zaloguj się i spróbuj ponownie.</string>
+    <string name="err_lock_disabled">%1$s nie przyjmuje próśb o zablokowanie z telefonu. Włącz tę opcję w Ítalock na komputerze.</string>
+    <string name="err_path_disabled">%1$s nie przyjmuje próśb tą drogą (sieć lokalna lub Tailscale). Sprawdź opcje w Ítalock na komputerze.</string>
+    <string name="err_unsupported">%1$s nie ma tej funkcji w tym systemie.</string>
+    <string name="err_not_allowed">To konto na komputerze nie może używać tego telefonu.</string>
+    <string name="err_launch_failed">%1$s nie mógł otworzyć okna Ítalock. Zostaw kogoś zalogowanego na nim i spróbuj ponownie.</string>
+    <string name="err_bad_nonce">Odpowiedź nie pasuje do prośby. Jeśli to się powtarza, usuń komputer i sparuj go ponownie.</string>
+    <string name="err_bad_seal">Odpowiedź od %1$s nie pasuje do klucza parowania. Jeśli to się powtarza, usuń komputer i sparuj go ponownie.</string>
+    <string name="err_unsealed">%1$s odpowiedział bez zwykłego zabezpieczenia. Dla bezpieczeństwa odpowiedź została zignorowana.</string>
+    <string name="err_refused">%1$s odrzucił prośbę.</string>
+
+    <string name="wol_no_mac">Ten komputer nie ma adresu przewodowej karty sieciowej. Bez niego nie da się włączyć go przez sieć.</string>
+    <string name="wol_sent">Wysłano sygnał włączenia. Działa tylko w tej samej sieci co komputer.</string>
+    <string name="wol_failed">Nie udało się wysłać sygnału włączenia. Czy telefon jest w tej samej sieci co komputer?</string>
+
+    <string name="nfc_write_ok">Tag zapisany. Aby go użyć, przyłóż do niego odblokowany telefon.</string>
+    <string name="nfc_write_ok_locked">Tag zapisany i zabezpieczony przed zapisem.</string>
+    <string name="nfc_write_ok_lock_unsupported">Tag zapisany, ale ten model nie pozwala zabezpieczyć go przed zapisem.</string>
+    <string name="nfc_write_read_only">Ten tag jest zabezpieczony przed zapisem. Użyj innego.</string>
+    <string name="nfc_write_too_small">Tag ma za mało miejsca. Użyj NTAG213 lub większego.</string>
+    <string name="nfc_write_not_ndef">Ten tag nie obsługuje formatu NDEF. Użyj innego, na przykład NTAG213, 215 lub 216.</string>
+    <string name="nfc_write_lost">Tag został odsunięty przed końcem. Przyłóż go ponownie i trzymaj do komunikatu.</string>
+    <string name="nfc_write_failed">Nie udało się zapisać tagu. Spróbuj ponownie lub użyj innego.</string>
+
+    <string name="nfc_not_italock">Ten tag nie jest tagiem Ítalock.</string>
+    <string name="nfc_unknown_pc">Ten tag należy do komputera, który nie jest sparowany z tym telefonem (może został usunięty?).</string>
+    <string name="nfc_tag_off">Tag komputera %1$s jest wyłączony. Włącz Blokuj tagiem lub Odblokowuj tagiem w jego szczegółach.</string>
+    <string name="nfc_querying">Sprawdzam %1$s</string>
+    <string name="nfc_clock_off">Zła godzina w telefonie. Włącz automatyczną datę i godzinę.</string>
+
+    <string name="tag_lock_and_unlock">Blokuje i odblokowuje</string>
+    <string name="tag_unlock_only">Tylko odblokowuje</string>
+    <string name="tag_lock_only">Tylko blokuje</string>
+    <string name="tag_off">Wyłączony</string>
+
+    <string name="pairing_connecting">Łączę z komputerem</string>
+    <string name="pairing_waiting_reply">Czekam na odpowiedź komputera</string>
+    <string name="pairing_searching">Szukam komputera w sieci</string>
+
+    <string name="pairing_err_not_found">Nie znaleziono komputera. Czy oba urządzenia są w tej samej sieci albo połączone kablem USB z tetheringiem?</string>
+    <string name="pairing_err_refused">Komputer odrzucił parowanie. Wygeneruj nowy kod QR na komputerze i spróbuj ponownie.</string>
+    <string name="pairing_err_time">Zła godzina w telefonie. Włącz automatyczną datę i godzinę w telefonie i na komputerze.</string>
+    <string name="pairing_err_timeout">Komputer zbyt długo nie odpowiadał. Sprawdź, czy ekran parowania jest na nim nadal otwarty.</string>
+    <string name="pairing_err_connect">Nie udało się połączyć z komputerem. Sprawdź, czy ekran parowania jest otwarty i czy oba urządzenia są w tej samej sieci.</string>
+    <string name="pairing_err_host">Nieprawidłowy adres komputera. Wygeneruj nowy kod QR.</string>
+    <string name="pairing_err_code">Kod nie zgadza się z kodem komputera. Zeskanuj kod QR ponownie.</string>
+    <string name="pairing_err_dropped">Połączenie z komputerem zostało przerwane. Spróbuj ponownie.</string>
+    <string name="pairing_err_format">Odpowiedź komputera ma nieoczekiwany format. Zaktualizuj Ítalock na komputerze.</string>
+    <string name="pairing_err_generic">Nie udało się sparować. Spróbuj ponownie.</string>
+
+    <string name="crypto_key_lost">Blokada ekranu telefonu się zmieniła i zapisane hasło do tego komputera zostało utracone. Sparuj komputer ponownie.</string>
+
+    <string name="bip_hidden_pc_name">Twój komputer</string>
+</resources>

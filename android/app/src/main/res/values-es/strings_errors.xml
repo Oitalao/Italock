@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="err_ok_locked">Se bloqueó %1$s</string>
+    <string name="err_ok_waking">Desbloqueando %1$s</string>
+    <string name="err_ok_done">Listo</string>
+
+    <string name="err_no_path">Ninguna vía habilitada para %1$s. Activa red local o Tailscale en los detalles de la computadora.</string>
+    <string name="err_no_answer">%1$s no respondió. ¿Está encendida y en la misma red (o en Tailscale)?</string>
+    <string name="err_not_paired">%1$s no reconoce este teléfono. Quita la computadora y vuelve a vincularla.</string>
+    <string name="err_time">La hora del teléfono es incorrecta: la diferencia con %1$s pasa de 1 minuto. Activa la fecha y hora automáticas en los dos.</string>
+    <string name="err_data">%1$s no pudo leer la solicitud (clave diferente). Quita la computadora y vuelve a vincularla.</string>
+    <string name="err_bad_action">El Ítalock de %1$s está desactualizado para este comando. Actualiza el programa en la computadora.</string>
+    <string name="err_bad_packet">%1$s no entendió la solicitud. Actualiza Ítalock en la computadora.</string>
+    <string name="err_state_unknown">%1$s no pudo decir si la pantalla está bloqueada.</string>
+    <string name="err_not_waiting">La computadora no está en la pantalla de bloqueo.</string>
+    <string name="err_lock_failed">%1$s recibió la solicitud, pero no pudo bloquear la pantalla.</string>
+    <string name="err_replay">%1$s rechazó la solicitud porque parecía repetida. Inténtalo de nuevo.</string>
+    <string name="err_busy">%1$s está ocupada atendiendo otras conexiones. Inténtalo de nuevo en un momento.</string>
+    <string name="err_not_logged_in">Nadie inició sesión en %1$s con la cuenta de esta vinculación. Inicia sesión e inténtalo de nuevo.</string>
+    <string name="err_lock_disabled">%1$s no acepta solicitudes de bloqueo desde el teléfono. Activa esa opción en Ítalock de la computadora.</string>
+    <string name="err_path_disabled">%1$s no acepta solicitudes por esta vía (red local o Tailscale). Revisa las opciones en Ítalock de la computadora.</string>
+    <string name="err_unsupported">%1$s no tiene esta función en este sistema.</string>
+    <string name="err_not_allowed">Esta cuenta de la computadora no puede usar este teléfono.</string>
+    <string name="err_launch_failed">%1$s no pudo abrir la ventana de Ítalock. Deja a alguien con la sesión iniciada en ella e inténtalo de nuevo.</string>
+    <string name="err_bad_nonce">La respuesta no coincide con la solicitud. Si sigue pasando, quita la computadora y vuelve a vincularla.</string>
+    <string name="err_bad_seal">La respuesta de %1$s no coincide con la clave de la vinculación. Si sigue pasando, quita la computadora y vuelve a vincularla.</string>
+    <string name="err_unsealed">%1$s respondió sin la protección de siempre. Por seguridad, se ignoró la respuesta.</string>
+    <string name="err_refused">%1$s rechazó la solicitud.</string>
+
+    <string name="wol_no_mac">Esta computadora no tiene dirección de tarjeta de red por cable. Sin ella no se puede encender por la red.</string>
+    <string name="wol_sent">Señal de encendido enviada. Solo funciona en la misma red que la computadora.</string>
+    <string name="wol_failed">No se pudo enviar la señal de encendido. ¿El teléfono está en la misma red que la computadora?</string>
+
+    <string name="nfc_write_ok">Etiqueta grabada. Con el teléfono desbloqueado, acércalo a ella para usarla.</string>
+    <string name="nfc_write_ok_locked">Etiqueta grabada y protegida contra escritura.</string>
+    <string name="nfc_write_ok_lock_unsupported">Etiqueta grabada, pero este modelo no permite protegerla contra escritura.</string>
+    <string name="nfc_write_read_only">Esta etiqueta está protegida contra escritura. Usa otra.</string>
+    <string name="nfc_write_too_small">La etiqueta no tiene espacio suficiente. Usa una NTAG213 o mayor.</string>
+    <string name="nfc_write_not_ndef">Esta etiqueta no acepta el formato NDEF. Usa otra, por ejemplo NTAG213, 215 o 216.</string>
+    <string name="nfc_write_lost">La etiqueta se alejó antes de terminar. Acércala de nuevo y mantenla hasta ver el aviso.</string>
+    <string name="nfc_write_failed">No se pudo grabar la etiqueta. Inténtalo de nuevo o usa otra.</string>
+
+    <string name="nfc_not_italock">Esta etiqueta no es de Ítalock.</string>
+    <string name="nfc_unknown_pc">Esta etiqueta es de una computadora que no está vinculada a este teléfono (¿se quitó?).</string>
+    <string name="nfc_tag_off">La etiqueta de %1$s está desactivada. Activa Bloquear con la etiqueta o Desbloquear con la etiqueta en sus detalles.</string>
+    <string name="nfc_querying">Consultando %1$s</string>
+    <string name="nfc_clock_off">La hora del teléfono es incorrecta. Activa la fecha y hora automáticas.</string>
+
+    <string name="tag_lock_and_unlock">Bloquea y desbloquea</string>
+    <string name="tag_unlock_only">Solo desbloquea</string>
+    <string name="tag_lock_only">Solo bloquea</string>
+    <string name="tag_off">Desactivada</string>
+
+    <string name="pairing_connecting">Conectando con la computadora</string>
+    <string name="pairing_waiting_reply">Esperando la respuesta de la computadora</string>
+    <string name="pairing_searching">Buscando la computadora en la red</string>
+
+    <string name="pairing_err_not_found">No se encontró la computadora. ¿Los dos están en la misma red, o conectados por cable USB con anclaje?</string>
+    <string name="pairing_err_refused">La computadora rechazó la vinculación. Genera un código QR nuevo en la computadora e inténtalo de nuevo.</string>
+    <string name="pairing_err_time">La hora del teléfono es incorrecta. Activa la fecha y hora automáticas en el teléfono y en la computadora.</string>
+    <string name="pairing_err_timeout">La computadora tardó demasiado en responder. Revisa que la pantalla de vincular siga abierta en ella.</string>
+    <string name="pairing_err_connect">No se pudo conectar con la computadora. Revisa que la pantalla de vincular esté abierta y que los dos estén en la misma red.</string>
+    <string name="pairing_err_host">Dirección de la computadora no válida. Genera un código QR nuevo.</string>
+    <string name="pairing_err_code">El código no coincide con el de la computadora. Escanea el código QR de nuevo.</string>
+    <string name="pairing_err_dropped">La conexión con la computadora se cortó a mitad de camino. Inténtalo de nuevo.</string>
+    <string name="pairing_err_format">Respuesta de la computadora en un formato inesperado. Actualiza Ítalock en la computadora.</string>
+    <string name="pairing_err_generic">No se pudo vincular. Inténtalo de nuevo.</string>
+
+    <string name="crypto_key_lost">El bloqueo de pantalla del teléfono cambió y se perdió la contraseña guardada de esta computadora. Vuelve a vincular la computadora.</string>
+
+    <string name="bip_hidden_pc_name">Tu computadora</string>
+</resources>

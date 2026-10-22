@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="details_repair_needed">Sparuj ponownie: zapisane hasło zostało utracone</string>
+    <string name="details_section_general">Ogólne</string>
+    <string name="details_name">Nazwa</string>
+    <string name="details_order">Kolejność na liście</string>
+    <string name="details_order_value">%1$d. z %2$d</string>
+    <string name="details_move_up">Przesuń w górę</string>
+    <string name="details_move_down">Przesuń w dół</string>
+    <string name="details_tile">Użyj w kafelku</string>
+    <string name="details_tile_sub">Kafelek Ítalock w Szybkich ustawieniach steruje tym komputerem.</string>
+    <string name="details_wake">Włączanie przez sieć</string>
+    <string name="details_wake_sub">Tylko w tej samej sieci, gdy komputer jest podłączony kablem i ma włączoną tę opcję.</string>
+    <string name="details_mac">Adres karty sieciowej (kabel)</string>
+    <string name="details_mac_empty">Nie podano. Bez niego nie da się włączyć komputera przez sieć.</string>
+    <string name="details_mac_help">Kilka adresów: oddziel je przecinkami. Puste pole wyłącza włączanie przez sieć.</string>
+    <string name="details_mac_invalid">Format: sześć par oddzielonych dwukropkami.</string>
+
+    <string name="details_section_paths">Drogi połączenia</string>
+    <string name="details_path_lan">Sieć lokalna</string>
+    <string name="details_path_lan_sub">Ta sama sieć Wi-Fi lub kabel USB z tetheringiem.</string>
+    <string name="details_path_bt_sub">Komputer wywołuje telefon bez sieci.</string>
+    <string name="details_path_ts_sub">Poza domem, przez internet.</string>
+
+    <string name="details_section_tag">Tag NFC</string>
+    <string name="details_tag_write">Zapisz tag NFC</string>
+    <string name="details_tag_write_button">Zapisz</string>
+    <string name="details_tag_lock">Blokuj tagiem</string>
+    <string name="details_tag_lock_sub">Przyłożenie odblokowanego telefonu blokuje ten komputer.</string>
+    <string name="details_tag_unlock">Odblokowuj tagiem</string>
+    <string name="details_tag_unlock_sub">Zawsze wymaga biometrii.</string>
+    <string name="details_tag_both">Przyłożenie odblokowanego telefonu do tagu blokuje lub odblokowuje ten komputer, zależnie od stanu blokady.</string>
+    <string name="details_tag_only_unlock">Przyłożenie odblokowanego telefonu do tagu tylko odblokowuje ten komputer.</string>
+    <string name="details_tag_only_lock">Przyłożenie odblokowanego telefonu do tagu tylko blokuje ten komputer.</string>
+    <string name="details_tag_none">Gdy obie opcje są wyłączone, tag tego komputera nic nie robi.</string>
+
+    <string name="details_section_security">Bezpieczeństwo</string>
+    <string name="details_no_confirm">Odblokowanie bez potwierdzenia</string>
+    <string name="details_no_confirm_sub">Przycisk Odblokuj w telefonie nie wymaga biometrii. Prośby z komputera nadal jej wymagają.</string>
+
+    <string name="details_section_experimental">Eksperymentalne</string>
+    <string name="details_exp_nearby_sub">Przez Bluetooth lub w tej samej sieci, bez dotykania telefonu. Nigdy przez Tailscale.</string>
+    <string name="details_exp_notification_sub">Przycisk Odblokuj w powiadomieniu, bez biometrii.</string>
+    <string name="details_exp_watch_sub">Prośba dzwoni na zegarku jak połączenie: zignorowanie odblokowuje, odrzucenie odmawia (zablokowane, gdy zegarek nie jest na nadgarstku).</string>
+    <string name="details_exp_wear_sub">Prośba pojawia się na zegarku z przyciskami Odblokuj i Odrzuć.</string>
+
+    <string name="details_section_history">Historia</string>
+    <string name="details_history_empty">Na razie nic. Blokowanie, odblokowanie i prośby z komputera pojawią się tutaj.</string>
+    <string name="details_history_less">Pokaż mniej</string>
+    <string name="details_history_all">Pokaż wszystko (%1$d)</string>
+    <string name="details_history_clear">Wyczyść historię</string>
+
+    <string name="details_tech_pc_name">Nazwa na komputerze</string>
+    <string name="details_tech_user">Użytkownik</string>
+    <string name="details_tech_os">System</string>
+    <string name="details_tech_method">Sposób wywołania telefonu</string>
+    <string name="details_tech_pc_addresses">Adresy komputera</string>
+    <string name="details_tech_phone_addresses">Adresy tego telefonu</string>
+    <string name="details_tech_response">Odpowiedź o stanie blokady</string>
+    <string name="details_tech_sealed">Szyfrowana</string>
+    <string name="details_tech_plain">Jawna (stary program na komputerze)</string>
+    <string name="details_tech_paired_at">Sparowano</string>
+    <string name="details_tech_public_id">Publiczny id (tag i zegarek)</string>
+    <string name="details_tech_identifier">Identyfikator</string>
+
+    <string name="details_remove_pc">Usuń komputer</string>
+    <string name="details_remove_title">Usunąć %1$s?</string>
+    <string name="details_remove_text">Telefon przestanie odblokowywać ten komputer. Aby to przywrócić, trzeba będzie sparować go ponownie.</string>
+    <string name="details_rename_title">Nazwa komputera</string>
+    <string name="details_rename_hint">Puste pole: użyta zostanie nazwa z komputera.</string>
+
+    <string name="details_nfc_off_title">NFC wyłączone</string>
+    <string name="details_nfc_write_title">Zapisz tag dla %1$s</string>
+    <string name="details_nfc_off_text">Włącz NFC w ustawieniach telefonu i wróć tutaj.</string>
+    <string name="details_nfc_hold">Przyłóż tag do tyłu telefonu i trzymaj do komunikatu.</string>
+    <string name="details_nfc_readonly">Zabezpiecz tag przed zapisem</string>
+    <string name="details_nfc_readonly_warn">Tego nie da się cofnąć: tagu nigdy więcej nie będzie można zapisać.</string>
+    <string name="details_nfc_open_settings">Otwórz ustawienia</string>
+
+    <string name="about_title">Informacje</string>
+    <string name="about_section_credits">Autorzy</string>
+    <string name="about_based_on">Oparte na PC Bio Unlock (obecnie PulseUnlock) autorstwa MeisApps, licencja GPL w wersji 3.</string>
+    <string name="about_source_soon">Kod źródłowy: wkrótce na GitHub.</string>
+    <string name="about_source">Kod źródłowy: GitHub.</string>
+    <string name="about_license">Licencja</string>
+    <string name="about_original">Oryginalny projekt</string>
+    <string name="about_code">Kod</string>
+    <string name="about_section_diag">Diagnostyka</string>
+    <string name="about_export">Eksportuj logi</string>
+    <string name="about_export_sub">Plik tekstowy do wysłania osobie, która pomaga. Bez kluczy i haseł.</string>
+
+    <string name="exp_title">Funkcje eksperymentalne</string>
+    <string name="exp_banner">Eksperymentalne. Mogą działać niepoprawnie, zmienić się lub zniknąć w przyszłych wersjach. Używasz na własne ryzyko.</string>
+    <string name="exp_nearby">Automatyczne odblokowanie w pobliżu</string>
+    <string name="exp_nearby_sub">Przez Bluetooth lub w tej samej sieci, bez dotykania telefonu (nigdy przez Tailscale). Ryzyko: ktoś obok komputera może go odblokować.</string>
+    <string name="exp_notification">Odblokowanie z powiadomienia</string>
+    <string name="exp_notification_sub">Przycisk Odblokuj w powiadomieniu, bez biometrii. Ryzyko: każdy, kto weźmie odblokowany telefon, może odblokować komputer.</string>
+    <string name="exp_watch">Zegarek Amazfit (fałszywe połączenie)</string>
+    <string name="exp_watch_sub">Prośba pojawia się na zegarku jako połączenie: zignorowanie odblokowuje, odrzucenie odmawia. Gdy zegarek nie jest na nadgarstku, akcja jest blokowana. Wymaga Gadgetbridge Voz sparowanego z zegarkiem. Ryzyko: każdy, kto ma Twój zegarek na nadgarstku, może odblokować komputer.</string>
+    <string name="exp_wear">Zegarek z Wear OS</string>
+    <string name="exp_wear_sub">Prośba pojawia się na zegarku (Galaxy Watch, Pixel Watch i inne) z przyciskami Odblokuj i Odrzuć; kafelek blokuje, odblokowuje i włącza. Wymaga aplikacji Ítalock na zegarku i włączonej w nim blokady ekranu. Z dala od telefonu działa przez internet Google. Ryzyko: każdy, kto ma Twój odblokowany zegarek, może odblokować komputer.</string>
+    <string name="exp_footer">Po włączeniu wybierz komputery w szczegółach każdego z nich. Wyłączenie tutaj wyłącza we wszystkich.</string>
+
+    <string name="pair_title">Sparuj komputer</string>
+    <string name="pair_step1_title">Na komputerze</string>
+    <string name="pair_step1_text">Otwórz Ítalock i wybierz parowanie telefonu: pojawi się kod QR.</string>
+    <string name="pair_step2_title">Ta sama sieć lub Bluetooth</string>
+    <string name="pair_step2_text">Oba urządzenia w tej samej sieci lub połączone kablem USB. Dla Bluetooth najpierw sparuj telefon z komputerem.</string>
+    <string name="pair_allow_bt">Zezwól na Bluetooth</string>
+    <string name="pair_step3_title">Zeskanuj kod QR</string>
+    <string name="pair_step3_text">Skieruj aparat na kod QR lub wpisz wyświetlony kod.</string>
+    <string name="pair_scan">Skanuj kod QR</string>
+    <string name="pair_type">Wpisz kod</string>
+    <string name="pair_code_label">Kod komputera</string>
+    <string name="pair_with_code">Sparuj kodem</string>
+    <string name="pair_retry_save">Potwierdź ponownie</string>
+
+    <string name="danger_title">Niebezpieczne</string>
+    <string name="danger_heading">Odblokowanie %1$s bez potwierdzenia.</string>
+    <string name="danger_text">Każdy, kto ma Twój odblokowany telefon, będzie mógł odblokować ten komputer bez odcisku palca, twarzy czy hasła. Jeśli zgubisz telefon albo ktoś go użyje, Twój komputer będzie odsłonięty.</string>
+    <string name="danger_scope">Dotyczy tylko przycisku Odblokuj w telefonie (aplikacja, widżet, kafelek Szybkich ustawień i skróty ikony). Gdy ktoś użyje komputera, telefon nadal będzie prosić o potwierdzenie.</string>
+    <string name="danger_understood">Rozumiem ryzyko</string>
+    <string name="danger_turn_on_wait">Włącz (%1$d)</string>
+
+    <string name="diag_header">Logi Ítalock</string>
+    <string name="diag_generated">Utworzono</string>
+    <string name="diag_version">Wersja</string>
+    <string name="diag_device">Urządzenie</string>
+    <string name="diag_theme">Motyw</string>
+    <string name="diag_vibrate">Wibracje</string>
+    <string name="diag_confirm_lock">Pytaj przed zablokowaniem</string>
+    <string name="diag_prompt_timeout">Czas prośby (s)</string>
+    <string name="diag_approve_locked">Odblokowywanie przy zablokowanym telefonie</string>
+    <string name="diag_fullscreen">Prośba na ekranie blokady</string>
+    <string name="diag_hide_name">Ukrywanie nazwy</string>
+    <string name="diag_allow_credential">Akceptuj PIN, wzór lub hasło</string>
+    <string name="diag_poll">Odświeżanie stanu blokady (s, 0 = przy otwarciu)</string>
+    <string name="diag_ts_warning">Ostrzeżenie Tailscale</string>
+    <string name="diag_ts_installed">Tailscale zainstalowany</string>
+    <string name="diag_ts_up">Tailscale połączony</string>
+    <string name="diag_google">Usługi Google</string>
+    <string name="diag_experimental">Eksperymentalne (w pobliżu, powiadomienie, Zepp, Wear OS)</string>
+    <string name="diag_missing">Brakuje zgody</string>
+    <string name="diag_nothing">nic</string>
+    <string name="diag_pcs">Komputery</string>
+    <string name="diag_pc_os">System</string>
+    <string name="diag_pc_method">Sposób wywołania</string>
+    <string name="diag_pc_addresses">Znane adresy</string>
+    <string name="diag_pc_paths">Drogi (sieć lokalna, Bluetooth, Tailscale)</string>
+    <string name="diag_pc_sealed">Szyfrowana odpowiedź</string>
+    <string name="diag_pc_no_confirm">Bez potwierdzenia</string>
+    <string name="diag_pc_tag">Tag NFC</string>
+    <string name="diag_pc_wake">Włączanie przez sieć</string>
+    <string name="diag_pc_last">Ostatnie użycie</string>
+    <string name="diag_none">brak</string>
+    <string name="diag_events">Ostatnie zdarzenia</string>
+    <string name="diag_no_events">(brak)</string>
+
+    <string name="widget_removed">Komputer usunięty</string>
+    <string name="widget_refresh">Odśwież stan blokady</string>
+    <string name="widget_tap_refresh">Dotknij odśwież, aby zobaczyć stan blokady</string>
+    <string name="widget_clock_off">Zła godzina</string>
+    <string name="widget_status_at">%1$s · %2$s</string>
+    <string name="widget_config_title">Którym komputerem steruje ten widżet?</string>
+    <string name="widget_config_empty">Brak sparowanych komputerów. Otwórz Ítalock i najpierw sparuj jakiś.</string>
+</resources>

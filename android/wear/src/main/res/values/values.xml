@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Ítalock</string>
-    <string name="tile_label">Ítalock</string>
-    <string name="tile_description">Seus computadores e o botão certo para cada um</string>
 
     <color name="italock_blue">#FF003399</color>
     <color name="italock_orange">#FFEC7000</color>

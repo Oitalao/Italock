@@ -4,8 +4,10 @@ import android.content.Context
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.provider.Settings
+import br.italo.italock.R
 import br.italo.italock.crypto.PcbuCrypto
 import br.italo.italock.data.PairingStore
+import br.italo.italock.i18n.L10n
 import br.italo.italock.net.Frame
 import br.italo.italock.net.NetInfo
 import org.json.JSONArray
@@ -77,16 +79,16 @@ class PcRefusedException(val pcMessage: String) : Exception("recusado pelo compu
 
 /** Frase para a tela a partir da falha do pareamento (nunca a mensagem crua do sistema). */
 fun describePairingError(e: Throwable): String = when (e) {
-    is PcNotFoundException -> "Computador não encontrado. Os dois estão na mesma rede, ou ligados pelo cabo USB com ancoragem?"
-    is PcRefusedException -> "O computador recusou o pareamento. Gere um QR code novo no computador e tente de novo."
-    is PcbuCrypto.TimestampException -> "Relógio do celular fora de hora. Ative a data e hora automáticas no celular e no computador."
-    is java.net.SocketTimeoutException -> "O computador demorou demais para responder. Confira se a tela de parear continua aberta nele."
-    is java.net.ConnectException, is java.net.NoRouteToHostException -> "Não deu para conectar ao computador. Confira se a tela de parear está aberta e se os dois estão na mesma rede."
-    is java.net.UnknownHostException -> "Endereço do computador inválido. Gere um QR code novo."
-    is javax.crypto.AEADBadTagException, is java.security.GeneralSecurityException -> "O código não confere com o do computador. Leia o QR code de novo."
-    is java.io.EOFException, is java.net.SocketException -> "A conexão com o computador caiu no meio. Tente de novo."
-    is org.json.JSONException -> "Resposta do computador em formato inesperado. Atualize o Ítalock no computador."
-    else -> "Não deu para parear. Tente de novo."
+    is PcNotFoundException -> L10n.s(R.string.pairing_err_not_found)
+    is PcRefusedException -> L10n.s(R.string.pairing_err_refused)
+    is PcbuCrypto.TimestampException -> L10n.s(R.string.pairing_err_time)
+    is java.net.SocketTimeoutException -> L10n.s(R.string.pairing_err_timeout)
+    is java.net.ConnectException, is java.net.NoRouteToHostException -> L10n.s(R.string.pairing_err_connect)
+    is java.net.UnknownHostException -> L10n.s(R.string.pairing_err_host)
+    is javax.crypto.AEADBadTagException, is java.security.GeneralSecurityException -> L10n.s(R.string.pairing_err_code)
+    is java.io.EOFException, is java.net.SocketException -> L10n.s(R.string.pairing_err_dropped)
+    is org.json.JSONException -> L10n.s(R.string.pairing_err_format)
+    else -> L10n.s(R.string.pairing_err_generic)
 }
 
 class PairingClient(private val context: Context) {
@@ -95,7 +97,7 @@ class PairingClient(private val context: Context) {
     /** Descobre o PC (beacon UDP ou IP do QR legado) e faz a troca de pareamento. Bloqueante: chamar fora da thread de UI. */
     fun pair(qr: QrData, onStatus: (String) -> Unit): PairResult {
         val (ip, port) = if (qr.isLegacy) qr.ip!! to qr.port else discover(qr, onStatus)
-        onStatus("Conectando ao computador")
+        onStatus(L10n.s(R.string.pairing_connecting))
         Socket().use { s ->
             s.connect(InetSocketAddress(ip, port), 8000)
             s.soTimeout = 20000
@@ -113,7 +115,7 @@ class PairingClient(private val context: Context) {
                 .put("ipAddresses", JSONArray(NetInfo.allIpv4()))
                 .put("italock", 1)
             Frame.write(s.getOutputStream(), Frame.PAIR_INIT, PcbuCrypto.encryptPacket(init.toString().toByteArray(), qr.encKey))
-            onStatus("Esperando a resposta do computador")
+            onStatus(L10n.s(R.string.pairing_waiting_reply))
             val resp = Frame.read(s.getInputStream())
             val o = JSONObject(String(PcbuCrypto.decryptPacket(resp.payload, qr.encKey)))
             val err = o.optString("errMsg")
@@ -138,7 +140,7 @@ class PairingClient(private val context: Context) {
     }
 
     private fun discover(qr: QrData, onStatus: (String) -> Unit): Pair<String, Int> {
-        onStatus("Procurando o computador na rede")
+        onStatus(L10n.s(R.string.pairing_searching))
         val wifi = context.applicationContext.getSystemService(WifiManager::class.java)
         val lock = wifi?.createMulticastLock("italock-pair")?.apply { setReferenceCounted(false); acquire() }
         try {

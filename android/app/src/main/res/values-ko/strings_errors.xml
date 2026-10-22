@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="err_ok_locked">%1$s 잠김</string>
+    <string name="err_ok_waking">%1$s 잠금 해제 중</string>
+    <string name="err_ok_done">완료</string>
+
+    <string name="err_no_path">%1$s에 사용할 수 있는 경로가 없습니다. 컴퓨터 세부정보에서 로컬 네트워크나 Tailscale을 켜세요.</string>
+    <string name="err_no_answer">%1$s이(가) 응답하지 않았습니다. 컴퓨터가 켜져 있고 같은 네트워크(또는 Tailscale)에 있나요?</string>
+    <string name="err_not_paired">%1$s이(가) 이 휴대폰을 인식하지 못합니다. 컴퓨터를 삭제하고 다시 페어링하세요.</string>
+    <string name="err_time">휴대폰 시간이 맞지 않습니다. %1$s과(와) 1분 넘게 차이가 납니다. 두 기기 모두 날짜 및 시간 자동 설정을 켜세요.</string>
+    <string name="err_data">%1$s이(가) 요청을 읽지 못했습니다(키가 다름). 컴퓨터를 삭제하고 다시 페어링하세요.</string>
+    <string name="err_bad_action">%1$s의 Ítalock이 오래되어 이 명령을 지원하지 않습니다. 컴퓨터의 프로그램을 업데이트하세요.</string>
+    <string name="err_bad_packet">%1$s이(가) 요청을 이해하지 못했습니다. 컴퓨터의 Ítalock을 업데이트하세요.</string>
+    <string name="err_state_unknown">%1$s이(가) 화면이 잠겨 있는지 알려 주지 못했습니다.</string>
+    <string name="err_not_waiting">컴퓨터가 잠금 화면에 있지 않습니다.</string>
+    <string name="err_lock_failed">%1$s이(가) 요청을 받았지만 화면을 잠그지 못했습니다.</string>
+    <string name="err_replay">%1$s이(가) 반복된 요청으로 보고 거부했습니다. 다시 시도하세요.</string>
+    <string name="err_busy">%1$s이(가) 다른 연결을 처리하느라 바쁩니다. 잠시 후 다시 시도하세요.</string>
+    <string name="err_not_logged_in">%1$s에 이 페어링의 계정으로 로그인한 사람이 없습니다. 로그인한 다음 다시 시도하세요.</string>
+    <string name="err_lock_disabled">%1$s이(가) 휴대폰의 잠금 요청을 받지 않습니다. 컴퓨터의 Ítalock에서 이 옵션을 켜세요.</string>
+    <string name="err_path_disabled">%1$s이(가) 이 경로(로컬 네트워크 또는 Tailscale)의 요청을 받지 않습니다. 컴퓨터의 Ítalock에서 옵션을 확인하세요.</string>
+    <string name="err_unsupported">%1$s의 이 운영체제에서는 이 기능을 사용할 수 없습니다.</string>
+    <string name="err_not_allowed">이 컴퓨터 계정은 이 휴대폰을 사용할 수 없습니다.</string>
+    <string name="err_launch_failed">%1$s에서 Ítalock 창을 열지 못했습니다. 누군가 로그인한 상태로 두고 다시 시도하세요.</string>
+    <string name="err_bad_nonce">응답이 요청과 맞지 않습니다. 계속되면 컴퓨터를 삭제하고 다시 페어링하세요.</string>
+    <string name="err_bad_seal">%1$s의 응답이 페어링 키와 맞지 않습니다. 계속되면 컴퓨터를 삭제하고 다시 페어링하세요.</string>
+    <string name="err_unsealed">%1$s이(가) 평소의 보호 없이 응답했습니다. 안전을 위해 응답을 무시했습니다.</string>
+    <string name="err_refused">%1$s이(가) 요청을 거부했습니다.</string>
+
+    <string name="wol_no_mac">이 컴퓨터에는 유선 네트워크 카드 주소가 없습니다. 이 주소가 없으면 네트워크로 전원을 켤 수 없습니다.</string>
+    <string name="wol_sent">전원 켜기 신호를 보냈습니다. 컴퓨터와 같은 네트워크에서만 작동합니다.</string>
+    <string name="wol_failed">전원 켜기 신호를 보내지 못했습니다. 휴대폰이 컴퓨터와 같은 네트워크에 있나요?</string>
+
+    <string name="nfc_write_ok">태그를 기록했습니다. 잠금 해제된 휴대폰을 태그에 대면 사용할 수 있습니다.</string>
+    <string name="nfc_write_ok_locked">태그를 기록하고 쓰기 방지를 설정했습니다.</string>
+    <string name="nfc_write_ok_lock_unsupported">태그를 기록했지만 이 모델은 쓰기 방지를 지원하지 않습니다.</string>
+    <string name="nfc_write_read_only">이 태그는 쓰기 방지되어 있습니다. 다른 태그를 사용하세요.</string>
+    <string name="nfc_write_too_small">태그 공간이 부족합니다. NTAG213 이상을 사용하세요.</string>
+    <string name="nfc_write_not_ndef">이 태그는 NDEF 형식을 지원하지 않습니다. NTAG213, 215, 216 같은 다른 태그를 사용하세요.</string>
+    <string name="nfc_write_lost">기록이 끝나기 전에 태그가 떨어졌습니다. 다시 대고 알림이 나올 때까지 그대로 두세요.</string>
+    <string name="nfc_write_failed">태그를 기록하지 못했습니다. 다시 시도하거나 다른 태그를 사용하세요.</string>
+
+    <string name="nfc_not_italock">Ítalock 태그가 아닙니다.</string>
+    <string name="nfc_unknown_pc">이 휴대폰과 페어링되지 않은 컴퓨터의 태그입니다(컴퓨터가 삭제되었나요?).</string>
+    <string name="nfc_tag_off">%1$s의 태그가 꺼져 있습니다. 컴퓨터 세부정보에서 태그로 잠금 또는 태그로 잠금 해제를 켜세요.</string>
+    <string name="nfc_querying">%1$s 확인 중</string>
+    <string name="nfc_clock_off">휴대폰 시간이 맞지 않습니다. 날짜 및 시간 자동 설정을 켜세요.</string>
+
+    <string name="tag_lock_and_unlock">잠금 및 잠금 해제</string>
+    <string name="tag_unlock_only">잠금 해제만</string>
+    <string name="tag_lock_only">잠금만</string>
+    <string name="tag_off">꺼짐</string>
+
+    <string name="pairing_connecting">컴퓨터에 연결하는 중</string>
+    <string name="pairing_waiting_reply">컴퓨터의 응답을 기다리는 중</string>
+    <string name="pairing_searching">네트워크에서 컴퓨터를 찾는 중</string>
+
+    <string name="pairing_err_not_found">컴퓨터를 찾을 수 없습니다. 두 기기가 같은 네트워크에 있거나 USB 테더링 케이블로 연결되어 있나요?</string>
+    <string name="pairing_err_refused">컴퓨터가 페어링을 거부했습니다. 컴퓨터에서 새 QR 코드를 만들고 다시 시도하세요.</string>
+    <string name="pairing_err_time">휴대폰 시간이 맞지 않습니다. 휴대폰과 컴퓨터 모두 날짜 및 시간 자동 설정을 켜세요.</string>
+    <string name="pairing_err_timeout">컴퓨터가 너무 늦게 응답했습니다. 컴퓨터에 페어링 화면이 계속 열려 있는지 확인하세요.</string>
+    <string name="pairing_err_connect">컴퓨터에 연결하지 못했습니다. 페어링 화면이 열려 있는지, 두 기기가 같은 네트워크에 있는지 확인하세요.</string>
+    <string name="pairing_err_host">컴퓨터 주소가 잘못되었습니다. 새 QR 코드를 만드세요.</string>
+    <string name="pairing_err_code">코드가 컴퓨터의 코드와 맞지 않습니다. QR 코드를 다시 스캔하세요.</string>
+    <string name="pairing_err_dropped">도중에 컴퓨터와의 연결이 끊어졌습니다. 다시 시도하세요.</string>
+    <string name="pairing_err_format">컴퓨터의 응답 형식이 예상과 다릅니다. 컴퓨터의 Ítalock을 업데이트하세요.</string>
+    <string name="pairing_err_generic">페어링하지 못했습니다. 다시 시도하세요.</string>
+
+    <string name="crypto_key_lost">휴대폰의 화면 잠금이 바뀌어 이 컴퓨터용으로 저장된 비밀번호가 사라졌습니다. 컴퓨터를 다시 페어링하세요.</string>
+
+    <string name="bip_hidden_pc_name">내 컴퓨터</string>
+</resources>

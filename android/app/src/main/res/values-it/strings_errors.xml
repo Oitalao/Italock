@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="err_ok_locked">%1$s bloccato</string>
+    <string name="err_ok_waking">Sblocco di %1$s in corso</string>
+    <string name="err_ok_done">Fatto</string>
+
+    <string name="err_no_path">Nessun percorso consentito per %1$s. Attiva rete locale o Tailscale nei dettagli del computer.</string>
+    <string name="err_no_answer">%1$s non ha risposto. È acceso e sulla stessa rete (o su Tailscale)?</string>
+    <string name="err_not_paired">%1$s non riconosce questo telefono. Rimuovi il computer e accoppialo di nuovo.</string>
+    <string name="err_time">Ora del telefono sbagliata: la differenza con %1$s supera 1 minuto. Attiva data e ora automatiche su entrambi.</string>
+    <string name="err_data">%1$s non è riuscito a leggere la richiesta (chiave diversa). Rimuovi il computer e accoppialo di nuovo.</string>
+    <string name="err_bad_action">L\'Ítalock di %1$s è troppo vecchio per questo comando. Aggiorna il programma sul computer.</string>
+    <string name="err_bad_packet">%1$s non ha capito la richiesta. Aggiorna Ítalock sul computer.</string>
+    <string name="err_state_unknown">%1$s non è riuscito a dire se lo schermo è bloccato.</string>
+    <string name="err_not_waiting">Il computer non è sulla schermata di blocco.</string>
+    <string name="err_lock_failed">%1$s ha ricevuto la richiesta, ma non è riuscito a bloccare lo schermo.</string>
+    <string name="err_replay">%1$s ha rifiutato la richiesta perché sembrava ripetuta. Riprova.</string>
+    <string name="err_busy">%1$s è occupato con altre connessioni. Riprova tra poco.</string>
+    <string name="err_not_logged_in">Nessuno ha effettuato l\'accesso su %1$s con l\'account di questo accoppiamento. Accedi all\'account e riprova.</string>
+    <string name="err_lock_disabled">%1$s non accetta richieste di blocco dal telefono. Attiva questa opzione in Ítalock sul computer.</string>
+    <string name="err_path_disabled">%1$s non accetta richieste da questo percorso (rete locale o Tailscale). Controlla le opzioni in Ítalock sul computer.</string>
+    <string name="err_unsupported">%1$s non ha questa funzione su questo sistema.</string>
+    <string name="err_not_allowed">Questo account del computer non può usare questo telefono.</string>
+    <string name="err_launch_failed">%1$s non è riuscito ad aprire la finestra di Ítalock. Lascia un utente connesso e riprova.</string>
+    <string name="err_bad_nonce">La risposta non corrisponde alla richiesta. Se continua, rimuovi il computer e accoppialo di nuovo.</string>
+    <string name="err_bad_seal">La risposta di %1$s non corrisponde alla chiave dell\'accoppiamento. Se continua, rimuovi il computer e accoppialo di nuovo.</string>
+    <string name="err_unsealed">%1$s ha risposto senza la solita protezione. Per sicurezza la risposta è stata ignorata.</string>
+    <string name="err_refused">%1$s ha rifiutato la richiesta.</string>
+
+    <string name="wol_no_mac">Questo computer non ha l\'indirizzo della scheda di rete via cavo. Senza, non si può accendere dalla rete.</string>
+    <string name="wol_sent">Segnale di accensione inviato. Funziona solo sulla stessa rete del computer.</string>
+    <string name="wol_failed">Impossibile inviare il segnale di accensione. Il telefono è sulla stessa rete del computer?</string>
+
+    <string name="nfc_write_ok">Tag scritto. Con il telefono sbloccato, avvicinalo al tag per usarlo.</string>
+    <string name="nfc_write_ok_locked">Tag scritto e protetto dalla scrittura.</string>
+    <string name="nfc_write_ok_lock_unsupported">Tag scritto, ma questo modello non permette di proteggerlo dalla scrittura.</string>
+    <string name="nfc_write_read_only">Questo tag è protetto dalla scrittura. Usane un altro.</string>
+    <string name="nfc_write_too_small">Il tag non ha abbastanza spazio. Usa un NTAG213 o più grande.</string>
+    <string name="nfc_write_not_ndef">Questo tag non accetta il formato NDEF. Usane un altro, per esempio NTAG213, 215 o 216.</string>
+    <string name="nfc_write_lost">Il tag si è allontanato prima della fine. Avvicinalo di nuovo e tienilo fino all\'avviso.</string>
+    <string name="nfc_write_failed">Impossibile scrivere il tag. Riprova o usane un altro.</string>
+
+    <string name="nfc_not_italock">Questo tag non è di Ítalock.</string>
+    <string name="nfc_unknown_pc">Questo tag è di un computer non accoppiato a questo telefono (è stato rimosso?).</string>
+    <string name="nfc_tag_off">Il tag di %1$s è disattivato. Attiva Blocca con il tag o Sblocca con il tag nei suoi dettagli.</string>
+    <string name="nfc_querying">Verifica di %1$s</string>
+    <string name="nfc_clock_off">Ora del telefono sbagliata. Attiva data e ora automatiche.</string>
+
+    <string name="tag_lock_and_unlock">Blocca e sblocca</string>
+    <string name="tag_unlock_only">Solo sblocca</string>
+    <string name="tag_lock_only">Solo blocca</string>
+    <string name="tag_off">Disattivato</string>
+
+    <string name="pairing_connecting">Connessione al computer</string>
+    <string name="pairing_waiting_reply">In attesa della risposta del computer</string>
+    <string name="pairing_searching">Ricerca del computer sulla rete</string>
+
+    <string name="pairing_err_not_found">Computer non trovato. Sono entrambi sulla stessa rete, o collegati con il cavo USB in tethering?</string>
+    <string name="pairing_err_refused">Il computer ha rifiutato l\'accoppiamento. Genera un nuovo QR code sul computer e riprova.</string>
+    <string name="pairing_err_time">Ora del telefono sbagliata. Attiva data e ora automatiche sul telefono e sul computer.</string>
+    <string name="pairing_err_timeout">Il computer ci ha messo troppo a rispondere. Controlla che la schermata di accoppiamento sia ancora aperta.</string>
+    <string name="pairing_err_connect">Impossibile connettersi al computer. Controlla che la schermata di accoppiamento sia aperta e che entrambi siano sulla stessa rete.</string>
+    <string name="pairing_err_host">Indirizzo del computer non valido. Genera un nuovo QR code.</string>
+    <string name="pairing_err_code">Il codice non corrisponde a quello del computer. Scansiona di nuovo il QR code.</string>
+    <string name="pairing_err_dropped">La connessione con il computer è caduta a metà. Riprova.</string>
+    <string name="pairing_err_format">Risposta del computer in un formato inatteso. Aggiorna Ítalock sul computer.</string>
+    <string name="pairing_err_generic">Impossibile accoppiare. Riprova.</string>
+
+    <string name="crypto_key_lost">Il blocco schermo del telefono è cambiato e la password salvata di questo computer è andata persa. Accoppia di nuovo il computer.</string>
+
+    <string name="bip_hidden_pc_name">Il tuo computer</string>
+</resources>

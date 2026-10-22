@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="err_ok_locked">%1$s लॉक हो गया</string>
+    <string name="err_ok_waking">%1$s अनलॉक हो रहा है</string>
+    <string name="err_ok_done">हो गया</string>
+
+    <string name="err_no_path">%1$s के लिए कोई रास्ता चालू नहीं है। कंप्यूटर की जानकारी में लोकल नेटवर्क या Tailscale चालू करें।</string>
+    <string name="err_no_answer">%1$s ने जवाब नहीं दिया। क्या वह चालू है और उसी नेटवर्क पर (या Tailscale पर) है?</string>
+    <string name="err_not_paired">%1$s इस फ़ोन को नहीं पहचानता। कंप्यूटर को हटाएं और फिर से पेयर करें।</string>
+    <string name="err_time">फ़ोन की घड़ी का समय गलत है: %1$s से अंतर 1 मिनट से ज़्यादा है। दोनों में अपने-आप तारीख और समय चालू करें।</string>
+    <string name="err_data">%1$s अनुरोध नहीं पढ़ सका (कुंजी अलग है)। कंप्यूटर को हटाएं और फिर से पेयर करें।</string>
+    <string name="err_bad_action">%1$s पर Ítalock इस कमांड के लिए पुराना है। कंप्यूटर पर प्रोग्राम अपडेट करें।</string>
+    <string name="err_bad_packet">%1$s अनुरोध नहीं समझ सका। कंप्यूटर पर Ítalock अपडेट करें।</string>
+    <string name="err_state_unknown">%1$s यह नहीं बता सका कि स्क्रीन लॉक है या नहीं।</string>
+    <string name="err_not_waiting">कंप्यूटर लॉक स्क्रीन पर नहीं है।</string>
+    <string name="err_lock_failed">%1$s को अनुरोध मिला, पर वह स्क्रीन लॉक नहीं कर सका।</string>
+    <string name="err_replay">%1$s ने अनुरोध को दोहराया हुआ मानकर ठुकरा दिया। फिर से कोशिश करें।</string>
+    <string name="err_busy">%1$s दूसरे कनेक्शन संभालने में व्यस्त है। थोड़ी देर में फिर से कोशिश करें।</string>
+    <string name="err_not_logged_in">%1$s पर इस पेयरिंग वाले खाते से कोई लॉग इन नहीं है। खाते में लॉग इन करें और फिर से कोशिश करें।</string>
+    <string name="err_lock_disabled">%1$s फ़ोन से लॉक करने के अनुरोध स्वीकार नहीं करता। कंप्यूटर के Ítalock में यह विकल्प चालू करें।</string>
+    <string name="err_path_disabled">%1$s इस रास्ते (लोकल नेटवर्क या Tailscale) से अनुरोध स्वीकार नहीं करता। कंप्यूटर के Ítalock में विकल्प देखें।</string>
+    <string name="err_unsupported">इस सिस्टम पर %1$s में यह सुविधा नहीं है।</string>
+    <string name="err_not_allowed">कंप्यूटर का यह खाता इस फ़ोन का इस्तेमाल नहीं कर सकता।</string>
+    <string name="err_launch_failed">%1$s पर Ítalock की विंडो नहीं खुल सकी। उसमें किसी को लॉग इन रहने दें और फिर से कोशिश करें।</string>
+    <string name="err_bad_nonce">जवाब अनुरोध से मेल नहीं खाता। अगर ऐसा होता रहे, तो कंप्यूटर को हटाएं और फिर से पेयर करें।</string>
+    <string name="err_bad_seal">%1$s का जवाब पेयरिंग की कुंजी से मेल नहीं खाता। अगर ऐसा होता रहे, तो कंप्यूटर को हटाएं और फिर से पेयर करें।</string>
+    <string name="err_unsealed">%1$s ने हमेशा वाली सुरक्षा के बिना जवाब दिया। सुरक्षा के लिए जवाब को अनदेखा किया गया।</string>
+    <string name="err_refused">%1$s ने अनुरोध ठुकरा दिया।</string>
+
+    <string name="wol_no_mac">इस कंप्यूटर के केबल वाले नेटवर्क कार्ड का पता नहीं है। इसके बिना नेटवर्क से चालू नहीं हो सकता।</string>
+    <string name="wol_sent">चालू करने का सिग्नल भेजा गया। यह सिर्फ़ कंप्यूटर वाले नेटवर्क पर ही काम करता है।</string>
+    <string name="wol_failed">चालू करने का सिग्नल नहीं भेजा जा सका। क्या फ़ोन कंप्यूटर वाले नेटवर्क पर है?</string>
+
+    <string name="nfc_write_ok">टैग लिख दिया गया। इस्तेमाल के लिए, फ़ोन अनलॉक करके उसे टैग से छुआएं।</string>
+    <string name="nfc_write_ok_locked">टैग लिख दिया गया और लिखने से सुरक्षित कर दिया गया।</string>
+    <string name="nfc_write_ok_lock_unsupported">टैग लिख दिया गया, पर यह मॉडल लिखने से सुरक्षा की सुविधा नहीं देता।</string>
+    <string name="nfc_write_read_only">यह टैग लिखने से सुरक्षित है। कोई दूसरा टैग इस्तेमाल करें।</string>
+    <string name="nfc_write_too_small">टैग में काफ़ी जगह नहीं है। NTAG213 या उससे बड़ा टैग इस्तेमाल करें।</string>
+    <string name="nfc_write_not_ndef">यह टैग NDEF फ़ॉर्मैट स्वीकार नहीं करता। कोई दूसरा इस्तेमाल करें, जैसे NTAG213, 215 या 216।</string>
+    <string name="nfc_write_lost">लिखना पूरा होने से पहले टैग हट गया। फिर से छुआएं और सूचना आने तक पकड़े रखें।</string>
+    <string name="nfc_write_failed">टैग नहीं लिखा जा सका। फिर से कोशिश करें या कोई दूसरा टैग इस्तेमाल करें।</string>
+
+    <string name="nfc_not_italock">यह टैग Ítalock का नहीं है।</string>
+    <string name="nfc_unknown_pc">यह टैग ऐसे कंप्यूटर का है जो इस फ़ोन से पेयर नहीं है (क्या उसे हटा दिया गया?)।</string>
+    <string name="nfc_tag_off">%1$s का टैग बंद है। उसकी जानकारी में \"टैग से लॉक करें\" या \"टैग से अनलॉक करें\" चालू करें।</string>
+    <string name="nfc_querying">%1$s की जांच हो रही है</string>
+    <string name="nfc_clock_off">फ़ोन की घड़ी का समय गलत है। अपने-आप तारीख और समय चालू करें।</string>
+
+    <string name="tag_lock_and_unlock">लॉक और अनलॉक करता है</string>
+    <string name="tag_unlock_only">सिर्फ़ अनलॉक करता है</string>
+    <string name="tag_lock_only">सिर्फ़ लॉक करता है</string>
+    <string name="tag_off">बंद</string>
+
+    <string name="pairing_connecting">कंप्यूटर से कनेक्ट हो रहा है</string>
+    <string name="pairing_waiting_reply">कंप्यूटर के जवाब का इंतज़ार</string>
+    <string name="pairing_searching">नेटवर्क पर कंप्यूटर खोजा जा रहा है</string>
+
+    <string name="pairing_err_not_found">कंप्यूटर नहीं मिला। क्या दोनों एक ही नेटवर्क पर हैं, या USB टेदरिंग वाली केबल से जुड़े हैं?</string>
+    <string name="pairing_err_refused">कंप्यूटर ने पेयरिंग ठुकरा दी। कंप्यूटर पर नया QR कोड बनाएं और फिर से कोशिश करें।</string>
+    <string name="pairing_err_time">फ़ोन की घड़ी का समय गलत है। फ़ोन और कंप्यूटर, दोनों में अपने-आप तारीख और समय चालू करें।</string>
+    <string name="pairing_err_timeout">कंप्यूटर ने जवाब देने में बहुत देर लगाई। देखें कि उस पर पेयर करने वाली स्क्रीन अब भी खुली है या नहीं।</string>
+    <string name="pairing_err_connect">कंप्यूटर से कनेक्ट नहीं हो सका। देखें कि पेयर करने वाली स्क्रीन खुली है और दोनों एक ही नेटवर्क पर हैं।</string>
+    <string name="pairing_err_host">कंप्यूटर का पता गलत है। नया QR कोड बनाएं।</string>
+    <string name="pairing_err_code">कोड कंप्यूटर वाले कोड से मेल नहीं खाता। QR कोड फिर से स्कैन करें।</string>
+    <string name="pairing_err_dropped">कंप्यूटर से कनेक्शन बीच में टूट गया। फिर से कोशिश करें।</string>
+    <string name="pairing_err_format">कंप्यूटर का जवाब अनजाने फ़ॉर्मैट में है। कंप्यूटर पर Ítalock अपडेट करें।</string>
+    <string name="pairing_err_generic">पेयर नहीं हो सका। फिर से कोशिश करें।</string>
+
+    <string name="crypto_key_lost">फ़ोन का स्क्रीन लॉक बदल गया और इस कंप्यूटर का सेव किया गया पासवर्ड खो गया। कंप्यूटर को फिर से पेयर करें।</string>
+
+    <string name="bip_hidden_pc_name">आपका कंप्यूटर</string>
+</resources>

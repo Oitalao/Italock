@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Textos que o celular manda para o app do relógio Wear OS (aparecem no relógio). -->
+<resources>
+    <!-- Nome no lugar do computador quando "Esconder o nome do computador" está ligado. -->
+    <string name="wearmsg_your_computer">Seu computador</string>
+    <string name="wearmsg_computer">Computador</string>
+    <!-- %1$d = posição do computador na lista (Computador 1, Computador 2...). -->
+    <string name="wearmsg_computer_n">Computador %1$d</string>
+    <string name="wearmsg_feature_off">Ligue Relógio Wear OS nos recursos experimentais do Ítalock no celular.</string>
+    <string name="wearmsg_pc_not_found">Computador não encontrado no celular.</string>
+    <!-- %1$s = nome do computador. -->
+    <string name="wearmsg_pc_off">Relógio desligado para %1$s. Ligue nos detalhes dele no celular.</string>
+    <string name="wearmsg_confirm_on_phone">Confirme no celular.</string>
+    <string name="wearmsg_unknown_action">Ação desconhecida.</string>
+    <!-- %1$s = nome do computador. -->
+    <string name="wearmsg_already_asking">%1$s já está pedindo. Confirme no celular ou no pedido do relógio.</string>
+</resources>

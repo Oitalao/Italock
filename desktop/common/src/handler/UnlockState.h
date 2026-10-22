@@ -48,9 +48,9 @@ public:
     } else if(state == UnlockState::PROTOCOL_ERROR) {
       return I18n::Get("error_protocol_mismatch");
     } else if(state == UnlockState::DEFERRED) {
-      return "Pedido entregue ao celular. Destrave por ele quando quiser, ou aperte uma tecla.";
+      return I18n::Tr("Pedido entregue ao celular. Destrave por ele quando quiser, ou aperte uma tecla.");
     } else if(state == UnlockState::NO_PATH_ERROR) {
-      return "Nenhum caminho de conexão está permitido. Veja Configurações, Conexão.";
+      return I18n::Tr("Nenhum caminho de conexão está permitido. Veja Configurações, Conexão.");
     } else if(state == UnlockState::UNK_ERROR) {
       return I18n::Get("unlock_error_unknown");
     } else {

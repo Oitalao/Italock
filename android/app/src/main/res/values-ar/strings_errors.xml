@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="err_ok_locked">تم قفل %1$s</string>
+    <string name="err_ok_waking">جارٍ فتح قفل %1$s</string>
+    <string name="err_ok_done">تم</string>
+
+    <string name="err_no_path">لا يوجد مسار مفعّل لـ %1$s. فعّل الشبكة المحلية أو Tailscale في تفاصيل الكمبيوتر.</string>
+    <string name="err_no_answer">لم يرد %1$s. هل هو قيد التشغيل وعلى نفس الشبكة (أو على Tailscale)؟</string>
+    <string name="err_not_paired">%1$s لا يتعرّف على هذا الهاتف. أزل الكمبيوتر وأعد الإقران.</string>
+    <string name="err_time">ساعة الهاتف غير مضبوطة: الفرق مع %1$s أكثر من 1 دقيقة. فعّل التاريخ والوقت التلقائيين في الجهازين.</string>
+    <string name="err_data">لم يتمكن %1$s من قراءة الطلب (المفتاح مختلف). أزل الكمبيوتر وأعد الإقران.</string>
+    <string name="err_bad_action">إصدار Ítalock على %1$s قديم ولا يدعم هذا الأمر. حدّث البرنامج على الكمبيوتر.</string>
+    <string name="err_bad_packet">لم يفهم %1$s الطلب. حدّث Ítalock على الكمبيوتر.</string>
+    <string name="err_state_unknown">لم يتمكن %1$s من معرفة ما إذا كانت الشاشة مقفلة.</string>
+    <string name="err_not_waiting">الكمبيوتر ليس على شاشة القفل.</string>
+    <string name="err_lock_failed">تلقّى %1$s الطلب، لكنه لم يتمكن من قفل الشاشة.</string>
+    <string name="err_replay">رفض %1$s الطلب لأنه بدا مكررًا. حاول مرة أخرى.</string>
+    <string name="err_busy">%1$s مشغول بالرد على اتصالات أخرى. حاول مرة أخرى بعد قليل.</string>
+    <string name="err_not_logged_in">لا أحد مسجّل الدخول على %1$s بحساب هذا الإقران. سجّل الدخول إلى الحساب وحاول مرة أخرى.</string>
+    <string name="err_lock_disabled">%1$s لا يقبل طلبات القفل من الهاتف. فعّل هذا الخيار في Ítalock على الكمبيوتر.</string>
+    <string name="err_path_disabled">%1$s لا يقبل الطلبات عبر هذا المسار (الشبكة المحلية أو Tailscale). راجع الخيارات في Ítalock على الكمبيوتر.</string>
+    <string name="err_unsupported">هذه الميزة غير متوفرة في %1$s على هذا النظام.</string>
+    <string name="err_not_allowed">لا يمكن لحساب الكمبيوتر هذا استخدام هذا الهاتف.</string>
+    <string name="err_launch_failed">لم يتمكن %1$s من فتح نافذة Ítalock. اترك أحدًا مسجّل الدخول عليه وحاول مرة أخرى.</string>
+    <string name="err_bad_nonce">الرد لا يطابق الطلب. إذا تكرر ذلك، أزل الكمبيوتر وأعد الإقران.</string>
+    <string name="err_bad_seal">رد %1$s لا يطابق مفتاح الإقران. إذا تكرر ذلك، أزل الكمبيوتر وأعد الإقران.</string>
+    <string name="err_unsealed">ردّ %1$s بدون الحماية المعتادة. تم تجاهل الرد حفاظًا على الأمان.</string>
+    <string name="err_refused">رفض %1$s الطلب.</string>
+
+    <string name="wol_no_mac">لا يوجد لهذا الكمبيوتر عنوان بطاقة شبكة سلكية. بدونه لا يمكن التشغيل عبر الشبكة.</string>
+    <string name="wol_sent">تم إرسال إشارة التشغيل. تعمل فقط على نفس شبكة الكمبيوتر.</string>
+    <string name="wol_failed">تعذّر إرسال إشارة التشغيل. هل الهاتف على نفس شبكة الكمبيوتر؟</string>
+
+    <string name="nfc_write_ok">تمت كتابة العلامة. لاستخدامها، قرّب الهاتف منها وهو مفتوح.</string>
+    <string name="nfc_write_ok_locked">تمت كتابة العلامة وحمايتها من الكتابة.</string>
+    <string name="nfc_write_ok_lock_unsupported">تمت كتابة العلامة، لكن هذا الطراز لا يسمح بحمايتها من الكتابة.</string>
+    <string name="nfc_write_read_only">هذه العلامة محمية من الكتابة. استخدم علامة أخرى.</string>
+    <string name="nfc_write_too_small">لا توجد مساحة كافية في العلامة. استخدم NTAG213 أو أكبر.</string>
+    <string name="nfc_write_not_ndef">هذه العلامة لا تقبل صيغة NDEF. استخدم علامة أخرى، مثل NTAG213 أو 215 أو 216.</string>
+    <string name="nfc_write_lost">ابتعدت العلامة قبل انتهاء الكتابة. قرّبها مرة أخرى وأبقِها حتى يظهر التنبيه.</string>
+    <string name="nfc_write_failed">تعذّرت كتابة العلامة. حاول مرة أخرى أو استخدم علامة أخرى.</string>
+
+    <string name="nfc_not_italock">هذه العلامة ليست من Ítalock.</string>
+    <string name="nfc_unknown_pc">هذه العلامة لكمبيوتر غير مقترن بهذا الهاتف (هل تمت إزالته؟).</string>
+    <string name="nfc_tag_off">علامة %1$s متوقفة. فعّل \"القفل بالعلامة\" أو \"فتح القفل بالعلامة\" في تفاصيله.</string>
+    <string name="nfc_querying">جارٍ التحقق من %1$s</string>
+    <string name="nfc_clock_off">ساعة الهاتف غير مضبوطة. فعّل التاريخ والوقت التلقائيين.</string>
+
+    <string name="tag_lock_and_unlock">يقفل ويفتح القفل</string>
+    <string name="tag_unlock_only">يفتح القفل فقط</string>
+    <string name="tag_lock_only">يقفل فقط</string>
+    <string name="tag_off">متوقفة</string>
+
+    <string name="pairing_connecting">جارٍ الاتصال بالكمبيوتر</string>
+    <string name="pairing_waiting_reply">في انتظار رد الكمبيوتر</string>
+    <string name="pairing_searching">جارٍ البحث عن الكمبيوتر على الشبكة</string>
+
+    <string name="pairing_err_not_found">لم يتم العثور على الكمبيوتر. هل الجهازان على نفس الشبكة، أو موصولان بكابل USB مع التوصيل عبر USB؟</string>
+    <string name="pairing_err_refused">رفض الكمبيوتر الإقران. أنشئ رمز QR جديدًا على الكمبيوتر وحاول مرة أخرى.</string>
+    <string name="pairing_err_time">ساعة الهاتف غير مضبوطة. فعّل التاريخ والوقت التلقائيين في الهاتف والكمبيوتر.</string>
+    <string name="pairing_err_timeout">استغرق الكمبيوتر وقتًا طويلاً للرد. تأكّد من أن شاشة الإقران ما زالت مفتوحة عليه.</string>
+    <string name="pairing_err_connect">تعذّر الاتصال بالكمبيوتر. تأكّد من أن شاشة الإقران مفتوحة وأن الجهازين على نفس الشبكة.</string>
+    <string name="pairing_err_host">عنوان الكمبيوتر غير صالح. أنشئ رمز QR جديدًا.</string>
+    <string name="pairing_err_code">الرمز لا يطابق رمز الكمبيوتر. امسح رمز QR مرة أخرى.</string>
+    <string name="pairing_err_dropped">انقطع الاتصال بالكمبيوتر في المنتصف. حاول مرة أخرى.</string>
+    <string name="pairing_err_format">رد الكمبيوتر بصيغة غير متوقعة. حدّث Ítalock على الكمبيوتر.</string>
+    <string name="pairing_err_generic">تعذّر الإقران. حاول مرة أخرى.</string>
+
+    <string name="crypto_key_lost">تغيّر قفل شاشة الهاتف وفُقدت كلمة المرور المحفوظة لهذا الكمبيوتر. أعد إقران الكمبيوتر.</string>
+
+    <string name="bip_hidden_pc_name">كمبيوترك</string>
+</resources>

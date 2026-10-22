@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="details_repair_needed">Pair again: the saved password was lost</string>
+    <string name="details_section_general">General</string>
+    <string name="details_name">Name</string>
+    <string name="details_order">Position in the list</string>
+    <string name="details_order_value">%1$d of %2$d</string>
+    <string name="details_move_up">Move up</string>
+    <string name="details_move_down">Move down</string>
+    <string name="details_tile">Use in the Quick Settings tile</string>
+    <string name="details_tile_sub">The Ítalock button in Quick Settings controls this computer.</string>
+    <string name="details_wake">Power on over the network</string>
+    <string name="details_wake_sub">Only on the same network, with the computer on a cable and the option turned on in it.</string>
+    <string name="details_mac">Wired network card address</string>
+    <string name="details_mac_empty">Not set. Without it, the computer cannot be powered on over the network.</string>
+    <string name="details_mac_help">Several addresses: separate them with commas. Empty turns off Power on over the network.</string>
+    <string name="details_mac_invalid">Format: six pairs separated by colons.</string>
+
+    <string name="details_section_paths">Connection paths</string>
+    <string name="details_path_lan">Local network</string>
+    <string name="details_path_lan_sub">Same Wi-Fi network or USB cable with tethering.</string>
+    <string name="details_path_bt_sub">The computer reaches the phone without a network.</string>
+    <string name="details_path_ts_sub">Away from home, over the internet.</string>
+
+    <string name="details_section_tag">NFC tag</string>
+    <string name="details_tag_write">Write NFC tag</string>
+    <string name="details_tag_write_button">Write</string>
+    <string name="details_tag_lock">Lock with the tag</string>
+    <string name="details_tag_lock_sub">Tapping the unlocked phone locks this computer.</string>
+    <string name="details_tag_unlock">Unlock with the tag</string>
+    <string name="details_tag_unlock_sub">Always asks for biometrics.</string>
+    <string name="details_tag_both">Tapping the unlocked phone on the tag locks or unlocks this computer, depending on its lock status.</string>
+    <string name="details_tag_only_unlock">Tapping the unlocked phone on the tag only unlocks this computer.</string>
+    <string name="details_tag_only_lock">Tapping the unlocked phone on the tag only locks this computer.</string>
+    <string name="details_tag_none">With both off, this computer\'s tag does nothing.</string>
+
+    <string name="details_section_security">Security</string>
+    <string name="details_no_confirm">Unlock without confirmation</string>
+    <string name="details_no_confirm_sub">The phone\'s Unlock button does not ask for biometrics. Requests from the computer still ask.</string>
+
+    <string name="details_section_experimental">Experimental</string>
+    <string name="details_exp_nearby_sub">Over Bluetooth or on the same network, without touching the phone. Never over Tailscale.</string>
+    <string name="details_exp_notification_sub">Unlock button in the notification, without biometrics.</string>
+    <string name="details_exp_watch_sub">The request rings like a call on the watch: ignore unlocks, decline denies (blocked when off the wrist).</string>
+    <string name="details_exp_wear_sub">The request shows up on the watch with Unlock and Deny.</string>
+
+    <string name="details_section_history">History</string>
+    <string name="details_history_empty">Nothing yet. Locks, unlocks and computer requests show up here.</string>
+    <string name="details_history_less">Show less</string>
+    <string name="details_history_all">Show all (%1$d)</string>
+    <string name="details_history_clear">Clear history</string>
+
+    <string name="details_tech_pc_name">Name on the computer</string>
+    <string name="details_tech_user">User</string>
+    <string name="details_tech_os">System</string>
+    <string name="details_tech_method">How it reaches the phone</string>
+    <string name="details_tech_pc_addresses">Computer addresses</string>
+    <string name="details_tech_phone_addresses">Addresses of this phone</string>
+    <string name="details_tech_response">Lock status response</string>
+    <string name="details_tech_sealed">Encrypted</string>
+    <string name="details_tech_plain">Unencrypted (old version on the computer)</string>
+    <string name="details_tech_paired_at">Paired on</string>
+    <string name="details_tech_public_id">Public ID (tag and watch)</string>
+    <string name="details_tech_identifier">Identifier</string>
+
+    <string name="details_remove_pc">Remove computer</string>
+    <string name="details_remove_title">Remove %1$s?</string>
+    <string name="details_remove_text">The phone will no longer unlock this computer. To use it again, you will need to pair again.</string>
+    <string name="details_rename_title">Computer name</string>
+    <string name="details_rename_hint">Leave empty to use the computer\'s own name.</string>
+
+    <string name="details_nfc_off_title">NFC is off</string>
+    <string name="details_nfc_write_title">Write tag for %1$s</string>
+    <string name="details_nfc_off_text">Turn on NFC in the phone settings and come back here.</string>
+    <string name="details_nfc_hold">Hold the tag against the back of the phone until you see the message.</string>
+    <string name="details_nfc_readonly">Write-protect the tag</string>
+    <string name="details_nfc_readonly_warn">This cannot be undone: the tag can never be rewritten.</string>
+    <string name="details_nfc_open_settings">Open settings</string>
+
+    <string name="about_title">About</string>
+    <string name="about_section_credits">Credits</string>
+    <string name="about_based_on">Based on PC Bio Unlock (now PulseUnlock) by MeisApps, GPL version 3 license.</string>
+    <string name="about_source_soon">Source code: coming soon on GitHub.</string>
+    <string name="about_source">Source code: GitHub.</string>
+    <string name="about_license">License</string>
+    <string name="about_original">Original project</string>
+    <string name="about_code">Code</string>
+    <string name="about_section_diag">Diagnostics</string>
+    <string name="about_export">Export logs</string>
+    <string name="about_export_sub">Text file to send to whoever is helping you. No keys or passwords.</string>
+
+    <string name="exp_title">Experimental features</string>
+    <string name="exp_banner">Experimental. May not work well, may change or disappear in future versions. Use at your own risk.</string>
+    <string name="exp_nearby">Unlock automatically when nearby</string>
+    <string name="exp_nearby_sub">Over Bluetooth or on the same network, without touching the phone (never over Tailscale). Risk: someone next to the computer can unlock it.</string>
+    <string name="exp_notification">Unlock from the notification</string>
+    <string name="exp_notification_sub">Unlock button in the notification, without biometrics. Risk: anyone who picks up the unlocked phone can unlock.</string>
+    <string name="exp_watch">Amazfit watch (fake call)</string>
+    <string name="exp_watch_sub">The request shows up on the watch as a call: ignore unlocks, decline denies. When the watch is off the wrist, the action is blocked. Requires Gadgetbridge Voz paired with the watch. Risk: anyone wearing your watch can unlock.</string>
+    <string name="exp_wear">Wear OS watch</string>
+    <string name="exp_wear_sub">The request shows up on the watch (Galaxy Watch, Pixel Watch and others) with Unlock and Deny; the tile locks, unlocks and powers on. Requires the Ítalock app on the watch with its screen lock turned on. Away from the phone, it goes through Google\'s internet service. Risk: anyone with your unlocked watch can unlock.</string>
+    <string name="exp_footer">After turning one on, choose the computers in each computer\'s details. Turning it off here turns it off for all.</string>
+
+    <string name="pair_title">Pair computer</string>
+    <string name="pair_step1_title">On the computer</string>
+    <string name="pair_step1_text">Open Ítalock and choose to pair a phone: a QR code appears.</string>
+    <string name="pair_step2_title">Same network or Bluetooth</string>
+    <string name="pair_step2_text">Both on the same network, or connected by USB cable. For Bluetooth, pair the phone with the computer first.</string>
+    <string name="pair_allow_bt">Allow Bluetooth</string>
+    <string name="pair_step3_title">Scan the QR code</string>
+    <string name="pair_step3_text">Point the camera at the QR code or type the code shown.</string>
+    <string name="pair_scan">Scan QR code</string>
+    <string name="pair_type">Type the code</string>
+    <string name="pair_code_label">Computer code</string>
+    <string name="pair_with_code">Pair with the code</string>
+    <string name="pair_retry_save">Confirm again</string>
+
+    <string name="danger_title">Dangerous</string>
+    <string name="danger_heading">Unlock %1$s without confirmation.</string>
+    <string name="danger_text">Anyone with your unlocked phone will be able to unlock this computer without a fingerprint, face or password. If you lose the phone or someone uses it, your computer is exposed.</string>
+    <string name="danger_scope">Applies only to the phone\'s Unlock button (app, widget, Quick Settings tile and app icon shortcuts). When someone uses the computer, the phone still asks for confirmation.</string>
+    <string name="danger_understood">I understand the risk</string>
+    <string name="danger_turn_on_wait">Turn on (%1$d)</string>
+
+    <string name="diag_header">Ítalock logs</string>
+    <string name="diag_generated">Generated on</string>
+    <string name="diag_version">Version</string>
+    <string name="diag_device">Device</string>
+    <string name="diag_theme">Appearance</string>
+    <string name="diag_vibrate">Vibrate</string>
+    <string name="diag_confirm_lock">Confirm before locking</string>
+    <string name="diag_prompt_timeout">Request time (s)</string>
+    <string name="diag_approve_locked">Unlock while the phone is locked</string>
+    <string name="diag_fullscreen">Request on the lock screen</string>
+    <string name="diag_hide_name">Hide name</string>
+    <string name="diag_allow_credential">Accept PIN, pattern or password</string>
+    <string name="diag_poll">Refresh lock status (s, 0 = on open)</string>
+    <string name="diag_ts_warning">Tailscale warning</string>
+    <string name="diag_ts_installed">Tailscale installed</string>
+    <string name="diag_ts_up">Tailscale connected</string>
+    <string name="diag_google">Google services</string>
+    <string name="diag_experimental">Experimental (nearby, notification, Zepp, Wear OS)</string>
+    <string name="diag_missing">Needs permission</string>
+    <string name="diag_nothing">nothing</string>
+    <string name="diag_pcs">Computers</string>
+    <string name="diag_pc_os">System</string>
+    <string name="diag_pc_method">How it reaches the phone</string>
+    <string name="diag_pc_addresses">Known addresses</string>
+    <string name="diag_pc_paths">Paths (local network, Bluetooth, Tailscale)</string>
+    <string name="diag_pc_sealed">Encrypted response</string>
+    <string name="diag_pc_no_confirm">No confirmation</string>
+    <string name="diag_pc_tag">NFC tag</string>
+    <string name="diag_pc_wake">Power on over the network</string>
+    <string name="diag_pc_last">Last used</string>
+    <string name="diag_none">none</string>
+    <string name="diag_events">Recent events</string>
+    <string name="diag_no_events">(none)</string>
+
+    <string name="widget_removed">Computer removed</string>
+    <string name="widget_refresh">Refresh lock status</string>
+    <string name="widget_tap_refresh">Tap refresh to see the lock status</string>
+    <string name="widget_clock_off">Clock is off</string>
+    <string name="widget_status_at">%1$s · %2$s</string>
+    <string name="widget_config_title">Which computer does this widget control?</string>
+    <string name="widget_config_empty">No paired computers. Open Ítalock and pair one first.</string>
+</resources>

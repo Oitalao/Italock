@@ -32,10 +32,10 @@ CSampleProvider::CSampleProvider()
   _link->provider = this;
 
   AddFieldDescriptor(SFI_TILEIMAGE, CPFT_TILE_IMAGE, "Ítalock", CPFG_CREDENTIAL_PROVIDER_LOGO);
-  AddFieldDescriptor(SFI_USERNAME, CPFT_SMALL_TEXT, "Usuário");
-  AddFieldDescriptor(SFI_MESSAGE, CPFT_SMALL_TEXT, "Situação");
+  AddFieldDescriptor(SFI_USERNAME, CPFT_SMALL_TEXT, I18n::Tr("Usuário"));
+  AddFieldDescriptor(SFI_MESSAGE, CPFT_SMALL_TEXT, I18n::Tr("Situação"));
   AddFieldDescriptor(SFI_PASSWORD, CPFT_PASSWORD_TEXT, I18n::Get("password"));
-  AddFieldDescriptor(SFI_SUBMIT_BUTTON, CPFT_SUBMIT_BUTTON, "Entrar");
+  AddFieldDescriptor(SFI_SUBMIT_BUTTON, CPFT_SUBMIT_BUTTON, I18n::Tr("Entrar"));
   AddFieldDescriptor(SFI_RETRY_BUTTON, CPFT_COMMAND_LINK, I18n::Get("retry"), CPFG_STYLE_LINK_AS_BUTTON);
 }
 

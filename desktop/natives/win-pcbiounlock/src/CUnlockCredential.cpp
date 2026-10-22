@@ -84,7 +84,7 @@ HRESULT CUnlockCredential::Initialize(CREDENTIAL_PROVIDER_USAGE_SCENARIO cpus, _
     hr = SHStrDupW(L"", &_rgFieldStrings[SFI_PASSWORD]);
   }
   if(SUCCEEDED(hr)) {
-    hr = SHStrDupW(L"Entrar", &_rgFieldStrings[SFI_SUBMIT_BUTTON]);
+    hr = SHStrDupW(StringUtils::ToWideString(I18n::Tr("Entrar")).c_str(), &_rgFieldStrings[SFI_SUBMIT_BUTTON]);
   }
   if(SUCCEEDED(hr)) {
     hr = SHStrDupW(StringUtils::ToWideString(I18n::Get("retry")).c_str(), &_rgFieldStrings[SFI_RETRY_BUTTON]);

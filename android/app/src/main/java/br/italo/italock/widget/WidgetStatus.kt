@@ -4,6 +4,8 @@ import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
 import br.italo.italock.data.PairingStore
+import br.italo.italock.R
+import br.italo.italock.i18n.L10n
 import br.italo.italock.lock.LockClient
 import br.italo.italock.lock.LockClient.LockStatus
 import kotlin.concurrent.thread
@@ -70,27 +72,26 @@ object WidgetStatus {
 
     /** Linha curta do widget: "Travado · 20:10", "Consultando", "Toque em atualizar". */
     fun label(shown: Shown): String {
-        if (shown.querying) return "Consultando"
-        if (shown.state == null) return "Toque em atualizar para ver o cadeado"
-        val what = when (shown.state) {
-            "locked" -> "Travado"
-            "unlocked" -> "Destravado"
-            "clock" -> "Relógio fora de hora"
-            "not_paired" -> "Não reconhece este celular"
-            "error" -> "Respondeu com erro"
-            else -> "Sem resposta"
-        }
-        return if (shown.at > 0) "$what · ${timeText(shown.at)}" else what
+        if (shown.querying) return L10n.s(R.string.status_querying)
+        if (shown.state == null) return L10n.s(R.string.widget_tap_refresh)
+        val what = L10n.s(when (shown.state) {
+            "locked" -> R.string.status_locked
+            "unlocked" -> R.string.status_unlocked
+            "clock" -> R.string.widget_clock_off
+            "not_paired" -> R.string.status_not_paired
+            "error" -> R.string.status_error
+            else -> R.string.status_no_answer
+        })
+        return if (shown.at > 0) L10n.s(R.string.widget_status_at, what, timeText(shown.at)) else what
     }
 
-    /** Hora da consulta: "20:10" hoje; "28/09 20:10" em outro dia. */
+    /** Hora da consulta: "20:10" hoje; "28/09 20:10" em outro dia (dia e mês no jeito do idioma). */
     private fun timeText(at: Long): String {
-        val br = java.util.Locale.forLanguageTag("pt-BR")
         val then = java.util.Calendar.getInstance().apply { timeInMillis = at }
         val now = java.util.Calendar.getInstance()
         val sameDay = then.get(java.util.Calendar.YEAR) == now.get(java.util.Calendar.YEAR) &&
             then.get(java.util.Calendar.DAY_OF_YEAR) == now.get(java.util.Calendar.DAY_OF_YEAR)
-        return java.text.SimpleDateFormat(if (sameDay) "HH:mm" else "dd/MM HH:mm", br).format(then.time)
+        return if (sameDay) L10n.hourMinute(at) else "${L10n.dayMonth(at)} ${L10n.hourMinute(at)}"
     }
 
     private fun prefs(context: Context) = context.applicationContext.getSharedPreferences(PcWidgetProvider.PREFS, Context.MODE_PRIVATE)

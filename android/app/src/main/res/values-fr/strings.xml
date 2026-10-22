@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_description">Verrouiller, déverrouiller et allumer un ordinateur</string>
+
+    <string name="common_cancel">Annuler</string>
+    <string name="common_close">Fermer</string>
+    <string name="common_save">Enregistrer</string>
+    <string name="common_remove">Supprimer</string>
+    <string name="common_change">Modifier</string>
+    <string name="common_allow">Autoriser</string>
+    <string name="common_turn_on">Activer</string>
+    <string name="common_back">Retour</string>
+    <string name="common_show">Afficher</string>
+    <string name="common_collapse">Réduire</string>
+    <string name="common_expanded">ouvert</string>
+    <string name="common_collapsed">fermé</string>
+    <string name="common_not_informed">Non renseigné</string>
+    <string name="common_none">Aucun</string>
+    <string name="common_technical_details">Détails techniques</string>
+
+    <string name="action_unlock">Déverrouiller</string>
+    <string name="action_lock">Verrouiller</string>
+    <string name="action_wake">Allumer</string>
+    <string name="action_fix_clock">Régler l\'heure</string>
+    <string name="action_pair">Associer</string>
+
+    <string name="status_locked">Verrouillé</string>
+    <string name="status_unlocked">Déverrouillé</string>
+    <string name="status_no_answer">Pas de réponse</string>
+    <string name="status_clock_off">Horloge du téléphone décalée</string>
+    <string name="status_not_paired">Ne reconnaît pas ce téléphone</string>
+    <string name="status_error">A répondu par une erreur</string>
+    <string name="status_querying">Vérification</string>
+    <string name="status_unverified">%1$s · non vérifié</string>
+    <string name="danger_strip">Sans confirmation</string>
+
+    <string name="via_lan">réseau local</string>
+    <string name="via_internet">Internet</string>
+
+    <string name="event_locked">Verrouillé</string>
+    <string name="event_unlocked">Déverrouillé</string>
+    <string name="event_denied">Demande refusée</string>
+    <string name="event_expired">Demande expirée</string>
+    <string name="origin_app">appli</string>
+    <string name="origin_widget">widget</string>
+    <string name="origin_shortcut">raccourci de l\'icône</string>
+    <string name="origin_tile">vignette rapide</string>
+    <string name="origin_tag">tag NFC</string>
+    <string name="origin_watch">montre</string>
+    <string name="origin_pc">demande de l\'ordinateur</string>
+    <string name="origin_notification">notification</string>
+    <string name="origin_auto">automatique à proximité</string>
+    <string name="when_today">aujourd\'hui à %1$s</string>
+    <string name="when_yesterday">hier à %1$s</string>
+    <string name="when_date">le %2$s à %1$s</string>
+
+    <string name="notif_service_title">Ítalock actif</string>
+    <string name="notif_service_text">En attente des demandes de vos ordinateurs</string>
+    <string name="channel_status">Service actif</string>
+    <string name="channel_prompt">Demandes de déverrouillage</string>
+    <string name="channel_waiting">Ordinateur en attente</string>
+
+    <string name="list_separator">", "</string>
+    <string name="a11y_why_unavailable">Pourquoi c\'est indisponible</string>
+    <string name="a11y_unavailable">%1$s, indisponible. %2$s</string>
+
+    <string name="home_lock_all">Tout verrouiller</string>
+    <string name="home_pair_computer">Associer un ordinateur</string>
+    <string name="home_settings_attention">Paramètres (autorisation manquante)</string>
+    <string name="home_notifications_off">Notifications désactivées : les demandes de l\'ordinateur n\'apparaîtront pas.</string>
+    <string name="home_empty_title">Aucun ordinateur associé</string>
+    <string name="home_empty_text">Installez Ítalock sur l\'ordinateur et scannez le QR code qu\'il affiche.</string>
+    <string name="home_open_details">Ouvrir les détails</string>
+    <string name="home_needs_repair">Associez à nouveau : le mot de passe enregistré a été perdu</string>
+    <string name="home_waiting_for">En attente de %1$s</string>
+    <string name="lock_all_one">Ordinateur verrouillé</string>
+    <plurals name="lock_all_done">
+        <item quantity="one">%d ordinateur verrouillé</item>
+        <item quantity="many">Les %d ordinateurs sont verrouillés</item>
+        <item quantity="other">Les %d ordinateurs sont verrouillés</item>
+    </plurals>
+    <string name="lock_all_none">Aucun verrouillé : %1$s</string>
+    <plurals name="lock_all_partial">
+        <item quantity="one">%1$d sur %2$d verrouillé.</item>
+        <item quantity="many">%1$d sur %2$d verrouillés.</item>
+        <item quantity="other">%1$d sur %2$d verrouillés.</item>
+    </plurals>
+    <plurals name="lock_all_failed">
+        <item quantity="one">Non verrouillé : %1$s</item>
+        <item quantity="many">Non verrouillés : %1$s</item>
+        <item quantity="other">Non verrouillés : %1$s</item>
+    </plurals>
+
+    <string name="theme_dark">Sombre</string>
+    <string name="theme_light">Clair</string>
+    <string name="theme_system">Comme le système</string>
+
+    <string name="settings_title">Paramètres</string>
+    <string name="settings_missing">Autorisations manquantes</string>
+    <string name="settings_missing_notifications">Notifications : sans elles, les demandes de l\'ordinateur n\'apparaissent pas.</string>
+    <string name="settings_missing_full_screen">Plein écran : pour que la demande s\'affiche quand le téléphone est verrouillé.</string>
+    <string name="settings_missing_battery">Économie de batterie : Android peut fermer Ítalock.</string>
+    <string name="settings_missing_battery_action">Exempter</string>
+    <string name="settings_missing_bluetooth">Bluetooth : pour que l\'ordinateur appelle le téléphone sans réseau.</string>
+    <string name="settings_section_requests">Demandes de l\'ordinateur</string>
+    <string name="settings_timeout">Délai de réponse</string>
+    <plurals name="settings_seconds">
+        <item quantity="one">%d seconde</item>
+        <item quantity="many">%d secondes</item>
+        <item quantity="other">%d secondes</item>
+    </plurals>
+    <string name="settings_lockscreen_prompt">Demande sur l\'écran de verrouillage</string>
+    <string name="settings_lockscreen_prompt_on">Allume l\'écran et s\'affiche par-dessus le verrouillage. Consomme plus de batterie.</string>
+    <string name="settings_lockscreen_prompt_off">Notification seulement, sans allumer l\'écran. Pour répondre, déverrouillez le téléphone.</string>
+    <string name="settings_approve_locked">Déverrouiller avec le téléphone verrouillé</string>
+    <string name="settings_approve_locked_on">Accepte la demande sur l\'écran de verrouillage, sans déverrouiller le téléphone. Moins sûr.</string>
+    <string name="settings_approve_locked_off">Désactivé : déverrouillez le téléphone avant d\'accepter.</string>
+    <string name="settings_approve_locked_needs">Activez d\'abord « %1$s »</string>
+    <string name="settings_approve_locked_ask">Déverrouiller avec le téléphone verrouillé ?</string>
+    <string name="settings_approve_locked_ask_text">L\'ordinateur pourra être déverrouillé directement depuis l\'écran de verrouillage du téléphone, avec la biométrie (ou le PIN, si « %1$s » est activé), sans déverrouiller le téléphone. C\'est plus pratique, mais moins sûr.</string>
+    <string name="settings_hide_name">Masquer le nom de l\'ordinateur</string>
+    <string name="settings_hide_name_sub">Quand le téléphone est verrouillé, les demandes et alertes n\'indiquent pas lequel.</string>
+    <string name="settings_allow_credential">Accepter PIN, schéma ou mot de passe</string>
+    <string name="settings_allow_credential_sub">En plus de la biométrie. Désactivé : empreinte ou visage sécurisé uniquement.</string>
+    <string name="settings_section_lock">Verrouillage</string>
+    <string name="settings_confirm_lock">Demander confirmation avant de verrouiller</string>
+    <string name="settings_confirm_lock_sub">Demande avant de verrouiller depuis l\'appli, le widget, les raccourcis, le tag, la montre ou la notification.</string>
+    <string name="settings_tile">Vignette rapide</string>
+    <string name="settings_tile_controls">Contrôle : %1$s</string>
+    <string name="settings_tile_no_pc">aucun ordinateur</string>
+    <string name="settings_tile_choose">La vignette rapide contrôle</string>
+    <string name="settings_section_look">Apparence et alertes</string>
+    <string name="settings_theme">Apparence</string>
+    <string name="settings_vibrate">Vibrer à la fin</string>
+    <string name="settings_vibrate_sub">Courte en cas de succès, double en cas d\'échec.</string>
+    <string name="settings_section_connection">Connexion</string>
+    <string name="settings_poll">Actualiser l\'état du verrou</string>
+    <string name="settings_poll_open">Seulement à l\'ouverture de l\'appli</string>
+    <plurals name="settings_poll_every">
+        <item quantity="one">Toutes les %d s, appli ouverte</item>
+        <item quantity="many">Toutes les %d s, appli ouverte</item>
+        <item quantity="other">Toutes les %d s, appli ouverte</item>
+    </plurals>
+    <string name="settings_tailscale_warning">Prévenir quand Tailscale se déconnecte</string>
+    <string name="settings_tailscale_warning_sub">Sans lui, déverrouiller hors de chez vous ne fonctionne pas.</string>
+    <string name="settings_paths_note">Réseau local, Bluetooth et Tailscale se choisissent pour chaque ordinateur, dans ses détails.</string>
+    <string name="settings_section_more">Plus</string>
+    <string name="settings_experimental">Fonctions expérimentales</string>
+    <string name="settings_experimental_none">Aucune activée</string>
+    <string name="settings_beta">BETA</string>
+    <string name="settings_about">À propos d\'Ítalock</string>
+    <string name="settings_about_sub">Crédits, licence, détails techniques et journaux</string>
+    <plurals name="settings_experimental_on">
+        <item quantity="one">%d activée</item>
+        <item quantity="many">%d activées</item>
+        <item quantity="other">%d activées</item>
+    </plurals>
+
+    <string name="main_history_cleared">Historique de %1$s effacé</string>
+    <string name="main_lock_all_ask">Verrouiller tous les ordinateurs ?</string>
+    <string name="main_unlocked">%1$s déverrouillé</string>
+    <string name="main_not_unlocked">%1$s ne s\'est pas déverrouillé</string>
+    <string name="main_lock_unconfirmed">%1$s a reçu la demande, mais n\'a pas confirmé</string>
+    <string name="main_removed">%1$s supprimé</string>
+    <string name="main_no_paths">Avec tous les chemins désactivés, %1$s ne fonctionne pas.</string>
+    <string name="main_no_confirm_bio_title">Activer le déverrouillage sans confirmation</string>
+    <string name="main_key_error">Erreur de clé du téléphone. Réessayez.</string>
+    <string name="main_no_confirm_on">%1$s : déverrouillage sans confirmation activé</string>
+    <string name="main_no_confirm_off">%1$s : la confirmation est de nouveau demandée</string>
+    <string name="main_confirm_for">Confirmer pour %1$s</string>
+    <string name="main_on_for">Activé pour %1$s</string>
+    <string name="main_tech_version">Version</string>
+    <string name="main_tech_device">Appareil</string>
+    <string name="main_tech_phone_id">ID de ce téléphone</string>
+    <string name="main_tech_paired">Ordinateurs associés</string>
+    <string name="main_tech_google">Services Google (montre Wear OS)</string>
+    <string name="main_tech_available">Disponibles</string>
+    <string name="main_tech_unavailable">Indisponibles</string>
+    <string name="main_export_failed">Impossible de créer le fichier de journaux.</string>
+    <string name="main_export_subject">Journaux d\'Ítalock</string>
+    <string name="main_export_chooser">Envoyer les journaux</string>
+    <string name="main_export_no_app">Aucune appli pour partager le fichier.</string>
+    <string name="main_scan_prompt">Visez le QR code d\'Ítalock sur l\'ordinateur</string>
+    <string name="main_pair_invalid_code">Code invalide. Vérifiez et réessayez.</string>
+    <string name="main_pair_searching">Recherche de l\'ordinateur</string>
+    <string name="main_pair_timeout">L\'association a pris trop de temps. Vérifiez le réseau et réessayez.</string>
+    <string name="main_pair_confirm">Confirmez pour enregistrer l\'association</string>
+    <string name="main_pair_not_saved">L\'ordinateur a enregistré l\'association, mais pas le téléphone. Touchez Confirmer à nouveau ; si ça ne marche pas, supprimez ce téléphone dans Ítalock sur l\'ordinateur et associez-le encore une fois.</string>
+    <string name="main_pair_bio_title">Enregistrer l\'association avec %1$s</string>
+    <string name="main_paired_with">Associé à %1$s</string>
+    <string name="main_pair_cancelled">%1$s L\'ordinateur a déjà enregistré l\'association : touchez Confirmer à nouveau, ou supprimez ce téléphone dans Ítalock sur l\'ordinateur.</string>
+    <string name="main_pair_cancelled_default">Confirmation annulée.</string>
+
+    <string name="settings_language">Langue</string>
+    <string name="language_system">Automatique (langue du système)</string>
+</resources>

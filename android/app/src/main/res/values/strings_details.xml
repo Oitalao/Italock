@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Detalhes do computador, Sobre, Recursos experimentais, Pareamento, modo sem confirmação, registros e widget. -->
+<resources>
+    <!-- Detalhes do computador -->
+    <string name="details_repair_needed">Pareie de novo: a senha guardada se perdeu</string>
+    <string name="details_section_general">Geral</string>
+    <string name="details_name">Nome</string>
+    <string name="details_order">Ordem na lista</string>
+    <!-- Posição na lista: "1º de 3". %1$d = posição, %2$d = total. -->
+    <string name="details_order_value">%1$dº de %2$d</string>
+    <string name="details_move_up">Subir na lista</string>
+    <string name="details_move_down">Descer na lista</string>
+    <string name="details_tile">Usar no atalho rápido</string>
+    <string name="details_tile_sub">O botão Ítalock dos ajustes rápidos controla este computador.</string>
+    <!-- Ligar o computador pela rede (Wake on LAN). -->
+    <string name="details_wake">Ligar pela rede</string>
+    <string name="details_wake_sub">Só na mesma rede, com o computador no cabo e a opção ligada nele.</string>
+    <!-- Endereço MAC da placa de rede com cabo. -->
+    <string name="details_mac">Endereço da placa com cabo</string>
+    <string name="details_mac_empty">Não informado. Sem ele não dá para ligar pela rede.</string>
+    <string name="details_mac_help">Vários endereços: separe por vírgula. Vazio desliga Ligar pela rede.</string>
+    <string name="details_mac_invalid">Formato: seis pares separados por dois pontos.</string>
+
+    <string name="details_section_paths">Caminhos</string>
+    <string name="details_path_lan">Rede local</string>
+    <string name="details_path_lan_sub">Mesma rede Wi-Fi ou cabo USB com ancoragem.</string>
+    <string name="details_path_bt_sub">O computador chama o celular sem rede.</string>
+    <string name="details_path_ts_sub">Fora de casa, pela internet.</string>
+
+    <string name="details_section_tag">Tag NFC</string>
+    <string name="details_tag_write">Gravar tag NFC</string>
+    <string name="details_tag_write_button">Gravar</string>
+    <string name="details_tag_lock">Travar pela tag</string>
+    <string name="details_tag_lock_sub">Encostar o celular desbloqueado trava este computador.</string>
+    <string name="details_tag_unlock">Destravar pela tag</string>
+    <string name="details_tag_unlock_sub">Sempre pede a biometria.</string>
+    <string name="details_tag_both">Encostar o celular desbloqueado na tag trava ou destrava este computador, conforme o cadeado.</string>
+    <string name="details_tag_only_unlock">Encostar o celular desbloqueado na tag só destrava este computador.</string>
+    <string name="details_tag_only_lock">Encostar o celular desbloqueado na tag só trava este computador.</string>
+    <string name="details_tag_none">Com os dois desligados, a tag deste computador não faz nada.</string>
+
+    <string name="details_section_security">Segurança</string>
+    <string name="details_no_confirm">Destravar sem confirmação</string>
+    <string name="details_no_confirm_sub">O botão Destravar do celular não pede biometria. Pedidos do computador continuam pedindo.</string>
+
+    <string name="details_section_experimental">Experimental</string>
+    <string name="details_exp_nearby_sub">Por Bluetooth ou na mesma rede, sem tocar no celular. Nunca pelo Tailscale.</string>
+    <string name="details_exp_notification_sub">Botão Destravar na notificação, sem biometria.</string>
+    <string name="details_exp_watch_sub">O pedido toca como chamada no relógio: ignorar destrava, recusar nega (bloqueado fora do pulso).</string>
+    <string name="details_exp_wear_sub">O pedido aparece no relógio com Destravar e Recusar.</string>
+
+    <string name="details_section_history">Histórico</string>
+    <string name="details_history_empty">Nada por enquanto. Travar, destravar e pedidos do computador aparecem aqui.</string>
+    <string name="details_history_less">Mostrar menos</string>
+    <!-- %1$d = quantos eventos há no histórico. -->
+    <string name="details_history_all">Mostrar todos (%1$d)</string>
+    <string name="details_history_clear">Limpar histórico</string>
+
+    <!-- Detalhes técnicos -->
+    <string name="details_tech_pc_name">Nome no computador</string>
+    <string name="details_tech_user">Usuário</string>
+    <!-- Sistema operacional do computador. -->
+    <string name="details_tech_os">Sistema</string>
+    <string name="details_tech_method">Forma de chamar o celular</string>
+    <string name="details_tech_pc_addresses">Endereços do computador</string>
+    <string name="details_tech_phone_addresses">Endereços deste celular</string>
+    <string name="details_tech_response">Resposta do cadeado</string>
+    <string name="details_tech_sealed">Cifrada</string>
+    <string name="details_tech_plain">Em claro (programa antigo no computador)</string>
+    <string name="details_tech_paired_at">Pareado em</string>
+    <string name="details_tech_public_id">Id público (tag e relógio)</string>
+    <string name="details_tech_identifier">Identificador</string>
+
+    <string name="details_remove_pc">Remover computador</string>
+    <!-- %1$s = nome do computador. -->
+    <string name="details_remove_title">Remover %1$s?</string>
+    <string name="details_remove_text">O celular deixa de destravar este computador. Para voltar, será preciso parear de novo.</string>
+    <string name="details_rename_title">Nome do computador</string>
+    <string name="details_rename_hint">Vazio usa o nome do computador.</string>
+
+    <!-- Gravação da tag NFC -->
+    <string name="details_nfc_off_title">NFC desligado</string>
+    <!-- %1$s = nome do computador. -->
+    <string name="details_nfc_write_title">Gravar tag de %1$s</string>
+    <string name="details_nfc_off_text">Ligue o NFC nos ajustes do celular e volte aqui.</string>
+    <string name="details_nfc_hold">Encoste a tag atrás do celular e segure até o aviso.</string>
+    <string name="details_nfc_readonly">Proteger a tag contra escrita</string>
+    <string name="details_nfc_readonly_warn">Não tem volta: a tag nunca mais poderá ser regravada.</string>
+    <string name="details_nfc_open_settings">Abrir ajustes</string>
+
+    <!-- Sobre -->
+    <string name="about_title">Sobre</string>
+    <string name="about_section_credits">Créditos</string>
+    <string name="about_based_on">Baseado no PC Bio Unlock (hoje PulseUnlock), de MeisApps, licença GPL versão 3.</string>
+    <string name="about_source_soon">Código do programa: em breve no GitHub.</string>
+    <string name="about_source">Código do programa: GitHub.</string>
+    <string name="about_license">Licença</string>
+    <string name="about_original">Projeto original</string>
+    <!-- Botão que abre o código fonte. -->
+    <string name="about_code">Código</string>
+    <string name="about_section_diag">Diagnóstico</string>
+    <string name="about_export">Exportar registros</string>
+    <string name="about_export_sub">Arquivo de texto para enviar a quem for ajudar. Sem chaves nem senhas.</string>
+
+    <!-- Recursos experimentais -->
+    <string name="exp_title">Recursos experimentais</string>
+    <string name="exp_banner">Experimental. Pode não funcionar direito, mudar ou sumir em versões futuras. Use por sua conta.</string>
+    <string name="exp_nearby">Destravar automático quando perto</string>
+    <string name="exp_nearby_sub">Por Bluetooth ou na mesma rede, sem tocar no celular (nunca pelo Tailscale). Risco: alguém ao lado do computador destrava.</string>
+    <string name="exp_notification">Destravar pela notificação</string>
+    <string name="exp_notification_sub">Botão Destravar na notificação, sem biometria. Risco: quem pegar o celular desbloqueado destrava.</string>
+    <string name="exp_watch">Relógio Amazfit (chamada falsa)</string>
+    <string name="exp_watch_sub">O pedido aparece no relógio como uma chamada: ignorar destrava, recusar nega. Fora do pulso, a ação é bloqueada. Precisa do Gadgetbridge Voz pareado ao relógio. Risco: quem estiver com seu relógio no pulso destrava.</string>
+    <string name="exp_wear">Relógio Wear OS</string>
+    <string name="exp_wear_sub">O pedido aparece no relógio (Galaxy Watch, Pixel Watch e outros) com Destravar e Recusar; o tile trava, destrava e liga. Precisa do app Ítalock no relógio e do bloqueio de tela ligado nele. Longe do celular, passa pela internet do Google. Risco: quem estiver com seu relógio desbloqueado destrava.</string>
+    <string name="exp_footer">Depois de ligar, escolha os computadores nos detalhes de cada um. Desligar aqui desliga em todos.</string>
+
+    <!-- Pareamento -->
+    <string name="pair_title">Parear computador</string>
+    <string name="pair_step1_title">No computador</string>
+    <string name="pair_step1_text">Abra o Ítalock e escolha parear celular: aparece um QR code.</string>
+    <string name="pair_step2_title">Mesma rede ou Bluetooth</string>
+    <string name="pair_step2_text">Os dois na mesma rede, ou ligados pelo cabo USB. Para Bluetooth, pareie antes o celular no computador.</string>
+    <string name="pair_allow_bt">Permitir Bluetooth</string>
+    <string name="pair_step3_title">Ler o QR code</string>
+    <string name="pair_step3_text">Aponte a câmera para o QR code ou digite o código mostrado.</string>
+    <string name="pair_scan">Ler QR code</string>
+    <string name="pair_type">Digitar o código</string>
+    <string name="pair_code_label">Código do computador</string>
+    <string name="pair_with_code">Parear com o código</string>
+    <string name="pair_retry_save">Confirmar de novo</string>
+
+    <!-- Modo sem confirmação (diálogo vermelho) -->
+    <string name="danger_title">Perigoso</string>
+    <!-- %1$s = nome do computador. -->
+    <string name="danger_heading">Destravar %1$s sem confirmação.</string>
+    <string name="danger_text">Qualquer pessoa com seu celular desbloqueado poderá destravar este computador sem digital, rosto ou senha. Se você perder o celular ou alguém usar o aparelho, seu computador fica exposto.</string>
+    <string name="danger_scope">Vale só para o botão Destravar do celular (app, widget, atalho rápido e atalhos do ícone). Quando alguém mexer no computador, o celular continua pedindo confirmação.</string>
+    <string name="danger_understood">Entendo o risco</string>
+    <!-- Botão "Ligar" (ligar a opção) com a contagem regressiva em segundos. -->
+    <string name="danger_turn_on_wait">Ligar (%1$d)</string>
+
+    <!-- Arquivo de registros (Exportar registros), lido por quem for ajudar -->
+    <string name="diag_header">Registros do Ítalock</string>
+    <string name="diag_generated">Gerado em</string>
+    <string name="diag_version">Versão</string>
+    <string name="diag_device">Aparelho</string>
+    <string name="diag_theme">Aparência</string>
+    <string name="diag_vibrate">Vibrar</string>
+    <string name="diag_confirm_lock">Confirmar antes de travar</string>
+    <string name="diag_prompt_timeout">Tempo do pedido (s)</string>
+    <string name="diag_approve_locked">Destravar com o celular bloqueado</string>
+    <string name="diag_fullscreen">Pedido na tela de bloqueio</string>
+    <string name="diag_hide_name">Esconder nome</string>
+    <string name="diag_allow_credential">Aceitar PIN, padrão ou senha</string>
+    <string name="diag_poll">Atualizar cadeado (s, 0 = ao abrir)</string>
+    <string name="diag_ts_warning">Aviso do Tailscale</string>
+    <string name="diag_ts_installed">Tailscale instalado</string>
+    <string name="diag_ts_up">Tailscale conectado</string>
+    <string name="diag_google">Serviços do Google</string>
+    <string name="diag_experimental">Experimentais (perto, notificação, Zepp, Wear OS)</string>
+    <string name="diag_missing">Falta permitir</string>
+    <string name="diag_nothing">nada</string>
+    <string name="diag_pcs">Computadores</string>
+    <string name="diag_pc_os">Sistema</string>
+    <string name="diag_pc_method">Forma de chamar</string>
+    <string name="diag_pc_addresses">Endereços conhecidos</string>
+    <string name="diag_pc_paths">Caminhos (rede local, Bluetooth, Tailscale)</string>
+    <string name="diag_pc_sealed">Resposta cifrada</string>
+    <string name="diag_pc_no_confirm">Sem confirmação</string>
+    <string name="diag_pc_tag">Tag NFC</string>
+    <string name="diag_pc_wake">Ligar pela rede</string>
+    <string name="diag_pc_last">Último uso</string>
+    <string name="diag_none">nenhum</string>
+    <string name="diag_events">Eventos recentes</string>
+    <string name="diag_no_events">(nenhum)</string>
+
+    <!-- Widget -->
+    <string name="widget_removed">Computador removido</string>
+    <string name="widget_refresh">Atualizar cadeado</string>
+    <string name="widget_tap_refresh">Toque em atualizar para ver o cadeado</string>
+    <string name="widget_clock_off">Relógio fora de hora</string>
+    <!-- Estado e hora da última consulta: "Travado · 20:10". -->
+    <string name="widget_status_at">%1$s · %2$s</string>
+    <string name="widget_config_title">Qual computador este widget controla?</string>
+    <string name="widget_config_empty">Nenhum computador pareado. Abra o Ítalock e pareie um primeiro.</string>
+</resources>

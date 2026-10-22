@@ -204,14 +204,14 @@ void PairingServer::ClientThread(SOCKET clientSocket) {
     // ou apaga o novo, para nao sobrar pareamento orfao que o celular nao conhece.
     auto previous = PairedDevicesStorage::GetDeviceByID(device.id);
     if(!PairedDevicesStorage::AddDevice(device)) {
-      m_ErrorCallback("Este computador não conseguiu guardar o pareamento. Nada foi alterado; tente de novo.");
-      throw std::runtime_error("O computador não conseguiu guardar o pareamento. Tente de novo.");
+      m_ErrorCallback(I18n::Tr("Este computador não conseguiu guardar o pareamento. Nada foi alterado; tente de novo."));
+      throw std::runtime_error(I18n::Tr("O computador não conseguiu guardar o pareamento. Tente de novo."));
     }
     if(!WriteEncryptedPacket(clientSocket, PACKET_ID_PAIR_RESPONSE, respPacket.ToJson().dump())) {
       bool undone = previous.has_value() ? PairedDevicesStorage::AddDevice(previous.value()) : PairedDevicesStorage::RemoveDevice(device.id);
       spdlog::warn("A resposta do pareamento nao chegou ao celular (ID={}); pareamento {}.", device.id,
                    undone ? "desfeito" : "NAO desfeito (arquivo ocupado)");
-      m_ErrorCallback("A resposta não chegou ao celular. Nada foi guardado; tente parear de novo.");
+      m_ErrorCallback(I18n::Tr("A resposta não chegou ao celular. Nada foi guardado; tente parear de novo."));
     } else {
       spdlog::info("Successfully paired device. (ID={}, Method={})", device.id, PairingMethodUtils::ToString(device.pairingMethod));
       if(m_SuccessCallback)

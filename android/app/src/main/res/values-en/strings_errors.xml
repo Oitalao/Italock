@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="err_ok_locked">%1$s locked</string>
+    <string name="err_ok_waking">Unlocking %1$s</string>
+    <string name="err_ok_done">Done</string>
+
+    <string name="err_no_path">No connection path allowed for %1$s. Turn on local network or Tailscale in the computer\'s details.</string>
+    <string name="err_no_answer">%1$s did not answer. Is it on and on the same network (or on Tailscale)?</string>
+    <string name="err_not_paired">%1$s does not recognize this phone. Remove the computer and pair again.</string>
+    <string name="err_time">The phone clock is off: it differs from %1$s by more than 1 minute. Turn on automatic date and time on both.</string>
+    <string name="err_data">%1$s could not read the request (different key). Remove the computer and pair again.</string>
+    <string name="err_bad_action">Ítalock on %1$s is too old for this command. Update the program on the computer.</string>
+    <string name="err_bad_packet">%1$s did not understand the request. Update Ítalock on the computer.</string>
+    <string name="err_state_unknown">%1$s could not tell whether the screen is locked.</string>
+    <string name="err_not_waiting">The computer is not on the lock screen.</string>
+    <string name="err_lock_failed">%1$s got the request but could not lock the screen.</string>
+    <string name="err_replay">%1$s rejected the request because it looked repeated. Try again.</string>
+    <string name="err_busy">%1$s is busy with other connections. Try again in a moment.</string>
+    <string name="err_not_logged_in">No one is signed in on %1$s with the account of this pairing. Sign in and try again.</string>
+    <string name="err_lock_disabled">%1$s does not accept lock requests from the phone. Turn on that option in Ítalock on the computer.</string>
+    <string name="err_path_disabled">%1$s does not accept requests through this path (local network or Tailscale). Check the options in Ítalock on the computer.</string>
+    <string name="err_unsupported">%1$s does not have this feature on this system.</string>
+    <string name="err_not_allowed">This computer account cannot use this phone.</string>
+    <string name="err_launch_failed">%1$s could not open the Ítalock window. Keep someone signed in on it and try again.</string>
+    <string name="err_bad_nonce">The response does not match the request. If this keeps happening, remove the computer and pair again.</string>
+    <string name="err_bad_seal">The response from %1$s does not match the pairing key. If this keeps happening, remove the computer and pair again.</string>
+    <string name="err_unsealed">%1$s answered without the usual protection. For safety, the response was ignored.</string>
+    <string name="err_refused">%1$s denied the request.</string>
+
+    <string name="wol_no_mac">This computer has no wired network card address. Without it, it cannot be powered on over the network.</string>
+    <string name="wol_sent">Power on signal sent. It only works on the same network as the computer.</string>
+    <string name="wol_failed">Could not send the power on signal. Is the phone on the same network as the computer?</string>
+
+    <string name="nfc_write_ok">Tag written. With the phone unlocked, tap it on the tag to use it.</string>
+    <string name="nfc_write_ok_locked">Tag written and write-protected.</string>
+    <string name="nfc_write_ok_lock_unsupported">Tag written, but this model cannot be write-protected.</string>
+    <string name="nfc_write_read_only">This tag is write-protected. Use another one.</string>
+    <string name="nfc_write_too_small">The tag does not have enough space. Use an NTAG213 or larger.</string>
+    <string name="nfc_write_not_ndef">This tag does not support the NDEF format. Use another one, for example NTAG213, 215 or 216.</string>
+    <string name="nfc_write_lost">The tag moved away before it finished. Tap again and hold until you see the message.</string>
+    <string name="nfc_write_failed">Could not write the tag. Try again or use another one.</string>
+
+    <string name="nfc_not_italock">This tag is not an Ítalock tag.</string>
+    <string name="nfc_unknown_pc">This tag belongs to a computer that is not paired with this phone (was it removed?).</string>
+    <string name="nfc_tag_off">The tag for %1$s is off. Turn on Lock with the tag or Unlock with the tag in its details.</string>
+    <string name="nfc_querying">Checking %1$s</string>
+    <string name="nfc_clock_off">The phone clock is off. Turn on automatic date and time.</string>
+
+    <string name="tag_lock_and_unlock">Locks and unlocks</string>
+    <string name="tag_unlock_only">Unlocks only</string>
+    <string name="tag_lock_only">Locks only</string>
+    <string name="tag_off">Off</string>
+
+    <string name="pairing_connecting">Connecting to the computer</string>
+    <string name="pairing_waiting_reply">Waiting for the computer to answer</string>
+    <string name="pairing_searching">Looking for the computer on the network</string>
+
+    <string name="pairing_err_not_found">Computer not found. Are both on the same network, or connected by USB cable with tethering?</string>
+    <string name="pairing_err_refused">The computer rejected the pairing. Create a new QR code on the computer and try again.</string>
+    <string name="pairing_err_time">The phone clock is off. Turn on automatic date and time on the phone and on the computer.</string>
+    <string name="pairing_err_timeout">The computer took too long to answer. Check that the pairing screen is still open on it.</string>
+    <string name="pairing_err_connect">Could not connect to the computer. Check that the pairing screen is open and that both are on the same network.</string>
+    <string name="pairing_err_host">Invalid computer address. Create a new QR code.</string>
+    <string name="pairing_err_code">The code does not match the computer\'s. Scan the QR code again.</string>
+    <string name="pairing_err_dropped">The connection to the computer dropped halfway. Try again.</string>
+    <string name="pairing_err_format">The computer answered in an unexpected format. Update Ítalock on the computer.</string>
+    <string name="pairing_err_generic">Could not pair. Try again.</string>
+
+    <string name="crypto_key_lost">The phone\'s screen lock changed and the saved password for this computer was lost. Pair the computer again.</string>
+
+    <string name="bip_hidden_pc_name">Your computer</string>
+</resources>

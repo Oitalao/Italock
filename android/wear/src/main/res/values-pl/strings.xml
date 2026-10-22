@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tile_description">Twoje komputery i właściwy przycisk dla każdego</string>
+
+    <string name="state_locked">Zablokowany</string>
+    <string name="state_unlocked">Odblokowany</string>
+    <string name="state_no_answer">Brak odpowiedzi</string>
+    <string name="state_clock">Zła godzina</string>
+    <string name="state_unknown">Niepotwierdzone</string>
+
+    <string name="action_unlock">Odblokuj</string>
+    <string name="action_wake">Włącz</string>
+    <string name="action_lock">Zablokuj</string>
+    <string name="action_deny">Odrzuć</string>
+    <string name="close">Zamknij</string>
+
+    <string name="phone_missing_long">Nie znaleziono telefonu. Otwórz Ítalock na telefonie i włącz Zegarek z Wear OS w funkcjach eksperymentalnych.</string>
+    <string name="open_on_phone">Otwórz Ítalock na telefonie</string>
+    <string name="phone_missing">Nie znaleziono telefonu. Otwórz Ítalock na telefonie.</string>
+    <string name="tile_sending">%1$s: wysyłanie</string>
+
+    <string name="sending">Wysyłanie</string>
+    <string name="phone_no_answer">Telefon nie odpowiedział. Czy jest w pobliżu lub ma internet?</string>
+    <string name="result_confirm_on_phone">Potwierdź na telefonie</string>
+    <string name="result_done">Gotowe</string>
+    <string name="result_failed">Nie udało się</string>
+
+    <string name="prompt_title">Odblokować %1$s?</string>
+    <string name="prompt_title_generic">Odblokować komputer?</string>
+    <string name="prompt_needs_lock_notif">Włącz blokadę ekranu zegarka, aby odblokowywać stąd</string>
+    <string name="prompt_needs_lock">Aby odblokowywać zegarkiem, włącz blokadę ekranu zegarka</string>
+    <string name="channel_prompts">Prośby</string>
+    <string name="channel_prompts_desc">Prośby o odblokowanie komputera</string>
+</resources>

@@ -4,6 +4,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.background
 import br.italo.italock.ui.theme.ItalockIcons
+import br.italo.italock.R
+import br.italo.italock.i18n.L10n
+import androidx.compose.ui.res.stringResource
 import android.os.Build
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -137,7 +140,7 @@ fun DetailsScreen(
                 }
                 Spacer(Modifier.width(14.dp))
                 Column(Modifier.weight(1f)) {
-                    Text(if (needsRepair) "Pareie de novo: a senha guardada se perdeu" else look.label + unverifiedSuffix(status),
+                    Text(if (needsRepair) stringResource(R.string.details_repair_needed) else unverified(look.label, status),
                         style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.SemiBold,
                         color = if (needsRepair) Italock.colors.dangerText else look.textColor)
                     status?.detail?.takeIf { it.isNotEmpty() }?.let {
@@ -155,103 +158,103 @@ fun DetailsScreen(
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
             )
 
-            SectionTitle("Geral")
+            SectionTitle(stringResource(R.string.details_section_general))
             Panel {
-                SettingRow("Nome", subtitle = pc.displayName, icon = ItalockIcons.Edit, onClick = { renaming = true }) {
-                    Text("Mudar", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
+                SettingRow(stringResource(R.string.details_name), subtitle = pc.displayName, icon = ItalockIcons.Edit, onClick = { renaming = true }) {
+                    Text(stringResource(R.string.common_change), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
                 }
                 ThinDivider()
-                SettingRow("Ordem na lista", subtitle = "${index + 1}º de $count", icon = ItalockIcons.SwapVert) {
+                SettingRow(stringResource(R.string.details_order), subtitle = stringResource(R.string.details_order_value, index + 1, count), icon = ItalockIcons.SwapVert) {
                     IconButton(onClick = { a.onMove(-1) }, enabled = index > 0) {
-                        Icon(Icons.Outlined.KeyboardArrowUp, contentDescription = "Subir na lista")
+                        Icon(Icons.Outlined.KeyboardArrowUp, contentDescription = stringResource(R.string.details_move_up))
                     }
                     IconButton(onClick = { a.onMove(+1) }, enabled = index < count - 1) {
-                        Icon(Icons.Outlined.KeyboardArrowDown, contentDescription = "Descer na lista")
+                        Icon(Icons.Outlined.KeyboardArrowDown, contentDescription = stringResource(R.string.details_move_down))
                     }
                 }
                 if (Build.VERSION.SDK_INT >= 24) {
                     ThinDivider()
-                    SwitchRow("Usar no atalho rápido", "O botão Ítalock dos ajustes rápidos controla este computador.", isTile, a.onTile, icon = ItalockIcons.TouchApp)
+                    SwitchRow(stringResource(R.string.details_tile), stringResource(R.string.details_tile_sub), isTile, a.onTile, icon = ItalockIcons.TouchApp)
                 }
                 ThinDivider()
                 if (pc.macAddresses.isNotEmpty()) {
-                    SettingRow("Ligar pela rede", subtitle = "Só na mesma rede, com o computador no cabo e a opção ligada nele.", icon = ItalockIcons.Power) {
-                        SecondaryButton("Ligar", a.onWake)
+                    SettingRow(stringResource(R.string.details_wake), subtitle = stringResource(R.string.details_wake_sub), icon = ItalockIcons.Power) {
+                        SecondaryButton(stringResource(R.string.action_wake), a.onWake)
                     }
                     ThinDivider()
                 }
                 SettingRow(
-                    "Endereço da placa com cabo",
-                    subtitle = pc.macAddresses.joinToString(", ").ifEmpty { "Não informado. Sem ele não dá para ligar pela rede." },
+                    stringResource(R.string.details_mac),
+                    subtitle = pc.macAddresses.joinToString(", ").ifEmpty { stringResource(R.string.details_mac_empty) },
                     icon = ItalockIcons.Label,
                     onClick = { editingMac = true },
-                ) { Text("Mudar", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary) }
+                ) { Text(stringResource(R.string.common_change), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary) }
             }
 
-            SectionTitle("Caminhos")
+            SectionTitle(stringResource(R.string.details_section_paths))
             Panel {
-                SwitchRow("Rede local", "Mesma rede Wi-Fi ou cabo USB com ancoragem.", pc.allowLan, { a.onPath(PathKind.LAN, it) }, icon = ItalockIcons.Wifi)
+                SwitchRow(stringResource(R.string.details_path_lan), stringResource(R.string.details_path_lan_sub), pc.allowLan, { a.onPath(PathKind.LAN, it) }, icon = ItalockIcons.Wifi)
                 ThinDivider()
-                SwitchRow("Bluetooth", "O computador chama o celular sem rede.", pc.allowBluetooth, { a.onPath(PathKind.BLUETOOTH, it) }, icon = ItalockIcons.Bluetooth)
+                SwitchRow("Bluetooth", stringResource(R.string.details_path_bt_sub), pc.allowBluetooth, { a.onPath(PathKind.BLUETOOTH, it) }, icon = ItalockIcons.Bluetooth)
                 ThinDivider()
-                SwitchRow("Tailscale", "Fora de casa, pela internet.", pc.allowTailscale, { a.onPath(PathKind.TAILSCALE, it) }, icon = ItalockIcons.VpnLock)
+                SwitchRow("Tailscale", stringResource(R.string.details_path_ts_sub), pc.allowTailscale, { a.onPath(PathKind.TAILSCALE, it) }, icon = ItalockIcons.VpnLock)
             }
 
             if (hasNfc) {
-                SectionTitle("Tag NFC")
+                SectionTitle(stringResource(R.string.details_section_tag))
                 Panel {
-                    SettingRow("Gravar tag NFC", subtitle = tagSubtitle(pc), icon = ItalockIcons.Nfc) {
-                        SecondaryButton("Gravar", a.onWriteTag)
+                    SettingRow(stringResource(R.string.details_tag_write), subtitle = tagSubtitle(pc), icon = ItalockIcons.Nfc) {
+                        SecondaryButton(stringResource(R.string.details_tag_write_button), a.onWriteTag)
                     }
                     ThinDivider()
-                    SwitchRow("Travar pela tag", "Encostar o celular desbloqueado trava este computador.", pc.tagLock, a.onTagLock, icon = ItalockIcons.Security)
+                    SwitchRow(stringResource(R.string.details_tag_lock), stringResource(R.string.details_tag_lock_sub), pc.tagLock, a.onTagLock, icon = ItalockIcons.Security)
                     ThinDivider()
-                    SwitchRow("Destravar pela tag", "Sempre pede a biometria.", pc.tagUnlock, a.onTagUnlock, icon = ItalockIcons.Fingerprint)
+                    SwitchRow(stringResource(R.string.details_tag_unlock), stringResource(R.string.details_tag_unlock_sub), pc.tagUnlock, a.onTagUnlock, icon = ItalockIcons.Fingerprint)
                 }
             }
 
-            SectionTitle("Segurança")
+            SectionTitle(stringResource(R.string.details_section_security))
             Panel {
                 SwitchRow(
-                    "Destravar sem confirmação",
-                    "O botão Destravar do celular não pede biometria. Pedidos do computador continuam pedindo.",
+                    stringResource(R.string.details_no_confirm),
+                    stringResource(R.string.details_no_confirm_sub),
                     pc.noConfirmActive, a.onNoConfirm, danger = true, icon = ItalockIcons.Fingerprint,
                 )
             }
 
             if (experimental.any) {
-                SectionTitle("Experimental")
+                SectionTitle(stringResource(R.string.details_section_experimental))
                 Panel {
                     var first = true
                     fun sep(): Boolean { val show = !first; first = false; return show }
                     if (experimental.nearby) {
                         if (sep()) ThinDivider()
-                        SwitchRow("Destravar automático quando perto", "Por Bluetooth ou na mesma rede, sem tocar no celular. Nunca pelo Tailscale.",
+                        SwitchRow(stringResource(R.string.exp_nearby), stringResource(R.string.details_exp_nearby_sub),
                             pc.autoUnlock && pc.hasAutoKey, a.onNearby, icon = ItalockIcons.Bluetooth)
                     }
                     if (experimental.notification) {
                         if (sep()) ThinDivider()
-                        SwitchRow("Destravar pela notificação", "Botão Destravar na notificação, sem biometria.",
+                        SwitchRow(stringResource(R.string.exp_notification), stringResource(R.string.details_exp_notification_sub),
                             pc.notificationApprove && pc.hasAutoKey, a.onNotification, icon = ItalockIcons.Notify)
                     }
                     if (experimental.watch) {
                         if (sep()) ThinDivider()
-                        SwitchRow("Relógio Amazfit (chamada falsa)", "O pedido toca como chamada no relógio: ignorar destrava, recusar nega (bloqueado fora do pulso).",
+                        SwitchRow(stringResource(R.string.exp_watch), stringResource(R.string.details_exp_watch_sub),
                             pc.watchApprove && pc.hasAutoKey, a.onWatch, icon = ItalockIcons.LockClock)
                     }
                     if (experimental.wear) {
                         if (sep()) ThinDivider()
-                        SwitchRow("Relógio Wear OS", "O pedido aparece no relógio com Destravar e Recusar.",
+                        SwitchRow(stringResource(R.string.exp_wear), stringResource(R.string.details_exp_wear_sub),
                             pc.wearApprove && pc.hasAutoKey, a.onWear, icon = ItalockIcons.LockClock)
                     }
                 }
             }
 
-            SectionTitle("Histórico")
+            SectionTitle(stringResource(R.string.details_section_history))
             Panel {
                 val events = history.orEmpty()
                 if (history != null && events.isEmpty()) {
-                    Text("Nada por enquanto. Travar, destravar e pedidos do computador aparecem aqui.",
+                    Text(stringResource(R.string.details_history_empty),
                         style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.padding(16.dp))
                 }
@@ -264,68 +267,69 @@ fun DetailsScreen(
                     ThinDivider()
                     Row(Modifier.fillMaxWidth().padding(horizontal = 8.dp), verticalAlignment = Alignment.CenterVertically) {
                         if (events.size > HISTORY_PREVIEW) {
-                            QuietButton(if (allHistory) "Mostrar menos" else "Mostrar todos (${events.size})", { allHistory = !allHistory })
+                            QuietButton(if (allHistory) stringResource(R.string.details_history_less) else stringResource(R.string.details_history_all, events.size), { allHistory = !allHistory })
                         }
                         Spacer(Modifier.weight(1f))
-                        QuietButton("Limpar histórico", a.onClearHistory)
+                        QuietButton(stringResource(R.string.details_history_clear), a.onClearHistory)
                     }
                 }
             }
 
             Spacer(Modifier.padding(top = 16.dp))
+            val techState = stringResource(if (technical) R.string.common_expanded else R.string.common_collapsed)
             Panel {
                 Row(
                     Modifier.fillMaxWidth()
-                        .clickable(role = Role.Button, onClickLabel = if (technical) "Recolher" else "Mostrar") { technical = !technical }
+                        .clickable(role = Role.Button, onClickLabel = stringResource(if (technical) R.string.common_collapse else R.string.common_show)) { technical = !technical }
                         .heightIn(min = 56.dp).padding(horizontal = 16.dp)
-                        .semantics { stateDescription = if (technical) "aberto" else "fechado" },
+                        .semantics { stateDescription = techState },
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Text("Detalhes técnicos", style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
+                    Text(stringResource(R.string.common_technical_details), style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
                     Icon(if (technical) Icons.Outlined.KeyboardArrowUp else Icons.Outlined.KeyboardArrowDown, contentDescription = null,
                         tint = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
                 if (technical) {
                     ThinDivider()
                     Column(Modifier.padding(16.dp)) {
-                        TechLine("Nome no computador", pc.pcName)
-                        TechLine("Usuário", pc.userName)
-                        TechLine("Sistema", pc.pcOs)
-                        TechLine("Forma de chamar o celular", pc.pairingMethod)
-                        TechLine("Endereços do computador", pc.pcIps.ifEmpty { listOf(pc.pcIp) }.joinToString("\n"), mono = true)
-                        TechLine("Endereços deste celular", phoneIps.joinToString("\n").ifEmpty { "Nenhum" }, mono = true)
-                        TechLine("Resposta do cadeado", if (pc.sealedSeen) "Cifrada" else "Em claro (programa antigo no computador)")
-                        TechLine("Pareado em", java.text.SimpleDateFormat("dd/MM/yyyy HH:mm", java.util.Locale.forLanguageTag("pt-BR")).format(java.util.Date(pc.pairedAt)))
-                        TechLine("Id público (tag e relógio)", pc.publicId, mono = true)
-                        TechLine("Identificador", pc.deviceId, mono = true, last = true)
+                        TechLine(stringResource(R.string.details_tech_pc_name), pc.pcName)
+                        TechLine(stringResource(R.string.details_tech_user), pc.userName)
+                        TechLine(stringResource(R.string.details_tech_os), pc.pcOs)
+                        TechLine(stringResource(R.string.details_tech_method), pc.pairingMethod)
+                        TechLine(stringResource(R.string.details_tech_pc_addresses), pc.pcIps.ifEmpty { listOf(pc.pcIp) }.joinToString("\n"), mono = true)
+                        TechLine(stringResource(R.string.details_tech_phone_addresses), phoneIps.joinToString("\n").ifEmpty { stringResource(R.string.common_none) }, mono = true)
+                        TechLine(stringResource(R.string.details_tech_response), stringResource(if (pc.sealedSeen) R.string.details_tech_sealed else R.string.details_tech_plain))
+                        TechLine(stringResource(R.string.details_tech_paired_at), L10n.dateTime(pc.pairedAt))
+                        TechLine(stringResource(R.string.details_tech_public_id), pc.publicId, mono = true)
+                        TechLine(stringResource(R.string.details_tech_identifier), pc.deviceId, mono = true, last = true)
                     }
                 }
             }
 
-            QuietButton("Remover computador", { confirmRemove = true }, danger = true, modifier = Modifier.padding(start = 8.dp, top = 16.dp))
+            QuietButton(stringResource(R.string.details_remove_pc), { confirmRemove = true }, danger = true, modifier = Modifier.padding(start = 8.dp, top = 16.dp))
         }
     }
 
     if (confirmRemove) AlertDialog(
         onDismissRequest = { confirmRemove = false },
-        title = { Text("Remover ${pc.displayName}?") },
-        text = { Text("O celular deixa de destravar este computador. Para voltar, será preciso parear de novo.") },
-        confirmButton = { QuietButton("Remover", { confirmRemove = false; a.onRemove() }, danger = true) },
-        dismissButton = { QuietButton("Cancelar", { confirmRemove = false }) },
+        title = { Text(stringResource(R.string.details_remove_title, pc.displayName)) },
+        text = { Text(stringResource(R.string.details_remove_text)) },
+        confirmButton = { QuietButton(stringResource(R.string.common_remove), { confirmRemove = false; a.onRemove() }, danger = true) },
+        dismissButton = { QuietButton(stringResource(R.string.common_cancel), { confirmRemove = false }) },
     )
     if (renaming) {
         var name by remember { mutableStateOf(pc.nickname) }
         AlertDialog(
             onDismissRequest = { renaming = false },
-            title = { Text("Nome do computador") },
+            title = { Text(stringResource(R.string.details_rename_title)) },
             text = {
                 OutlinedTextField(
                     value = name, onValueChange = { name = it.take(40) }, singleLine = true,
-                    placeholder = { Text(pc.pcName) }, supportingText = { Text("Vazio usa o nome do computador.") },
+                    placeholder = { Text(pc.pcName) }, supportingText = { Text(stringResource(R.string.details_rename_hint)) },
                 )
             },
-            confirmButton = { QuietButton("Salvar", { renaming = false; a.onRename(name) }) },
-            dismissButton = { QuietButton("Cancelar", { renaming = false }) },
+            confirmButton = { QuietButton(stringResource(R.string.common_save), { renaming = false; a.onRename(name) }) },
+            dismissButton = { QuietButton(stringResource(R.string.common_cancel), { renaming = false }) },
         )
     }
     if (editingMac) {
@@ -334,17 +338,17 @@ fun DetailsScreen(
         val valid = parts.all { WakeOnLan.parseMac(it) != null }
         AlertDialog(
             onDismissRequest = { editingMac = false },
-            title = { Text("Endereço da placa com cabo") },
+            title = { Text(stringResource(R.string.details_mac)) },
             text = {
                 OutlinedTextField(
                     value = text, onValueChange = { text = it.take(120) }, singleLine = true, isError = !valid,
                     textStyle = MaterialTheme.typography.bodyLarge.copy(fontFamily = Mono),
                     placeholder = { Text("AA:BB:CC:DD:EE:FF") },
-                    supportingText = { Text(if (valid) "Vários endereços: separe por vírgula. Vazio desliga Ligar pela rede." else "Formato: seis pares separados por dois pontos.") },
+                    supportingText = { Text(stringResource(if (valid) R.string.details_mac_help else R.string.details_mac_invalid)) },
                 )
             },
-            confirmButton = { QuietButton("Salvar", { editingMac = false; a.onMacs(parts) }, enabled = valid) },
-            dismissButton = { QuietButton("Cancelar", { editingMac = false }) },
+            confirmButton = { QuietButton(stringResource(R.string.common_save), { editingMac = false; a.onMacs(parts) }, enabled = valid) },
+            dismissButton = { QuietButton(stringResource(R.string.common_cancel), { editingMac = false }) },
         )
     }
 }
@@ -352,17 +356,18 @@ fun DetailsScreen(
 private const val HISTORY_PREVIEW = 5
 
 /** O que a tag faz, pelos dois interruptores. */
-private fun tagSubtitle(pc: PairedPc): String = when {
-    pc.tagLock && pc.tagUnlock -> "Encostar o celular desbloqueado na tag trava ou destrava este computador, conforme o cadeado."
-    pc.tagUnlock -> "Encostar o celular desbloqueado na tag só destrava este computador."
-    pc.tagLock -> "Encostar o celular desbloqueado na tag só trava este computador."
-    else -> "Com os dois desligados, a tag deste computador não faz nada."
-}
+@Composable
+private fun tagSubtitle(pc: PairedPc): String = stringResource(when {
+    pc.tagLock && pc.tagUnlock -> R.string.details_tag_both
+    pc.tagUnlock -> R.string.details_tag_only_unlock
+    pc.tagLock -> R.string.details_tag_only_lock
+    else -> R.string.details_tag_none
+})
 
 /** Uma linha do histórico: o que houve e, embaixo, quando, de onde e por qual caminho. */
 @Composable
 private fun HistoryRow(e: HistoryEvent) {
-    val detail = listOf(whenText(e.at), e.origin.label, e.via).filter { it.isNotBlank() }.joinToString(" · ")
+    val detail = listOf(whenText(e.at), e.origin.label, L10n.via(e.via)).filter { it.isNotBlank() }.joinToString(" · ")
     Column(Modifier.fillMaxWidth().heightIn(min = 56.dp).padding(horizontal = 16.dp, vertical = 10.dp)
         .semantics(mergeDescendants = true) {}) {
         Text(e.kind.label, style = MaterialTheme.typography.bodyLarge)
@@ -384,13 +389,13 @@ fun NfcWriteDialog(
 ) {
     AlertDialog(
         onDismissRequest = onClose,
-        title = { Text(if (nfcOff) "NFC desligado" else "Gravar tag de $name") },
+        title = { Text(if (nfcOff) stringResource(R.string.details_nfc_off_title) else stringResource(R.string.details_nfc_write_title, name)) },
         text = {
             Column {
                 if (nfcOff) {
-                    Text("Ligue o NFC nos ajustes do celular e volte aqui.")
+                    Text(stringResource(R.string.details_nfc_off_text))
                 } else {
-                    Text(if (done) message.orEmpty() else "Encoste a tag atrás do celular e segure até o aviso.")
+                    Text(if (done) message.orEmpty() else stringResource(R.string.details_nfc_hold))
                     if (!done) {
                         message?.let { Text(it, color = Italock.colors.dangerText, modifier = Modifier.padding(top = 8.dp)) }
                         Row(
@@ -400,8 +405,8 @@ fun NfcWriteDialog(
                         ) {
                             Checkbox(checked = makeReadOnly, onCheckedChange = null)
                             Column(Modifier.padding(start = 8.dp)) {
-                                Text("Proteger a tag contra escrita")
-                                Text("Não tem volta: a tag nunca mais poderá ser regravada.",
+                                Text(stringResource(R.string.details_nfc_readonly))
+                                Text(stringResource(R.string.details_nfc_readonly_warn),
                                     style = MaterialTheme.typography.bodySmall, color = Italock.colors.dangerText)
                             }
                         }
@@ -410,15 +415,15 @@ fun NfcWriteDialog(
             }
         },
         confirmButton = {
-            if (nfcOff) QuietButton("Abrir ajustes", onOpenSettings) else QuietButton(if (done) "Fechar" else "Cancelar", onClose)
+            if (nfcOff) QuietButton(stringResource(R.string.details_nfc_open_settings), onOpenSettings) else QuietButton(stringResource(if (done) R.string.common_close else R.string.common_cancel), onClose)
         },
-        dismissButton = { if (nfcOff) QuietButton("Cancelar", onClose) },
+        dismissButton = { if (nfcOff) QuietButton(stringResource(R.string.common_cancel), onClose) },
     )
 }
 
 @Composable
 private fun TechLine(label: String, value: String, mono: Boolean = false, last: Boolean = false) {
     Text(label, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-    Text(value.ifBlank { "Não informado" }, style = MaterialTheme.typography.bodyMedium, fontFamily = if (mono) Mono else null,
+    Text(value.ifBlank { stringResource(R.string.common_not_informed) }, style = MaterialTheme.typography.bodyMedium, fontFamily = if (mono) Mono else null,
         modifier = Modifier.padding(bottom = if (last) 0.dp else 12.dp))
 }

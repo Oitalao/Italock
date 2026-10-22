@@ -9,6 +9,7 @@
 #endif
 
 #include "utils/AppInfo.h"
+#include "utils/I18n.h"
 #include "utils/StringUtils.h"
 
 BaseUnlockConnection::BaseUnlockConnection() {
@@ -27,7 +28,7 @@ BaseUnlockConnection::~BaseUnlockConnection() {
 
 void BaseUnlockConnection::SetUnlockInfo(const std::string &authUser, const std::string &authProgram) {
   m_AuthUser = authUser;
-  m_AuthProgram = authProgram;
+  m_AuthProgram = I18n::Tr(authProgram); // nome do programa no idioma escolhido (aparece no celular)
 }
 
 PairedDevice BaseUnlockConnection::GetDevice() {

@@ -7,6 +7,7 @@
 #include "shell/Shell.h"
 #include "storage/PairedDevicesStorage.h"
 #include "utils/AppInfo.h"
+#include "utils/I18n.h"
 
 #include <fstream>
 
@@ -159,36 +160,34 @@ QVariantList SettingsForm::GetExperimental() {
     if(!d.bluetoothAddress.empty())
       hasBtPhone = true;
 #ifdef WINDOWS
-  add("proximity", "Travar quando o celular se afastar",
-      "Usa o Bloqueio dinâmico do Windows: cerca de um minuto depois que o celular pareado por Bluetooth sai de perto, o computador trava.",
-      "Se o Bluetooth do celular desligar ou falhar, o computador também trava. Vale só para a sua conta.",
+  add("proximity", QString::fromStdString(I18n::Tr("Travar quando o celular se afastar")),
+      QString::fromStdString(I18n::Tr("Usa o Bloqueio dinâmico do Windows: cerca de um minuto depois que o celular pareado por Bluetooth sai de perto, o computador trava.")),
+      QString::fromStdString(I18n::Tr("Se o Bluetooth do celular desligar ou falhar, o computador também trava. Vale só para a sua conta.")),
       IsDynamicLockOn(), hasBtPhone && BluetoothHelper::IsAvailable(), false);
 #else
-  add("proximity", "Travar quando o celular se afastar",
-      "Uma vez por minuto o computador procura o celular pareado por Bluetooth. Sem resposta pelo tempo escolhido, a tela trava.",
-      "Se o Bluetooth do celular desligar ou falhar, a tela também trava. Precisa do pacote bluez (l2ping).",
+  add("proximity", QString::fromStdString(I18n::Tr("Travar quando o celular se afastar")),
+      QString::fromStdString(I18n::Tr("Uma vez por minuto o computador procura o celular pareado por Bluetooth. Sem resposta pelo tempo escolhido, a tela trava.")),
+      QString::fromStdString(I18n::Tr("Se o Bluetooth do celular desligar ou falhar, a tela também trava. Precisa do pacote bluez (l2ping).")),
       AppSettings::Get().expProximityLock, hasBtPhone, false);
 #endif
-  add("language", "Idioma das mensagens", "Mostra as mensagens da tela de bloqueio e os avisos de erro no idioma escolhido. As telas do app continuam em português.",
-      "Algumas mensagens podem aparecer em inglês ou misturadas.", AppSettings::Get().expLanguage, true, false);
 #ifdef LINUX
   for(const auto &setting : ServiceInstaller().GetSettings()) {
     if(setting.id == "sudo")
-      add("sudo", "Celular no sudo", "O sudo do terminal chama o celular antes de pedir a senha.",
-          "Se o celular não responder, o sudo demora até desistir e só então pede a senha. Mexe em /etc/pam.d/sudo.",
+      add("sudo", QString::fromStdString(I18n::Tr("Celular no sudo")), QString::fromStdString(I18n::Tr("O sudo do terminal chama o celular antes de pedir a senha.")),
+          QString::fromStdString(I18n::Tr("Se o celular não responder, o sudo demora até desistir e só então pede a senha. Mexe em /etc/pam.d/sudo.")),
           setting.enabled, setting.defaultVal, true);
     else if(setting.id == "polkit")
-      add("polkit", "Celular nas janelas de senha de administrador", "Janelas que pedem a senha para instalar programas ou mudar o sistema chamam o celular.",
-          "Afrouxa proteções do serviço das janelas de senha de administrador para ele falar com o celular.", setting.enabled,
+      add("polkit", QString::fromStdString(I18n::Tr("Celular nas janelas de senha de administrador")), QString::fromStdString(I18n::Tr("Janelas que pedem a senha para instalar programas ou mudar o sistema chamam o celular.")),
+          QString::fromStdString(I18n::Tr("Afrouxa proteções do serviço das janelas de senha de administrador para ele falar com o celular.")), setting.enabled,
           setting.defaultVal, true);
     else if(setting.id == "loginManager")
-      add("loginManager", "Celular na tela de login", "A tela de login ao ligar o computador (LightDM, GDM ou SDDM) chama o celular.",
-          "Entrando pelo celular, o chaveiro de senhas pode não abrir sozinho. Mexe no PAM da tela de login.", setting.enabled,
+      add("loginManager", QString::fromStdString(I18n::Tr("Celular na tela de login")), QString::fromStdString(I18n::Tr("A tela de login ao ligar o computador (LightDM, GDM ou SDDM) chama o celular.")),
+          QString::fromStdString(I18n::Tr("Entrando pelo celular, o chaveiro de senhas pode não abrir sozinho. Mexe no PAM da tela de login.")), setting.enabled,
           setting.defaultVal, true);
     else if(setting.id == "ssh")
-      add("ssh", "Senhas de SSH pelo celular",
-          "Ao conectar deste computador em outro servidor por SSH, o celular entrega a senha guardada. Guarde com: italock-ssh adicionar usuario@servidor",
-          "Vale depois de sair e entrar de novo. Se o auxiliar for apagado à mão, o ssh deixa de pedir senha até desligar aqui.", setting.enabled,
+      add("ssh", QString::fromStdString(I18n::Tr("Senhas de SSH pelo celular")),
+          QString::fromStdString(I18n::Tr("Ao conectar deste computador em outro servidor por SSH, o celular entrega a senha guardada. Guarde com: italock-ssh adicionar usuario@servidor")),
+          QString::fromStdString(I18n::Tr("Vale depois de sair e entrar de novo. Se o auxiliar for apagado à mão, o ssh deixa de pedir senha até desligar aqui.")), setting.enabled,
           setting.defaultVal, true);
   }
 #endif
@@ -200,20 +199,13 @@ QString SettingsForm::SetExperimental(const QString &id, bool enabled) {
 #ifdef WINDOWS
     SetDynamicLock(enabled);
     if(IsDynamicLockOn() != enabled)
-      return "Não deu para mudar o Bloqueio dinâmico do Windows.";
+      return QString::fromStdString(I18n::Tr("Não deu para mudar o Bloqueio dinâmico do Windows."));
 #else
     auto storage = AppSettings::Get();
     storage.expProximityLock = enabled;
     AppSettings::Save(storage);
     AppSettings::InvalidateCache();
 #endif
-    return {};
-  }
-  if(id == "language") {
-    auto storage = AppSettings::Get();
-    storage.expLanguage = enabled;
-    AppSettings::Save(storage);
-    AppSettings::InvalidateCache();
     return {};
   }
 #ifdef LINUX
@@ -231,18 +223,7 @@ QString SettingsForm::SetExperimental(const QString &id, bool enabled) {
     return QString::fromUtf8(ex.what());
   }
 #endif
-  return "Recurso não disponível neste sistema.";
-}
-
-QString SettingsForm::GetLanguage() {
-  return QString::fromUtf8(AppSettings::Get().language);
-}
-
-void SettingsForm::SetLanguage(const QString &lang) {
-  auto storage = AppSettings::Get();
-  storage.language = lang.toStdString();
-  AppSettings::Save(storage);
-  AppSettings::InvalidateCache();
+  return QString::fromStdString(I18n::Tr("Recurso não disponível neste sistema."));
 }
 
 QVariantMap SettingsForm::GetOptions() {
@@ -266,12 +247,12 @@ QString SettingsForm::SetOption(const QString &key, const QVariant &value) {
   if(key == "winUnlockBehavior") {
     static const QStringList allowed{"key_press_lock_only", "foreground_always", "wake_only", "key_press", "foreground_lock_only", "none"};
     if(!allowed.contains(value.toString()))
-      return "Opção inválida.";
+      return QString::fromStdString(I18n::Tr("Opção inválida."));
     s.winUnlockBehavior = value.toString().toStdString();
   } else if(key == "unlockWaitSeconds") {
     auto v = value.toInt();
     if(v < 5 || v > 300)
-      return "Tempo inválido.";
+      return QString::fromStdString(I18n::Tr("Tempo inválido."));
     s.unlockWaitSeconds = static_cast<uint32_t>(v);
   } else if(key == "bootAutoRetry") {
     s.bootAutoRetry = value.toBool();
@@ -281,7 +262,7 @@ QString SettingsForm::SetOption(const QString &key, const QVariant &value) {
     bool bt = key == "allowBluetooth" ? on : s.allowBluetooth;
     bool ts = key == "allowTailscale" ? on : s.allowTailscale;
     if(!lan && !bt && !ts)
-      return "Deixe pelo menos um caminho ligado: sem nenhum, o celular não alcança este computador.";
+      return QString::fromStdString(I18n::Tr("Deixe pelo menos um caminho ligado: sem nenhum, o celular não alcança este computador."));
     s.allowLan = lan;
     s.allowBluetooth = bt;
     s.allowTailscale = ts;
@@ -290,10 +271,10 @@ QString SettingsForm::SetOption(const QString &key, const QVariant &value) {
   } else if(key == "proximityMinutes") {
     auto v = value.toInt();
     if(v < 1 || v > 60)
-      return "Tempo inválido.";
+      return QString::fromStdString(I18n::Tr("Tempo inválido."));
     s.proximityMinutes = static_cast<uint32_t>(v);
   } else {
-    return "Opção desconhecida.";
+    return QString::fromStdString(I18n::Tr("Opção desconhecida."));
   }
   AppSettings::Save(s);
   AppSettings::InvalidateCache();
@@ -301,7 +282,7 @@ QString SettingsForm::SetOption(const QString &key, const QVariant &value) {
   if(check.unlockWaitSeconds != s.unlockWaitSeconds || check.winUnlockBehavior != s.winUnlockBehavior || check.allowLan != s.allowLan ||
      check.allowBluetooth != s.allowBluetooth || check.allowTailscale != s.allowTailscale || check.agentLockEnabled != s.agentLockEnabled ||
      check.bootAutoRetry != s.bootAutoRetry || check.proximityMinutes != s.proximityMinutes)
-    return "Não deu para gravar as configurações.";
+    return QString::fromStdString(I18n::Tr("Não deu para gravar as configurações."));
   return {};
 }
 

@@ -12,6 +12,13 @@
 #endif
 #include "storage/LoggingSystem.h"
 #include "ui/MainWindow.h"
+#include "ui/helpers/I18nWrapper.h"
+#include "utils/I18n.h"
+
+// Texto no idioma escolhido (o original em portugues do Brasil e a chave).
+[[maybe_unused]] static QString Tr(const char *text) {
+  return QString::fromStdString(I18n::Tr(text));
+}
 
 #ifdef _WIN32
 // Italock (Windows): o app mora na bandeja (perto do relogio, como o Tailscale), sem ocupar a barra de tarefas.
@@ -182,6 +189,7 @@ public:
       if(!m_Watcher.directories().contains(m_Dir))
         m_Watcher.addPath(m_Dir); // pasta criada depois (primeira instalacao)
       ReloadPrefs();
+      ReloadLanguage();
       UpdateLook();
     });
     m_Minute.start();
@@ -216,12 +224,33 @@ public:
       } else {
         m_HotkeyFailed = true;
         spdlog::warn("Atalho {} nao registrado ({}).", combo.toStdString(), GetLastError());
-        m_Tray->showMessage("Ítalock", "Outro programa já usa essa combinação de teclas. Escolha outra nas Configurações.",
+        m_Tray->showMessage("Ítalock", Tr("Outro programa já usa essa combinação de teclas. Escolha outra nas Configurações."),
                             QSystemTrayIcon::Warning, 5000);
       }
     }
     if(prefs.value("atalhoErro", false).toBool() != m_HotkeyFailed)
       prefs.setValue("atalhoErro", m_HotkeyFailed);
+  }
+
+  // Idioma: a janela mudou (aviso pelo canal local) ou outra pessoa mudou (conferido a cada minuto). Traduz o menu e
+  // a dica do icone.
+  void SetRetranslate(std::function<void()> fn) {
+    m_Retranslate = std::move(fn);
+    m_Language = QString::fromStdString(I18n::CurrentLanguage());
+    if(m_Retranslate)
+      m_Retranslate();
+  }
+  void ReloadLanguage() {
+    AppSettings::InvalidateCache();
+    auto lang = QString::fromStdString(I18n::CurrentLanguage());
+    if(lang == m_Language)
+      return;
+    m_Language = lang;
+    QI18n::NotifyLanguageChanged(); // janela aberta neste mesmo processo (administrador)
+    if(m_Retranslate)
+      m_Retranslate();
+    m_LookSet = false;
+    UpdateLook();
   }
 
   bool nativeEventFilter(const QByteArray &, void *message, qintptr *) override {
@@ -240,11 +269,11 @@ private:
   // Caminho em palavras para o aviso ("pela mesma rede"...); vazio quando nao se sabe.
   static QString PathPhrase(const QString &path) {
     if(path == "rede local")
-      return "pela mesma rede";
+      return Tr("pela mesma rede");
     if(path == "Tailscale")
-      return "pelo Tailscale";
+      return Tr("pelo Tailscale");
     if(path == "Bluetooth")
-      return "pelo Bluetooth";
+      return Tr("pelo Bluetooth");
     return {};
   }
 
@@ -334,11 +363,11 @@ private:
       return;
     auto name = last.value("nome").toString().left(40);
     if(name.isEmpty())
-      name = "celular";
+      name = Tr("celular");
     auto phrase = PathPhrase(last.value("caminho").toString());
     QSettings prefs("Italock", "Italock");
     if(prefs.value("avisos", true).toBool()) {
-      auto text = QString(action == "travar" ? "Travado pelo %1" : "Destravado pelo %1").arg(name);
+      auto text = (action == "travar" ? Tr("Travado pelo %1") : Tr("Destravado pelo %1")).arg(name);
       text += phrase.isEmpty() ? QString(".") : QString(", %1.").arg(phrase);
       m_Tray->showMessage("Ítalock", text, QSystemTrayIcon::Information, 4000);
     }
@@ -355,18 +384,18 @@ private:
       m_ProtectionOn = on;
       m_LookSet = true;
     }
-    QString tip = on ? "Ítalock: proteção ligada" : "Ítalock: proteção desligada";
+    QString tip = on ? Tr("Ítalock: proteção ligada") : Tr("Ítalock: proteção desligada");
     if(m_UnlockTs > 0) {
       auto when = QDateTime::fromSecsSinceEpoch(m_UnlockTs);
       auto today = QDate::currentDate();
       QString hour = when.toString("HH:mm");
       if(when.date() == today.addDays(-1))
-        hour = "ontem " + hour;
+        hour = Tr("ontem %1").arg(hour);
       else if(when.date() != today)
         hour = when.toString("dd/MM") + " " + hour;
-      QString where = m_UnlockPath == "rede local" ? QString("mesma rede") : m_UnlockPath;
-      QString name = m_UnlockName.isEmpty() ? QString("celular") : m_UnlockName.left(30);
-      tip += "\nÚltimo destravar: " + name + ", " + hour + (where.isEmpty() ? QString() : ", " + where);
+      QString where = m_UnlockPath == "rede local" ? Tr("mesma rede") : QString::fromStdString(I18n::Tr(m_UnlockPath.toStdString()));
+      QString name = m_UnlockName.isEmpty() ? Tr("celular") : m_UnlockName.left(30);
+      tip += "\n" + Tr("Último destravar: %1").arg(name + ", " + hour + (where.isEmpty() ? QString() : ", " + where));
     }
     if(tip != m_Tray->toolTip())
       m_Tray->setToolTip(tip);
@@ -386,6 +415,8 @@ private:
   bool m_HotkeyOn = false;
   bool m_HotkeyFailed = false;
   QString m_HotkeyCombo{};
+  QString m_Language{};
+  std::function<void()> m_Retranslate{};
   QFileSystemWatcher m_Watcher{};
   QTimer m_Debounce{};
   QTimer m_Minute{};
@@ -409,6 +440,9 @@ static void ApplyAppearance() {
 static int RunPrintMode(int argc, char *argv[], const QString &file) {
   QGuiApplication app(argc, argv);
   MainWindow::s_PrintMode = true;
+  if(!qEnvironmentVariableIsEmpty("ITALOCK_IDIOMA"))
+    I18n::SetOverride(qEnvironmentVariable("ITALOCK_IDIOMA").toStdString()); // so neste processo; nada e gravado
+  QI18n::InstallTranslator();
   ApplyAppearance();
   QQmlApplicationEngine engine{};
   MaybeUseDevQml(&engine);
@@ -432,6 +466,7 @@ int main(int argc, char *argv[]) {
   QApplication app(argc, argv);
   QApplication::setWindowIcon(QIcon(":/res/icons/icon.png"));
   QApplication::setQuitOnLastWindowClosed(false);
+  QI18n::InstallTranslator();
   const auto args = QCoreApplication::arguments();
   const bool startHidden = args.contains("--bandeja");
   const bool windowRole = args.contains("--janela");
@@ -448,12 +483,17 @@ int main(int argc, char *argv[]) {
     ApplyAppearance();
     // Atalho de teclado mudou aqui: avisa a bandeja (outro processo, sem administrador) para registrar de novo.
     MainWindow::SetPrefChangedHandler([trayName](const QString &key) {
-      if(!key.startsWith("atalho") || key == "atalhoErro")
+      QByteArray message{};
+      if(key == "idioma")
+        message = "idioma";
+      else if(key.startsWith("atalho") && key != "atalhoErro")
+        message = "preferencias";
+      else
         return;
       QLocalSocket s{};
       s.connectToServer(trayName);
       if(s.waitForConnected(300)) {
-        s.write("preferencias");
+        s.write(message);
         s.waitForBytesWritten(300);
       }
     });
@@ -574,19 +614,29 @@ int main(int argc, char *argv[]) {
           showWindow();
         else if(data.contains("preferencias"))
           trayController.ReloadPrefs(); // a janela (processo elevado) mudou o atalho
+        else if(data.contains("idioma"))
+          trayController.ReloadLanguage(); // a janela mudou o idioma
         client->deleteLater();
       });
     }
   });
 
   QMenu menu{};
-  QObject::connect(menu.addAction("Abrir o Ítalock"), &QAction::triggered, &app, showWindow);
-  QObject::connect(menu.addAction("Travar agora"), &QAction::triggered, &app, []() { LockWorkStation(); });
+  auto openAction = menu.addAction(QString());
+  auto lockAction = menu.addAction(QString());
+  QObject::connect(openAction, &QAction::triggered, &app, showWindow);
+  QObject::connect(lockAction, &QAction::triggered, &app, []() { LockWorkStation(); });
   menu.addSeparator();
-  QObject::connect(menu.addAction("Fechar o ícone"), &QAction::triggered, &app, [&]() {
+  auto quitAction = menu.addAction(QString());
+  trayController.SetRetranslate([openAction, lockAction, quitAction]() {
+    openAction->setText(Tr("Abrir o Ítalock"));
+    lockAction->setText(Tr("Travar agora"));
+    quitAction->setText(Tr("Fechar o ícone"));
+  });
+  QObject::connect(quitAction, &QAction::triggered, &app, [&]() {
     // Ligando/desligando a protecao ou pareando nesta mesma janela: espera terminar (nao fecha no meio).
     if(MainWindow::IsBusy()) {
-      tray.showMessage("Ítalock", "Espere terminar o que está em andamento na janela e tente de novo.", QSystemTrayIcon::Warning, 4000);
+      tray.showMessage("Ítalock", Tr("Espere terminar o que está em andamento na janela e tente de novo."), QSystemTrayIcon::Warning, 4000);
       return;
     }
     QCoreApplication::quit();
@@ -601,6 +651,8 @@ int main(int argc, char *argv[]) {
   MainWindow::SetPrefChangedHandler([&trayController](const QString &key) {
     if(key.startsWith("atalho") && key != "atalhoErro")
       trayController.ReloadPrefs();
+    else if(key == "idioma")
+      trayController.ReloadLanguage();
   });
 
   if(!startHidden)
@@ -621,6 +673,7 @@ int main(int argc, char *argv[]) {
   LoggingSystem::Init("desktop");
 
   QGuiApplication app(argc, argv);
+  QI18n::InstallTranslator();
   ApplyAppearance();
   QGuiApplication::setWindowIcon(QIcon(":/res/icons/icon.png"));
 

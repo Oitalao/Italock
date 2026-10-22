@@ -1,4 +1,235 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  Textos do app em português do Brasil: é o idioma padrão (values sem qualificador), mesmo com o celular em outro idioma.
+  Traduções em values-en, values-es, values-fr, values-de, values-it, values-ja, values-ko, values-zh-rCN, values-ru,
+  values-pl, values-hi e values-ar. Regra dos textos: nada de travessão, meia risca ou hífen como pontuação.
+  Arquivos: strings.xml (comuns, início, configurações), strings_details.xml (detalhes, sobre, pareamento, widget),
+  strings_service.xml (serviço, notificações, confirmação, erros do computador), strings_wear.xml (relógio).
+-->
 <resources>
+    <string name="app_name" translatable="false">Ítalock</string>
     <string name="widget_description">Travar, destravar e ligar um computador</string>
+
+    <!-- Comuns -->
+    <string name="common_cancel">Cancelar</string>
+    <string name="common_close">Fechar</string>
+    <string name="common_save">Salvar</string>
+    <string name="common_remove">Remover</string>
+    <string name="common_change">Mudar</string>
+    <string name="common_allow">Permitir</string>
+    <!-- Ligar uma opção (não é ligar o computador). -->
+    <string name="common_turn_on">Ligar</string>
+    <string name="common_back">Voltar</string>
+    <string name="common_show">Mostrar</string>
+    <string name="common_collapse">Recolher</string>
+    <string name="common_expanded">aberto</string>
+    <string name="common_collapsed">fechado</string>
+    <string name="common_not_informed">Não informado</string>
+    <string name="common_none">Nenhum</string>
+    <string name="common_technical_details">Detalhes técnicos</string>
+
+    <!-- Ações sobre o computador -->
+    <string name="action_unlock">Destravar</string>
+    <string name="action_lock">Travar</string>
+    <!-- Ligar o computador pela rede. -->
+    <string name="action_wake">Ligar</string>
+    <string name="action_fix_clock">Ajustar hora</string>
+    <string name="action_pair">Parear</string>
+
+    <!-- Estado do cadeado -->
+    <string name="status_locked">Travado</string>
+    <string name="status_unlocked">Destravado</string>
+    <string name="status_no_answer">Sem resposta</string>
+    <string name="status_clock_off">Relógio do celular fora de hora</string>
+    <string name="status_not_paired">Não reconhece este celular</string>
+    <string name="status_error">Respondeu com erro</string>
+    <string name="status_querying">Consultando</string>
+    <!-- Estado que veio sem a proteção do pareamento (programa antigo no computador). %1$s = estado. -->
+    <string name="status_unverified">%1$s · não verificado</string>
+    <string name="danger_strip">Sem confirmação</string>
+
+    <!-- Caminho usado (Bluetooth e Tailscale não se traduzem) -->
+    <string name="via_lan">rede local</string>
+    <string name="via_internet">internet</string>
+
+    <!-- Histórico -->
+    <string name="event_locked">Travado</string>
+    <string name="event_unlocked">Destravado</string>
+    <string name="event_denied">Pedido recusado</string>
+    <string name="event_expired">Pedido expirado</string>
+    <string name="origin_app">app</string>
+    <string name="origin_widget">widget</string>
+    <string name="origin_shortcut">atalho do ícone</string>
+    <string name="origin_tile">atalho rápido</string>
+    <string name="origin_tag">tag NFC</string>
+    <string name="origin_watch">relógio</string>
+    <string name="origin_pc">pedido do computador</string>
+    <string name="origin_notification">notificação</string>
+    <string name="origin_auto">automático perto</string>
+    <!-- Quando: %1$s = hora (20:10); %2$s = dia e mês. -->
+    <string name="when_today">hoje às %1$s</string>
+    <string name="when_yesterday">ontem às %1$s</string>
+    <string name="when_date">%2$s às %1$s</string>
+
+    <!-- Serviço -->
+    <string name="notif_service_title">Ítalock ativo</string>
+    <string name="notif_service_text">Esperando pedidos dos seus computadores</string>
+    <string name="channel_status">Serviço ativo</string>
+    <string name="channel_prompt">Pedidos de desbloqueio</string>
+    <string name="channel_waiting">Computador esperando</string>
+
+    <!-- Separador de listas de nomes ("Notebook, Servidor"). Aspas guardam o espaço. -->
+    <string name="list_separator">", "</string>
+    <!-- Acessibilidade -->
+    <string name="a11y_why_unavailable">Por que está indisponível</string>
+    <!-- %1$s = nome da opção; %2$s = motivo (pode vir vazio). -->
+    <string name="a11y_unavailable">%1$s, indisponível. %2$s</string>
+
+    <!-- Tela inicial -->
+    <string name="home_lock_all">Travar todos</string>
+    <string name="home_pair_computer">Parear computador</string>
+    <string name="home_settings_attention">Configurações (falta permitir algo)</string>
+    <string name="home_notifications_off">Notificações desligadas: os pedidos do computador não vão aparecer.</string>
+    <string name="home_empty_title">Nenhum computador pareado</string>
+    <string name="home_empty_text">Instale o Ítalock no computador e leia o QR code que ele mostra.</string>
+    <string name="home_open_details">Abrir detalhes</string>
+    <string name="home_needs_repair">Pareie de novo: a senha guardada se perdeu</string>
+    <!-- Leitor de tela: botão ocupado enquanto o pedido anda. %1$s = computador. -->
+    <string name="home_waiting_for">Aguardando %1$s</string>
+    <!-- Resumo do "Travar todos". -->
+    <string name="lock_all_one">Computador travado</string>
+    <plurals name="lock_all_done">
+        <item quantity="one">Todos os %d travados</item>
+        <item quantity="other">Todos os %d travados</item>
+    </plurals>
+    <!-- %1$s = lista de nomes. -->
+    <string name="lock_all_none">Nenhum travou: %1$s</string>
+    <!-- %1$d travados de %2$d (a forma segue o total). -->
+    <plurals name="lock_all_partial">
+        <item quantity="one">%1$d de %2$d travados.</item>
+        <item quantity="other">%1$d de %2$d travados.</item>
+    </plurals>
+    <!-- %1$s = lista de nomes (a forma segue quantos não travaram). -->
+    <plurals name="lock_all_failed">
+        <item quantity="one">Não travou: %1$s</item>
+        <item quantity="other">Não travaram: %1$s</item>
+    </plurals>
+
+    <!-- Aparência -->
+    <string name="theme_dark">Escuro</string>
+    <string name="theme_light">Claro</string>
+    <string name="theme_system">Igual ao sistema</string>
+
+    <!-- Configurações -->
+    <string name="settings_title">Configurações</string>
+    <string name="settings_missing">Falta permitir</string>
+    <string name="settings_missing_notifications">Notificações: sem elas, os pedidos do computador não aparecem.</string>
+    <string name="settings_missing_full_screen">Tela cheia: para o pedido aparecer com o celular bloqueado.</string>
+    <string name="settings_missing_battery">Economia de bateria: o Android pode fechar o Ítalock.</string>
+    <!-- Botão: liberar o app da economia de bateria. -->
+    <string name="settings_missing_battery_action">Liberar</string>
+    <string name="settings_missing_bluetooth">Bluetooth: para o computador chamar o celular sem rede.</string>
+    <string name="settings_section_requests">Pedidos do computador</string>
+    <string name="settings_timeout">Tempo para responder</string>
+    <plurals name="settings_seconds">
+        <item quantity="one">%d segundo</item>
+        <item quantity="other">%d segundos</item>
+    </plurals>
+    <string name="settings_lockscreen_prompt">Pedido na tela de bloqueio</string>
+    <string name="settings_lockscreen_prompt_on">Acende a tela e aparece por cima do bloqueio. Gasta mais bateria.</string>
+    <string name="settings_lockscreen_prompt_off">Só notificação, sem acender a tela. Para responder, desbloqueie o celular.</string>
+    <string name="settings_approve_locked">Destravar com o celular bloqueado</string>
+    <string name="settings_approve_locked_on">Aceita o pedido na tela de bloqueio, sem desbloquear o celular. Menos seguro.</string>
+    <string name="settings_approve_locked_off">Desligado: desbloqueie o celular antes de aceitar.</string>
+    <!-- Opção indisponível. %1$s = nome da opção de que ela depende. -->
+    <string name="settings_approve_locked_needs">Ligue antes \"%1$s\"</string>
+    <string name="settings_approve_locked_ask">Destravar com o celular bloqueado?</string>
+    <!-- %1$s = nome da opção "Aceitar PIN, padrão ou senha". -->
+    <string name="settings_approve_locked_ask_text">O computador poderá ser destravado direto da tela de bloqueio do celular, com a biometria (ou o PIN, se \"%1$s\" estiver ligado), sem desbloquear o celular. É mais cômodo e menos seguro.</string>
+    <string name="settings_hide_name">Esconder o nome do computador</string>
+    <string name="settings_hide_name_sub">Com o celular bloqueado, pedidos e avisos não dizem qual é.</string>
+    <string name="settings_allow_credential">Aceitar PIN, padrão ou senha</string>
+    <string name="settings_allow_credential_sub">Além da biometria. Desligado: só digital ou rosto seguro.</string>
+    <!-- Título de seção: opções de travar. -->
+    <string name="settings_section_lock">Travar</string>
+    <string name="settings_confirm_lock">Pedir confirmação antes de travar</string>
+    <string name="settings_confirm_lock_sub">Pergunta antes de travar por app, widget, atalhos, tag, relógio ou notificação.</string>
+    <!-- Atalho rápido = botão do Ítalock nos ajustes rápidos (barra de notificações). -->
+    <string name="settings_tile">Atalho rápido</string>
+    <!-- %1$s = nome do computador ou "nenhum computador". -->
+    <string name="settings_tile_controls">Controla: %1$s</string>
+    <string name="settings_tile_no_pc">nenhum computador</string>
+    <string name="settings_tile_choose">Atalho rápido controla</string>
+    <!-- "aviso" aqui = retorno ao usuário (vibração), não notificação. -->
+    <string name="settings_section_look">Aparência e aviso</string>
+    <string name="settings_theme">Aparência</string>
+    <string name="settings_vibrate">Vibrar ao concluir</string>
+    <string name="settings_vibrate_sub">Curta quando dá certo, dupla quando falha.</string>
+    <string name="settings_section_connection">Conexão</string>
+    <!-- Cadeado = estado travado/destravado do computador. -->
+    <string name="settings_poll">Atualizar o cadeado</string>
+    <string name="settings_poll_open">Só ao abrir o app</string>
+    <plurals name="settings_poll_every">
+        <item quantity="one">A cada %d segundo com o app aberto</item>
+        <item quantity="other">A cada %d segundos com o app aberto</item>
+    </plurals>
+    <string name="settings_tailscale_warning">Avisar quando o Tailscale desligar</string>
+    <string name="settings_tailscale_warning_sub">Sem ele, destravar fora de casa não funciona.</string>
+    <string name="settings_paths_note">Rede local, Bluetooth e Tailscale se escolhem por computador, nos detalhes dele.</string>
+    <string name="settings_section_more">Mais</string>
+    <string name="settings_experimental">Recursos experimentais</string>
+    <string name="settings_experimental_none">Nenhum ligado</string>
+    <!-- Etiqueta de recurso em teste. -->
+    <string name="settings_beta">BETA</string>
+    <string name="settings_about">Sobre o Ítalock</string>
+    <string name="settings_about_sub">Créditos, licença, detalhes técnicos e registros</string>
+    <plurals name="settings_experimental_on">
+        <item quantity="one">%d ligado</item>
+        <item quantity="other">%d ligados</item>
+    </plurals>
+
+    <!-- Tela principal: avisos curtos (%1$s = nome do computador) -->
+    <string name="main_history_cleared">Histórico de %1$s apagado</string>
+    <string name="main_lock_all_ask">Travar todos os computadores?</string>
+    <string name="main_unlocked">%1$s destravado</string>
+    <string name="main_not_unlocked">%1$s não destravou</string>
+    <string name="main_lock_unconfirmed">%1$s recebeu o pedido, mas não confirmou</string>
+    <string name="main_removed">%1$s removido</string>
+    <string name="main_no_paths">Com todos os caminhos desligados, %1$s não funciona.</string>
+    <!-- Título da confirmação por biometria. -->
+    <string name="main_no_confirm_bio_title">Ligar destravar sem confirmação</string>
+    <string name="main_key_error">Erro na chave do celular. Tente de novo.</string>
+    <string name="main_no_confirm_on">%1$s: destravar sem confirmação ligado</string>
+    <string name="main_no_confirm_off">%1$s: volta a pedir confirmação</string>
+    <string name="main_confirm_for">Confirmar para %1$s</string>
+    <string name="main_on_for">Ligado para %1$s</string>
+    <!-- Sobre, detalhes técnicos. -->
+    <string name="main_tech_version">Versão</string>
+    <string name="main_tech_device">Aparelho</string>
+    <string name="main_tech_phone_id">Id deste celular</string>
+    <string name="main_tech_paired">Computadores pareados</string>
+    <string name="main_tech_google">Serviços do Google (relógio Wear OS)</string>
+    <string name="main_tech_available">Disponíveis</string>
+    <string name="main_tech_unavailable">Indisponíveis</string>
+    <string name="main_export_failed">Não deu para gerar o arquivo de registros.</string>
+    <string name="main_export_subject">Registros do Ítalock</string>
+    <string name="main_export_chooser">Enviar registros</string>
+    <string name="main_export_no_app">Nenhum app para compartilhar o arquivo.</string>
+    <!-- Pareamento -->
+    <string name="main_scan_prompt">Aponte para o QR code do Ítalock no computador</string>
+    <string name="main_pair_invalid_code">Código inválido. Confira e tente de novo.</string>
+    <string name="main_pair_searching">Procurando o computador</string>
+    <string name="main_pair_timeout">O pareamento demorou demais. Confira a rede e tente de novo.</string>
+    <string name="main_pair_confirm">Confirme para guardar o pareamento</string>
+    <string name="main_pair_not_saved">O computador guardou o pareamento, mas o celular não. Toque em Confirmar de novo; se não der, remova este celular no Ítalock do computador e pareie outra vez.</string>
+    <!-- %1$s = nome do computador (como ele se chama no PC). -->
+    <string name="main_pair_bio_title">Guardar pareamento com %1$s</string>
+    <string name="main_paired_with">Pareado com %1$s</string>
+    <!-- %1$s = motivo (ex.: "Confirmação cancelada."). -->
+    <string name="main_pair_cancelled">%1$s O computador já guardou o pareamento: toque em Confirmar de novo, ou remova este celular no Ítalock do computador.</string>
+    <string name="main_pair_cancelled_default">Confirmação cancelada.</string>
+
+    <!-- Idioma -->
+    <string name="settings_language">Idioma</string>
+    <string name="language_system">Automático (idioma do sistema)</string>
 </resources>

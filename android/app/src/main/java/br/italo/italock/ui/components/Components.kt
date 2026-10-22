@@ -1,5 +1,7 @@
 package br.italo.italock.ui.components
 
+import androidx.compose.ui.res.stringResource
+import br.italo.italock.R
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -60,7 +62,7 @@ fun InnerTopBar(title: String, onBack: () -> Unit) {
     TopAppBar(
         title = { Text(title, style = MaterialTheme.typography.titleLarge, maxLines = 1) },
         navigationIcon = {
-            IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = "Voltar") }
+            IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = stringResource(R.string.common_back)) }
         },
         colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.background),
     )
@@ -109,7 +111,7 @@ fun QuietButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier
 @Composable
 fun SectionTitle(text: String, modifier: Modifier = Modifier) {
     Text(
-        text.uppercase(java.util.Locale.forLanguageTag("pt-BR")), style = MaterialTheme.typography.labelMedium,
+        text.uppercase(br.italo.italock.i18n.L10n.currentLocale()), style = MaterialTheme.typography.labelMedium,
         color = MaterialTheme.colorScheme.primary,
         modifier = modifier.padding(start = 20.dp, end = 20.dp, top = 28.dp, bottom = 10.dp),
     )
@@ -191,15 +193,16 @@ fun SwitchRow(
     val c = Italock.colors
     val context = LocalContext.current
     val alpha = if (enabled) 1f else DISABLED_ALPHA
+    val unavailableDescription = stringResource(R.string.a11y_unavailable, title, disabledReason ?: "").trim()
     val titleColor = (if (danger) c.dangerText else MaterialTheme.colorScheme.onSurface).copy(alpha = alpha)
     val subColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = alpha)
     Row(
         Modifier.fillMaxWidth()
-            .clickable(role = Role.Switch, onClickLabel = if (enabled) null else "Por que está indisponível") {
+            .clickable(role = Role.Switch, onClickLabel = if (enabled) null else stringResource(R.string.a11y_why_unavailable)) {
                 if (enabled) onChange(!checked)
                 else if (disabledReason != null) Toast.makeText(context, disabledReason, Toast.LENGTH_LONG).show()
             }
-            .semantics { if (!enabled) contentDescription = "$title, indisponível. ${disabledReason ?: ""}" }
+            .semantics { if (!enabled) contentDescription = unavailableDescription }
             .heightIn(min = 60.dp)
             // Fio embaixo do centro do ícone da opção de cima; o texto alinha com o texto dela.
             .padding(start = if (dependent) 33.dp else 0.dp),
@@ -312,7 +315,7 @@ fun AmberBanner(text: String, modifier: Modifier = Modifier) {
 
 /** Faixa vermelha do modo sem confirmação. */
 @Composable
-fun DangerStrip(text: String = "Sem confirmação", modifier: Modifier = Modifier) {
+fun DangerStrip(text: String = stringResource(R.string.danger_strip), modifier: Modifier = Modifier) {
     val c = Italock.colors
     Text(
         text, style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.SemiBold, color = c.onDanger,
@@ -328,13 +331,13 @@ fun statusLook(status: LockStatus?): StatusLook {
     val c = Italock.colors
     val muted = MaterialTheme.colorScheme.onSurfaceVariant
     return when (status) {
-        LockStatus.LOCKED -> StatusLook(Icons.Outlined.Lock, c.lockedIcon, "Travado", MaterialTheme.colorScheme.onSurface)
-        LockStatus.UNLOCKED -> StatusLook(ItalockIcons.LockOpen, c.unlockedIcon, "Destravado", c.unlockedText)
-        LockStatus.NO_ANSWER -> StatusLook(ItalockIcons.NoAnswer, c.muted, "Sem resposta", muted)
-        LockStatus.CLOCK_OFF -> StatusLook(ItalockIcons.Clock, c.dangerText, "Relógio do celular fora de hora", c.dangerText)
-        LockStatus.NOT_PAIRED -> StatusLook(ItalockIcons.NoAnswer, c.dangerText, "Não reconhece este celular", c.dangerText)
-        LockStatus.ERROR -> StatusLook(ItalockIcons.NoAnswer, c.dangerText, "Respondeu com erro", c.dangerText)
-        null -> StatusLook(Icons.Outlined.Lock, c.muted.copy(alpha = 0.5f), "Consultando", muted)
+        LockStatus.LOCKED -> StatusLook(Icons.Outlined.Lock, c.lockedIcon, stringResource(R.string.status_locked), MaterialTheme.colorScheme.onSurface)
+        LockStatus.UNLOCKED -> StatusLook(ItalockIcons.LockOpen, c.unlockedIcon, stringResource(R.string.status_unlocked), c.unlockedText)
+        LockStatus.NO_ANSWER -> StatusLook(ItalockIcons.NoAnswer, c.muted, stringResource(R.string.status_no_answer), muted)
+        LockStatus.CLOCK_OFF -> StatusLook(ItalockIcons.Clock, c.dangerText, stringResource(R.string.status_clock_off), c.dangerText)
+        LockStatus.NOT_PAIRED -> StatusLook(ItalockIcons.NoAnswer, c.dangerText, stringResource(R.string.status_not_paired), c.dangerText)
+        LockStatus.ERROR -> StatusLook(ItalockIcons.NoAnswer, c.dangerText, stringResource(R.string.status_error), c.dangerText)
+        null -> StatusLook(Icons.Outlined.Lock, c.muted.copy(alpha = 0.5f), stringResource(R.string.status_querying), muted)
     }
 }
 
