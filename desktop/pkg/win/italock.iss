@@ -4,8 +4,8 @@
 [Setup]
 AppId={{B3E1F0A2-6C1D-4C7B-9E55-1A7F3C9D2E10}
 AppName=Ítalock
-AppVersion=1.9.0
-AppVerName=Ítalock 1.9.0
+AppVersion=1.10.0
+AppVerName=Ítalock 1.10.0
 AppPublisher=Ítalo
 DefaultDirName={autopf}\Italock
 DisableDirPage=yes
